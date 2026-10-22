@@ -1,0 +1,59 @@
+{
+  "dice": 0.6464587370653406,
+  "precision": 0.6397035943526619,
+  "recall": 0.6533580683069601,
+  "fp_voxels": 49789,
+  "fn_voxels": 46901,
+  "fp_ml": 137.94650806306618,
+  "fn_ml": 129.94495118732786,
+  "empty_prediction": false,
+  "empty_truth": false,
+  "assd_mm": 20.79052051545684,
+  "hd95_mm": 94.95260852860667,
+  "assd_definition": "pooled bidirectional 6-neighbour boundary-voxel distances; not surfel-area weighted",
+  "centerline_definition": "Lee skeleton voxel coverage on native grid; not arc-length weighted",
+  "asd_prediction_to_truth_mm": 29.794507784074714,
+  "asd_truth_to_prediction_mm": 11.22136832009152,
+  "centerline_recall": 0.4961948249619482,
+  "centerline_precision": 0.5656565656565656,
+  "cldice": 0.5286537514840877,
+  "truth_skeleton_support": 657,
+  "prediction_skeleton_support": 693,
+  "prediction_components": 41,
+  "truth_components": 1,
+  "geometry_groups": {
+    "radius_le_2mm": {
+      "support_nodes": 0,
+      "centerline_recall": null
+    },
+    "radius_2_to_4mm": {
+      "support_nodes": 67,
+      "centerline_recall": 0.22388059701492538
+    },
+    "radius_4_to_8mm": {
+      "support_nodes": 353,
+      "centerline_recall": 0.2719546742209632
+    },
+    "radius_gt_8mm": {
+      "support_nodes": 237,
+      "centerline_recall": 0.9071729957805907
+    },
+    "nonjunction": {
+      "support_nodes": 612,
+      "centerline_recall": 0.4673202614379085
+    },
+    "junction_neighbourhood": {
+      "support_nodes": 29,
+      "centerline_recall": 1.0
+    }
+  },
+  "geometry_group_scope": "GT-defined centerline recall only; false-positive tradeoff reported globally",
+  "case_id": "Rider_R14",
+  "cohort": "Rider",
+  "seconds": 90.26890397071838,
+  "inference_tiles": 520,
+  "fixed_threshold": 0.5,
+  "condition_mode": "predicted",
+  "evaluation_grid": "original CT",
+  "postprocessing": "none"
+}

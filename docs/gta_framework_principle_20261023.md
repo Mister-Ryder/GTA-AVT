@@ -62,8 +62,11 @@ cannot decompose a MAIN gain. The two A runs are not extra seeds, and the two
 contrasts cannot be pooled or subtracted. Measured validation differences include
 trade-offs; Dice alone cannot establish fine-vessel or junction recovery.
 Interpretation requires case-level errors, clDice, FP/FN cost, supported geometry
-groups and condition diagnostics. No TEST performance or single-component causal
-effect is asserted here. One split/seed and unverified subject independence
+groups and condition diagnostics. The [completed TEST12 report](../reports/minimal4_reference_TEST_20261023/README.md)
+shows a favorable MAIN joint-path contrast and an unfavorable mean SECOND
+predicted-versus-constant Dice contrast, with coverage/error trade-offs retained.
+It does not establish stable overall value of informative conditions or a
+single-component causal effect. One split/seed and unverified subject independence
 remain limitations; mixed or negative evidence must narrow the claim.
 
 See the [adaptation boundaries](adaptation_boundaries.md),

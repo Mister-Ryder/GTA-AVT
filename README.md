@@ -105,6 +105,8 @@ python code/prepare.py --data-root data/raw --split configs/split_seed20261022.j
 
 The smoke checks historical source identity, common initialization, original operator responses, finite optimization, expected gradient paths, and native-grid metric fixtures. It uses synthetic data; passing it is not a segmentation result. Cache records retain original geometry, source hashes, preprocessing hashes, cached-file hashes, intensity decisions, and training-only geometry/round-trip diagnostics.
 
+Actual [TRAIN36 preprocessing evidence](reports/preprocessing_20261022/readout.txt) is available with per-case records. Native-grid round-trip Dice averaged 97.69%, all-centerline retention 99.83%, and radius <=2 mm retention 98.78% across 35 supported patients. The latter is 96.08% when weighted by native skeleton-node support, with 91.07% and 93.14% in two RIDER cases. These are preprocessing-retention measurements, not model scores. Unknown structure accounts for 12.05% of resampled training skeleton nodes and is masked from structure supervision.
+
 ### 3. Run bounded internal ablations
 
 ```bash
@@ -135,6 +137,10 @@ python runs/pilot_Asoft/source/evaluate.py --run runs/pilot_Asoft --split val --
 The first command evaluates all eight validation cases, beyond the three used during the pilot. These remain development results. The second resumes exactly the same evaluation with its frozen source; reuse refuses a different checkpoint, condition mode, source, or manifest. To intervene on scale/structure conditions, use a separate output directory and `--condition-mode constant` or `--condition-mode permuted`; the latter reverses class entries, not patient identities. Pilot checkpoints are ineligible for final-test reporting by default. Do not use held-out test performance to choose methods, thresholds, preprocessing, or geometry targets.
 
 ## Metrics and geometry limitations
+
+The [reference-evaluation tools](tools/REFERENCE_WEIGHTS_README.txt) export genuine completed checkpoints to tensor-only weights, verify exact source/cache identities, and evaluate all trained methods in the same Python 3.8/PyTorch 1.11 environment. Test evaluation requires an explicit command and an eligible formal model. A saved TRAIN-only FP32 input bank supports a numerical runtime bridge. These tools are separate from the full training-checkpoint evaluator above.
+
+[Patient-level analysis](analysis/analyze_key_ablations.py) and [figure exports](analysis/plot_key_ablations.py) implement the [frozen comparison protocol](docs/key_ablation_analysis_protocol_20261022.txt): paired patient differences, 20,000 bootstrap draws, explicit missing/support counts, and separate training-runtime groups. Plotting additionally requires Matplotlib. Synthetic helper tests are not experimental results.
 
 - Predictions are restored to the original CT physical grid before evaluation. Full prediction foreground, including distant false positives, is retained. The threshold is 0.5 and no connected-component cleanup is applied to segmentation endpoints.
 - Dice, precision, recall, FP/FN volumes, pooled bidirectional 6-neighbor boundary-voxel ASSD, and maximum-directional HD95 are explicit. ASSD is not surfel-area weighted or the unweighted mean of two directional means. Missing distance values remain missing, with counts reported.

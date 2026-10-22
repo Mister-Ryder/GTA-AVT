@@ -1,0 +1,256 @@
+GTA-AVT key ablation analysis protocol (frozen intent, 2026-10-22)
+
+Purpose and scope
+
+This analysis reads completed common-reference evaluation artifacts. It does
+not train, choose checkpoints, change a threshold, predict a segmentation, or
+start test evaluation. No real results were available when this script and
+protocol were prepared. Synthetic self-test inputs are temporary and never
+become experimental results.
+
+Preserved failed-pilot history: the first main C pilot was terminated at
+update63 by an overly strict AMP overflow handler. Both initial pilot queues
+were archived. The replacement training implementation uses bounded retries
+of the same batch with restored batch-normalization/RNG state. Replacement
+pilots are fresh runs under their new training-source hash; the archived
+failed pilot is not silently resumed, relabeled complete, pooled with rerun
+metrics, or counted as another seed. The final test was untouched. This is an
+implementation failure/rerun distinction, not an AVT method result.
+
+The primary contrast is main-role A_soft minus C_concat. The secondary contrast
+is main-role A_soft minus A_soft_constant. Three exploratory contrasts compare
+the second training role's full A_soft_platform_bridge with A_soft_scale,
+A_soft_structure and A_hard_anchor. The first two exploratory contrasts isolate
+the available scale/structure compositions; the third compares soft and hard
+composition. No direct cross-training-role effect is calculated. The platform
+bridge is not another seed and does not eliminate a training-runtime effect.
+
+Common-reference inference and metric computation must use the same recorded
+environment, selected execution device, actual autocast policy, frozen source,
+canonical data identity, metric definitions, inference recipe, patient list,
+and evaluation tools. Main-role and ablation-role training environments remain
+separate and are recorded. Within each training role they must match.
+
+The analysis consumes only GTA-AVT-reference-evaluation-v1 sidecars generated
+by the explicit reference evaluator. It requires genuine checkpoint/export
+SHA256 provenance and the selected positive training update. It does not infer
+an environment from absent metadata or accept the older evaluation sidecar
+that omitted runtime and selected-device identity. Reference export/evaluation
+performs checkpoint and data verification; analysis additionally checks all
+metric identities and hashes the sidecar plus every consumed metric file.
+The reference receipt must explicitly identify Python3.8/torch1.11 and both
+TF32 backends disabled; common agreement on a different runtime is rejected.
+
+Input index
+
+Use a JSON object with schema "GTA-AVT-key-ablation-index-v1", stage "val" or
+"test", split_sha256 below, explicit patient_scope, the exact ordered
+patient_ids for that scope, and a methods list. Each methods entry has id,
+role and evaluation_dir. All paths are relative to the index JSON directory;
+metric paths are relative to that method's evaluation_dir. Default files are
+evaluation_protocol.json and CASE_ID/metrics.json. Optional protocol_file and
+metric_files allow explicit relative filenames; a metric_files object must
+map every patient_id to exactly one filename and contain no additional cases.
+Absolute paths are rejected. Output provenance uses relative paths and case
+IDs; raw sidecar run paths and environment executable paths are not copied.
+When a runtime receipt records its host, the analysis compares only a SHA256
+host identity and does not publish the hostname itself.
+
+Frozen split SHA256:
+df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b
+
+Allowed method mappings (id | role | actual reference protocol method):
+A_soft | main | faithful_soft
+C_concat | main | faithful_concat
+A_soft_constant | main | faithful_soft_constant
+A_soft_platform_bridge | ablations | faithful_soft
+A_soft_scale | ablations | faithful_soft_scale
+A_soft_structure | ablations | faithful_soft_structure
+A_hard_anchor | ablations | faithful_joint
+
+Full analysis requires all seven methods. --allow-partial explicitly permits
+an incomplete set for development; unavailable contrasts are listed and never
+filled, extrapolated, or silently removed. An incomplete analysis is marked
+in analysis.json and report.txt.
+
+Allowed scopes and exact ordered patient_ids:
+
+stage=test, patient_scope=final_test12:
+["Dongyang_D11", "Dongyang_D13", "Dongyang_D14", "Dongyang_D7",
+ "KiTS_K1", "KiTS_K10", "KiTS_K5", "KiTS_K7",
+ "Rider_R13", "Rider_R14", "Rider_R16", "Rider_R2"]
+All models must have stage=formal, final_test_eligible=true and an explicitly
+authorized formal-test reference sidecar. There are four test cases per
+cohort. No runtime mechanism intervention is accepted.
+
+stage=val, patient_scope=full_frozen8:
+["Dongyang_D2", "Dongyang_D5", "KiTS_K13", "KiTS_K15", "KiTS_K18",
+ "KiTS_K8", "Rider_R10", "Rider_R9"]
+All models must have stage=formal. Validation is development evidence, not a
+held-out final result. Cohort sizes are 2/4/2; the overall mean weights each
+patient equally rather than weighting cohorts equally.
+
+stage=val, patient_scope=pilot_fixed3:
+["Dongyang_D2", "KiTS_K13", "Rider_R10"]
+All models must have stage=pilot. Use --allow-partial for the five pilot jobs.
+One patient per cohort is not a cohort-level uncertainty estimate. A one-case
+bootstrap interval is degenerate and explicitly flagged.
+
+Example skeleton for a real index (replace directories with actual relative
+evaluation directories and patient_ids with the full exact list above):
+{
+  "schema": "GTA-AVT-key-ablation-index-v1",
+  "stage": "test",
+  "patient_scope": "final_test12",
+  "split_sha256": "df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b",
+  "patient_ids": ["...full exact final_test12 list..."],
+  "methods": [
+    {"id":"A_soft", "role":"main", "evaluation_dir":"../results/reference_eval/test/main/A_soft"},
+    {"id":"C_concat", "role":"main", "evaluation_dir":"../results/reference_eval/test/main/C_concat"},
+    {"id":"A_soft_constant", "role":"main", "evaluation_dir":"../results/reference_eval/test/main/A_soft_constant"},
+    {"id":"A_soft_platform_bridge", "role":"ablations", "evaluation_dir":"../results/reference_eval/test/ablations/A_soft_platform_bridge"},
+    {"id":"A_soft_scale", "role":"ablations", "evaluation_dir":"../results/reference_eval/test/ablations/A_soft_scale"},
+    {"id":"A_soft_structure", "role":"ablations", "evaluation_dir":"../results/reference_eval/test/ablations/A_soft_structure"},
+    {"id":"A_hard_anchor", "role":"ablations", "evaluation_dir":"../results/reference_eval/test/ablations/A_hard_anchor"}
+  ]
+}
+The ellipsis placeholder above is documentation only and will be rejected by
+the script. No executable example index or synthetic metric results is saved.
+
+Commands (from the project directory; NumPy only):
+python analysis/analyze_key_ablations.py --self-test
+python analysis/analyze_key_ablations.py --index analysis/key_ablation_test_index.json --stage test --output results/key_ablation_test_analysis
+python analysis/analyze_key_ablations.py --index analysis/key_ablation_pilot_index.json --stage val --allow-partial --output results/key_ablation_pilot_analysis
+Output directories are immutable and must be new or empty. Supplying --stage
+explicitly must agree with the index and every reference evaluation sidecar.
+
+Estimands and units
+
+The patient is the statistical unit. Every patient has equal weight. For each
+contrast and metric, delta is A minus B. Dice, global precision/recall,
+centerline recall/precision and clDice are stored in the evaluator as fractions
+and converted to percentages for per-method/per-patient tables. Their deltas
+are percentage points (pp). FP/FN volume is ml; ASSD and HD95 are mm. Positive
+overlap/centerline deltas favor A; negative FP/FN/distance deltas favor A.
+Reported means are patient macro means, not Dice from pooled voxels. Reported
+between-patient standard deviations use ddof=1 on defined patients.
+
+For each paired metric, sample the available paired patients with replacement
+20,000 times, using numpy.default_rng(20261022). The statistic is the arithmetic
+mean of per-patient A-B differences. Report the 2.5th and 97.5th percentiles of
+the bootstrap means. Every metric/scope starts the same fixed RNG seed, giving
+deterministic case resampling for a fixed ordered paired set. The intervals
+quantify patient resampling for this one trained seed, not training-seed
+variability, algorithmic stability, or population certainty from twelve cases.
+They are not voxel/node/patch bootstrap intervals. No p-values or significance
+labels are produced. Multiple exploratory metrics/groups/cohorts are
+descriptive; no multiplicity-adjusted claims are made.
+
+Wins/ties/losses are patient counts in the favorable direction, with an
+absolute numerical tie tolerance of 1e-12 in the displayed metric units. The
+three worst Dice pairs are the three smallest A-B Dice differences, with case
+ID as a deterministic tiebreaker. Their FP/FN and distance tradeoffs are shown
+alongside Dice. This is a prespecified descriptive diagnostic, not evidence
+selected to improve an aggregate result.
+
+Missing values and support
+
+Dice, FP volume and FN volume are required for every patient. Missing primary
+metrics, nonfinite numbers, out-of-range fractions or inconsistent case IDs
+fail the analysis. An evaluator null for ASSD/HD95/centerline/clDice remains
+null. There is no zero-fill, infinity clipping or exclusion hidden from the
+report. Per-method all_patient_mean is null if any patient is undefined;
+defined_patient_mean and defined-case counts describe the observed subset.
+Paired estimates use only patients defined in both methods and report the
+total, paired, missing-A, missing-B and excluded counts. An undefined distance
+after an empty prediction is potentially informative missingness: a favorable
+complete-pair distance must be read with Dice, FP/FN, empty masks and support.
+
+ASSD is the frozen pooled bidirectional six-neighbour boundary-voxel distance,
+not a surfel-area weighted mean or the equal mean of two directional means.
+HD95 is the maximum of the two directional 95th percentiles. Native Lee
+centerline coverage is voxel weighted and not physical arc-length weighted.
+clDice uses those centerline recall/precision values. Known Lee skeleton
+degeneracy can make a nonempty volume lack skeleton support; nulls and support
+are retained. No substitution of a new skeleton implementation occurs here.
+
+GT geometry groups are the four radius bins and nonjunction/junction
+neighbourhood from the frozen candidate geometry definition. For each patient
+and group, use the evaluator's centerline recall. Average patient recalls
+equally among supported, defined patients; never pool nodes. Support-node
+counts are descriptive, not statistical weights. Zero GT support is undefined
+recall, not zero recall. A missing group record (e.g. the evaluator's early
+empty-mask return) is reported separately from known zero GT support. Do not
+invent a supported group or a group precision from these records. Global FP,
+FN and global centerline precision provide the false-positive tradeoff.
+Reported GT skeleton and group support must agree across methods for each
+patient when recorded; disagreement fails the analysis. Junction groups are
+operational geometry candidates, not validated biological branch labels.
+
+Artifacts
+
+analysis.json: complete structured analysis, source/runtime/checkpoint/metric
+hash provenance, units/support/limitations and all tables.
+per_case_metrics.csv: patient-level metrics, null reasons and skeleton support.
+method_summaries.csv: overall and cohort means with defined-case counts.
+paired_case_differences.csv: every metric's patient-level A/B/delta and missing
+reasons; no removed undefined rows.
+paired_summaries.csv: overall and cohort paired deltas, bootstrap CIs, support,
+paired A/B means, and wins/ties/losses.
+geometry_case_recall.csv: GT group recall and support by patient/method.
+geometry_method_summaries.csv: equal-patient group means and missing/support.
+geometry_paired_summaries.csv: paired group-recall deltas, CIs and support.
+worst_dice_pairs.csv: fixed three worst Dice pairs and global tradeoffs.
+report.txt: concise descriptive contrasts, unavailable comparisons and limits.
+
+Publication interpretation
+
+Judge the primary main-role A-C effect with the constant-condition contrast,
+global FP/FN and distance changes, supported geometry-recall differences, and
+individual patients. The fixed seed does not establish seed stability. The
+second-role bridge supports within-role ablation interpretation; identical
+reference evaluation does not turn two training runtimes into one experiment.
+Cohort tables (four held-out patients per cohort) are exploratory. Published
+AVT cross-validation, two-dimensional, differently cropped or differently
+labeled results are context, not a SOTA leaderboard against this split.
+
+Self-test coverage
+
+The temporary synthetic fixture verifies identical methods give zero paired
+deltas/intervals, a known Dice offset gives its exact pp delta, a missing
+distance uses seven complete pairs with the all-patient mean undefined,
+zero GT junction support remains undefined, nonconstant bootstrapping is
+deterministic, unequal group-node supports still give equal-patient means,
+tables/report serialize, and mismatched selected execution
+devices are rejected. Ineligible/unauthorized test receipts, non-boolean
+eligibility flags, and runtime test interventions are rejected before any
+test metric file is read. Temporary fixture directories are deleted; the command
+prints only fixture pass/fail names and saves no synthetic result artifact.
+
+Static scientific figures
+
+analysis/plot_key_ablations.py consumes only the structured analysis.json
+artifact, not unreviewed metric files. It independently reconciles plotted
+global/group mean differences and support with the patient tables. Commands:
+python analysis/plot_key_ablations.py --self-test
+python analysis/plot_key_ablations.py --analysis results/key_ablation_test_analysis/analysis.json --output results/key_ablation_test_figures
+
+Outputs are four two-column-width figures (approximately180mm), each as a
+300dpi PNG and vector PDF: all-patient main A/C/constant Dice; paired mean Dice
+differences with main/second training roles in separate panels; main-role
+GT-group recall deltas with global FP companion; second-role within-bridge
+GT-group recall deltas with global FP companion. An unavailable second-role
+comparison is omitted explicitly rather than fabricated; absent groups retain
+their row and show paired n=0/total and NA. Percent and pp units differ
+explicitly. No significance stars, unsupported precision, pooled-runtime
+effect or SOTA label is added. Point and marker styles remain distinct in
+grayscale. Every patient is displayed, including the worst cases.
+
+figure_source.csv preserves every plotted value/interval/support and patient
+ID; figure_manifest.json preserves analysis/helper/output hashes, dimensions,
+reference runtime identity and the bootstrap provenance. Figure files are
+immutable. Actual-data PNG/PDF exports still require visual inspection after
+generation; the helper does not claim that unseen real figures passed review.
+Its self-test reuses temporary analysis fixtures, watermarks every temporary
+figure SYNTHETIC SELF-TEST - NOT RESULTS, verifies PNG/PDF outputs, and removes
+them. No synthetic figure is retained as a publication result.

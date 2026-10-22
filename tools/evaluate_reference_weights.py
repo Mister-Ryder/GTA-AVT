@@ -10,7 +10,24 @@ os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
 from reference_weights_support import (
     atomic_json, load_json, file_hash, source_hashes, canonical_cache_identity, assert_same_data,
     runtime_environment, require_reference_runtime, configure_inference_runtime,
-    load_tensor_bundle, load_strict_model, evaluation_cases, FIXED_INFERENCE, selected_execution_device)
+    load_tensor_bundle, load_strict_model, evaluation_cases, FIXED_INFERENCE, selected_execution_device,
+    canonical_digest)
+
+
+def training_recipe_fields(provenance):
+    """Expose the genuine export's full recipe without inferring it from a path."""
+    recipe = provenance.get('recipe')
+    run_record = provenance.get('original_run_record')
+    if (not isinstance(recipe, dict) or not recipe or
+            not isinstance(run_record, dict) or provenance.get('stage') not in ('pilot', 'formal') or
+            recipe.get('method') != provenance.get('method') or
+            recipe.get('stage') != provenance.get('stage') or
+            run_record.get('recipe') != recipe):
+        raise ValueError('Export training recipe differs from its genuine run/method/stage provenance')
+    recipe_sha = canonical_digest(recipe)
+    if canonical_digest(run_record['recipe']) != recipe_sha:
+        raise ValueError('Export training recipe and genuine run recipe have different canonical JSON identities')
+    return dict(training_recipe=recipe, training_recipe_sha256=recipe_sha)
 
 
 def main():
@@ -30,6 +47,7 @@ def main():
     require_reference_runtime()
     configure_inference_runtime()
     provenance, state = load_tensor_bundle(args.bundle)
+    recipe_fields = training_recipe_fields(provenance)
     case_ids = evaluation_cases(provenance, args.split, args.allow_formal_test, args.intervention)
     if args.intervention == 'availability_only' and provenance['method'] != 'faithful_soft':
         raise ValueError('availability_only requires a trained faithful_soft model')
@@ -55,6 +73,7 @@ def main():
         selected_execution_device=selected_execution_device(device), autocast_enabled=device.type == 'cuda',
         precision='Frozen inference.py: CUDA autocast enabled on CUDA, disabled on CPU; TF32 disabled in both backends',
         training_environment_receipt=provenance['training_environment_receipt'], reference_environment=runtime,
+        **recipe_fields,
         evaluator_tool_sha256={Path(__file__).name: file_hash(__file__),
                               'reference_weights_support.py': file_hash(Path(__file__).with_name('reference_weights_support.py'))})
     output = Path(args.output)

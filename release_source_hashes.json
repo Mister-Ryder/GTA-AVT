@@ -1,5 +1,5 @@
 {
-  "release_stage": "public research implementation; segmentation results pending",
+  "release_stage": "measured v1 engineering-development results; complete v2 internal ablations pending",
   "source_identity": "byte-identical copy of frozen experimental code",
   "files": {
     "common.py": "79edd4ce7623632c602b33124d4653a28d7cb41ee9ae7a0ee4e664a0efba5d5a",

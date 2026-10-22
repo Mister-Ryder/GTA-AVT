@@ -2,7 +2,8 @@ GTA-AVT: common-reference evaluation and cross-runtime numerical bridge
 
 Purpose
 
-The second GPU trains in Python3.11/torch2.7. Final metrics are computed in the
+The original v1 second role trained in Python3.11/torch2.7. The common v2 recipe
+uses Python3.8/torch1.11 on both training roles. Final metrics are computed in the
 main Python3.8/torch1.11 environment using the unchanged frozen model,
 inference.py/native_images, metrics.py and geometry.py. No external network,
 optimizer/RNG fabrication, training-checkpoint shim, automatic test evaluation,

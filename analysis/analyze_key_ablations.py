@@ -66,12 +66,69 @@ def sha(path):
 
 
 def canonical_sha(value):
-    raw = json.dumps(value, sort_keys=True, separators=(',', ':'), allow_nan=False).encode('utf-8')
+    raw = json.dumps(value, sort_keys=True, ensure_ascii=True, separators=(',', ':'), allow_nan=False).encode('utf-8')
     return hashlib.sha256(raw).hexdigest()
 
 
 def valid_sha(value):
     return isinstance(value, str) and len(value) == 64 and all(x in '0123456789abcdef' for x in value)
+
+
+def validated_training_recipe(protocol, expected_method, expected_stage, allow_legacy_pilot=False):
+    """Formal comparisons require complete typed recipes, not provenance SHA alone.
+
+    The SHA uses the same sorted ASCII JSON representation as the reference
+    exporter. Unknown extra recipe fields remain identity-bearing and must be
+    identical across methods after removing only ``method``.
+    """
+    recipe, recorded = protocol.get('training_recipe'), protocol.get('training_recipe_sha256')
+    if recipe is None and recorded is None and expected_stage == 'pilot' and allow_legacy_pilot:
+        return None  # Explicit development-only compatibility, never formal.
+    if not isinstance(recipe, dict) or not recipe or not valid_sha(recorded):
+        raise ValueError('Complete training_recipe and canonical training_recipe_sha256 are required')
+    try:
+        actual = canonical_sha(recipe)
+    except (TypeError, ValueError) as error:
+        raise ValueError('Training recipe must contain finite JSON values') from error
+    if actual != recorded:
+        raise ValueError('Training recipe SHA256 does not match its canonical contents')
+    positive_ints = ('width', 'patch_size', 'batch_size', 'max_steps', 'log_every',
+                     'checkpoint_every', 'validate_every', 'inference_patch_size',
+                     'inference_batch_size', 'cpu_threads')
+    required = set(positive_ints) | {'method', 'stage', 'seed', 'lr', 'weight_decay',
+        'foreground_probability', 'auxiliary_weight', 'gradient_clip',
+        'validation_case_limit', 'inference_overlap', 'save_validation_predictions'}
+    if not required.issubset(recipe):
+        raise ValueError('Training recipe is missing required original training fields')
+    if (recipe['method'] != expected_method or recipe['method'] != protocol.get('method') or
+            recipe['stage'] != expected_stage or recipe['stage'] != protocol.get('stage')):
+        raise ValueError('Training recipe method/stage differs from the declared trained model')
+    if type(recipe['seed']) is not int or recipe['seed'] != SEED:
+        raise ValueError('Training recipe must record the fixed integer seed20261022')
+    if any(type(recipe[name]) is not int or recipe[name] <= 0 for name in positive_ints):
+        raise ValueError('Training recipe dimensions/budgets/intervals must be positive integers')
+    if type(recipe['validation_case_limit']) is not int or recipe['validation_case_limit'] < 0:
+        raise ValueError('Training recipe validation_case_limit must be a nonnegative integer')
+    if not isinstance(recipe['save_validation_predictions'], bool):
+        raise ValueError('Training recipe save_validation_predictions must be a boolean')
+    for name in ('lr', 'weight_decay', 'foreground_probability', 'auxiliary_weight', 'gradient_clip', 'inference_overlap'):
+        value = recipe[name]
+        if isinstance(value, bool) or not isinstance(value, (int, float)) or not np.isfinite(value):
+            raise ValueError('Training recipe requires finite numeric ' + name)
+    if (recipe['lr'] <= 0 or recipe['weight_decay'] < 0 or recipe['auxiliary_weight'] < 0 or
+            recipe['gradient_clip'] <= 0 or not 0 <= recipe['foreground_probability'] <= 1):
+        raise ValueError('Training recipe contains an invalid learning/sampling parameter')
+    if (recipe['inference_patch_size'] != FIXED_INFERENCE['patch_size'] or
+            recipe['inference_batch_size'] != FIXED_INFERENCE['batch_size'] or
+            recipe['inference_overlap'] != FIXED_INFERENCE['overlap']):
+        raise ValueError('Training recipe does not match the fixed reference inference settings')
+    if expected_stage == 'formal' and (recipe['validation_case_limit'] != 0 or
+            ('validation_case_ids' in recipe and recipe['validation_case_ids'] != FIXED_CASES['full_frozen8'])):
+        raise ValueError('Formal training recipe must retain all frozen validation cases')
+    step = protocol.get('selected_step')
+    if type(step) is not int or not 0 < step <= recipe['max_steps']:
+        raise ValueError('Selected checkpoint update exceeds the recorded training recipe budget')
+    return recipe
 
 
 def relative_path(base, value):
@@ -213,6 +270,8 @@ def load_inputs(index_path, stage, allow_partial=False):
                 raise ValueError('Missing checkpoint/data/export provenance SHA256: ' + name)
         if not isinstance(protocol.get('selected_step'), int) or isinstance(protocol['selected_step'], bool) or protocol['selected_step'] <= 0:
             raise ValueError('Checkpoint provenance requires a positive selected training update')
+        recipe = validated_training_recipe(protocol, METHODS[method_id][1], expected_training_stage,
+                                           allow_legacy_pilot=scope == 'pilot_fixed3')
         execution = protocol.get('selected_execution_device')
         if not isinstance(execution, dict) or execution.get('type') not in ('cpu', 'cuda') or not isinstance(protocol.get('autocast_enabled'), bool):
             raise ValueError('Reference protocol must record selected_execution_device and actual autocast flag')
@@ -236,11 +295,14 @@ def load_inputs(index_path, stage, allow_partial=False):
                         frozen_source_sha256=source, canonical_data_sha256=protocol['canonical_data_sha256'],
                         inference=protocol['inference'], precision=protocol['precision'],
                         evaluator_tool_sha256=tools, stage=stage,
-                        training_stage=protocol['stage'], case_ids=ids)
+                        training_stage=protocol['stage'], case_ids=ids,
+                        training_recipe_without_method=None if recipe is None else {k: v for k, v in recipe.items() if k != 'method'},
+                        training_recipe_without_method_sha256=None if recipe is None else canonical_sha({k: v for k, v in recipe.items() if k != 'method'}),
+                        training_recipe_status='legacy_pilot_development_only' if recipe is None else 'complete_recipe_and_SHA_verified')
         if common is None:
             common = identity
         elif identity != common:
-            raise ValueError('Paired methods differ in reference runtime/source/data/inference/patient identity')
+            raise ValueError('Paired methods differ in reference runtime/source/data/inference/patient identity or common training recipe')
         training_receipt = protocol.get('training_environment_receipt', {})
         if not valid_sha(training_receipt.get('sha256')):
             raise ValueError('Training environment receipt SHA256 is required')
@@ -276,6 +338,7 @@ def load_inputs(index_path, stage, allow_partial=False):
             provenance=dict(evaluation_dir=entry['evaluation_dir'], protocol_sha256=sha(protocol_path),
                 metric_sha256=metric_hashes, original_checkpoint_sha256=protocol['original_checkpoint_sha256'],
                 weights_sha256=protocol['weights_sha256'], provenance_sha256=protocol['provenance_sha256'], selected_step=protocol['selected_step'],
+                training_recipe=recipe, training_recipe_sha256=protocol.get('training_recipe_sha256'),
                 training_environment_sha256=canonical_sha(training),
                 training_environment_receipt_sha256=training_receipt['sha256']))
     # Geometry comes from GT and must not vary with the predicted method.
@@ -453,6 +516,16 @@ def save_result(result, output):
     (output / 'report.txt').write_text(render_report(result), encoding='utf-8')
 
 
+def _synthetic_recipe(method, stage='formal'):
+    """Self-test inputs only, never an inferred recipe for a real evaluation."""
+    return dict(stage=stage, method=method, seed=SEED, width=32, patch_size=96,
+        batch_size=2, max_steps=5000, lr=.0003, weight_decay=.0001,
+        foreground_probability=.5, auxiliary_weight=.1, gradient_clip=12.,
+        log_every=25, checkpoint_every=500, validate_every=2500, validation_case_limit=0,
+        inference_patch_size=128, inference_batch_size=2, inference_overlap=.5,
+        save_validation_predictions=False, cpu_threads=4)
+
+
 def self_test():
     """Temporary synthetic inputs are removed; fixture values never enter real outputs."""
     with tempfile.TemporaryDirectory(prefix='gta_avt_analysis_fixture_') as temp:
@@ -473,6 +546,8 @@ def self_test():
                 intervention={'name': 'none'}, precision='fixture-fp32', reference_environment=env,
                 selected_execution_device={'type': 'cpu', 'index': None, 'name': 'CPU'}, autocast_enabled=False,
                 evaluator_tool_sha256={'fixture.py': 'e' * 64}, training_environment_receipt={'sha256': 'f' * 64, 'value': env})
+            protocol['training_recipe'] = _synthetic_recipe(method)
+            protocol['training_recipe_sha256'] = canonical_sha(protocol['training_recipe'])
             (directory / 'evaluation_protocol.json').write_text(json.dumps(protocol), encoding='utf-8')
             for i, case_id in enumerate(ids):
                 value = .6 + i * .01
@@ -527,6 +602,49 @@ def self_test():
         assert check['ci95_lower'] <= 2. <= check['ci95_upper'] and check['ci95_upper'] > check['ci95_lower']
         save_result(result, root / 'temporary_output')
         assert 'fixture' not in render_report(result)
+        # These negative cases recompute the hash where appropriate: a valid
+        # per-method SHA must not hide a different budget/patch/extra field.
+        changed = root / 'C_concat/evaluation_protocol.json'
+        saved_recipe_protocol = read(changed)
+        recipe_failures = ('mixed_v1_v2_budget', 'mixed_v1_v2_patch', 'recipe_SHA_mismatch',
+            'recipe_method_mismatch', 'recipe_stage_mismatch', 'recipe_seed_mismatch',
+            'formal_recipe_missing', 'malformed_recipe', 'selected_step_exceeds_budget',
+            'extra_recipe_field_mismatch', 'recipe_JSON_numeric_type_mismatch')
+        for mutation in recipe_failures:
+            bad = json.loads(json.dumps(saved_recipe_protocol))
+            if mutation == 'mixed_v1_v2_budget': bad['training_recipe']['max_steps'] = 10000
+            if mutation == 'mixed_v1_v2_patch': bad['training_recipe']['patch_size'] = 128
+            if mutation == 'recipe_method_mismatch': bad['training_recipe']['method'] = 'faithful_soft'
+            if mutation == 'recipe_stage_mismatch': bad['training_recipe']['stage'] = 'pilot'
+            if mutation == 'recipe_seed_mismatch': bad['training_recipe']['seed'] += 1
+            if mutation == 'extra_recipe_field_mismatch': bad['training_recipe']['recipe_version'] = 'synthetic-v2'
+            if mutation == 'recipe_JSON_numeric_type_mismatch': bad['training_recipe']['gradient_clip'] = 12
+            if mutation == 'malformed_recipe': bad['training_recipe'] = ['not_a_recipe_dictionary']
+            if mutation == 'selected_step_exceeds_budget': bad['selected_step'] = 5001
+            bad['training_recipe_sha256'] = canonical_sha(bad['training_recipe'])
+            if mutation == 'recipe_SHA_mismatch': bad['training_recipe_sha256'] = '1' * 64
+            if mutation == 'formal_recipe_missing':
+                bad.pop('training_recipe'); bad.pop('training_recipe_sha256')
+            changed.write_text(json.dumps(bad), encoding='utf-8')
+            try:
+                load_inputs(index_path, 'val')
+            except ValueError as error:
+                assert 'recipe' in str(error) or 'budget' in str(error)
+            else:
+                raise AssertionError('Invalid formal training recipe accepted: ' + mutation)
+        changed.write_text(json.dumps(saved_recipe_protocol), encoding='utf-8')
+        saved_protocols = {method_id: read(root / method_id / 'evaluation_protocol.json') for method_id in METHODS}
+        for method_id, original in saved_protocols.items():
+            updated = json.loads(json.dumps(original))
+            updated['training_recipe'].update(max_steps=10000, patch_size=128)
+            updated['training_recipe_sha256'] = canonical_sha(updated['training_recipe'])
+            (root / method_id / 'evaluation_protocol.json').write_text(json.dumps(updated), encoding='utf-8')
+        newer_common = load_inputs(index_path, 'val')[3]['training_recipe_without_method']
+        assert newer_common['max_steps'] == 10000 and newer_common['patch_size'] == 128
+        for method_id, original in saved_protocols.items():
+            (root / method_id / 'evaluation_protocol.json').write_text(json.dumps(original), encoding='utf-8')
+        assert validated_training_recipe(dict(method='faithful_soft', stage='pilot'),
+            'faithful_soft', 'pilot', allow_legacy_pilot=True) is None
         # Reject an execution/runtime mismatch, not just a changed threshold.
         changed = root / 'C_concat/evaluation_protocol.json'
         protocol = read(changed)
@@ -580,7 +698,9 @@ def self_test():
     return dict(state='passed', fixtures=['identical_methods', 'known_paired_Dice_offset',
         'missing_distance_complete_pairs', 'no_GT_group_support', 'geometry_patient_not_node_weighting', 'deterministic_nonconstant_bootstrap',
         'CSV_JSON_report_roundtrip', 'mixed_execution_rejected', 'exact_reference_runtime_TF32_gates', 'test_eligibility_and_authorization_gates',
-        'test_runtime_intervention_rejected'], synthetic_values_saved=False)
+        'test_runtime_intervention_rejected', 'valid_complete_formal_recipes',
+        'all_methods_new_recipe_accepted', 'legacy_pilot_development_compatibility'] + list(recipe_failures),
+        synthetic_values_saved=False)
 
 
 def main():

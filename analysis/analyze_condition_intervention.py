@@ -51,10 +51,11 @@ def check_runtime(protocol):
     if not base.valid_sha(receipt.get('sha256')):
         raise ValueError('Actual main training-runtime receipt is missing')
     training = base.clean_environment(receipt.get('value'))
-    # The predeclared main role trained in this common3.8/1.11 software; the
-    # second-role2.7 platform bridge is not a substitute for the main A model.
+    # This checks software compatibility, not training-role identity. After
+    # runtime harmonization the owner must still supply the genuine main A
+    # export; matching software alone cannot distinguish the platform bridge.
     if training['python'] != runtime['python'] or training['packages'] != runtime['packages']:
-        raise ValueError('Use the original main A training software, not the second-role platform bridge')
+        raise ValueError('Main A training software differs from the common reference software')
     return runtime, training
 
 
@@ -70,6 +71,7 @@ def check_protocol(protocol):
     step = protocol.get('selected_step')
     if not isinstance(step, int) or isinstance(step, bool) or step <= 0:
         raise ValueError('Selected genuine training update is missing')
+    base.validated_training_recipe(protocol, 'faithful_soft', 'formal')
     for key in ('original_checkpoint_sha256', 'weights_sha256', 'provenance_sha256', 'canonical_data_sha256'):
         if not base.valid_sha(protocol.get(key)):
             raise ValueError('Missing same-weight checkpoint/data/export identity: ' + key)
@@ -221,7 +223,7 @@ def analyze(normal_directory, availability_directory):
     public_common = {k: common[k] for k in ('schema', 'split', 'case_ids', 'method', 'stage', 'selected_step',
         'original_checkpoint_sha256', 'weights_sha256', 'provenance_sha256', 'frozen_source_sha256',
         'canonical_data_sha256', 'inference', 'selected_execution_device', 'autocast_enabled',
-        'precision', 'evaluator_tool_sha256')}
+        'precision', 'evaluator_tool_sha256', 'training_recipe', 'training_recipe_sha256')}
     public_common.update(reference_environment=runtime, training_environment=training,
                          complete_raw_protocol_identity_sha256=base.canonical_sha(common))
     return dict(schema='GTA-AVT-condition-intervention-analysis-v1', split='val', training_stage='formal',
@@ -290,6 +292,8 @@ def self_test():
             inference=base.FIXED_INFERENCE, selected_execution_device={'type': 'cpu', 'index': None, 'name': 'CPU'},
             autocast_enabled=False, reference_environment=env,
             training_environment_receipt={'sha256': '0' * 64, 'value': env})
+        protocol['training_recipe'] = base._synthetic_recipe('faithful_soft')
+        protocol['training_recipe_sha256'] = base.canonical_sha(protocol['training_recipe'])
         normal, availability = root / 'normal', root / 'availability'
         raw = {}
         for directory, intervened in ((normal, False), (availability, True)):
@@ -346,13 +350,24 @@ def self_test():
         negative = next(r for r in analyze(normal, availability)['paired_summaries'] if r['metric'] == 'dice')
         assert abs(negative['delta_a_minus_b'] + 1.) < 1e-10 and negative['losses'] == 8
         original = base.read(availability / 'evaluation_protocol.json')
-        for mutation in ('weight', 'formula', 'test', 'pilot', 'runtime'):
+        recipe_failures = ('mixed_recipe_budget', 'mixed_recipe_patch', 'recipe_SHA',
+                           'recipe_method', 'recipe_stage', 'recipe_seed', 'missing_formal_recipe')
+        for mutation in ('weight', 'formula', 'test', 'pilot', 'runtime') + recipe_failures:
             bad = json.loads(json.dumps(original))
             if mutation == 'weight': bad['weights_sha256'] = '1' * 64
             if mutation == 'formula': bad['intervention']['formula']['scale'] = 'does_not_preserve_q'
             if mutation == 'test': bad['split'] = 'test'
             if mutation == 'pilot': bad['stage'] = 'pilot'
             if mutation == 'runtime': bad['reference_environment']['python_version'] = [3, 11, 0]
+            if mutation == 'mixed_recipe_budget': bad['training_recipe']['max_steps'] = 10000
+            if mutation == 'mixed_recipe_patch': bad['training_recipe']['patch_size'] = 128
+            if mutation == 'recipe_method': bad['training_recipe']['method'] = 'faithful_concat'
+            if mutation == 'recipe_stage': bad['training_recipe']['stage'] = 'pilot'
+            if mutation == 'recipe_seed': bad['training_recipe']['seed'] += 1
+            bad['training_recipe_sha256'] = base.canonical_sha(bad['training_recipe'])
+            if mutation == 'recipe_SHA': bad['training_recipe_sha256'] = '1' * 64
+            if mutation == 'missing_formal_recipe':
+                bad.pop('training_recipe'); bad.pop('training_recipe_sha256')
             (availability / 'evaluation_protocol.json').write_text(json.dumps(bad), encoding='utf-8')
             try: analyze(normal, availability)
             except ValueError: pass
@@ -371,7 +386,7 @@ def self_test():
     return dict(state='passed', fixtures=['known_Dice_pp_offset', 'identical_zero_effect', 'unfavorable_effect_visible',
         'missing_distance_support', 'unsupported_GT_group', 'same_weight_gate', 'q_preserving_formula_gate',
         'test_pilot_wrongruntime_rejected', 'q_mass_arithmetic', 'incomplete_evaluation_rejected', 'temporary_output_roundtrip'],
-        synthetic_results_retained=False)
+        recipe_fixtures=['valid_new_recipe_protocol'] + list(recipe_failures), synthetic_results_retained=False)
 
 
 def main():

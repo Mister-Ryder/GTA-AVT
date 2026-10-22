@@ -2,7 +2,7 @@
 
 An original-operator migration of GTA to binary aortic vessel-tree segmentation on the public 56-case AVT dataset.
 
-**Status:** research implementation and a bounded, one-seed internal ablation protocol. Segmentation results are pending. This repository does not establish a performance improvement, a completed cross-validation study, or a clinical application. It contains no dataset, patient images, trained weights, manuscript drafts, or private execution infrastructure.
+**Status:** research implementation with measured v1 engineering-development results and a bounded v2 internal ablation protocol. The complete seven-model v2 comparison is pending. This repository does not establish a GTA performance improvement, a completed cross-validation study, or a clinical application. It contains no dataset, patient images, trained weights, manuscript drafts, or private execution infrastructure.
 
 ## Scientific identity
 
@@ -64,28 +64,27 @@ The image-defined crop uses the largest body component above -600 estimated HU, 
 
 ## Environment
 
-Use Python 3.11 for the current environment target and install a CUDA-compatible PyTorch 2.7.1 build before the remaining packages. [PyTorch's version-specific installation page](https://pytorch.org/get-started/previous-versions/) provides wheel choices for the installed driver. `requirements.txt` pins the tested non-PyTorch packages; it is not a complete transitive or hardware-specific lock file.
+The v2 training and common reference-evaluation environment uses **Python 3.8 / PyTorch 1.11.0+cu113**. Both training roles passed actual 128-cube synthetic and real-TRAIN GPU checks with the versions below. [PyTorch's version-specific installation page](https://pytorch.org/get-started/previous-versions/) provides the official CUDA 11.3 wheel command. [requirements-legacy.txt](requirements-legacy.txt) pins the tested non-PyTorch packages; it is not a complete transitive or hardware-specific lock file.
 
 ```bash
-python -m venv .venv
+python3.8 -m venv .venv
 # Activate .venv using the command appropriate for your shell.
-python -m pip install --upgrade pip
-python -m pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu128
-python -m pip install -r requirements.txt
+python -m pip install torch==1.11.0+cu113 --extra-index-url https://download.pytorch.org/whl/cu113
+python -m pip install -r requirements-legacy.txt
 ```
 
-The CUDA 12.8 command above requires a compatible NVIDIA driver. Both development environments passed actual GPU and auxiliary-loss fixtures:
+The installed NVIDIA driver must support the selected CUDA runtime. The distinct v1 secondary environment remains documented for the original development results:
 
 | Environment | Python | PyTorch | NumPy | SciPy | scikit-image | SimpleITK |
 |---|---|---|---|---|---|---|
-| Current target | 3.11.17 | 2.7.1+cu128 | 1.26.4 | 1.15.3 | 0.25.2 | 2.5.2 |
-| Legacy target | 3.8.10 | 1.11.0+cu113 | 1.22.4 | 1.10.1 | 0.21.0 | 2.3.1 |
+| V2 both training roles and common evaluator; v1 primary | 3.8.10 | 1.11.0+cu113 | 1.22.4 | 1.10.1 | 0.21.0 | 2.3.1 |
+| V1 secondary only | 3.11.17 | 2.7.1+cu128 | 1.26.4 | 1.15.3 | 0.25.2 | 2.5.2 |
 
-These are separate environments: PyTorch 1.11 is not a Python 3.11 installation choice. The cache is generated once in the legacy environment and transferred byte-identically, so comparisons do not silently regenerate targets under different skeleton-library versions. Exact optimization equivalence across environments is not asserted. Core A/C/constant comparisons are grouped on one GPU; the other group includes a repeated full-A bridge alongside scale/structure/hard variants. Cross-group comparisons require that bridge and an explicit hardware/software limitation. Final evaluation is intended to use one reference environment, or to report evaluator-version sensitivity. These are protocol intentions, not completed segmentation results.
+These are separate environments: PyTorch 1.11 is not a Python 3.11 installation choice. The cache is generated once in the legacy environment and transferred byte-identically. Core A/C/constant comparisons are grouped on one GPU; the second GPU runs a repeated full-A bridge alongside scale/structure/hard variants. Matching core software does not eliminate hardware effects, and the bridge is not another seed. Final evaluation uses one reference environment and device. The legacy runtime warns that some backward operators lack deterministic implementations; identical seeds do not imply bitwise deterministic training.
 
 Checkpoint loading handles the different `weights_only` APIs and is intended only for trusted checkpoints produced by this code.
 
-The legacy training and reference-evaluation environment can instead install `torch==1.11.0+cu113` in Python 3.8 and use [requirements-legacy.txt](requirements-legacy.txt). The two requirements files describe separate tested environments.
+`requirements.txt` retains the separate tested Python 3.11 / PyTorch 2.7.1 environment used by the original v1 secondary role. It is not the v2 study environment.
 
 ## Reproducible commands
 
@@ -105,7 +104,7 @@ The public downloader reads the official Figshare API, uses its download URLs, s
 ### 2. Validate the implementation and prepare the cache
 
 ```bash
-python code/faithful_smoke.py --device cuda --patch-size 96 --batch-size 2 --steps 2 --output results/faithful_smoke.json
+python code/faithful_smoke.py --device cuda --patch-size 128 --batch-size 2 --steps 2 --output results/faithful_smoke.json
 python code/prepare.py --data-root data/raw --split configs/split_seed20261022.json --output data/cache_1mm --spacing 1.0 --offset-overrides configs/ct_only_reviewed_offset_overrides.json
 ```
 
@@ -123,7 +122,9 @@ python code/train.py --config configs/faithful_pilot.json --manifest data/cache_
 python code/train.py --config configs/faithful_pilot.json --manifest data/cache_1mm/manifest.json --output runs/pilot_Asoft_constant --method faithful_soft_constant
 ```
 
-The pilot is 200 updates with one fixed seed and three validation patients. It tests pipeline behavior and the need for longer, controlled experiments. It does not fill a final results table. The bounded initial delivery plan in [configs/bounded_20261022](configs/bounded_20261022/) fixes 5,000 updates per internal ablation, one seed, and all eight validation patients at 2,500 and 5,000 updates. Main comparisons are ordinary fusion, full soft GTA, and matched constant soft GTA; a second runtime runs a full-GTA bridge, single-condition ablations, and the original hard anchor. This phase requires a separate explicit invocation after pilot review. The 10,000-update template is retained as an unused template, not the initial delivery budget.
+The pilot is 200 updates with one fixed seed and three validation patients. It checks pipeline behavior and does not fill a final results table. The original [v1 plan](configs/bounded_20261022/) used 5,000 updates; only its first two models completed, with [actual development results](reports/development_v1_20261022/readout.txt). Its remaining jobs were closed before starting.
+
+The [common v2 engineering revision](docs/common_recipe_v2.md) keeps the seven internal jobs and all frozen source bytes, uses fresh 128-cube training for 10,000 successful updates, and evaluates all VAL8 at updates 5,000 and 10,000. The [exact v2 recipes, hashes and training commands](configs/bounded_20261022_v2/) are available. Main comparisons are ordinary fusion, full soft GTA and matched constant soft GTA; the second role runs a full-GTA bridge, single-condition ablations and the original hard anchor. The revision also aligns core software. Its nominal input-voxel budget is 4.74 times v1; it is a combined engineering change, not a single-factor context experiment. The old `faithful_formal_template.json` remains a template and does not identify the executed v2 configuration.
 
 Resume an interrupted run with the same command and `--resume`. Configuration, source identity, manifest, and patient lists must match. The training snapshot recursively preserves the vendored sources too.
 
@@ -148,7 +149,7 @@ The [reference-evaluation tools](tools/REFERENCE_WEIGHTS_README.txt) export genu
 
 [Patient-level analysis](analysis/analyze_key_ablations.py) and [figure exports](analysis/plot_key_ablations.py) implement the [frozen comparison protocol](docs/key_ablation_analysis_protocol_20261022.txt): paired patient differences, 20,000 bootstrap draws, explicit missing/support counts, and separate training-runtime groups. Plotting additionally requires Matplotlib. Synthetic helper tests are not experimental results.
 
-The [attribute-faithfulness protocol](docs/attribute_faithfulness_protocol_20261022.txt) separately checks the three completed formal C/A/constant classifiers against fixed VAL8 geometric targets, distinguishing predicted heads from the conditions actually consumed. It requires the common legacy reference environment and genuine verified tensor-only exports. Public commands use `tools/`; an `ops/` path in the preserved authoring protocol denotes its corresponding public tool here.
+The [attribute-faithfulness protocol](docs/attribute_faithfulness_protocol_20261022.txt) separately checks the three completed formal C/A/constant classifiers against fixed VAL8 geometric targets, distinguishing predicted heads from the conditions actually consumed. It requires the common legacy reference environment and genuine verified tensor-only exports. Its preserved text predates v2 and refers to 96-cube training; v2 uses 128-cube training and retains the protocol's 128-cube diagnostic inputs. Public commands use `tools/`; an `ops/` path in the preserved authoring protocol denotes its corresponding public tool here.
 
 ```bash
 python tools/attribute_patch_diagnostics.py --bundle-c exports/C --bundle-a exports/A --bundle-constant exports/constant --manifest data/cache_1mm/manifest.json --output results/attribute_val --device cuda --execute-frozen-validation
@@ -179,6 +180,8 @@ Patient splits, training populations, 2D/3D inputs, resolution, optimization bud
 
 ## Results and provenance
 
-No AVT performance table is released in this scaffold. Future result records should identify the code hash, immutable configuration, split, checkpoint, evaluator, environment, and prediction provenance. A single-seed internal ablation must retain that identity and cannot be described as independent multi-seed or complete five-fold evidence.
+[V1 development measurements](reports/development_v1_20261022/summary.json) include 32 patient/timepoint/model rows in [casewise.csv](reports/development_v1_20261022/casewise.csv), with original run, source and checkpoint hashes. At 5,000 updates, C achieved VAL8 Dice 73.8430% and the full-A bridge 69.5451%; both retained substantial errors. They trained under different hardware/software roles, so this difference does not estimate the GTA effect. The seven-model v2 comparison and its frozen-model diagnostics remain pending.
+
+Result records identify the immutable configuration, full training recipe, code, split, checkpoint, evaluator, environment and prediction provenance. A single-seed internal ablation cannot be described as independent multi-seed or complete five-fold evidence.
 
 [release_source_hashes.json](release_source_hashes.json) records the copied source bytes. [NOTICE](NOTICE) and the historical third-party notices explain source lineage and licensing boundaries. No blanket MIT license is selected for this repository or for later GTA additions.

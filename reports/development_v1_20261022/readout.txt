@@ -1,0 +1,16 @@
+V1 engineering development evidence; validation only; TEST12 untouched.
+Two completed models, not a completed seven-model ablation matrix.
+Different training platforms: do not interpret their difference as the GTA effect.
+
+C_concat
+  update2500: VAL8 Dice58.7513%, FP283.5519ml, FN107.3308ml
+  update5000: VAL8 Dice73.8430%, FP131.4483ml, FN90.1823ml
+A_soft_platform_bridge
+  update2500: VAL8 Dice60.1026%, FP315.6636ml, FN84.8843ml
+  update5000: VAL8 Dice69.5451%, FP182.3469ml, FN87.9484ml
+
+All eight patients are retained; casewise.csv contains original metric precision and source hashes.
+No performance advantage is established. First5000 results still show substantial errors.
+The new common recipe aligns training/inference at128 and uses10000fresh updates.
+It also aligns core training software. These are combined engineering changes, not a single-factor causal experiment.
+No raw CT, reference masks, predictions, private paths, endpoints, credentials or weights are distributed here.

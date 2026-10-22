@@ -1,0 +1,92 @@
+{
+  "version": "bounded_20261022_v2",
+  "seed": 20261022,
+  "formal_steps": 10000,
+  "cache_spacing_mm": 1.0,
+  "patch_size": 128,
+  "batch_size": 2,
+  "width": 32,
+  "fresh_random_initialization": true,
+  "external_network_comparisons": false,
+  "automatic_final_test": false,
+  "automatic_next_phase": false,
+  "automatic_pilot": false,
+  "v2_pilot_executed": false,
+  "learning_rate": {
+    "initial": 0.0003,
+    "schedule": "frozen train.py: lr=initial*max(0,1-step/max_steps)**0.9",
+    "max_steps": 10000
+  },
+  "training_voxel_budget_ratio_vs_v1": 4.74074074074074,
+  "queues": {
+    "main": {
+      "formal": [
+        {
+          "job_id": "C_concat",
+          "method": "faithful_concat",
+          "config": "formal_main_C_concat.json"
+        },
+        {
+          "job_id": "A_soft",
+          "method": "faithful_soft",
+          "config": "formal_main_A_soft.json"
+        },
+        {
+          "job_id": "A_soft_constant",
+          "method": "faithful_soft_constant",
+          "config": "formal_main_A_soft_constant.json"
+        }
+      ]
+    },
+    "ablations": {
+      "formal": [
+        {
+          "job_id": "A_soft_platform_bridge",
+          "method": "faithful_soft",
+          "config": "formal_ablations_A_soft_platform_bridge.json"
+        },
+        {
+          "job_id": "A_soft_scale",
+          "method": "faithful_soft_scale",
+          "config": "formal_ablations_A_soft_scale.json"
+        },
+        {
+          "job_id": "A_soft_structure",
+          "method": "faithful_soft_structure",
+          "config": "formal_ablations_A_soft_structure.json"
+        },
+        {
+          "job_id": "A_hard_anchor",
+          "method": "faithful_joint",
+          "config": "formal_ablations_A_hard_anchor.json"
+        }
+      ]
+    }
+  },
+  "runtime": {
+    "python_major_minor": [
+      3,
+      8
+    ],
+    "packages": {
+      "torch": "1.11.0+cu113",
+      "numpy": "1.22.4",
+      "scipy": "1.10.1",
+      "scikit-image": "0.21.0",
+      "SimpleITK": "2.3.1"
+    }
+  },
+  "artifact_kind": "portable scientific protocol; not the private deployment/start plan",
+  "private_executed_plan_sha256": "d685049c588fb76cf7f2300b79eb8e5e6ec3e2a1729d90a7b7620ecff90b9ecc",
+  "exact_recipe_and_split_sha256": {
+    "formal_main_C_concat.json": "4b7faa230d44387c4eb9760bb9630fa9443ed783ac787e00406e9798cbc97a1d",
+    "formal_main_A_soft.json": "219611ef07097f068810c0bb0d1cd095f9b9c28f77df28c2c9a9187b9ef2b2f6",
+    "formal_main_A_soft_constant.json": "c317dbf25ef405e70f304bca2a98fe74c2deeaea8d17e78a0e2edc38e84d178d",
+    "formal_ablations_A_soft_platform_bridge.json": "219611ef07097f068810c0bb0d1cd095f9b9c28f77df28c2c9a9187b9ef2b2f6",
+    "formal_ablations_A_soft_scale.json": "3907865fd05ace8e55231a8d8e16d7f07166f96ea8d31a1c9abbc0a47129bdca",
+    "formal_ablations_A_soft_structure.json": "09aa7574d556e9a5c53ab6be646d1e66d85943439ebc4e615ea94bed15dcdd2a",
+    "formal_ablations_A_hard_anchor.json": "15132c07a0b6ed71a7b6c0fadd9b23a337a3006a8a92b733ab453ca083243ac9",
+    "split_seed20261022.json": "df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b"
+  },
+  "scope": "One seed, seven internal jobs; TEST12 only after all model selections are fixed"
+}

@@ -1,0 +1,78 @@
+GTA-AVT四模型最终分析规则（TEST前记录）
+2026-10-23；本文件补充历史七模型解释清单，不改原计划或任何实验字节。
+
+记录时状态：MAIN A与SECOND constant正在训练，尚无这两项完整端点，
+尚未统一参考VAL、属性诊断、selection freeze或TEST预测/指标。
+范围依据：minimal4_scope_decision_20261022.json，SHA
+50d3845c27468e145f767251e5df199f698f4137fd0be435605bddbb32c738ce。
+这是开发观察后的透明范围收缩；不追溯声称为最初七模型预注册。
+
+1. 两项比较分别解释，不相减、不池化
+
+MAIN A_soft减C_concat：同训练角色，专用算子与预测条件的联合差异。
+C也有同样属性编码器与辅助监督；不是单任务、纯分割或等active计算对照。
+
+SECOND A_soft_platform_bridge减A_soft_constant：同训练角色，预测条件
+相对uniform条件的整体差异；empty质量、非空组成及分割梯度路径共同改变。
+不是只移除半径/分叉语义。缺少MAIN constant，不能从MAIN收益中分解条件收益。
+两A同seed不是独立seed。统一参考推理不消除训练硬件与优化轨迹差异。
+
+2. 每项比较的完整读数
+
+固定VAL8与TEST12分别报告，绝不合并成20例独立样本。主要量为等case权重
+Dice差（百分点）；同列报告precision、recall、FP/FN ml、clDice、中心线
+precision/recall、ASSD与HD95，以及每个case原值与差值。距离保留原评价定义。
+列case胜/平/负、最差差值、leave-one-case-out均值范围（不是置信区间），
+各来源组仅作小样本描述。列FP+FN ml帮助识别体积错分代价，但不替代Dice。
+
+六个预定GT几何组分别列支持case数、各case支持节点数、宏recall差与缺失。
+这些是中心线体素覆盖，不是组precision、分支数或毫米弧长；不能用节点数
+当独立统计N。组recall增加需结合全局FP/CLprecision，防止把更厚预测当细枝恢复。
+
+重用现有paired函数的seed20261022、20000次case配对bootstrap、95%percentile
+区间，不据新结果修改数学。区间仅在case独立假设下作探索性描述，未包括
+seed变异、选择效应、多重比较校正，也未核实subject独立；不用其作确认性显著。
+null与无支持不填0；complete pairs数量和缺失原因必须显式保留。
+
+3. 训练与统一推理需分清
+
+真实日志核10000成功更新、AMP attempts与retries、5000/10000两次完整VAL，
+按原规则选定best；不根据统一VAL、属性诊断或TEST重选checkpoint。
+分项loss/aux比例、下降趋势、step耗时只能描述优化，不能仅由global grad norm
+或loss比例推断梯度冲突，也不能由未见平台就宣布多任务收敛较慢。
+比较新两端点与原C/桥时标明平台/预算/版本，不把V1/V2工程组合改动当算法增益。
+
+参考VAL须实际固定四正常模型与SECOND桥same-weight availability-only各8例。
+干预保留每head p_empty，均分非空质量；只诊断选定权重的计算敏感性，不能
+与训练constant效应相减做因果分解。分类器faithfulness只执行head与condition
+向量，不执行decoder/gate；CT-uniform与GT-enriched patch bank分开，两个head
+unknown有效位独立，辅助预测与实际消费向量分别报告。不将类别预测称局部适配。
+
+4. 对可能结果的动作已限定
+
+两平台内比较均有利且误差代价、组覆盖与诊断方向一致：支持本split/seed下
+完整路径及整体预测条件的互补证据；仍不证明MAIN收益由条件造成，也不证明
+独立半径/分叉机制、局部解剖因果、跨患者泛化或所有器官适用。
+
+仅MAIN A-C有利：完整路径有差异，预测条件额外价值未建立。
+仅SECOND A-constant有利：预测条件在该GTA设定内有价值，但完整GTA优于
+普通属性融合未建立。两个比较的正负不能互相抵消。
+
+若收益主要为FP清理，且fine/junction recall没有改善或下降，明确收缩为
+整体分割/误检权衡，不称细血管或分叉适配成功。若Dice/中心线/距离方向冲突，
+逐case解释而不挑单指标。若结果阴性或mixed，保留有效运行代码与完整反证，
+不额外开矩阵、换阈值、加后处理或延长预算来追求阳性；下一轮设计待用户审阅。
+无效或未完成的来源验收不得填成阴性性能；先区分执行问题与真实科学结果。
+
+5. 图示选择与交付
+
+真实native预测可用后，每项比较依次选：最差Dice差病例、Dice改善但clDice
+下降最大病例（仅满足此条件者）、FP增加最大的病例（仅FP确实增加者）。
+最多三个不同case，遇重复按既定顺序保留；不凑满，不只展示最好病例。
+相同case使用GT-volume25/50/75%固定轴向切片、相同native FOV/CT窗与颜色。
+这些仅是可追溯二维示例，不能据三张切片证明全树连通、临床真假或完整3D恢复。
+任何展示结果只作解释，不据TEST选择算法、分组、阈值或预处理。
+
+最终须有真实完成四模型、统一VAL/诊断、独立四权重冻结后另次TEST、逐文件
+SHA收集与来源验收、两项配对完整分析、实际图检、公开代码/结果复现说明。
+公开仓库存在、工具QA通过或训练启动均不等于AVT迁移优势成立。

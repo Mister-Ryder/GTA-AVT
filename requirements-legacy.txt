@@ -1,5 +1,5 @@
-# Separate Python 3.8 compatibility environment, not for Python 3.11.
-# Install torch==1.11.0+cu113 using the matching official PyTorch wheel source.
+# Tested Python 3.8 environment: install torch==1.11.0+cu113 separately.
+# This is not a complete transitive or driver-specific lock file.
 numpy==1.22.4
 scipy==1.10.1
 scikit-image==0.21.0

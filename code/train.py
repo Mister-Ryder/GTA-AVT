@@ -3,6 +3,7 @@ import os
 os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
 import argparse
 import json
+import math
 from pathlib import Path
 import random
 import shutil
@@ -31,6 +32,88 @@ def set_seed(seed):
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
     torch.use_deterministic_algorithms(True, warn_only=True)
+
+
+def optimizer_update_with_amp_retries(model, optimizer, scaler, forward_loss,
+                                      gradient_clip=12., max_attempts=8, on_overflow=None):
+    """One successful update, with at most8attempts on the exact same batch.
+
+The caller constructs the batch once. Failed AMP backward attempts roll back
+BatchNorm buffers and CPU/CUDA RNG; only GradScaler's reduced scale survives.
+An invalid forward loss or invalid FP32 gradient is never silently skipped.
+"""
+    if max_attempts < 1:
+        raise ValueError('At least one optimizer attempt is required')
+    buffers = {name: value.detach().clone() for name, value in model.named_buffers()}
+    cpu_rng = torch.get_rng_state().clone()
+    cuda_rng = torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None
+    initial_scale = float(scaler.get_scale())
+    parameters = list(model.parameters())
+
+    def restore_forward_state():
+        with torch.no_grad():
+            for name, value in model.named_buffers():
+                value.copy_(buffers[name])
+        torch.set_rng_state(cpu_rng)
+        if cuda_rng is not None:
+            torch.cuda.set_rng_state_all(cuda_rng)
+
+    for attempt in range(1, max_attempts + 1):
+        optimizer.zero_grad(set_to_none=True)
+        loss, details = forward_loss()
+        if not bool(torch.isfinite(loss.detach()).all().item()):
+            raise FloatingPointError('Nonfinite forward objective; AMP retries are not permitted for invalid loss')
+        scaler.scale(loss).backward()
+        scaler.unscale_(optimizer)
+        gradients = [parameter.grad for parameter in parameters if parameter.grad is not None]
+        if not gradients:
+            raise RuntimeError('Objective produced no parameter gradients')
+        # One aggregate device->CPU synchronization, not one per parameter.
+        finite = bool(torch.stack([torch.isfinite(gradient).all() for gradient in gradients]).all().item())
+        if not finite:
+            if not scaler.is_enabled():
+                raise FloatingPointError('Nonfinite FP32 gradients with GradScaler disabled')
+            before = float(scaler.get_scale())
+            original_step = optimizer.step
+
+            def forbidden_overflow_step(*args, **kwargs):
+                raise RuntimeError('GradScaler failed to skip optimizer.step after detected nonfinite gradients')
+
+            # unscale_ recorded actual nonfinite elements. Confirm public
+            # GradScaler skip semantics without allowing an accidental update.
+            optimizer.step = forbidden_overflow_step
+            try:
+                scaler.step(optimizer)
+            finally:
+                optimizer.step = original_step
+            scaler.update()
+            after = float(scaler.get_scale())
+            if not math.isfinite(after) or not 0. < after < before:
+                raise RuntimeError('AMP overflow did not reduce the loss scale')
+            restore_forward_state()
+            record = {'attempt': attempt, 'max_attempts': max_attempts,
+                      'loss_scale_before': before, 'loss_scale_after': after,
+                      'optimizer_step_skipped': True, 'buffers_and_rng_restored': True,
+                      'retry_will_occur': attempt < max_attempts,
+                      'reason': 'finite_forward_loss_nonfinite_unscaled_gradient_elements',
+                      'finite_forward_loss': float(loss.detach())}
+            if on_overflow is not None:
+                on_overflow(record)
+            if attempt == max_attempts:
+                raise FloatingPointError('AMP gradients remained nonfinite after%d attempts (%d retries); no update counted' %
+                                         (max_attempts, max_attempts - 1))
+            continue
+        gradient_norm = torch.nn.utils.clip_grad_norm_(parameters, gradient_clip)
+        if not bool(torch.isfinite(gradient_norm).item()):
+            # All elements were finite. A norm-reduction overflow is a distinct
+            # failure; it must not take a scaler.step with found_inf==0.
+            raise FloatingPointError('Nonfinite gradient norm despite finite gradient elements; optimizer was not stepped')
+        scaler.step(optimizer)
+        scaler.update()
+        return details, {'gradient_norm': float(gradient_norm), 'amp_attempts': attempt,
+                         'amp_retries': attempt - 1, 'loss_scale_before': initial_scale,
+                         'loss_scale_after': float(scaler.get_scale())}
+    raise AssertionError('Unreachable optimizer attempt state')
 
 
 def main():
@@ -136,25 +219,27 @@ def main():
         lr = config['lr'] * max(0., 1. - step / max_steps) ** .9
         for group in optimizer.param_groups:
             group['lr'] = lr
-        optimizer.zero_grad(set_to_none=True)
-        with torch.cuda.amp.autocast(enabled=device.type == 'cuda'):
-            output = model(tensors['image'], tensors['coordinate'])
-            loss, details = objective(output, tensors, config['auxiliary_weight'])
-        if not torch.isfinite(loss):
-            raise FloatingPointError('Nonfinite objective at step' + str(step))
-        scaler.scale(loss).backward()
-        scaler.unscale_(optimizer)
-        gradient_norm = torch.nn.utils.clip_grad_norm_(model.parameters(), config['gradient_clip'])
-        if not torch.isfinite(gradient_norm):
-            raise FloatingPointError('Nonfinite gradient at step' + str(step))
-        scaler.step(optimizer)
-        scaler.update()
+
+        def forward_loss():
+            with torch.cuda.amp.autocast(enabled=device.type == 'cuda'):
+                output = model(tensors['image'], tensors['coordinate'])
+                return objective(output, tensors, config['auxiliary_weight'])
+
+        def log_overflow(record):
+            entry = dict(step=step + 1, sampler_step=step, event='amp_overflow', **record)
+            with open(run / 'amp_overflow.jsonl', 'a', encoding='utf-8') as stream:
+                stream.write(json.dumps(entry, allow_nan=False) + '\n')
+            print(json.dumps(entry, allow_nan=False), flush=True)
+
+        details, update = optimizer_update_with_amp_retries(
+            model, optimizer, scaler, forward_loss, gradient_clip=config['gradient_clip'],
+            max_attempts=8, on_overflow=log_overflow)
         if device.type == 'cuda':
             torch.cuda.synchronize()
         seconds = time.time() - started
         elapsed_training += seconds
         log = dict(step=step + 1, lr=lr, seconds=seconds, training_seconds=elapsed_training,
-                   gradient_norm=float(gradient_norm), **details)
+                   **update, **details)
         with open(run / 'training.jsonl', 'a', encoding='utf-8') as stream:
             stream.write(json.dumps(log) + '\n')
         if (step + 1) % config['log_every'] == 0 or step == start:

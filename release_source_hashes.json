@@ -1,5 +1,5 @@
 {
-  "release_stage": "unpublished scaffold; results pending",
+  "release_stage": "public research implementation; segmentation results pending",
   "source_identity": "byte-identical copy of frozen experimental code",
   "files": {
     "common.py": "79edd4ce7623632c602b33124d4653a28d7cb41ee9ae7a0ee4e664a0efba5d5a",
@@ -15,7 +15,7 @@
     "model.py": "59f4cdd9823e11bdd94d6c2d0ebd4c68fcd237c656040ad9fef365323af4d9ca",
     "prepare.py": "1cf125da4837b100d8c669c7896272c81582f3b0455fb5213af271d6e9fda6e0",
     "smoke.py": "c1c26685249638a0cf56408cf067cffffab495ee92395dd3ac42fc88e63f71ee",
-    "train.py": "5f60d60fa21fe7032298e9bb3c4a2dbdd7ce27b96fb5ca8990d0b54cf7e497a6",
+    "train.py": "ec867cd4922a2a18ccf5cb7fbd23922c02a6ac8464f36f2f6bc61a843b35d461",
     "historical/NaviAirway-MIT.txt": "a8d637dcbcd086a0072c4394565c715f88d0327f3b927067c0e596579cfcfd1c",
     "historical/provenance.json": "44cc0176c30adb08e83b00a0976183f9d66d6df8ff3e9661f72637b3521430b8",
     "historical/source_hashes.json": "f792cc0ed802ab119ef173870390b2c015d8d2727eee94d499614876a4dbdd27",

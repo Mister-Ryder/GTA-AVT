@@ -79,6 +79,8 @@ These are separate environments: PyTorch 1.11 is not a Python 3.11 installation 
 
 Checkpoint loading handles the different `weights_only` APIs and is intended only for trusted checkpoints produced by this code.
 
+The legacy training and reference-evaluation environment can instead install `torch==1.11.0+cu113` in Python 3.8 and use [requirements-legacy.txt](requirements-legacy.txt). The two requirements files describe separate tested environments.
+
 ## Reproducible commands
 
 Run commands from the repository root. Use a fresh cache after changing preprocessing or geometry code, and separate immutable run directories for every method/configuration.
@@ -116,6 +118,12 @@ python code/train.py --config configs/faithful_pilot.json --manifest data/cache_
 The pilot is 200 updates with one fixed seed and three validation patients. It tests pipeline behavior and the need for longer, controlled experiments. It does not fill a final results table. The bounded initial delivery plan in [configs/bounded_20261022](configs/bounded_20261022/) fixes 5,000 updates per internal ablation, one seed, and all eight validation patients at 2,500 and 5,000 updates. Main comparisons are ordinary fusion, full soft GTA, and matched constant soft GTA; a second runtime runs a full-GTA bridge, single-condition ablations, and the original hard anchor. This phase requires a separate explicit invocation after pilot review. The 10,000-update template is retained as an unused template, not the initial delivery budget.
 
 Resume an interrupted run with the same command and `--resume`. Configuration, source identity, manifest, and patient lists must match. The training snapshot recursively preserves the vendored sources too.
+
+An AMP overflow retries the same batch with a smaller loss scale, with a maximum of eight attempts. Batch-normalization buffers and Torch CPU/CUDA random states are restored before a retry; only successful optimizer updates advance the declared budget. Invalid forward loss, invalid FP32 gradients, persistent overflow, and norm overflow fail explicitly. `amp_overflow.jsonl` preserves events. The first real-data pilot exposed the former unconditional-overflow failure; its partial run was archived and all replacement pilots started fresh. The actual GPU fixture below passed on both tested runtimes:
+
+```bash
+python tools/amp_retry_fixture.py --project-root . --output results/amp_retry_fixture.json
+```
 
 ### 4. Inspect validation predictions
 

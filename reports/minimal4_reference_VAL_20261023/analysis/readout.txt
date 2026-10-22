@@ -1,0 +1,76 @@
+来源层级：安全声明与原指标/summary文件哈希自洽；不独证作者服务器、export、数据字节或TEST前冻结时间。
+四模型两项平台内配对：val；released case独立性未核实。
+VAL8与TEST12分开；概率变化pp，体积ml，距离mm。区间是20000次case配对bootstrap探索性percentile95%，不是确认性显著性。
+
+比较 MAIN_A_minus_C：main_A_soft 减 main_C_concat
+metric | mean delta [exploratory CI] | pairs | W/T/L
+dice | 5.9100 [1.2025,10.9437] | 8 | 6/0/2
+precision | 12.0408 [4.2979,20.4393] | 8 | 7/0/1
+recall | -2.2357 [-3.9773,-0.8571] | 8 | 1/0/7
+fp_ml | -75.6954 [-146.6359,-15.5588] | 8 | 7/0/1
+fn_ml | 9.4092 [2.9337,17.0826] | 8 | 1/0/7
+assd_mm | -5.0413 [-8.8069,-1.5649] | 8 | 6/0/2
+hd95_mm | -9.0378 [-23.3956,4.6401] | 8 | 4/0/4
+centerline_recall | -1.8487 [-6.8503,2.0255] | 8 | 4/0/4
+centerline_precision | 5.5343 [-6.2711,16.6519] | 8 | 5/0/3
+cldice | 4.0437 [-4.0059,11.7349] | 8 | 5/0/3
+逐case Dice/FP/FN/clDice差：
+Dongyang_D2 | 3.9365 / -50.1918 / 6.6611 / 9.2357
+Dongyang_D5 | 7.6627 / -29.8394 / 0.4857 / 8.1321
+KiTS_K13 | 18.9619 / -270.4997 / 28.7323 / 22.1341
+KiTS_K15 | -0.0441 / -5.5274 / 4.2031 / -2.2738
+KiTS_K18 | 6.1414 / -63.6216 / 6.2916 / 13.9599
+KiTS_K8 | 13.9324 / -198.2361 / -1.0638 / -14.4224
+Rider_R10 | -4.0205 / 25.2142 / 24.9281 / -10.0540
+Rider_R9 | 0.7099 / -12.8614 / 5.0356 / 5.6380
+worst Dice difference -4.0205pp；leave-one-out range [4.0454665251401645, 7.3286650153193795]（非CI）。
+FP+FN派生代价平均变化 -66.2862ml。
+GT组recall差：
+radius_le_2mm | -0.5114pp, pairs=8, unrecorded=0, noGT=0
+radius_2_to_4mm | 0.8516pp, pairs=8, unrecorded=0, noGT=0
+radius_4_to_8mm | -4.6238pp, pairs=8, unrecorded=0, noGT=0
+radius_gt_8mm | -1.5734pp, pairs=8, unrecorded=0, noGT=0
+nonjunction | -1.6304pp, pairs=8, unrecorded=0, noGT=0
+junction_neighbourhood | -1.2451pp, pairs=8, unrecorded=0, noGT=0
+固定规则选图case：[{'case_id': 'Rider_R10', 'reasons': ['worst_Dice_difference', 'largest_positive_FP_increase']}, {'case_id': 'KiTS_K8', 'reasons': ['Dice_improves_clDice_declines_most']}]；本工具未渲染/查看native预测。
+
+比较 SECOND_A_minus_constant：ablations_A_soft_platform_bridge 减 ablations_A_soft_constant
+metric | mean delta [exploratory CI] | pairs | W/T/L
+dice | 1.2172 [-2.4118,5.0257] | 8 | 5/0/3
+precision | 1.0982 [-5.0026,7.1498] | 8 | 4/0/4
+recall | 0.8765 [-1.3452,2.8563] | 8 | 5/0/3
+fp_ml | -6.4429 [-37.3882,19.3145] | 8 | 4/0/4
+fn_ml | -2.4376 [-12.5852,9.2986] | 8 | 5/0/3
+assd_mm | 0.5697 [-2.6059,3.9586] | 8 | 3/0/5
+hd95_mm | 3.2425 [-14.4733,19.3539] | 8 | 2/0/6
+centerline_recall | 0.0705 [-2.5211,2.5278] | 8 | 4/0/4
+centerline_precision | -0.2240 [-10.6586,9.5686] | 8 | 5/0/3
+cldice | 0.0295 [-6.3073,5.9655] | 8 | 6/0/2
+逐case Dice/FP/FN/clDice差：
+Dongyang_D2 | 1.9104 / 6.4348 / -17.0416 / -13.1274
+Dongyang_D5 | 6.9637 / -25.4480 / -0.9215 / 12.5119
+KiTS_K13 | -1.6542 / 30.1318 / -9.8815 / 0.7419
+KiTS_K15 | -7.1766 / 48.0078 / -1.8472 / -14.5223
+KiTS_K18 | 0.9374 / -10.1391 / 1.5553 / 7.7427
+KiTS_K8 | 10.6717 / -97.7344 / -25.4484 / 6.2454
+Rider_R10 | -3.7629 / 12.4739 / 32.9526 / 0.2484
+Rider_R9 | 1.8481 / -15.2702 / 1.1314 / 0.3955
+worst Dice difference -7.1766pp；leave-one-out range [-0.13343235777531554, 2.4163170518346146]（非CI）。
+FP+FN派生代价平均变化 -8.8805ml。
+GT组recall差：
+radius_le_2mm | -0.3283pp, pairs=8, unrecorded=0, noGT=0
+radius_2_to_4mm | -0.4382pp, pairs=8, unrecorded=0, noGT=0
+radius_4_to_8mm | 1.9868pp, pairs=8, unrecorded=0, noGT=0
+radius_gt_8mm | -0.2962pp, pairs=8, unrecorded=0, noGT=0
+nonjunction | -1.0560pp, pairs=8, unrecorded=0, noGT=0
+junction_neighbourhood | 1.9583pp, pairs=8, unrecorded=0, noGT=0
+固定规则选图case：[{'case_id': 'KiTS_K15', 'reasons': ['worst_Dice_difference', 'largest_positive_FP_increase']}, {'case_id': 'Dongyang_D2', 'reasons': ['Dice_improves_clDice_declines_most']}]；本工具未渲染/查看native预测。
+
+完整原值/差值、全指标缺失与来源组、几何支持节点数见JSON/CSV；节点不是独立N。
+Two distinct within-role contrasts, never pooled or subtracted; no cross-role GTA effect.
+MAIN A-C changes operations and predicted conditioning jointly; missing MAIN constant prevents decomposition.
+SECOND A-constant changes empty mass, nonempty composition and gradient paths jointly; not isolated anatomy.
+VAL8 and TEST12 remain separate; all case files required while null/unsupported metrics retain complete-pair support.
+GT recall and Lee voxel coverage do not establish group precision, branch length/topology or local causation.
+Availability-only and classifier evidence remain separate diagnostics; never subtract from trained-constant effect.
+Training component-loss interpretation requires the separately collected actual logs; reference metrics do not prove optimization causes.

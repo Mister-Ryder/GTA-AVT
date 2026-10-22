@@ -1,0 +1,65 @@
+figure,panel,analysis_JSON_pointer,role,slot,case_id,metric,value,unit,comparison,delta_a_minus_b,ci95_lower,ci95_upper,paired_cases,total_cases,group,no_GT_support_cases,unrecorded_cases
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/0/dice,main,main_C_concat,Dongyang_D2,dice,78.12232674556196,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/1/dice,main,main_C_concat,Dongyang_D5,dice,85.1157145270376,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/2/dice,main,main_C_concat,KiTS_K13,dice,66.1249134272167,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/3/dice,main,main_C_concat,KiTS_K15,dice,84.08725300186124,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/4/dice,main,main_C_concat,KiTS_K18,dice,85.99857379922558,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/5/dice,main,main_C_concat,KiTS_K8,dice,67.72634591673982,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/6/dice,main,main_C_concat,Rider_R10,dice,90.60619179171793,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/7/dice,main,main_C_concat,Rider_R9,dice,85.25470160553905,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/8/dice,main,main_A_soft,Dongyang_D2,dice,82.05883959911222,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/9/dice,main,main_A_soft,Dongyang_D5,dice,92.77846195949644,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/10/dice,main,main_A_soft,KiTS_K13,dice,85.08677438659485,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/11/dice,main,main_A_soft,KiTS_K15,dice,84.04313060605551,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/12/dice,main,main_A_soft,KiTS_K18,dice,92.13995058857725,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/13/dice,main,main_A_soft,KiTS_K8,dice,81.65871969575628,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/14/dice,main,main_A_soft,Rider_R10,dice,86.58566331984159,percent,,,,,,,,,
+01_case_Dice_by_training_role,MAIN: A - C,/casewise/15/dice,main,main_A_soft,Rider_R9,dice,85.96460729482506,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/24/dice,ablations,ablations_A_soft_constant,Dongyang_D2,dice,80.33497159557895,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/25/dice,ablations,ablations_A_soft_constant,Dongyang_D5,dice,85.28451948871705,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/26/dice,ablations,ablations_A_soft_constant,KiTS_K13,dice,82.60108168774248,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/27/dice,ablations,ablations_A_soft_constant,KiTS_K15,dice,86.60319696436078,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/28/dice,ablations,ablations_A_soft_constant,KiTS_K18,dice,90.09213284205148,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/29/dice,ablations,ablations_A_soft_constant,KiTS_K8,dice,72.52905636011438,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/30/dice,ablations,ablations_A_soft_constant,Rider_R10,dice,89.76781789850592,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/31/dice,ablations,ablations_A_soft_constant,Rider_R9,dice,90.64183975761155,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/16/dice,ablations,ablations_A_soft_platform_bridge,Dongyang_D2,dice,82.24533794672064,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/17/dice,ablations,ablations_A_soft_platform_bridge,Dongyang_D5,dice,92.24823823596272,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/18/dice,ablations,ablations_A_soft_platform_bridge,KiTS_K13,dice,80.94690875660767,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/19/dice,ablations,ablations_A_soft_platform_bridge,KiTS_K15,dice,79.42660846656507,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/20/dice,ablations,ablations_A_soft_platform_bridge,KiTS_K18,dice,91.02956058588548,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/21/dice,ablations,ablations_A_soft_platform_bridge,KiTS_K8,dice,83.20071372958819,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/22/dice,ablations,ablations_A_soft_platform_bridge,Rider_R10,dice,86.00490116921463,percent,,,,,,,,,
+01_case_Dice_by_training_role,SECOND: A - constant,/casewise/23/dice,ablations,ablations_A_soft_platform_bridge,Rider_R9,dice,92.4899785691848,percent,,,,,,,,,
+02_all_metric_paired_changes,MAIN: A - C / pp,/comparisons/MAIN_A_minus_C/scopes/all/metrics/dice,,,,dice,,pp,MAIN_A_minus_C,5.910015829419914,1.2024839035695263,10.943718320887559,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / pp,/comparisons/MAIN_A_minus_C/scopes/all/metrics/precision,,,,precision,,pp,MAIN_A_minus_C,12.040832131658703,4.297943380304089,20.439258194994927,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / pp,/comparisons/MAIN_A_minus_C/scopes/all/metrics/recall,,,,recall,,pp,MAIN_A_minus_C,-2.23569301732908,-3.977279165263784,-0.8571498115607579,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / pp,/comparisons/MAIN_A_minus_C/scopes/all/metrics/centerline_recall,,,,centerline_recall,,pp,MAIN_A_minus_C,-1.8487082575807134,-6.850251129431514,2.025464236683627,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / pp,/comparisons/MAIN_A_minus_C/scopes/all/metrics/centerline_precision,,,,centerline_precision,,pp,MAIN_A_minus_C,5.5343109701009245,-6.271072797114912,16.651938680758967,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / pp,/comparisons/MAIN_A_minus_C/scopes/all/metrics/cldice,,,,cldice,,pp,MAIN_A_minus_C,4.0437056441995125,-4.005937240341201,11.734857296179,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / pp,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/dice,,,,dice,,pp,SECOND_A_minus_constant,1.2172038581308247,-2.4117512986433103,5.025746735831056,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / pp,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/precision,,,,precision,,pp,SECOND_A_minus_constant,1.0982205758008554,-5.002589155198811,7.149796290869972,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / pp,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/recall,,,,recall,,pp,SECOND_A_minus_constant,0.8765457841118618,-1.3452331567253726,2.8562713826617294,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / pp,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/centerline_recall,,,,centerline_recall,,pp,SECOND_A_minus_constant,0.07050768305584398,-2.5211312547504923,2.5277951904578946,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / pp,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/centerline_precision,,,,centerline_precision,,pp,SECOND_A_minus_constant,-0.22395951580360407,-10.658592459364005,9.568580955177854,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / pp,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/cldice,,,,cldice,,pp,SECOND_A_minus_constant,0.029505382680912184,-6.307271168802127,5.965473108318077,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / ml,/comparisons/MAIN_A_minus_C/scopes/all/metrics/fp_ml,,,,fp_ml,,ml,MAIN_A_minus_C,-75.69540622722033,-146.63588348578298,-15.558831085340175,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / ml,/comparisons/MAIN_A_minus_C/scopes/all/metrics/fn_ml,,,,fn_ml,,ml,MAIN_A_minus_C,9.409222426850462,2.9337428269503167,17.082607089957673,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / ml,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/fp_ml,,,,fp_ml,,ml,SECOND_A_minus_constant,-6.442915376965743,-37.38820693470442,19.314464792130856,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / ml,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/fn_ml,,,,fn_ml,,ml,SECOND_A_minus_constant,-2.437617357020533,-12.585190035835026,9.298648879091678,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / mm,/comparisons/MAIN_A_minus_C/scopes/all/metrics/assd_mm,,,,assd_mm,,mm,MAIN_A_minus_C,-5.041322138227477,-8.806947993397351,-1.5649423743121098,8,8,,,
+02_all_metric_paired_changes,MAIN: A - C / mm,/comparisons/MAIN_A_minus_C/scopes/all/metrics/hd95_mm,,,,hd95_mm,,mm,MAIN_A_minus_C,-9.03776659175318,-23.39564012942895,4.64013801961588,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / mm,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/assd_mm,,,,assd_mm,,mm,SECOND_A_minus_constant,0.569664292581908,-2.6058729117194974,3.958606095971448,8,8,,,
+02_all_metric_paired_changes,SECOND: A - constant / mm,/comparisons/SECOND_A_minus_constant/scopes/all/metrics/hd95_mm,,,,hd95_mm,,mm,SECOND_A_minus_constant,3.24254792150829,-14.473272376046971,19.353884301617633,8,8,,,
+03_GT_geometry_recall_changes,MAIN: A - C,/comparisons/MAIN_A_minus_C/scopes/all/geometry/radius_le_2mm,,,,,,pp,MAIN_A_minus_C,-0.5113849635971435,-9.808450989913277,5.733437102653995,8,8,radius_le_2mm,0,0
+03_GT_geometry_recall_changes,MAIN: A - C,/comparisons/MAIN_A_minus_C/scopes/all/geometry/radius_2_to_4mm,,,,,,pp,MAIN_A_minus_C,0.8515617027844593,-5.437593726386891,8.250871653662468,8,8,radius_2_to_4mm,0,0
+03_GT_geometry_recall_changes,MAIN: A - C,/comparisons/MAIN_A_minus_C/scopes/all/geometry/radius_4_to_8mm,,,,,,pp,MAIN_A_minus_C,-4.623837213097622,-12.541535620323124,0.3148460724790026,8,8,radius_4_to_8mm,0,0
+03_GT_geometry_recall_changes,MAIN: A - C,/comparisons/MAIN_A_minus_C/scopes/all/geometry/radius_gt_8mm,,,,,,pp,MAIN_A_minus_C,-1.5734201822999214,-3.482934615132441,-0.026751241364845413,8,8,radius_gt_8mm,0,0
+03_GT_geometry_recall_changes,MAIN: A - C,/comparisons/MAIN_A_minus_C/scopes/all/geometry/nonjunction,,,,,,pp,MAIN_A_minus_C,-1.6303940141280027,-7.524978440056065,2.6794167878239996,8,8,nonjunction,0,0
+03_GT_geometry_recall_changes,MAIN: A - C,/comparisons/MAIN_A_minus_C/scopes/all/geometry/junction_neighbourhood,,,,,,pp,MAIN_A_minus_C,-1.245078884205597,-5.577270665027518,2.7826988935721815,8,8,junction_neighbourhood,0,0
+03_GT_geometry_recall_changes,SECOND: A - constant,/comparisons/SECOND_A_minus_constant/scopes/all/geometry/radius_le_2mm,,,,,,pp,SECOND_A_minus_constant,-0.3282837979287909,-5.365300871418782,3.6505559261834573,8,8,radius_le_2mm,0,0
+03_GT_geometry_recall_changes,SECOND: A - constant,/comparisons/SECOND_A_minus_constant/scopes/all/geometry/radius_2_to_4mm,,,,,,pp,SECOND_A_minus_constant,-0.43815559631247636,-6.06302444321038,4.699720035883814,8,8,radius_2_to_4mm,0,0
+03_GT_geometry_recall_changes,SECOND: A - constant,/comparisons/SECOND_A_minus_constant/scopes/all/geometry/radius_4_to_8mm,,,,,,pp,SECOND_A_minus_constant,1.9867982298377003,-1.7693943620349613,5.801396491491552,8,8,radius_4_to_8mm,0,0
+03_GT_geometry_recall_changes,SECOND: A - constant,/comparisons/SECOND_A_minus_constant/scopes/all/geometry/radius_gt_8mm,,,,,,pp,SECOND_A_minus_constant,-0.2962303018812289,-3.2485172074268593,2.417452030646146,8,8,radius_gt_8mm,0,0
+03_GT_geometry_recall_changes,SECOND: A - constant,/comparisons/SECOND_A_minus_constant/scopes/all/geometry/nonjunction,,,,,,pp,SECOND_A_minus_constant,-1.0559823741729941,-4.1902915330608,1.7418785534419727,8,8,nonjunction,0,0
+03_GT_geometry_recall_changes,SECOND: A - constant,/comparisons/SECOND_A_minus_constant/scopes/all/geometry/junction_neighbourhood,,,,,,pp,SECOND_A_minus_constant,1.9582875182149628,-0.0889205144423375,4.079343980339157,8,8,junction_neighbourhood,0,0

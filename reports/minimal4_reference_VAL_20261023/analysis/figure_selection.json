@@ -1,0 +1,56 @@
+{
+  "MAIN_A_minus_C": {
+    "case_selection": [
+      {
+        "case_id": "Rider_R10",
+        "reasons": [
+          "worst_Dice_difference",
+          "largest_positive_FP_increase"
+        ]
+      },
+      {
+        "case_id": "KiTS_K8",
+        "reasons": [
+          "Dice_improves_clDice_declines_most"
+        ]
+      }
+    ],
+    "native_FOV": true,
+    "GT_volume_axial_quantiles": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "shared_CT_window_and_colors": true,
+    "maximum_distinct_cases": 3,
+    "no_replacement_or_filling": true,
+    "predictions_rendered_by_this_analysis": false
+  },
+  "SECOND_A_minus_constant": {
+    "case_selection": [
+      {
+        "case_id": "KiTS_K15",
+        "reasons": [
+          "worst_Dice_difference",
+          "largest_positive_FP_increase"
+        ]
+      },
+      {
+        "case_id": "Dongyang_D2",
+        "reasons": [
+          "Dice_improves_clDice_declines_most"
+        ]
+      }
+    ],
+    "native_FOV": true,
+    "GT_volume_axial_quantiles": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "shared_CT_window_and_colors": true,
+    "maximum_distinct_cases": 3,
+    "no_replacement_or_filling": true,
+    "predictions_rendered_by_this_analysis": false
+  }
+}

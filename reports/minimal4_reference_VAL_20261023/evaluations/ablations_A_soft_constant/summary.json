@@ -1,0 +1,56 @@
+{
+  "cases": 8,
+  "statistical_unit": "case",
+  "metrics": {
+    "dice": {
+      "mean": 0.8473182707433533,
+      "defined_case_count": 8,
+      "std_cases": 0.06159891611971307
+    },
+    "precision": {
+      "mean": 0.8449753018433331,
+      "defined_case_count": 8,
+      "std_cases": 0.09480561718847264
+    },
+    "recall": {
+      "mean": 0.8607671750095482,
+      "defined_case_count": 8,
+      "std_cases": 0.08903567302381839
+    },
+    "fp_ml": {
+      "mean": 65.86173148004293,
+      "defined_case_count": 8,
+      "std_cases": 59.95121058249566
+    },
+    "fn_ml": {
+      "mean": 54.86019261913875,
+      "defined_case_count": 8,
+      "std_cases": 43.47986277202963
+    },
+    "assd_mm": {
+      "mean": 7.916229832370253,
+      "defined_case_count": 8,
+      "std_cases": 4.476378562332497
+    },
+    "hd95_mm": {
+      "mean": 72.41115390906569,
+      "defined_case_count": 8,
+      "std_cases": 35.185152107523834
+    },
+    "centerline_recall": {
+      "mean": 0.7780347979165525,
+      "defined_case_count": 8,
+      "std_cases": 0.12130046255584846
+    },
+    "centerline_precision": {
+      "mean": 0.6544550706300385,
+      "defined_case_count": 8,
+      "std_cases": 0.1912639404118384
+    },
+    "cldice": {
+      "mean": 0.7033003326342642,
+      "defined_case_count": 8,
+      "std_cases": 0.15474668043531953
+    }
+  }
+}

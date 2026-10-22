@@ -1,0 +1,101 @@
+{
+  "schema": "GTA-AVT-minimal4-published-figures-v1",
+  "source_level": "published_safe_declaration_and_original_summary_case_metric_file_hashes_only_not_author_attestation",
+  "stage": "val",
+  "scope": "bounded_20261022_v2_minimal4",
+  "case_ids": [
+    "Dongyang_D2",
+    "Dongyang_D5",
+    "KiTS_K13",
+    "KiTS_K15",
+    "KiTS_K18",
+    "KiTS_K8",
+    "Rider_R10",
+    "Rider_R9"
+  ],
+  "statistical_unit": "released scan/case ID",
+  "patient_independence_verified": false,
+  "author_server_or_export_attested": false,
+  "author_private_marker_used": false,
+  "selection_time_independently_verified": false,
+  "source_marker_FILE_sha256": null,
+  "temporary_synthetic_watermark": false,
+  "binding": {
+    "analysis_FILE_sha256": "b2468592f02afd94b7d1ac38d6bfd94bd5071966f6426ee7db068136392939a7",
+    "evaluation_declaration_FILE_sha256": "fe486e6092f8d9286f68193529ff6fad6a2c73455a2ae07d5e63dcb880c91bf8",
+    "declared_selection_FILE_sha256": null,
+    "declared_selection_identity_sha256": null,
+    "author_private_marker_FILE_sha256": null,
+    "portable_reader_FILE_sha256": "b936e21ba5a0e0169e106cb65fda91de75c8dac8a337dcd319f48ab5a2f7ae6b",
+    "source_level": "published_safe_declaration_and_original_summary_case_metric_file_hashes_only_not_author_attestation",
+    "intervals": "Stored paired artifact intervals; not independently recalculated by plotting"
+  },
+  "common_reference_declaration_sha256": "bcfc52a715e7062412ee943758014b4ed5a4e026351bfa5f818560035cf0c564",
+  "helper_sha256": "a612139c0211d18a0a8d6cd66c084154d4171912d325defd19c18b426669aeb4",
+  "portable_reader_sha256": "b936e21ba5a0e0169e106cb65fda91de75c8dac8a337dcd319f48ab5a2f7ae6b",
+  "original_plot_extraction_sha256": "504c2233fdd55858bb1682ae80a5504d02382b14a99124180a15c949cf56bc4c",
+  "released_style_sha256": "9ce120612a4434d31a3b47fc3f7f04773e627f2fba7bfb4f361364cddb5e0c39",
+  "statistical_math_sha256": "31f355f735f6744589e464bbfb50cef276bc4db650f5edc70c5f6938d834f3c4",
+  "matplotlib_version": "3.11.1",
+  "comparisons": [
+    "MAIN_A_minus_C",
+    "SECOND_A_minus_constant"
+  ],
+  "bootstrap_recomputed": false,
+  "intervals_independently_recomputed_or_attested": false,
+  "source_record_count": 64,
+  "files": [
+    {
+      "file": "01_case_Dice_by_training_role.png",
+      "sha256": "7455b97979f818b4e01f613f4b276d47dc53e541387a669923b195af7df60618",
+      "bytes": 189391,
+      "width_inches": 9.3,
+      "height_inches": 4.6
+    },
+    {
+      "file": "01_case_Dice_by_training_role.pdf",
+      "sha256": "fd595a2fd81b3021f5d696f41891a583dc66abb180f672864f20a10740ca7d79",
+      "bytes": 23355,
+      "width_inches": 9.3,
+      "height_inches": 4.6
+    },
+    {
+      "file": "02_all_metric_paired_changes.png",
+      "sha256": "ecaa409eac018deebd4ae98cd32fdf9f32320b7971f4843f3a7894f7ccf9df28",
+      "bytes": 353133,
+      "width_inches": 11.5,
+      "height_inches": 7.5
+    },
+    {
+      "file": "02_all_metric_paired_changes.pdf",
+      "sha256": "e572a8ac6eb9275dce818d8fa2ed06e92567a3b31fcd372552621f51f6a90236",
+      "bytes": 26016,
+      "width_inches": 11.5,
+      "height_inches": 7.5
+    },
+    {
+      "file": "03_GT_geometry_recall_changes.png",
+      "sha256": "0ce091ff72da694afbb1c4f1f149ab1818a9eab1ed9bacceee24c77030385e7c",
+      "bytes": 297858,
+      "width_inches": 8.9,
+      "height_inches": 7.1
+    },
+    {
+      "file": "03_GT_geometry_recall_changes.pdf",
+      "sha256": "16eef00c65d36309407a4fdbefb296f7e1d1fdc38234c6e277e5709c914cb672",
+      "bytes": 23495,
+      "width_inches": 8.9,
+      "height_inches": 7.1
+    }
+  ],
+  "source_CSV_sha256": "b1493b582def95b2483d104d75506c430a64775cfcac6341da161eb2cf9b4037",
+  "source_JSON_sha256": "e34db23239324a6abf0d0dc935e1547b0aec84be5d23007bf0b3123ab717d4e3",
+  "limitations": [
+    "Declarations and original metric/summary FILE hashes establish self-consistency only.",
+    "Weights, data bytes, physical author servers and pre-TEST selection chronology are not independently attested.",
+    "Two within-role comparisons remain separate; one seed and unverified case independence.",
+    "All metric/group rows remain visible; GT-group voxel recall is not group precision, branches or physical length.",
+    "Intervals are stored artifact values; plotting reconciles raw means/support but does not rerun bootstrap.",
+    "Exported figures still require actual visual inspection."
+  ]
+}

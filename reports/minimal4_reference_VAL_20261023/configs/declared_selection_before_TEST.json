@@ -1,0 +1,181 @@
+{
+  "schema": "GTA-AVT-minimal4-published-declared-selection-v1",
+  "state": "declared_before_TEST",
+  "declared_created_utc": "2026-10-22T20:00:25.186099+00:00",
+  "timing_basis": "reproducer_declaration_not_independent_timing_proof",
+  "selection": {
+    "models": {
+      "main_C_concat": {
+        "role": "main",
+        "job": "C_concat",
+        "method": "faithful_concat",
+        "selected_step": 10000,
+        "weights_sha256": "4f038b9a459ea8a53b779ee70c9297ef70787ead821b5f8cd14442af37e39b6c",
+        "provenance_sha256": "4c7d11cf36e85e536c0baee7f1e30819bb6e8dcba7b624b7d0011513b8562e9e",
+        "original_checkpoint_sha256": "1b5179022586765e82d95a5fc7fcf03926851abe748bc10880324f32c1d5c7b4",
+        "training_recipe_sha256": "30bcd897a11ac6e71286fc492108f8fd1d45d31ddb44f0fa4bd7cb66312e4813"
+      },
+      "main_A_soft": {
+        "role": "main",
+        "job": "A_soft",
+        "method": "faithful_soft",
+        "selected_step": 10000,
+        "weights_sha256": "e09609fff90b735b7cc268aee942143aa8b540a7a3ca019d9c63373028db81f1",
+        "provenance_sha256": "b201e090351ff887c2a1c738b535f4f4a700531160e0936fbd7489f04b0f3cc5",
+        "original_checkpoint_sha256": "e12e94a24d972c6c3dfb3ea28c084fe03e80a288acf14f3952df4d4cb2ed3806",
+        "training_recipe_sha256": "b81af859e5c9efbeffa7d3b7af1db00f502b5024d07979299f7e4d90c7657c09"
+      },
+      "ablations_A_soft_platform_bridge": {
+        "role": "ablations",
+        "job": "A_soft_platform_bridge",
+        "method": "faithful_soft",
+        "selected_step": 10000,
+        "weights_sha256": "5d7ea03b9f0005d0d6eb4fe17f421d8983392f80300e3a874b262af1c8852eb5",
+        "provenance_sha256": "9db7ea7c2f94cdc52e1095bd3e0dd67da73ec8cb44331aa738562702ca976154",
+        "original_checkpoint_sha256": "2c2ee9528cb2ea422ca4547407575a788ecc4fa4dc53e8d8028da26b029b92e1",
+        "training_recipe_sha256": "b81af859e5c9efbeffa7d3b7af1db00f502b5024d07979299f7e4d90c7657c09"
+      },
+      "ablations_A_soft_constant": {
+        "role": "ablations",
+        "job": "A_soft_constant",
+        "method": "faithful_soft_constant",
+        "selected_step": 10000,
+        "weights_sha256": "7406a3ba7e5bac1a7d8ee24898cb954ff8576f37fcf5fba0e26ef9a2cb5c43e6",
+        "provenance_sha256": "fda2ae93169e1ff442b8448f1bff58237dff31eaf4dc15cbbef2c9e7acd25e9d",
+        "original_checkpoint_sha256": "b37b022218319a2d83e4e52e9efc2b7e82fe252ccc207a78d4c557192dfef5e2",
+        "training_recipe_sha256": "ae36a63b95e65eafedd5d3984c3bb58c8177cad5f05b70e3da2953b2ce14f76f"
+      }
+    },
+    "frozen_case_ids": {
+      "train": [
+        "Dongyang_D1",
+        "Dongyang_D10",
+        "Dongyang_D12",
+        "Dongyang_D15",
+        "Dongyang_D16",
+        "Dongyang_D17",
+        "Dongyang_D18",
+        "Dongyang_D3",
+        "Dongyang_D4",
+        "Dongyang_D6",
+        "Dongyang_D8",
+        "Dongyang_D9",
+        "KiTS_K11",
+        "KiTS_K12",
+        "KiTS_K14",
+        "KiTS_K16",
+        "KiTS_K17",
+        "KiTS_K19",
+        "KiTS_K2",
+        "KiTS_K20",
+        "KiTS_K3",
+        "KiTS_K4",
+        "KiTS_K6",
+        "KiTS_K9",
+        "Rider_R1",
+        "Rider_R11",
+        "Rider_R12",
+        "Rider_R15",
+        "Rider_R17",
+        "Rider_R18",
+        "Rider_R3",
+        "Rider_R4",
+        "Rider_R5",
+        "Rider_R6",
+        "Rider_R7",
+        "Rider_R8"
+      ],
+      "val": [
+        "Dongyang_D2",
+        "Dongyang_D5",
+        "KiTS_K13",
+        "KiTS_K15",
+        "KiTS_K18",
+        "KiTS_K8",
+        "Rider_R10",
+        "Rider_R9"
+      ],
+      "test": [
+        "Dongyang_D11",
+        "Dongyang_D13",
+        "Dongyang_D14",
+        "Dongyang_D7",
+        "KiTS_K1",
+        "KiTS_K10",
+        "KiTS_K5",
+        "KiTS_K7",
+        "Rider_R13",
+        "Rider_R14",
+        "Rider_R16",
+        "Rider_R2"
+      ]
+    },
+    "frozen_source_sha256": {
+      "common.py": "79edd4ce7623632c602b33124d4653a28d7cb41ee9ae7a0ee4e664a0efba5d5a",
+      "data.py": "9ad4c237e2b0e7e1fdde00391ebba8dc320b3001cc4ee68c04ca23e64e5f62cf",
+      "evaluate.py": "b50ced9813fe14f923af4e9773606c5ca7d275583fffbdd86d1dd7ca5284155d",
+      "faithful_model.py": "c02a222dc92b231cbaf5a3768217028ee74567d166e09d2df979c9ebdff72337",
+      "faithful_smoke.py": "5b83ceb0654234e79a0189530e118d2cedf19e8dc376eb9e7f980e1d6ac56129",
+      "geometry.py": "456f72da13e17dc877ab0a8af8567c4710cd39aca7141066a4b22b68f65e8ac8",
+      "historical/__init__.py": "275f71602236a43c1b6288874186ef8ec11077124051b2733d3b95b9dc315ecb",
+      "historical/func/__init__.py": "8b611c2073b7bec1691a687085deb8707402d6063f6625dc737f3b62599f24b3",
+      "historical/func/AnatomicalClassifier.py": "f5288c74ce71db97eca63f9665e29dfb0099aa010326ce7d6748377bc0156222",
+      "historical/func/AnatomicalFusionModules.py": "7309281bb296eb7d861050f5ead6b563823b8393addf6ff7c18a594225030b01",
+      "historical/func/EnhancedAirwaySegmentation2gau.py": "13808eeac5c23d084104d18e4b8425c01ba035b84168d1dc6a69cc6a25de28fc",
+      "historical/func/model_arch_model10.py": "55d51ea850efd2b31aa07acd68ad5e24f64fafe6a714d26dc357919f639f3003",
+      "historical/NaviAirway-MIT.txt": "a8d637dcbcd086a0072c4394565c715f88d0327f3b927067c0e596579cfcfd1c",
+      "historical/provenance.json": "44cc0176c30adb08e83b00a0976183f9d66d6df8ff3e9661f72637b3521430b8",
+      "historical/source_hashes.json": "f792cc0ed802ab119ef173870390b2c015d8d2727eee94d499614876a4dbdd27",
+      "historical/THIRD_PARTY_NOTICES.md": "511bb82ea8773e30f58c0ea5531d187708cde071fd17c213824f4bcc75f8be3b",
+      "inference.py": "a30b7511b6272f627bd71c9a62c1b068fc3f1c2d3ff0f5e81bd45b15828f6805",
+      "intensity.py": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a",
+      "losses.py": "c3eafe2d492444d5b909d0597ca04459b2df812c9c8723597c75928298afc87d",
+      "metrics.py": "c729a6f4894758407ab3955889f6db60f8f92a724d883b83c9169a81f2fd96ec",
+      "model.py": "59f4cdd9823e11bdd94d6c2d0ebd4c68fcd237c656040ad9fef365323af4d9ca",
+      "prepare.py": "1cf125da4837b100d8c669c7896272c81582f3b0455fb5213af271d6e9fda6e0",
+      "smoke.py": "c1c26685249638a0cf56408cf067cffffab495ee92395dd3ac42fc88e63f71ee",
+      "train.py": "ec867cd4922a2a18ccf5cb7fbd23922c02a6ac8464f36f2f6bc61a843b35d461"
+    },
+    "canonical_data_sha256": "7f091053f2633f18f1f6e63fd1b206a4c28ee052cef38ff2a63dd512fe14d71c",
+    "split_sha256": "df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b",
+    "reference": {
+      "python_version": [
+        3,
+        8,
+        10
+      ],
+      "packages": {
+        "torch": "1.11.0+cu113",
+        "numpy": "1.22.4",
+        "scipy": "1.10.1",
+        "scikit-image": "0.21.0",
+        "SimpleITK": "2.3.1"
+      },
+      "torch_cuda": "11.3",
+      "cudnn_version": 8200,
+      "backend_settings": {
+        "matmul_tf32": false,
+        "cudnn_tf32": false,
+        "cudnn_benchmark": false,
+        "cudnn_deterministic": true,
+        "deterministic_algorithms": true,
+        "cublas_workspace_config": ":4096:8"
+      },
+      "selected_execution_device": {
+        "type": "cuda",
+        "index": 0,
+        "name": "NVIDIA GeForce RTX 4080",
+        "capability": [
+          8,
+          9
+        ],
+        "total_memory_bytes": 33796456448
+      },
+      "autocast_enabled": true,
+      "original_runtime_canonical_sha256": "ba5bc5e7eb7c22393182428a5aacb4e64bd2ab9492ff429cdda59f445ea3173d"
+    },
+    "TEST_intervention": "none",
+    "checkpoint_reselection_declared": false
+  },
+  "selection_identity_sha256": "73ffd3e0d9261049ba345dcd8d2c6ff96afa3636183b96a912d336e7965c7630"
+}

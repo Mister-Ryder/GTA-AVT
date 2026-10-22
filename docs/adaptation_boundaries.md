@@ -9,8 +9,10 @@ contribution.
 
 The present implementation retains the independent attribute encoder, historical
 segmentation backbone, GAAM/SAAM convolutional paths, decoder sites and final
-guidance-map fusion. It changes attribute semantics and explicitly compares hard
-versus soft condition arithmetic. Random joint training is a common development
+guidance-map fusion. It changes attribute semantics and implements both hard
+and soft condition arithmetic. The current reduced four-model scope does not
+evaluate the hard anchor; implementation is not a completed hard-versus-soft
+comparison. Random joint training is a common development
 recipe, not a reproduction of the historical staged training procedure.
 
 | Element | Permissible adaptation | Required evidence or disclosure |
@@ -73,11 +75,16 @@ radius; centerline radius projection and unknown geometry need explicit rules.
 
 ## Interpretable internal comparisons
 
-The primary contrasts are full soft A versus ordinary attribute fusion C, and
-full A versus the same operators with constant conditions. C controls ordinary
-feature injection, while constant-A controls specialized computation and
-auxiliary supervision. Single-condition and hard-anchor runs examine narrower
-questions. Registered parameter equality does not imply equal active computation.
+The current primary contrasts are MAIN full soft A versus ordinary attribute
+fusion C, and SECOND full-A bridge versus the same operators with constant
+conditions. MAIN A-C changes specialized operations and predicted conditioning
+jointly, with the same auxiliary supervision. SECOND A-constant measures overall
+predicted-condition value, including empty-class mass and gradient-path changes.
+Without MAIN constant, the SECOND contrast cannot decompose a MAIN gain into
+condition value. Single-condition and hard-anchor jobs belonged to the original
+seven-job plan and are now deferred, not completed. The two A models are platform
+bridges with the same seed, not extra seeds or a platform correction. Registered
+parameter equality does not imply equal active computation.
 
 Useful evidence includes case-paired whole-case metrics, supported small-radius
 and junction recall, false-positive cost, and attribute/condition diagnostics.

@@ -1,0 +1,59 @@
+{
+  "dice": 0.6591035074943208,
+  "precision": 0.546272273570798,
+  "recall": 0.8306780821917809,
+  "fp_voxels": 100733,
+  "fn_voxels": 24721,
+  "fp_ml": 111.70700662930527,
+  "fn_ml": 27.414143437434163,
+  "empty_prediction": false,
+  "empty_truth": false,
+  "assd_mm": 36.88108331147357,
+  "hd95_mm": 126.9424905975259,
+  "assd_definition": "pooled bidirectional 6-neighbour boundary-voxel distances; not surfel-area weighted",
+  "centerline_definition": "Lee skeleton voxel coverage on native grid; not arc-length weighted",
+  "asd_prediction_to_truth_mm": 53.84930158251848,
+  "asd_truth_to_prediction_mm": 3.1337392671662543,
+  "centerline_recall": 0.6202321724709784,
+  "centerline_precision": 0.7007807554336358,
+  "cldice": 0.6580507445266148,
+  "truth_skeleton_support": 603,
+  "prediction_skeleton_support": 4739,
+  "prediction_components": 49,
+  "truth_components": 1,
+  "geometry_groups": {
+    "radius_le_2mm": {
+      "support_nodes": 90,
+      "centerline_recall": 0.12222222222222222
+    },
+    "radius_2_to_4mm": {
+      "support_nodes": 191,
+      "centerline_recall": 0.4397905759162304
+    },
+    "radius_4_to_8mm": {
+      "support_nodes": 185,
+      "centerline_recall": 0.8054054054054054
+    },
+    "radius_gt_8mm": {
+      "support_nodes": 137,
+      "centerline_recall": 0.948905109489051
+    },
+    "nonjunction": {
+      "support_nodes": 461,
+      "centerline_recall": 0.5726681127982647
+    },
+    "junction_neighbourhood": {
+      "support_nodes": 80,
+      "centerline_recall": 0.9
+    }
+  },
+  "geometry_group_scope": "GT-defined centerline recall only; false-positive tradeoff reported globally",
+  "case_id": "Dongyang_D5",
+  "cohort": "Dongyang",
+  "seconds": 38.69674253463745,
+  "inference_tiles": 120,
+  "fixed_threshold": 0.5,
+  "condition_mode": "predicted",
+  "evaluation_grid": "original CT",
+  "postprocessing": "none"
+}

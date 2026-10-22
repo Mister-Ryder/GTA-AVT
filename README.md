@@ -10,6 +10,8 @@ The primary implementation retains the historical `SegAirwayModel` backbone, ind
 
 AVT attributes describe physical vessel scale and operational local junction structure. They are patch-level composition targets, not voxel-wise anatomical classes. Reference masks and centerlines define training targets; inference takes CT images only.
 
+[Adaptation boundaries and interpretation](docs/adaptation_boundaries.md) explain which attribute, condition-calculation and component changes remain within the GTA hypothesis, and what the present global conditions cannot establish.
+
 This is an **original-operator migration**, not a reproduction of the entire historical training procedure. The current recipe starts from random weights and trains jointly. It does not claim airway checkpoint transfer or the original separate classifier pretraining and staged freezing. Decoder deep supervision and a common Dice+BCE recipe are shared across the present comparisons.
 
 The primary study is explicitly **no-space/no-Gaussian**: it omits the location-adaptive module and Gaussian output supervision. This does not imply that CT features contain no spatial context. The historical classifier still registers an unused location head; registered and active parameter counts must be distinguished.
@@ -46,11 +48,15 @@ SAAM     = f + (1 - p_empty) * m * (1 + 0.1 * p_junction)
 
 This explicitly changes conditional arithmetic while retaining the original convolutional operators. It is not mathematically identical to the hard anchor. Probabilities provide composition/foreground-availability signals, and are computed in float32 for the soft path under mixed precision.
 
+At the 1 mm input grid, GAAM acts on a 4 mm feature lattice: its three-tap depthwise kernel spans 8 mm between the outer kernel centers. SAAM acts on a 2 mm lattice; dilation rates 1/1/2/3 span 4/4/8/12 mm between outer centers. These are the added operators' sampling spans, not the full encoder receptive field or the radius-label thresholds. This initial study retains the historical kernels.
+
 ## Data and frozen split
 
 Download the original [AVT dataset](https://doi.org/10.6084/m9.figshare.14806362) from Figshare. It contains 20 KiTS, 18 RIDER, and 18 Dongyang cases. The record lists **CC BY 4.0** and also asks users to respect the applicable licenses of the underlying collections. Read the [official dataset record](https://figshare.com/articles/dataset/Aortic_Vessel_Tree_AVT_CTA_Datasets_and_Segmentations/14806362) and cite [Radl et al., Data in Brief, 2022](https://doi.org/10.1016/j.dib.2022.107801). No dataset license is granted by this source repository.
 
 [configs/split_seed20261022.json](configs/split_seed20261022.json) fixes 36 training, eight validation, and 12 held-out patients. The development pilot uses three predeclared validation cases, one per source: `Dongyang_D2`, `KiTS_K13`, and `Rider_R10`. It never evaluates the held-out test set. A single seed and a small validation subset cannot establish seed stability or formal generalization.
+
+The [recorded official archive identities](references/AVT_archives_20261022.json) fix the three download URLs, sizes and MD5 hashes used here. Direct server access was blocked or very slow, so existing local official archives were transferred and verified against those identities and ZIP integrity checks.
 
 The official NRRDs mix HU and stored HU+1024 conventions. Preprocessing uses CT-only air evidence and stops on ambiguous cases. Three CT-only reviewed exceptions in [configs/ct_only_reviewed_offset_overrides.json](configs/ct_only_reviewed_offset_overrides.json) are locked to the original image SHA256 and detector SHA256. Private review images are not distributed. These corrections are intensity-convention estimates, not verification of unavailable DICOM calibration metadata.
 

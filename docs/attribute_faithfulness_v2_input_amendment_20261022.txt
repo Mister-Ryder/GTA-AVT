@@ -1,0 +1,58 @@
+V2 input amendment to the frozen attribute-faithfulness protocol
+2026-10-22; implementation/metadata QA only, no real diagnostic run.
+
+The original attribute_faithfulness_protocol_20261022.txt remains byte-identical.
+Its reference to96-cube training describes V1. V2 trains128-cube patches and
+also infers128-cube patches; the diagnostic already used PATCH=128 and BATCH=2.
+Sampling, target geometry, predictions, validity, metrics and patient aggregation
+are unchanged. This amendment changes input/identity gates and interpretation
+of version metadata only. It does not change any model or training code.
+
+Before execution, all three inputs must be genuine completed V2 MAIN exports:
+  C_concat / faithful_concat;
+  A_soft / faithful_soft;
+  A_soft_constant / faithful_soft_constant.
+The verified V2 formal_transfer_verified.json must identify the exact main
+role/job with its corresponding run-path suffix, and its three bundle-file SHA256 entries must equal actual bytes of
+weights_tensor_only.pt, provenance.json and export_verified.json. Same software
+does not prove role identity: the genuine second-role A_soft_platform_bridge
+has the same method, recipe and legacy software and is explicitly rejected.
+
+The complete exact21-field recipe is checked by canonical JSON identity:
+formal, seed20261022, width32, train128/batch2,10000 updates, validation at5000
+and10000, and the otherwise frozen V2 optimizer/sampling/auxiliary/inference
+settings. All three recipes differ only in method. Extra fields, JSON type
+changes, V1 recipes and partial/pilot exports are rejected. Genuine best can
+be selected at5000 or10000, but the original run must have completed10000.
+The transfer's completed checkpoint/config/source and selected validation
+summary identities must match the export. Exact TRAIN36/VAL8, no-test flags,
+all24 frozen source identities and common legacy package versions are required.
+The diagnostic protocol records recipes/canonical hashes and transfer SHA256.
+
+The helper runs normal classifier-only inference. It records supervised head
+probabilities separately from the vectors computed by frozen model.conditions:
+C consumes no class vector; A uses predicted five/three-class vectors; constant
+uses uniform five/three-class vectors. These vectors match normal full-forward
+conditional arguments. No full segmentation forward or learned feature-based
+availability gate is executed or measured here. The availability_only
+same-weight segmentation intervention remains a separate VAL8 evaluation.
+
+Uniform constant vectors include p_empty=1/5 and1/3. They change availability
+as well as nonempty composition, so this control is not availability-preserving.
+Its consumed-vector error is a fixed-vector reference, not evidence that its
+separately predicted auxiliary heads failed. Empty targets remain part of
+CT-uniform diagnostics. Small errors in sparse fine/junction components alone
+do not prove informative anatomy; inspect recorded targets/supports, within-case
+variation and the separate matched-control/intervention evidence.
+
+Unknown structural nodes remain outside that head's normalized histogram;
+scale can remain valid when structure is unknown. Positive masks without a
+supported centreline are not empty-class supervision. Scores are patient means
+within each predeclared sampling stratum with explicit valid support. Constant
+vectors have undefined Spearman; C consumed-vector scores remain undefined.
+GT-centred strata are enriched diagnostics, not natural-prevalence estimates.
+No tuning, p-values, test data, threshold changes or method selection follows.
+
+Default plan-only behavior and explicit --execute-frozen-validation remain.
+Neither this amendment nor synthetic metadata fixtures constitute a model
+result, a GPU check, or authorization to execute the diagnostic.

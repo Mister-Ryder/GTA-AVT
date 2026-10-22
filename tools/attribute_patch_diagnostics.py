@@ -8,7 +8,7 @@ import hashlib
 import json
 import math
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import statistics
 import time
 os.environ.setdefault('CUBLAS_WORKSPACE_CONFIG', ':4096:8')
@@ -25,36 +25,124 @@ PATCH = 128
 BATCH = 2
 METHODS = {'C': 'faithful_concat', 'A': 'faithful_soft', 'constant': 'faithful_soft_constant'}
 COUNTS = {'CT_uniform': 8, 'GT_fine_centred': 4, 'GT_junction_centred': 4, 'GT_large_nonjunction_centred': 4}
+TRAINING_VERSION = 'bounded_20261022_v2'
+FROZEN_SOURCE_DIGEST = '7c5b29ff069f5b33fe2212d721945c6b2e468bc5d15a9f87f6f12e1661f7fe96'
+MAIN_JOBS = {'faithful_concat': 'C_concat', 'faithful_soft': 'A_soft',
+             'faithful_soft_constant': 'A_soft_constant'}
+BUNDLE_FILES = ('weights_tensor_only.pt', 'provenance.json', 'export_verified.json')
+V2_PACKAGES = {'torch': '1.11.0+cu113', 'numpy': '1.22.4', 'scipy': '1.10.1',
+               'scikit-image': '0.21.0', 'SimpleITK': '2.3.1'}
+V2_COMMON_RECIPE = dict(stage='formal', seed=SEED, width=32, patch_size=128, batch_size=2,
+    max_steps=10000, lr=.0003, weight_decay=.0001, foreground_probability=.5,
+    auxiliary_weight=.1, gradient_clip=12., log_every=25, checkpoint_every=500,
+    validate_every=5000, validation_case_limit=0, inference_patch_size=128,
+    inference_batch_size=2, inference_overlap=.5, save_validation_predictions=False, cpu_threads=4)
 
 
-def validate_formal_bundle(path, expected_method, current_runtime):
-    provenance, state = load_tensor_bundle(path)
-    receipt = load_json(Path(path) / 'export_verified.json')
-    if receipt.get('state') != 'verified' or receipt.get('weights_sha256') != provenance['weights_sha256']:
+def valid_sha(value):
+    return isinstance(value, str) and len(value) == 64 and all(x in '0123456789abcdef' for x in value)
+
+
+def validate_v2_bundle_metadata(provenance, receipt, transfer, hashes, expected_method,
+                                current_runtime, current_source=None):
+    """Pure metadata gate; role comes from the verified V2 transfer, not software.
+
+    Canonical equality against all21 exact fields also enforces JSON types and
+    finite values. Extra fields cannot silently alter a comparison recipe.
+    """
+    if expected_method not in MAIN_JOBS:
+        raise ValueError('Unknown main V2 diagnostic method')
+    if set(hashes) != set(BUNDLE_FILES) or any(not valid_sha(x) for x in hashes.values()):
+        raise ValueError('All three actual bundle-file SHA256 identities are required')
+    context = transfer.get('context', {})
+    if (transfer.get('schema') != 'GTA-AVT-completed-formal-export-v2' or
+            transfer.get('state') != 'verified_export_and_shared_transfer' or
+            context.get('protocol_version') != TRAINING_VERSION or context.get('server_role') != 'main' or
+            context.get('job') != MAIN_JOBS[expected_method] or context.get('method') != expected_method or
+            canonical_digest(context.get('seed')) != canonical_digest(SEED) or
+            transfer.get('cpu_only') is not True or transfer.get('inference_or_test_run') is not False or
+            transfer.get('original_training_artifacts_modified') is not False):
+        raise ValueError('Require the genuine V2 MAIN role/job transfer; a platform bridge is ineligible')
+    run = context.get('run')
+    run_path = PurePosixPath(run) if isinstance(run, str) else None
+    expected_tail = ('runs', TRAINING_VERSION, 'formal', 'main', MAIN_JOBS[expected_method] + '_seed20261022')
+    if run_path is None or not run_path.is_absolute() or '..' in run_path.parts or run_path.parts[-5:] != expected_tail:
+        raise ValueError('V2 transfer run path does not belong to the named MAIN role/job')
+    if canonical_digest(transfer.get('bundle_sha256')) != canonical_digest(hashes):
+        raise ValueError('V2 transfer receipt does not match all three actual bundle files')
+    if receipt.get('state') != 'verified' or receipt.get('weights_sha256') != hashes['weights_tensor_only.pt']:
         raise ValueError('Export lacks a genuine verified tensor receipt')
-    if receipt.get('provenance_sha256') != file_hash(Path(path) / 'provenance.json'):
+    if (receipt.get('provenance_sha256') != hashes['provenance.json'] or
+            receipt.get('all56_cache_and_raw_bytes_verified') is not True or
+            receipt.get('test_predictions_or_metrics_used') is not False):
         raise ValueError('Export provenance changed after genuine checkpoint verification')
     record = provenance['original_run_record']
     complete = provenance['original_complete_record']
     recipe = provenance['recipe']
     fixed = frozen_patient_ids()
-    if provenance['method'] != expected_method or recipe['method'] != expected_method or provenance['stage'] != 'formal' or recipe['stage'] != 'formal':
+    if (provenance.get('method') != expected_method or provenance.get('stage') != 'formal' or
+            provenance.get('weights_file') != 'weights_tensor_only.pt' or
+            provenance.get('weights_sha256') != hashes['weights_tensor_only.pt'] or
+            provenance.get('original_checkpoint_name') != 'best.pt'):
         raise ValueError('Require the named completed formal C/A/constant bundle, never a pilot/bridge substitute')
-    if recipe['seed'] != SEED or not provenance['final_test_eligible'] or not record['selection_valid']:
+    expected_recipe = dict(V2_COMMON_RECIPE, method=expected_method)
+    if (not isinstance(recipe, dict) or canonical_digest(recipe) != canonical_digest(expected_recipe) or
+            canonical_digest(record.get('recipe')) != canonical_digest(recipe) or
+            canonical_digest(context.get('recipe')) != canonical_digest(recipe)):
+        raise ValueError('Require the exact typed21-field V2 formal128/10000 recipe')
+    if provenance.get('final_test_eligible') is not True or record.get('selection_valid') is not True:
         raise ValueError('Bundle is outside the single-seed eligible formal comparison')
-    if complete.get('state') != 'complete' or complete.get('steps') != recipe['max_steps'] or complete.get('stage') != 'formal':
+    if complete.get('state') != 'complete' or type(complete.get('steps')) is not int or complete['steps'] != 10000 or complete.get('stage') != 'formal':
         raise ValueError('Formal training was not genuinely complete')
-    if record['validation_ids'] != fixed['val'] or provenance['frozen_patient_ids'] != fixed:
+    if record.get('train_ids') != fixed['train'] or record.get('validation_ids') != fixed['val'] or provenance.get('frozen_patient_ids') != fixed:
         raise ValueError('Formal model was not selected using the exact frozen8validation patients')
     if record.get('test_used') is not False or complete.get('test_used') is not False:
         raise ValueError('Require explicit no-test-use provenance')
-    if record['recipe'] != recipe or record['source_sha256'] != provenance['original_source_sha256']:
+    source = source_hashes() if current_source is None else current_source
+    if len(source) != 24 or canonical_digest(source) != FROZEN_SOURCE_DIGEST:
+        raise ValueError('The24 frozen source identities differ from this V2 study')
+    if (record.get('source_sha256') != source or provenance.get('original_source_sha256') != source or
+            context.get('source_sha256') != source or canonical_digest(context.get('run_record')) != canonical_digest(record)):
         raise ValueError('Export source/recipe differs from its genuine training record')
-    if complete.get('best_val_dice') != provenance['selected_validation_dice']:
+    step = provenance.get('selected_step')
+    if type(step) is not int or step not in (5000, 10000):
+        raise ValueError('Selected V2 best must be from genuine validation at5000 or10000')
+    best = provenance.get('selected_validation_dice')
+    if isinstance(best, bool) or not isinstance(best, (int, float)) or not math.isfinite(best) or not 0 <= best <= 1:
+        raise ValueError('Selected V2 validation Dice must be finite and defined')
+    if complete.get('best_val_dice') != best:
         raise ValueError('Exported model is not the completed formal validation best')
+    attestation = context.get('attestation', {})
+    expected_attestation = dict(state='verified_complete', protocol_version=TRAINING_VERSION, steps=10000,
+        best_sha256=provenance['original_checkpoint_sha256'], config_sha256=provenance['original_run_config_sha256'],
+        complete_sha256=provenance['original_complete_sha256'], source_sha256=source, test_used=False)
+    if any(canonical_digest(attestation.get(key)) != canonical_digest(value) for key, value in expected_attestation.items()):
+        raise ValueError('V2 transfer does not attest this exact completed checkpoint/config/source')
+    audits = context.get('checkpoint_audits', {})
+    if (type(audits.get('latest', {}).get('step')) is not int or audits['latest']['step'] != 10000 or
+            type(audits.get('best', {}).get('step')) is not int or audits['best']['step'] != step):
+        raise ValueError('V2 transfer checkpoint audits differ from the selected genuine export')
+    selected_summary = context.get('validations', {}).get(str(step), {}).get('summary_sha256')
+    if not valid_sha(selected_summary) or selected_summary != provenance.get('original_selected_validation_summary_sha256'):
+        raise ValueError('V2 transfer selected validation summary differs from genuine best selection')
+    for name in ('v2_authorization_sha256', 'v2_start_gates_sha256', 'bounded_attestation_sha256'):
+        if not valid_sha(context.get(name)):
+            raise ValueError('V2 explicit authorization/start/completion evidence is missing: ' + name)
+    if (not valid_sha(provenance['training_environment_receipt']['sha256']) or
+            context.get('training_environment_sha256') != provenance['training_environment_receipt']['sha256']):
+        raise ValueError('V2 transfer and export training-runtime receipts differ')
     training = provenance['training_environment_receipt']['value']
+    if current_runtime.get('python_version', [])[:2] != [3, 8] or current_runtime.get('packages') != V2_PACKAGES:
+        raise ValueError('Require the exact common V2 legacy reference software')
     if training['python'] != current_runtime['python'] or training['packages'] != current_runtime['packages']:
         raise ValueError('Use the original common main/reference software environment for all3models')
+
+
+def validate_formal_bundle(path, expected_method, current_runtime):
+    provenance, state = load_tensor_bundle(path)
+    hashes = {name: file_hash(Path(path) / name) for name in BUNDLE_FILES}
+    validate_v2_bundle_metadata(provenance, load_json(Path(path) / 'export_verified.json'),
+        load_json(Path(path) / 'formal_transfer_verified.json'), hashes, expected_method, current_runtime)
     return provenance, state
 
 
@@ -333,7 +421,7 @@ def main():
     for provenance, state in bundles.values():
         assert_same_data(provenance, identity)
     recipes = [{key: value for key, value in provenance['recipe'].items() if key != 'method'} for provenance, _ in bundles.values()]
-    if any(recipe != recipes[0] for recipe in recipes[1:]):
+    if any(canonical_digest(recipe) != canonical_digest(recipes[0]) for recipe in recipes[1:]):
         raise ValueError('Main formal models do not share the exact comparison recipe')
     manifest = load_json(args.manifest)
     if manifest['splits'] != frozen_patient_ids():
@@ -343,7 +431,8 @@ def main():
         raise RuntimeError('CUDA unavailable; no automatic fallback')
     torch.set_num_threads(4)
     output = require_new_directory(args.output)
-    protocol = {'schema': 'GTA-AVT-formal-validation-attribute-faithfulness-v1', 'created_utc': utc(),
+    protocol = {'schema': 'GTA-AVT-formal-validation-attribute-faithfulness-v2', 'created_utc': utc(),
+        'training_protocol_version': TRAINING_VERSION,
         'explicitly_invoked': True, 'split': 'val', 'case_ids': frozen_patient_ids()['val'], 'seed': SEED,
         'sampling': COUNTS, 'patch_size': PATCH, 'batch_size': BATCH, 'maximum_shared_patches': 160,
         'test_GT_opened': False, 'test_inputs_predictions_or_metrics_used': False,
@@ -354,6 +443,9 @@ def main():
         'frozen_source_sha256': source_hashes(), 'canonical_data_sha256': identity['canonical_sha256'],
         'cache_manifest_sha256': file_hash(args.manifest),
         'bundles': {label: {'method': provenance['method'], 'selected_step': provenance['selected_step'],
+             'training_role': 'main', 'training_job': MAIN_JOBS[provenance['method']],
+             'training_recipe': provenance['recipe'], 'training_recipe_sha256': canonical_digest(provenance['recipe']),
+             'formal_transfer_receipt_sha256': file_hash(Path(paths[label]) / 'formal_transfer_verified.json'),
              'weights_sha256': provenance['weights_sha256'], 'original_checkpoint_sha256': provenance['original_checkpoint_sha256'],
              'provenance_sha256': file_hash(Path(paths[label]) / 'provenance.json')}
              for label, (provenance, state) in bundles.items()},

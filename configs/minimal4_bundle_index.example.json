@@ -1,0 +1,50 @@
+{
+  "schema": "GTA-AVT-minimal4-portable-bundle-index-v1",
+  "role_assignment": "declared_for_this_reproduction_not_proved_server_identity",
+  "bundles": {
+    "main_C_concat": {
+      "role": "main",
+      "job": "C_concat",
+      "method": "faithful_concat",
+      "bundle": "../exports/main_C_concat",
+      "bundle_sha256": {
+        "weights_tensor_only.pt": "REPLACE_WITH_ACTUAL_SHA256",
+        "provenance.json": "REPLACE_WITH_ACTUAL_SHA256",
+        "export_verified.json": "REPLACE_WITH_ACTUAL_SHA256"
+      }
+    },
+    "main_A_soft": {
+      "role": "main",
+      "job": "A_soft",
+      "method": "faithful_soft",
+      "bundle": "../exports/main_A_soft",
+      "bundle_sha256": {
+        "weights_tensor_only.pt": "REPLACE_WITH_ACTUAL_SHA256",
+        "provenance.json": "REPLACE_WITH_ACTUAL_SHA256",
+        "export_verified.json": "REPLACE_WITH_ACTUAL_SHA256"
+      }
+    },
+    "ablations_A_soft_platform_bridge": {
+      "role": "ablations",
+      "job": "A_soft_platform_bridge",
+      "method": "faithful_soft",
+      "bundle": "../exports/ablations_A_soft_platform_bridge",
+      "bundle_sha256": {
+        "weights_tensor_only.pt": "REPLACE_WITH_ACTUAL_SHA256",
+        "provenance.json": "REPLACE_WITH_ACTUAL_SHA256",
+        "export_verified.json": "REPLACE_WITH_ACTUAL_SHA256"
+      }
+    },
+    "ablations_A_soft_constant": {
+      "role": "ablations",
+      "job": "A_soft_constant",
+      "method": "faithful_soft_constant",
+      "bundle": "../exports/ablations_A_soft_constant",
+      "bundle_sha256": {
+        "weights_tensor_only.pt": "REPLACE_WITH_ACTUAL_SHA256",
+        "provenance.json": "REPLACE_WITH_ACTUAL_SHA256",
+        "export_verified.json": "REPLACE_WITH_ACTUAL_SHA256"
+      }
+    }
+  }
+}

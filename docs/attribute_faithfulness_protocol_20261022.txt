@@ -1,0 +1,101 @@
+Bounded validation attribute-faithfulness diagnostic
+Agreed2026-10-22; implementation prepared, NOT run during pilot/formal training.
+
+Question: do the supervised radius/junction composition heads remain faithful
+to their anatomical proxy targets after segmentation gradients reach the soft
+conditions? Good segmentation alone does not establish this interpretation.
+
+This is a post-freeze validation diagnostic. It cannot select another model,
+change thresholds, adaptation, loss weights or training settings, or justify
+claiming calibrated uncertainty. There is no test-split option and no training.
+The original TEST12 masks/inputs/predictions/metrics are never opened or used.
+
+Execution gate:
+  1. All three main models C/A/constant must have genuinely completed formal
+     training, exact TRAIN36/VAL8 split, seed20261022, the same frozen source and
+     recipe, and eligible validation-selected best checkpoints.
+  2. Each must have a genuine verified tensor-only export, produced from its
+     actual checkpoint by export_reference_weights.py in its training runtime.
+  3. Run only in common Python3.8/torch1.11 reference software, with package/
+     Python versions matching all three main training environment receipts.
+  4. Root invokes the standalone helper explicitly with
+     --execute-frozen-validation after the checkpoints are frozen. No queue,
+     monitor or pilot process invokes it automatically.
+Without that flag, the helper prints a nonexecuting plan and exits. --help and
+syntax checking require no model/GT access. It has not been invoked to read
+validation GT or run a GPU while this protocol is being authored.
+
+One shared finite bank, at most160 unique patches from all8validation patients:
+  -8 CT-only uniformly sampled starts per case;
+  -4 centres on GT skeleton radius<=2mm;
+  -4 centres on supported GT skeleton-junction neighbourhoods;
+  -4 centres on GT radius>2mm and nonjunction skeleton nodes.
+Seed20261022 plus stable case/stratum hashes fix sampling independently of model
+predictions. Missing strata remain unsupported; they are not silently filled.
+Duplicate starts are deduplicated across strata and retain every stratum label.
+Each stratum is reported separately. GT-centred diagnostics intentionally enrich
+anatomical support and do NOT estimate the natural whole-image prevalence.
+
+Patch128^3 and batch2 match deployed whole-case inference, rather than the96^3
+training patch size. A comparison to TRAIN96 patches would confound population
+and context size, so the optional TRAIN6 bank is not added here.
+
+Validation geometry is built once in a separate diagnostic output folder:
+  native label physical-spacing EDT -> exact recorded1mm resampling grid ->
+  original crop -> frozen sparse_geometry/unknown-junction rule.
+The existing cache image/mask arrays are reused; no CT cache is duplicated.
+The cache manifest, masks and geometry are never modified. Canonical cache
+identity is compared to exports using metadata, without opening test files.
+Only validation source-label and validation cache image/mask bytes are read and
+verified for this diagnostic. Derived sparse geometry, selected starts, target
+histograms, supports and input hashes are retained separately.
+
+Per-head target validity exactly matches train.py/losses.py:
+  positive mask with no centreline -> shared attribute validity0;
+  invalid skeleton -> zero target vectors;
+  unknown structural points are excluded from its histogram;
+  head validity=shared validity*(target sum>0).
+Report total selected patches, valid scale/structure patch counts, GT centreline,
+fine, supported-junction, valid-structure and unknown-structure supports. Overlap
+means support sums across patches are descriptive, not independent node counts.
+
+Prediction path: call the frozen classifier only, in eval mode, on identical
+CT-only normalized inputs, with the reference CUDA autocast rule and TF32 off.
+No full segmentation forward, new weights, gradients, thresholds or intervention
+is used. Actual consumed composition is obtained from the unchanged model's
+conditions function and is distinguished from its supervised head output:
+  C: head predictions exist, but no class composition is consumed by its base
+     feature-fusion operators.
+  A: predicted compositions are consumed by soft GAAM/SAAM arithmetic.
+  constant: auxiliary heads still predict, while actual consumed compositions
+     are the fixed uniform5/3 vectors. Head accuracy cannot be described as
+     informative conditioning for this constant-control model.
+
+Metrics within each patient and sampling stratum:
+  composition MAE=mean over patches of mean absolute component error;
+  composition SSE=mean over patches of sum squared component error (a
+     Brier-style score against a soft operational target, not hard-class
+     calibration or a calibrated-uncertainty claim);
+  fine/junction MAE=absolute error of scale class1 / structure class2;
+  within-case Spearman for fine/junction composition only with at least3valid
+     patches and varying targets/predictions; otherwise undefined with reason.
+No patch/node p-values, pooled-patch significance, threshold search or tuning.
+Aggregate each metric with equal patient weight; report defined patient counts.
+Within-case Spearman values are descriptive and sparse four-patch strata make
+them unstable; report their supported-case median without significance claims.
+
+Fidelity is to operational GT-derived proxies, not expert anatomical branch
+labels. Lee grid-phase missed branches, unknown neighbourhoods, source label
+quality and128mm context remain limitations. Predictive fidelity supports the
+head interpretation but is not, by itself, causal evidence that conditional
+information improved segmentation; the matched constant control and frozen
+validation interventions provide complementary evidence.
+
+Explicit future command (execute ONLY after the3main formal exports exist):
+python ops/attribute_patch_diagnostics.py --bundle-c EXPORT_C --bundle-a EXPORT_A --bundle-constant EXPORT_CONSTANT --manifest REFERENCE_CACHE/manifest.json --output NEW_DIAGNOSTIC_FOLDER --device cuda --execute-frozen-validation
+
+Outputs: immutable protocol, bank starts/input hashes/targets/supports, separate
+VAL8 sparse geometry receipts, per-model classifier and consumed compositions,
+per-case/stratum scores, equal-patient summaries and actual runtime. Maximum480
+classifier forward samples total. Failures are preserved, with no auto retry.
+Nothing in this helper changes or selects a trained model after viewing results.

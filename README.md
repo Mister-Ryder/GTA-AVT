@@ -30,7 +30,7 @@ The primary study is explicitly **no-space/no-Gaussian**: it omits the location-
 
 `faithful_scale` and `faithful_structure` provide analogous hard-condition ablations. C registers the same specialized modules as A to make their entire initial states identical, but executes only base fusion; specialized kernels are inactive in C. Thus C/A have equal registered capacity but different active computation. A-versus-C alone does not isolate condition information; the matched constant-A control is necessary.
 
-The alternative `baseline`/`gta_*` family in `model.py` uses a different soft-FiLM implementation and is retained for traceability. It is not the primary original-operator experiment and its results must remain separate.
+The alternative `baseline`/`gta_*` family in `model.py` uses a different soft-FiLM implementation and is retained for traceability. It is not the primary original-operator experiment. Its initial mixed-precision smoke produced zero segmentation-to-attribute-head gradients; that candidate has not passed the full validation gate and supplies no primary result here. The tested original-operator family uses the `faithful_*` names above.
 
 ### Hard and soft conditioning
 
@@ -147,6 +147,15 @@ The first command evaluates all eight validation cases, beyond the three used du
 The [reference-evaluation tools](tools/REFERENCE_WEIGHTS_README.txt) export genuine completed checkpoints to tensor-only weights, verify exact source/cache identities, and evaluate all trained methods in the same Python 3.8/PyTorch 1.11 environment. Test evaluation requires an explicit command and an eligible formal model. A saved TRAIN-only FP32 input bank supports a numerical runtime bridge. These tools are separate from the full training-checkpoint evaluator above.
 
 [Patient-level analysis](analysis/analyze_key_ablations.py) and [figure exports](analysis/plot_key_ablations.py) implement the [frozen comparison protocol](docs/key_ablation_analysis_protocol_20261022.txt): paired patient differences, 20,000 bootstrap draws, explicit missing/support counts, and separate training-runtime groups. Plotting additionally requires Matplotlib. Synthetic helper tests are not experimental results.
+
+The [attribute-faithfulness protocol](docs/attribute_faithfulness_protocol_20261022.txt) separately checks the three completed formal C/A/constant classifiers against fixed VAL8 geometric targets, distinguishing predicted heads from the conditions actually consumed. It requires the common legacy reference environment and genuine verified tensor-only exports. Public commands use `tools/`; an `ops/` path in the preserved authoring protocol denotes its corresponding public tool here.
+
+```bash
+python tools/attribute_patch_diagnostics.py --bundle-c exports/C --bundle-a exports/A --bundle-constant exports/constant --manifest data/cache_1mm/manifest.json --output results/attribute_val --device cuda --execute-frozen-validation
+python analysis/analyze_condition_intervention.py --normal results/A_val --availability-only results/A_val_availability --output results/A_condition_analysis
+```
+
+Omit `--execute-frozen-validation` from the first command to print its nonexecuting gate without opening models or data. The second reads completed same-weight normal and availability-only reference evaluations; it does not run inference. Both diagnostics are validation-only, permit no post-diagnostic tuning, and have not yet been run on the real study data. This package currently includes their implementation and synthetic checks, without real diagnostic results.
 
 - Predictions are restored to the original CT physical grid before evaluation. Full prediction foreground, including distant false positives, is retained. The threshold is 0.5 and no connected-component cleanup is applied to segmentation endpoints.
 - Dice, precision, recall, FP/FN volumes, pooled bidirectional 6-neighbor boundary-voxel ASSD, and maximum-directional HD95 are explicit. ASSD is not surfel-area weighted or the unweighted mean of two directional means. Missing distance values remain missing, with counts reported.

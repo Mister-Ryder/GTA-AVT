@@ -3,6 +3,8 @@
 No prediction, checkpoint selection, model tuning, or held-out evaluation occurs
 here. Run --self-test for temporary synthetic fixtures, or supply --index,
 --stage val|test and a new --output directory. NumPy is the only dependency.
+Exploratory intervals resample released scan/case IDs; patient independence
+was not verified from the inspected AVT release.
 """
 import argparse
 import csv
@@ -16,6 +18,19 @@ import numpy as np
 
 SEED = 20261022
 DRAWS = 20000
+CASE_UNIT_METADATA = {
+    'statistical_unit': 'released scan/case ID',
+    'resampling_unit': 'paired case',
+    'interval_interpretation': 'exploratory 95% percentile paired case bootstrap intervals',
+    'patient_independence_status': 'unverified',
+    'independence_limitation': ('Patient-to-scan mapping was unavailable in the inspected AVT release. '
+        'If scans from the same patient are correlated, case bootstrap may underestimate uncertainty.'),
+    'overlap_status': ('No AVT repeat pair or cross-split patient overlap has been established '
+        'by the source/header audit.'),
+    'compatibility_fields': ('Legacy patient_scope/patient_ids/all_patient_mean/defined_patient_mean/'
+        'std_defined_patients name case IDs or case summaries; they remain for schema compatibility '
+        'and do not establish independent patients.'),
+}
 INDEX_SCHEMA = 'GTA-AVT-key-ablation-index-v1'
 REFERENCE_SCHEMA = 'GTA-AVT-reference-evaluation-v1'
 SPLIT_SHA256 = 'df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b'
@@ -212,12 +227,12 @@ def paired(values_a, values_b, direction):
                   missing_a=sum(x is None for x in values_a), missing_b=sum(x is None for x in values_b),
                   excluded_cases=len(values_a) - len(valid), a_mean_paired=None, b_mean_paired=None, delta_a_minus_b=None,
                   ci95_lower=None, ci95_upper=None, wins=0, ties=0, losses=0,
-                  estimand='unweighted patient mean of paired A minus B; complete pairs only',
-                  interval='percentile paired patient bootstrap; 20000 draws; seed20261022',
+                  estimand='unweighted case mean of paired A minus B; complete pairs only',
+                  interval='exploratory 95% percentile paired case bootstrap; 20000 draws; seed20261022; patient independence unverified',
                   missing_policy='no imputation; undefined metrics excluded pairwise with support reported')
     if not len(delta):
         return result
-    # Each row is a resample of patients, never voxels, patches, nodes or models.
+    # Each row resamples paired cases, never voxels, patches, nodes or models.
     draws = np.random.default_rng(SEED).integers(0, len(delta), size=(DRAWS, len(delta)))
     lower, upper = np.percentile(delta[draws].mean(axis=1), [2.5, 97.5])
     favorable = delta * direction
@@ -226,7 +241,7 @@ def paired(values_a, values_b, direction):
                   wins=int((favorable > 1e-12).sum()), ties=int((np.abs(favorable) <= 1e-12).sum()),
                   losses=int((favorable < -1e-12).sum()))
     if len(delta) < 2:
-        result['support_warning'] = 'Fewer than two paired patients; degenerate interval is not uncertainty evidence'
+        result['support_warning'] = 'Fewer than two paired cases; degenerate interval is not uncertainty evidence'
     return result
 
 
@@ -237,10 +252,10 @@ def load_inputs(index_path, stage, allow_partial=False):
         raise ValueError('Index schema or explicit val/test stage does not match')
     scope = index.get('patient_scope')
     if scope not in FIXED_CASES or (scope == 'final_test12') != (stage == 'test'):
-        raise ValueError('Explicit patient_scope must match val/test stage')
+        raise ValueError('Explicit patient_scope (legacy case-scope name) must match val/test stage')
     ids = FIXED_CASES[scope]
     if index.get('patient_ids') != ids or index.get('split_sha256') != SPLIT_SHA256:
-        raise ValueError('Index must list the exact frozen patient IDs/order and split SHA')
+        raise ValueError('Index must list the exact frozen case IDs/order and split SHA')
     entries = index.get('methods', [])
     if not entries or len({x['id'] for x in entries}) != len(entries):
         raise ValueError('Require at least one uniquely identified internal method')
@@ -302,7 +317,7 @@ def load_inputs(index_path, stage, allow_partial=False):
         if common is None:
             common = identity
         elif identity != common:
-            raise ValueError('Paired methods differ in reference runtime/source/data/inference/patient identity or common training recipe')
+            raise ValueError('Paired methods differ in reference runtime/source/data/inference/case identity or common training recipe')
         training_receipt = protocol.get('training_environment_receipt', {})
         if not valid_sha(training_receipt.get('sha256')):
             raise ValueError('Training environment receipt SHA256 is required')
@@ -314,22 +329,22 @@ def load_inputs(index_path, stage, allow_partial=False):
         rows, metric_hashes = {}, {}
         supplied = entry.get('metric_files')
         if supplied is not None and set(supplied) != set(ids):
-            raise ValueError('Explicit metric file map must cover exactly the stage patient set')
+            raise ValueError('Explicit metric file map must cover exactly the stage case set')
         for case_id in ids:
             name = supplied[case_id] if supplied is not None else case_id + '/metrics.json'
             metric_path = relative_path(directory, name)
             row = read(metric_path)
             if row.get('case_id') != case_id or row.get('cohort') != cohort(case_id):
-                raise ValueError('Metric patient/cohort identity mismatch')
+                raise ValueError('Metric case/cohort identity mismatch')
             expected = dict(fixed_threshold=.5, condition_mode='predicted', evaluation_grid='original CT', postprocessing='none')
             if any(row.get(k) != v for k, v in expected.items()):
-                raise ValueError('Per-patient threshold/condition/grid/postprocessing mismatch')
+                raise ValueError('Per-case threshold/condition/grid/postprocessing mismatch')
             for metric in METRICS:
                 number(row.get(metric), metric)
             if any(row.get(name) is None for name in ('dice', 'fp_ml', 'fn_ml')):
-                raise ValueError('Dice, FP and FN volumes are required for every patient')
+                raise ValueError('Dice, FP and FN volumes are required for every case')
             if not row.get('assd_definition') or not row.get('centerline_definition'):
-                raise ValueError('Per-patient metric definitions are required')
+                raise ValueError('Per-case metric definitions are required')
             for group in GROUPS:
                 group_record(row, group)
             rows[case_id] = row
@@ -356,7 +371,7 @@ def load_inputs(index_path, stage, allow_partial=False):
                 if support is not None:
                     group_supports[group].add(support)
         if len(truth_supports) > 1 or any(len(x) > 1 for x in group_supports.values()):
-            raise ValueError('GT skeleton/group support differs across methods for patient ' + case_id)
+            raise ValueError('GT skeleton/group support differs across methods for case ' + case_id)
     if any(len(x) != 1 for x in definitions.values()):
         raise ValueError('Metric definitions differ across paired evaluations')
     return index, ids, loaded, common, role_training, {k: next(iter(v)) for k, v in definitions.items()}
@@ -402,7 +417,7 @@ def analyze(index_path, stage, allow_partial=False):
                     group=group, metric='GT_group_centerline_recall', value_unit='percent',
                     no_gt_support_cases=sum(s == 0 for s, _, _ in records),
                     unrecorded_group_cases=sum(s is None for s, _, _ in records),
-                    aggregation='equal weight per supported patient, never per node', **distribution(values)))
+                    aggregation='equal weight per supported case, never per node', **distribution(values)))
     paired_rows, paired_cases, geometry_pairs, worst, unavailable = [], [], [], [], []
     for comparison_id, priority, a_id, b_id in COMPARISONS:
         if a_id not in methods or b_id not in methods:
@@ -438,7 +453,7 @@ def analyze(index_path, stage, allow_partial=False):
                     metric='GT_group_centerline_recall',
                     no_gt_support_cases=sum(x[0] == 0 and y[0] == 0 for x, y in zip(ga, gb)),
                     unrecorded_group_cases=sum(x[0] is None or y[0] is None for x, y in zip(ga, gb)),
-                    aggregation='unweighted patient mean among defined supported paired patients; nodes are never pooled',
+                    aggregation='unweighted case mean among defined supported paired cases; nodes are never pooled',
                     precision_scope='No GT-group precision is defined; FP/FN tradeoffs are global', **paired(av, bv, 1)))
         ranked = sorted(ids, key=lambda c: (a['rows'][c]['dice'] - b['rows'][c]['dice'], c))
         for rank, case_id in enumerate(ranked[:3], 1):
@@ -451,7 +466,7 @@ def analyze(index_path, stage, allow_partial=False):
                 row[name + '_delta'] = (av - bv) * factor if av is not None and bv is not None else None
             worst.append(row)
     return dict(schema='GTA-AVT-key-ablation-analysis-v1', stage=stage, patient_scope=index['patient_scope'],
-        patient_ids=ids, split_sha256=SPLIT_SHA256, index_sha256=sha(index_path), seed=SEED, bootstrap_draws=DRAWS,
+        patient_ids=ids, case_unit_metadata=dict(CASE_UNIT_METADATA), split_sha256=SPLIT_SHA256, index_sha256=sha(index_path), seed=SEED, bootstrap_draws=DRAWS,
         complete_method_set=set(methods) == set(METHODS), unavailable_comparisons=unavailable,
         reference_identity=identity, training_environments_by_role=training,
         metric_definitions=definitions, method_provenance={k: v['provenance'] for k, v in methods.items()},
@@ -459,12 +474,15 @@ def analyze(index_path, stage, allow_partial=False):
         paired_case_differences=paired_cases, geometry_case_recall=geometry_rows, geometry_method_summaries=geometry_method_rows,
         geometry_paired_summaries=geometry_pairs, worst_dice_pairs=worst,
         limitations=[
-            'One training seed per role: intervals quantify patient resampling, not seed-to-seed stability.',
+            'One training seed per role: exploratory intervals quantify paired case resampling, not seed-to-seed stability.',
+            CASE_UNIT_METADATA['independence_limitation'],
+            CASE_UNIT_METADATA['overlap_status'],
+            CASE_UNIT_METADATA['compatibility_fields'],
             'Principal comparisons use main-trained models; ablations use their own same-runtime full-A bridge.',
             'Common reference inference/metrics remove evaluation-runtime differences, not training-runtime or hardware confounding.',
             'Distances and skeleton metrics can be undefined; no imputation; complete-pair estimates can be selectively observed.',
-            'Geometry recall averages supported patients equally; GT-defined groups do not provide group precision.',
-            'Cohort summaries are exploratory (four test patients per cohort; fewer in validation).',
+            'Geometry recall averages supported cases equally; GT-defined groups do not provide group precision.',
+            'Cohort summaries are exploratory (four test cases per cohort; fewer in validation).',
             'Multiple exploratory outcomes and percentile intervals are descriptive; no significance or multiplicity-adjusted claims.',
             'Different published cross-validation/cohort/label protocols do not support a SOTA ranking here.',
         ])
@@ -480,11 +498,11 @@ def write_csv(path, rows):
 
 def render_report(result):
     lines = ['GTA-AVT finite internal ablation analysis',
-             'Stage: %s; patient scope: %s; patients: %d; complete method set: %s' %
+             'Stage: %s; case scope (legacy patient_scope): %s; cases: %d; complete method set: %s' %
              (result['stage'], result['patient_scope'], len(result['patient_ids']), result['complete_method_set']),
              'Paired differences are A minus B. Positive Dice/centerline/clDice differences favor A; negative FP/FN/distance differences favor A.',
              'Dice and centerline values are percentages; their differences are percentage points (pp).',
-             'Intervals: patient-unit paired percentile bootstrap, 20000 draws, fixed seed20261022.',
+             'Exploratory intervals: case-level paired case percentile bootstrap, 20000 draws, fixed seed20261022; patient independence is unverified.',
              'Undefined values are never zero-filled. Distance and skeleton estimates use complete pairs with explicit support.', '']
     for row in result['paired_summaries']:
         if row['cohort'] != 'all':
@@ -498,7 +516,7 @@ def render_report(result):
         lines.append(line)
     if result['unavailable_comparisons']:
         lines += ['', 'INCOMPLETE: unavailable comparisons: ' + ', '.join(result['unavailable_comparisons'])]
-    lines += ['', 'Geometry-group recall and cohort summaries are in the corresponding CSV/JSON tables; supported patient means are used, never pooled nodes.',
+    lines += ['', 'Geometry-group recall and cohort summaries are in the corresponding CSV/JSON tables; supported case means are used, never pooled nodes.',
               'Worst pairs are the three smallest Dice A-B differences per comparison; this descriptive selection is fixed in advance.', '']
     lines.extend(result['limitations'])
     return '\n'.join(lines) + '\n'
@@ -564,7 +582,7 @@ def self_test():
                 row['geometry_groups']['radius_le_2mm'] = {'support_nodes': i + 1, 'centerline_recall': i / (len(ids) - 1.)}
                 if method_id == 'A_soft_scale':
                     # A nonconstant within-role contrast exercises asymmetric
-                    # interval plotting as well as patient-level estimates.
+                    # interval plotting as well as case-level estimates.
                     row['dice'] -= .01 * i
                     row['fp_ml'] -= .1 * i
                     for group in GROUPS:
@@ -696,7 +714,7 @@ def self_test():
         else:
             raise AssertionError('Runtime test intervention was accepted')
     return dict(state='passed', fixtures=['identical_methods', 'known_paired_Dice_offset',
-        'missing_distance_complete_pairs', 'no_GT_group_support', 'geometry_patient_not_node_weighting', 'deterministic_nonconstant_bootstrap',
+        'missing_distance_complete_pairs', 'no_GT_group_support', 'geometry_case_not_node_weighting', 'deterministic_nonconstant_bootstrap',
         'CSV_JSON_report_roundtrip', 'mixed_execution_rejected', 'exact_reference_runtime_TF32_gates', 'test_eligibility_and_authorization_gates',
         'test_runtime_intervention_rejected', 'valid_complete_formal_recipes',
         'all_methods_new_recipe_accepted', 'legacy_pilot_development_compatibility'] + list(recipe_failures),

@@ -1,6 +1,6 @@
 """Static scientific PNG/PDF exports from analyze_key_ablations analysis.json.
 
-No metric estimation or inference is performed. All patient points and paired
+No metric estimation or inference is performed. All case points and paired
 intervals come from the reviewed analysis artifact. Self-test figures are
 watermarked SYNTHETIC and deleted with their temporary fixtures.
 """
@@ -124,7 +124,7 @@ def style():
 def caption(result):
     label = 'Held-out test' if result['stage'] == 'test' else 'Validation development'
     incomplete = ' | INCOMPLETE method set' if not result['complete_method_set'] else ''
-    return '%s | %s | n=%d | one training seed%s' % (label, result['patient_scope'], len(result['patient_ids']), incomplete)
+    return '%s | %s | n=%d cases | one training seed%s' % (label, result['patient_scope'], len(result['patient_ids']), incomplete)
 
 
 def watermark(fig, synthetic):
@@ -199,12 +199,12 @@ def patient_figure(result, by_method, sources, synthetic):
         if analysis.cohort(ids[i]) != analysis.cohort(ids[i - 1]):
             ax.axhline(i - .5, color='#D9DEE1', linewidth=.8)
     ax.set(yticks=np.arange(len(ids)), yticklabels=[c.replace('_', ' ') for c in ids],
-           ylim=(len(ids) - .5, -.5), xlim=(0., 100.), xlabel='Patient Dice (%)')
+           ylim=(len(ids) - .5, -.5), xlim=(0., 100.), xlabel='Case Dice (%)')
     ax.grid(axis='x', color='#E6E9EB', linewidth=.5)
     ax.legend(loc='lower left', bbox_to_anchor=(0., 1.03), ncol=3, frameon=False, borderaxespad=0.)
-    fig.suptitle('Patient Dice: main training role', y=.98, fontsize=11)
+    fig.suptitle('Case Dice: main training role', y=.98, fontsize=11)
     fig.text(.21, .895, caption(result), fontsize=8)
-    fig.text(.21, .025, 'Every patient is shown. Grey connectors link the same patient; vertical offsets separate methods.', fontsize=7.5)
+    fig.text(.21, .025, 'Every case is shown. Grey connectors link the same case; vertical offsets separate methods.', fontsize=7.5)
     watermark(fig, synthetic)
     return name, fig
 
@@ -233,8 +233,8 @@ def dice_difference_figure(result, sources, synthetic):
     axes[-1].set_xlabel('Paired mean Dice difference, A - B (pp; + favors A)')
     fig.suptitle('Paired Dice differences', y=.985, fontsize=11)
     fig.text(.07, .915, caption(result), fontsize=8)
-    fig.text(.07, .055, 'Points: mean patient differences; lines: 95% paired patient bootstrap CI (20,000 resamples).', fontsize=7.5)
-    fig.text(.07, .02, 'Training roles are separated. One-seed patient intervals do not estimate training-seed stability.', fontsize=7.5)
+    fig.text(.07, .055, 'Points: mean case differences; lines: exploratory 95% paired case bootstrap CI (20,000 draws).', fontsize=7.5)
+    fig.text(.07, .02, 'Patient independence is unverified. Roles are separate; intervals do not estimate seed stability.', fontsize=7.5)
     watermark(fig, synthetic)
     return name, fig
 
@@ -291,9 +291,9 @@ def geometry_figure(result, role, sources, synthetic):
     fig.text(.045, .908, caption(result), fontsize=7.7)
     fig.legend(handles=handles, loc='upper center', bbox_to_anchor=(.51, .88), ncol=1 if len(handles) > 2 else 2,
                frameon=False, fontsize=7.5, handlelength=2.)
-    fig.text(.045, .115, 'Means weight supported patients equally. Lines: 95% paired patient bootstrap CI; n=defined pairs/total.', fontsize=7.3)
+    fig.text(.045, .115, 'Equal supported-case means. Lines: exploratory 95% paired case bootstrap CI; n=defined pairs/total.', fontsize=7.3)
     fig.text(.045, .075, 'NA groups remain undefined; no zero imputation or GT-group precision. Global FP captures the tradeoff.', fontsize=7.3)
-    fig.text(.045, .035, 'Radius/junction groups use operational GT geometry. Same reference metrics; training roles are never pooled.', fontsize=7.3)
+    fig.text(.045, .035, 'Operational GT geometry; patient independence unverified. Same metrics; training roles are not pooled.', fontsize=7.3)
     watermark(fig, synthetic)
     return name, fig
 
@@ -330,12 +330,16 @@ def plot_result(result, output, source_sha256, synthetic=False):
     manifest = dict(schema='GTA-AVT-key-ablation-figures-v1', source_analysis_sha256=source_sha256,
         plot_helper_sha256=sha(__file__), stage=result['stage'], patient_scope=result['patient_scope'],
         patient_ids=result['patient_ids'], complete_method_set=result['complete_method_set'],
-        bootstrap=dict(unit='paired patient', draws=result['bootstrap_draws'], seed=result['seed'], interval='percentile95%'),
+        statistical_unit='released scan/case ID', patient_independence_verified=False,
+        legacy_patient_keys_refer_to='released case IDs; not verified unique persons',
+        bootstrap=dict(unit='paired case', draws=result['bootstrap_draws'], seed=result['seed'], interval='exploratory percentile95%'),
         synthetic=synthetic, files=saved, source_table_sha256=sha(output / 'figure_source.csv'),
         selected_execution_device=result['reference_identity']['selected_execution_device'],
         reference_environment_sha256=analysis.canonical_sha(result['reference_identity']['reference_environment']),
-        limitations=['One seed; patient uncertainty only.', 'No cross-training-role pooling or SOTA ranking.',
-                     'All patients shown; unsupported groups remain undefined.', 'Actual-data exports still require visual review.'])
+        limitations=['One seed; exploratory case-resampling uncertainty only.',
+                     'Patient independence is unverified; same-person dependence could understate uncertainty.',
+                     'No cross-training-role pooling or SOTA ranking.',
+                     'All cases shown; unsupported groups remain undefined.', 'Actual-data exports still require visual review.'])
     (output / 'figure_manifest.json').write_text(json.dumps(manifest, indent=2, allow_nan=False), encoding='utf-8')
     return manifest
 

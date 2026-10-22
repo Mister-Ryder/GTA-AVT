@@ -79,9 +79,14 @@ feature injection, while constant-A controls specialized computation and
 auxiliary supervision. Single-condition and hard-anchor runs examine narrower
 questions. Registered parameter equality does not imply equal active computation.
 
-Useful evidence includes patient-paired whole-case metrics, supported small-radius
+Useful evidence includes case-paired whole-case metrics, supported small-radius
 and junction recall, false-positive cost, and attribute/condition diagnostics.
 Low common segmentation quality must be investigated before interpreting a small
 module difference. A null or adverse contrast remains a result. This protocol
 does not guarantee a positive transfer, seed stability, cross-validation accuracy
 or superiority to the different published AVT protocols.
+
+The [case-independence limitation](avt_case_independence.md) applies to these
+comparisons: released scan IDs are the observational units, while distinct
+subjects have not been verified. Paired case summaries remain descriptive;
+their bootstrap uncertainty does not establish subject-independent generalization.

@@ -3,6 +3,8 @@
 Reads completed reference-evaluation directories only. No model inference,
 test-split option, checkpoint selection, p-values or tuning is performed.
 Delta is NORMAL minus AVAILABILITY_ONLY. Run --self-test for temporary fixtures.
+Exploratory intervals resample released scan/case IDs; patient independence
+was not verified from the inspected AVT release.
 """
 import argparse
 import json
@@ -104,7 +106,7 @@ def check_interventions(normal, availability):
     a = {k: v for k, v in normal.items() if k != 'intervention'}
     b = {k: v for k, v in availability.items() if k != 'intervention'}
     if a != b:
-        raise ValueError('Reference protocols differ beyond intervention; weights/checkpoint/source/runtime/device/data/patients/recipe must be common')
+        raise ValueError('Reference protocols differ beyond intervention; weights/checkpoint/source/runtime/device/data/cases/recipe must be common')
     return a
 
 
@@ -118,11 +120,11 @@ def load_metrics(directory):
         required = dict(case_id=case_id, cohort=base.cohort(case_id), fixed_threshold=.5,
                         condition_mode='predicted', evaluation_grid='original CT', postprocessing='none')
         if any(row.get(k) != v for k, v in required.items()):
-            raise ValueError('Per-patient identity/inference differs from the common VAL8 protocol')
+            raise ValueError('Per-case identity/inference differs from the common VAL8 protocol')
         for name in base.METRICS:
             base.number(row.get(name), name)
         if any(row.get(name) is None for name in ('dice', 'fp_ml', 'fn_ml')):
-            raise ValueError('Dice/FP/FN must be defined for all8validation patients')
+            raise ValueError('Dice/FP/FN must be defined for all 8 validation cases')
         for name in definitions:
             if not row.get(name):
                 raise ValueError('Native metric definitions must be explicit')
@@ -131,7 +133,7 @@ def load_metrics(directory):
             base.group_record(row, group)
         rows[case_id], hashes[case_id] = row, base.sha(path)
     if any(len(v) != 1 for v in definitions.values()):
-        raise ValueError('Metric definitions differ between validation patients')
+        raise ValueError('Metric definitions differ between validation cases')
     summary_path = directory / 'summary.json'
     summary = base.read(summary_path)
     if summary.get('cases') != 8 or summary.get('statistical_unit') != 'case':
@@ -142,12 +144,12 @@ def load_metrics(directory):
         statistic = summary.get('metrics', {}).get(name, {})
         expected_mean = float(np.mean(finite)) if len(finite) == 8 else None
         if statistic.get('defined_case_count') != len(finite):
-            raise ValueError('Completed summary support differs from the patient metric files')
+            raise ValueError('Completed summary support differs from the case metric files')
         observed = statistic.get('mean')
         if (expected_mean is None and observed is not None) or (expected_mean is not None and
                 (not isinstance(observed, (int, float)) or isinstance(observed, bool) or
                  not np.isfinite(observed) or not np.isclose(expected_mean, observed, rtol=1e-10, atol=1e-12))):
-            raise ValueError('Completed summary mean differs from the patient metric files')
+            raise ValueError('Completed summary mean differs from the case metric files')
     return rows, hashes, {k: next(iter(v)) for k, v in definitions.items()}, base.sha(summary_path)
 
 
@@ -214,7 +216,7 @@ def analyze(normal_directory, availability_directory):
         geometry_summary.append(dict(group=group, metric='GT_group_centerline_recall', difference_unit='pp',
             no_gt_support_cases=sum(n[0] == 0 and a[0] == 0 for n, a in zip(nr, ar)),
             unrecorded_group_cases=sum(n[0] is None or a[0] is None for n, a in zip(nr, ar)),
-            aggregation='equal supported patient weight; nodes are never pooled',
+            aggregation='equal supported case weight; nodes are never pooled',
             precision_scope='GT-defined recall only; FP/FN and centerline precision reported globally',
             **base.paired(nv, av, 1)))
     worst = sorted([r for r in paired_cases if r['metric'] == 'dice'],
@@ -227,7 +229,7 @@ def analyze(normal_directory, availability_directory):
     public_common.update(reference_environment=runtime, training_environment=training,
                          complete_raw_protocol_identity_sha256=base.canonical_sha(common))
     return dict(schema='GTA-AVT-condition-intervention-analysis-v1', split='val', training_stage='formal',
-        patient_ids=IDS, case_count=8, comparison='normal_full_composition_minus_availability_only_same_weights',
+        patient_ids=IDS, case_count=8, case_unit_metadata=dict(base.CASE_UNIT_METADATA), comparison='normal_full_composition_minus_availability_only_same_weights',
         separately_trained_model=False, weights_changed=False, seed=base.SEED, bootstrap_draws=base.DRAWS,
         common_identity=public_common, intervention=availability['intervention'], metric_definitions=normal_definitions,
         input_provenance={NORMAL: dict(evaluation_directory_label=normal_directory.name, protocol_sha256=base.sha(normal_protocol_path),
@@ -247,8 +249,11 @@ def analyze(normal_directory, availability_directory):
             'Replacing compositions also changes their joint distribution. Read this sensitivity diagnostic with matched trained controls and the separate head-faithfulness audit.',
             'Zero and unfavorable differences are reported. No threshold, architecture, method choice or checkpoint is changed after this diagnostic.',
             'VAL8 already served model selection; these results are development diagnostics, not independent held-out confirmation.',
-            'One seed; paired patient bootstrap intervals quantify patient resampling only. No p-values or multiple-outcome significance claims.',
-            'Patient macro means and ddof1 SD; complete pairs for undefined metrics; no imputation. GT group recall uses supported patient means, not pooled nodes.',
+            base.CASE_UNIT_METADATA['independence_limitation'],
+            base.CASE_UNIT_METADATA['overlap_status'],
+            base.CASE_UNIT_METADATA['compatibility_fields'],
+            'One seed; exploratory paired case bootstrap intervals quantify case resampling only. No p-values or multiple-outcome significance claims.',
+            'Case macro means and ddof1 SD; complete pairs for undefined metrics; no imputation. GT group recall uses supported case means, not pooled nodes.',
         ])
 
 
@@ -263,7 +268,7 @@ def save(result, output):
         base.write_csv(output / (key + '.csv'), result[key])
     lines = ['Same-weight condition intervention: formal main A_soft, VAL8 only',
              'Delta = normal full composition minus availability_only. Positive Dice/centerline favors normal; negative FP/FN/distances favors normal.',
-             'Eight paired patients; percentile95% patient bootstrap CI, 20000 draws, seed20261022. Undefined metrics use complete pairs with support.', '']
+             'Eight paired cases; exploratory 95% percentile paired case bootstrap intervals, 20000 draws, seed20261022; patient independence is unverified. Undefined metrics use complete pairs with support.', '']
     for row in result['paired_summaries']:
         if row['delta_a_minus_b'] is None:
             lines.append('%s: undefined; paired0/%d' % (row['metric'], row['total_cases']))
@@ -271,7 +276,7 @@ def save(result, output):
             lines.append('%s: delta %.3f %s, CI [%.3f, %.3f]; paired%d/%d; W/T/L %d/%d/%d' %
                 (row['metric'], row['delta_a_minus_b'], row['difference_unit'], row['ci95_lower'], row['ci95_upper'],
                  row['paired_cases'], row['total_cases'], row['wins'], row['ties'], row['losses']))
-    lines.extend(['', 'Geometry group results and all patient differences remain in CSV/JSON, including zero/unfavorable cases.', ''])
+    lines.extend(['', 'Geometry group results and all case differences remain in CSV/JSON, including zero/unfavorable cases.', ''])
     lines.extend(result['interpretation'])
     (output / 'report.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')
 

@@ -83,5 +83,7 @@
         }
       ]
     }
-  }
+  },
+  "initial_formal_steps": 5000,
+  "budget_revision_reason": null
 }

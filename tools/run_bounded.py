@@ -19,6 +19,7 @@ import time
 
 
 SEED = 20261022
+FROZEN_SPLIT_SHA256 = 'df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b'
 COHORT_PILOT_IDS = ['Dongyang_D2', 'KiTS_K13', 'Rider_R10']
 EXPECTED = {
     ('main', 'pilot'): [('C_concat', 'faithful_concat'), ('A_soft', 'faithful_soft'), ('A_soft_constant', 'faithful_soft_constant')],
@@ -30,15 +31,21 @@ EXPECTED = {
 ACTIVE_CHILD = None
 
 
-def interrupted(signum, frame):
+def stop_owned_child():
     global ACTIVE_CHILD
-    if ACTIVE_CHILD is not None and ACTIVE_CHILD.poll() is None:
-        ACTIVE_CHILD.terminate()
+    child = ACTIVE_CHILD
+    ACTIVE_CHILD = None
+    if child is not None and child.poll() is None:
+        child.terminate()
         try:
-            ACTIVE_CHILD.wait(timeout=30)
+            child.wait(timeout=30)
         except subprocess.TimeoutExpired:
-            ACTIVE_CHILD.kill()
-            ACTIVE_CHILD.wait(timeout=10)
+            child.kill()
+            child.wait(timeout=10)
+
+
+def interrupted(signum, frame):
+    stop_owned_child()
     raise KeyboardInterrupt('Runner received signal%d; its owned training subprocess was stopped' % signum)
 
 
@@ -84,6 +91,21 @@ def require_storage(path, gib=2.):
     return free
 
 
+def load_frozen_split(project):
+    copied = project / 'configs' / 'bounded_20261022' / 'split_seed20261022.json'
+    original = project / 'configs' / 'split_seed20261022.json'
+    if digest(copied) != FROZEN_SPLIT_SHA256:
+        raise ValueError('Frozen bounded split file byte identity changed')
+    if original.exists() and digest(original) != FROZEN_SPLIT_SHA256:
+        raise ValueError('Preprocessing split file differs from the frozen bounded split')
+    fixed = read(copied)
+    if fixed['seed'] != SEED:
+        raise ValueError('Frozen split seed changed')
+    prefix = {'D': 'Dongyang', 'K': 'KiTS', 'R': 'Rider'}
+    return {name: [prefix[case_id[0]] + '_' + case_id for case_id in fixed[name]]
+            for name in ('train', 'val', 'test')}
+
+
 def load_plan(project, role, phase):
     directory = project / 'configs' / 'bounded_20261022'
     plan_path = directory / 'plan.json'
@@ -113,9 +135,12 @@ def load_plan(project, role, phase):
             if config['max_steps'] != 200 or config['validate_every'] != 200 or config.get('validation_case_ids') != COHORT_PILOT_IDS:
                 raise ValueError('Pilot must be200steps with the three fixed source-cohort validation cases')
         else:
-            if config['max_steps'] != plan['formal_steps'] or config['max_steps'] != 5000:
-                raise ValueError('Initial bounded formal budget must remain5000; revise all before a new plan version')
-            if config['validate_every'] != 2500 or config['checkpoint_every'] != 500:
+            formal_steps = plan['formal_steps']
+            if not isinstance(formal_steps, int) or formal_steps < 1000 or formal_steps % 1000 or config['max_steps'] != formal_steps:
+                raise ValueError('Formal budget must be a common finite multiple of1000updates')
+            if formal_steps != 5000 and not plan.get('budget_revision_reason'):
+                raise ValueError('Changing the initial5000budget requires an explicit pilot-based reason in the new plan version')
+            if config['validate_every'] != formal_steps // 2 or config['checkpoint_every'] != 500:
                 raise ValueError('Formal validation/checkpoint cadence differs from the frozen plan')
             if config.get('validation_case_ids') or config.get('validation_case_limit', 0):
                 raise ValueError('Formal validation must use all8cases')
@@ -138,7 +163,7 @@ def load_plan(project, role, phase):
     return plan, jobs, digest(plan_path)
 
 
-def wait_ready(project, cache, smoke_path, current_source, deadline, journal, status_path):
+def wait_ready(project, cache, smoke_path, current_source, required_methods, deadline, journal, status_path):
     last_reason = None
     manifest_path = cache / 'manifest.json'
     while time.monotonic() < deadline:
@@ -162,8 +187,8 @@ def wait_ready(project, cache, smoke_path, current_source, deadline, journal, st
                     raise RuntimeError('Current-source faithful smoke reports failure')
                 elif smoke.get('state') != 'passed':
                     reasons.append('current_source_smoke_incomplete')
-                elif not {'faithful_concat', 'faithful_soft', 'faithful_soft_constant'}.issubset(smoke.get('models', {})):
-                    reasons.append('smoke_missing_main_controls')
+                elif not set(required_methods).issubset(smoke.get('models', {})):
+                    reasons.append('smoke_missing_queued_role_methods:' + ','.join(sorted(set(required_methods) - set(smoke.get('models', {})))))
             except (ValueError, OSError):
                 reasons.append('smoke_report_not_ready')
         else:
@@ -179,11 +204,13 @@ def wait_ready(project, cache, smoke_path, current_source, deadline, journal, st
     raise TimeoutError('Bounded prerequisites were not ready within the explicit wait budget')
 
 
-def verify_cache(cache, manifest, current_source, journal):
+def verify_cache(cache, manifest, current_source, journal, frozen_split):
     started = time.time()
     cases = manifest['cases']
     ids = [case['id'] for case in cases]
     splits = manifest['splits']
+    if manifest.get('split_sha256') != FROZEN_SPLIT_SHA256 or splits != frozen_split:
+        raise ValueError('Cache patient IDs/order or split SHA differ from the exact predeclared patient split')
     if len(set(ids)) != 56 or [len(splits[name]) for name in ('train', 'val', 'test')] != [36, 8, 12]:
         raise ValueError('Expected the frozen56-case36/8/12 patient partition')
     flattened = sum([splits[name] for name in ('train', 'val', 'test')], [])
@@ -288,7 +315,7 @@ def verified_completion(project, python, run, config, manifest_path, manifest, s
     return attestation
 
 
-def timing_estimate(run, config):
+def timing_estimate(run, config, formal_steps=5000):
     values = []
     with (run / 'training.jsonl').open(encoding='utf-8') as stream:
         for line in stream:
@@ -305,10 +332,11 @@ def timing_estimate(run, config):
     mean_case = statistics.mean(val_times) if val_times else None
     estimate = {'observed_updates': len(latest), 'median_training_step_seconds_excluding_first10': median,
                 'observed_validation_cases': len(val_times), 'mean_native_validation_case_seconds': mean_case,
-                'formal_5000_update_training_hours_estimate': 5000 * median / 3600.,
+                'formal_planned_updates': formal_steps,
+                'formal_update_training_hours_estimate': formal_steps * median / 3600.,
                 'formal_all8_twice_validation_hours_estimate': 16 * mean_case / 3600. if mean_case is not None else None,
                 'caveat': 'Pilot-based estimate; case sizes and checkpoint overhead vary; no new runs are started from this estimate'}
-    estimate['formal_run_training_plus_validation_hours_estimate'] = (estimate['formal_5000_update_training_hours_estimate'] +
+    estimate['formal_run_training_plus_validation_hours_estimate'] = (estimate['formal_update_training_hours_estimate'] +
         estimate['formal_all8_twice_validation_hours_estimate']) if mean_case is not None else None
     return estimate
 
@@ -327,6 +355,7 @@ def main():
     args = parser.parse_args()
     project, cache = Path(args.project_root).resolve(), Path(args.cache_root).resolve()
     plan, jobs, plan_hash = load_plan(project, args.server_role, args.phase)
+    frozen_split = load_frozen_split(project)
     run_root = project / 'runs' / 'bounded_20261022' / args.phase / args.server_role
     if args.plan_only:
         print(json.dumps({'phase': args.phase, 'server_role': args.server_role, 'seed': SEED,
@@ -353,15 +382,20 @@ def main():
               jobs=[job['job_id'] for job in jobs], automatic_test=False, automatic_next_phase=False)
         manifest_path, manifest, smoke = wait_ready(project, cache,
             Path(args.smoke_report).resolve() if args.smoke_report else project / 'results' / 'faithful_smoke.json',
-            source, time.monotonic() + args.wait_hours * 3600., journal, status_path)
+            source, [job['method'] for job in jobs], time.monotonic() + args.wait_hours * 3600., journal, status_path)
         require_storage(run_root)
         require_storage(cache)
-        cache_check = verify_cache(cache, manifest, source, journal)
-        write(run_root / 'cache_all_bytes_verified.json', dict(cache_check, manifest_sha256=digest(manifest_path)))
+        cache_check = verify_cache(cache, manifest, source, journal, frozen_split)
+        manifest_hash = digest(manifest_path)
+        write(run_root / 'cache_all_bytes_verified.json', dict(cache_check, manifest_sha256=manifest_hash))
         completed = []
         for job in jobs:
             if source_hashes() != source:
                 raise ValueError('Frozen model source changed while this queue was active')
+            if digest(manifest_path) != manifest_hash:
+                raise ValueError('Frozen cache manifest changed after byte verification')
+            if digest(project / 'configs' / 'bounded_20261022' / 'plan.json') != plan_hash:
+                raise ValueError('Bounded plan changed while this phase was active')
             if digest(job['config_path']) != job['config_sha256']:
                 raise ValueError('Bounded job configuration changed while queue active')
             require_storage(run_root)
@@ -405,7 +439,7 @@ def main():
                     raise RuntimeError('Training subprocess failed; queue stopped without retry: ' + job['job_id'])
                 verified_completion(project, args.python, run, job['config'], manifest_path, manifest, source)
                 event(journal, 'job_complete_verified', job=job['job_id'], seconds=time.time() - started)
-            estimate = timing_estimate(run, job['config'])
+            estimate = timing_estimate(run, job['config'], plan['formal_steps'])
             completed.append({'job': job['job_id'], 'method': job['method'], 'run': str(run), 'timing': estimate})
             write(run_root / 'summary.json', {'state': 'in_progress', 'phase': args.phase, 'role': args.server_role,
                   'seed': SEED, 'completed': completed, 'test_used': False, 'canonical_data_sha256': cache_check['canonical_data_sha256']})
@@ -424,7 +458,12 @@ def main():
                            'test_used': False, 'automatic_retry': False})
         raise
     finally:
-        lock_path.unlink(missing_ok=True)
+        try:
+            # Also stop an owned child if orchestration fails after Popen but
+            # before wait/logging completes; failure must never orphan training.
+            stop_owned_child()
+        finally:
+            lock_path.unlink(missing_ok=True)
 
 
 if __name__ == '__main__':

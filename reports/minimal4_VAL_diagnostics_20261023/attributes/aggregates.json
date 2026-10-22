@@ -1,0 +1,1874 @@
+{
+  "case_unit_metadata": {
+    "unit": "released case/scan IDs",
+    "independent_patients_verified": false,
+    "legacy_patient_keys": "Original patient_* keys and legacy aggregation text describe case summaries; they do not establish patient independence.",
+    "correlated_scans_may_reduce_effective_sample_size": true
+  },
+  "case_aggregates": {
+    "main_C_concat": [
+      {
+        "method": "faithful_concat",
+        "stratum": "CT_uniform",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.17054949163605107,
+          "median_patients": 0.16087136371913532,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.3305780018544422,
+          "median_patients": 0.3188211420559979,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.1009095799554849,
+          "median_patients": 0.09198725951968559,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.1666666666666667,
+          "defined_patient_count": 7,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "CT_uniform",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.15673332077493082,
+          "median_patients": 0.1254293182837067,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.19275388281754527,
+          "median_patients": 0.17167722973828875,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08827276476949919,
+          "median_patients": 0.09381249074691109,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5632960675652964,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "CT_uniform",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 0,
+        "composition_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "composition_SSE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "CT_uniform",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 0,
+        "composition_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "composition_SSE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09144230206675275,
+          "median_patients": 0.09866655897276361,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.08283445653372963,
+          "median_patients": 0.0914335813619419,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.10238055868830997,
+          "median_patients": 0.0731494752690196,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.7872983346207416,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.037764292355556485,
+          "median_patients": 0.039693821577808805,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.01118668307059778,
+          "median_patients": 0.007288901009351583,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.05189409398008138,
+          "median_patients": 0.05954073462635279,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.516227766016838,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 0,
+        "composition_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "composition_SSE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 0,
+        "composition_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "composition_SSE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.07853763830262324,
+          "median_patients": 0.07989937898528296,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.06348823189557455,
+          "median_patients": 0.061116385072028316,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06532293273630785,
+          "median_patients": 0.06722886464558542,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.0,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.051214726879493355,
+          "median_patients": 0.03745292163997267,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.024591200306663886,
+          "median_patients": 0.006400906768136148,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.0733811182435602,
+          "median_patients": 0.0515288757160306,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.19999999999999998,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 0,
+        "composition_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "composition_SSE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 0,
+        "composition_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "composition_SSE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.08996329176370636,
+          "median_patients": 0.08477427649049787,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.08455974036243358,
+          "median_patients": 0.06698277432763883,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.0756166866485728,
+          "median_patients": 0.07335117738693953,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.7689323936863108,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.04512789966484358,
+          "median_patients": 0.04537434092443012,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.013753940910580494,
+          "median_patients": 0.009357368422954527,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.060781462758313864,
+          "median_patients": 0.05793557781726122,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.316227766016838,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 0,
+        "composition_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "composition_SSE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_concat",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 0,
+        "composition_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "composition_SSE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": null,
+          "median_patients": null,
+          "defined_patient_count": 0
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      }
+    ],
+    "main_A_soft": [
+      {
+        "method": "faithful_soft",
+        "stratum": "CT_uniform",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.1518321481515765,
+          "median_patients": 0.1446790858989906,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.27521954965845524,
+          "median_patients": 0.2949599565657659,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.10182476005589013,
+          "median_patients": 0.10190809724320259,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.222717701593687,
+          "defined_patient_count": 7,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "CT_uniform",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.14189990299174166,
+          "median_patients": 0.1338309133495516,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.15448404473482555,
+          "median_patients": 0.17323255831228312,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.0868375028478026,
+          "median_patients": 0.08714892315523079,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.604911886869823,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "CT_uniform",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.1518321481515765,
+          "median_patients": 0.1446790858989906,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.27521954965845524,
+          "median_patients": 0.2949599565657659,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.10182476005589013,
+          "median_patients": 0.10190809724320259,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.222717701593687,
+          "defined_patient_count": 7,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "CT_uniform",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.14189990299174166,
+          "median_patients": 0.1338309133495516,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.15448404473482555,
+          "median_patients": 0.17323255831228312,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.0868375028478026,
+          "median_patients": 0.08714892315523079,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.604911886869823,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09788103700997226,
+          "median_patients": 0.10004430195185704,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.09789195955489109,
+          "median_patients": 0.0998544482143347,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.1085984041710617,
+          "median_patients": 0.0839353478513658,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.6872983346207417,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.041084492576748254,
+          "median_patients": 0.033023560718599285,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.01419118602018079,
+          "median_patients": 0.00755493858324803,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.05837265640730038,
+          "median_patients": 0.04819067055359483,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.39999999999999997,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09788103700997226,
+          "median_patients": 0.10004430195185704,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.09789195955489109,
+          "median_patients": 0.0998544482143347,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.1085984041710617,
+          "median_patients": 0.0839353478513658,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.6872983346207417,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.041084492576748254,
+          "median_patients": 0.033023560718599285,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.01419118602018079,
+          "median_patients": 0.00755493858324803,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.05837265640730038,
+          "median_patients": 0.04819067055359483,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.39999999999999997,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09159094952233318,
+          "median_patients": 0.08866612787096528,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.09406430497855836,
+          "median_patients": 0.07277163342675526,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.0731221662790631,
+          "median_patients": 0.06242359383031726,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": -0.19999999999999998,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.05098763852898476,
+          "median_patients": 0.04096530921621403,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.022494181880950464,
+          "median_patients": 0.008550634934771179,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.07364419102668762,
+          "median_patients": 0.052934576757252216,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09159094952233318,
+          "median_patients": 0.08866612787096528,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.09406430497855836,
+          "median_patients": 0.07277163342675526,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.0731221662790631,
+          "median_patients": 0.06242359383031726,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": -0.19999999999999998,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.05098763852898476,
+          "median_patients": 0.04096530921621403,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.022494181880950464,
+          "median_patients": 0.008550634934771179,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.07364419102668762,
+          "median_patients": 0.052934576757252216,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09538461266626541,
+          "median_patients": 0.09034545141257695,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.0970443009844746,
+          "median_patients": 0.07749406237843828,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.0837138415517984,
+          "median_patients": 0.08672032330650836,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5689323936863109,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.04853028104075818,
+          "median_patients": 0.05073824414406165,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.015474113237013056,
+          "median_patients": 0.012505027460549264,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06775114790070802,
+          "median_patients": 0.0722923381254077,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.35811388300841895,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09538461266626541,
+          "median_patients": 0.09034545141257695,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.0970443009844746,
+          "median_patients": 0.07749406237843828,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.0837138415517984,
+          "median_patients": 0.08672032330650836,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5689323936863109,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.04853028104075818,
+          "median_patients": 0.05073824414406165,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.015474113237013056,
+          "median_patients": 0.012505027460549264,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06775114790070802,
+          "median_patients": 0.0722923381254077,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.35811388300841895,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      }
+    ],
+    "ablations_A_soft_platform_bridge": [
+      {
+        "method": "faithful_soft",
+        "stratum": "CT_uniform",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.1735536639743562,
+          "median_patients": 0.17073114933279743,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.33925469971169214,
+          "median_patients": 0.3166167874468632,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.09648397910392045,
+          "median_patients": 0.09167199447152338,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.19047619047619052,
+          "defined_patient_count": 7,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "CT_uniform",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.16641793771231322,
+          "median_patients": 0.1630746774254866,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.2097011550809081,
+          "median_patients": 0.22487613090832315,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08436100269942212,
+          "median_patients": 0.08225701483232634,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5163424669005483,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "CT_uniform",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.1735536639743562,
+          "median_patients": 0.17073114933279743,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.33925469971169214,
+          "median_patients": 0.3166167874468632,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.09648397910392045,
+          "median_patients": 0.09167199447152338,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.19047619047619052,
+          "defined_patient_count": 7,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "CT_uniform",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.16641793771231322,
+          "median_patients": 0.1630746774254866,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.2097011550809081,
+          "median_patients": 0.22487613090832315,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08436100269942212,
+          "median_patients": 0.08225701483232634,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5163424669005483,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.10255970985235763,
+          "median_patients": 0.10417824917240068,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.09641549809852147,
+          "median_patients": 0.09990441235820763,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.09582410434086341,
+          "median_patients": 0.0603673392906785,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5872983346207417,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.03980890815182647,
+          "median_patients": 0.0323996223899788,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.011368161036331054,
+          "median_patients": 0.005342348709321124,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.05593808391131461,
+          "median_patients": 0.04544842801988125,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": -0.09999999999999999,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.10255970985235763,
+          "median_patients": 0.10417824917240068,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.09641549809852147,
+          "median_patients": 0.09990441235820763,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.09582410434086341,
+          "median_patients": 0.0603673392906785,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5872983346207417,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.03980890815182647,
+          "median_patients": 0.0323996223899788,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.011368161036331054,
+          "median_patients": 0.005342348709321124,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.05593808391131461,
+          "median_patients": 0.04544842801988125,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": -0.09999999999999999,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09294529280095958,
+          "median_patients": 0.09257873893948271,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.08317255258372432,
+          "median_patients": 0.08252030242953703,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06265455572429346,
+          "median_patients": 0.057407293701544404,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.3,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.05950984573890613,
+          "median_patients": 0.04186904706633261,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.027604837911167412,
+          "median_patients": 0.007671257256331876,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08199631073512137,
+          "median_patients": 0.05586793273687363,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.19999999999999998,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09294529280095958,
+          "median_patients": 0.09257873893948271,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.08317255258372432,
+          "median_patients": 0.08252030242953703,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06265455572429346,
+          "median_patients": 0.057407293701544404,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.3,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.05950984573890613,
+          "median_patients": 0.04186904706633261,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.027604837911167412,
+          "median_patients": 0.007671257256331876,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08199631073512137,
+          "median_patients": 0.05586793273687363,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.19999999999999998,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.10216512338083703,
+          "median_patients": 0.10022603055767831,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.10547319735602265,
+          "median_patients": 0.09342242831015563,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08170855026401114,
+          "median_patients": 0.07897120527923107,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.4,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.04991127015940341,
+          "median_patients": 0.04437456024061248,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.016624314488999568,
+          "median_patients": 0.008250121301989493,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06462988501880318,
+          "median_patients": 0.060166485607624054,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5454122176291607,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.10216512338083703,
+          "median_patients": 0.10022603055767831,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.10547319735602265,
+          "median_patients": 0.09342242831015563,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08170855026401114,
+          "median_patients": 0.07897120527923107,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.4,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.04991127015940341,
+          "median_patients": 0.04437456024061248,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.016624314488999568,
+          "median_patients": 0.008250121301989493,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06462988501880318,
+          "median_patients": 0.060166485607624054,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.5454122176291607,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      }
+    ],
+    "ablations_A_soft_constant": [
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "CT_uniform",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.16351513079641034,
+          "median_patients": 0.16659188593584986,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.2984757544726557,
+          "median_patients": 0.3252448520334715,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.10187248071417257,
+          "median_patients": 0.09800803585953656,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.19047619047619052,
+          "defined_patient_count": 7,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "CT_uniform",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.1454307821130173,
+          "median_patients": 0.13103537303478724,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.1548571452145763,
+          "median_patients": 0.14302930279249462,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08579221341018897,
+          "median_patients": 0.0793140215267028,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.42695572264939285,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "CT_uniform",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.25882071572857623,
+          "median_patients": 0.2575360282989485,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.5286607537686198,
+          "median_patients": 0.4999051255749114,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.16815606608205208,
+          "median_patients": 0.17995248295898947,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "CT_uniform",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.3898546814226494,
+          "median_patients": 0.39417362960410257,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.539703211222171,
+          "median_patients": 0.5545012482254497,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.25453492266076083,
+          "median_patients": 0.25792711820187314,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09488713161790656,
+          "median_patients": 0.09988804848399013,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.08746031882924077,
+          "median_patients": 0.08863136748596129,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.10083432561077643,
+          "median_patients": 0.06749958591535687,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.7872983346207416,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.04165017383952829,
+          "median_patients": 0.041513401385429916,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.012211105392860312,
+          "median_patients": 0.00812314783852654,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06033068895339966,
+          "median_patients": 0.06047004368156195,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.4872983346207417,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.16826758836687078,
+          "median_patients": 0.16596033568494023,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.19899906495681038,
+          "median_patients": 0.20512562303540505,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.11265505601477344,
+          "median_patients": 0.1259192152065225,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_fine_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.34952852374408394,
+          "median_patients": 0.3490162924863398,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.4318168490693595,
+          "median_patients": 0.42734853321350796,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.1932037993101403,
+          "median_patients": 0.19367086701095104,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.08243440111737071,
+          "median_patients": 0.07838753693795297,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.06869060495314816,
+          "median_patients": 0.06090462596152109,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.06645587954699295,
+          "median_patients": 0.05903704141383059,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.0,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.054140831995331,
+          "median_patients": 0.04020306628323548,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.02376929010283955,
+          "median_patients": 0.007617176380055701,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.07693095493596047,
+          "median_patients": 0.056216723285615444,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.3,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.1670091107618646,
+          "median_patients": 0.16235124650993385,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.20038435873473198,
+          "median_patients": 0.18079097553583484,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.11728364317241358,
+          "median_patients": 0.1265643753868062,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_junction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.3302549591753632,
+          "median_patients": 0.3393453607956568,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.3902490281814746,
+          "median_patients": 0.4036378139030391,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.17228359798900783,
+          "median_patients": 0.17568472027778625,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.09561442876201909,
+          "median_patients": 0.09273008920281427,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.0964817865544972,
+          "median_patients": 0.08790827136170822,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.08110397197015118,
+          "median_patients": 0.07970961043611169,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.516227766016838,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "classifier_probabilities",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.04550184441099484,
+          "median_patients": 0.04582460768142482,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.013385686590743287,
+          "median_patients": 0.009820481437368989,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.061581887770444155,
+          "median_patients": 0.06373246852308512,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": 0.316227766016838,
+          "defined_patient_count": 8,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "scale",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.20991075480997096,
+          "median_patients": 0.22447203927440568,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.34033330873711115,
+          "median_patients": 0.37837735619413304,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.14164187414280605,
+          "median_patients": 0.15010572411119938,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      },
+      {
+        "method": "faithful_soft_constant",
+        "stratum": "GT_large_nonjunction_centred",
+        "prediction_kind": "conditional_compositions_consumed",
+        "head": "structure",
+        "aggregation": "equal weight per validation patient, after within-case patch averaging",
+        "patients_total": 8,
+        "patients_with_valid_support": 8,
+        "composition_MAE": {
+          "mean_patients": 0.3749403105272601,
+          "median_patients": 0.3764660811672608,
+          "defined_patient_count": 8
+        },
+        "composition_SSE": {
+          "mean_patients": 0.4912393162990698,
+          "median_patients": 0.49124164720366387,
+          "defined_patient_count": 8
+        },
+        "fine_or_junction_MAE": {
+          "mean_patients": 0.23079512710683048,
+          "median_patients": 0.23136579431593418,
+          "defined_patient_count": 8
+        },
+        "descriptive_within_case_spearman": {
+          "median_patients": null,
+          "defined_patient_count": 0,
+          "p_values": "not computed"
+        }
+      }
+    ]
+  }
+}

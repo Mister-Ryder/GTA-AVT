@@ -1,0 +1,4 @@
+case_id,cohort,metric,difference_unit,normal,availability_only,delta_normal_minus_availability_only,favorable_direction,missing_normal,missing_availability_only
+Dongyang_D2,Dongyang,dice,pp,82.24533794672064,82.25297061349039,-0.007632666769751495,higher,,
+Rider_R9,Rider,dice,pp,92.4899785691848,92.48436631320939,0.005612255975407265,higher,,
+Dongyang_D5,Dongyang,dice,pp,92.24823823596272,92.24030970961333,0.007928526349388676,higher,,

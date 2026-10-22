@@ -1,0 +1,2310 @@
+{
+  "slot": "ablations_A_soft_platform_bridge",
+  "method": "faithful_soft",
+  "case_scores": [
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 885,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.17210760087140703,
+      "composition_SSE": 0.3173272295238226,
+      "fine_or_junction_MAE": 0.1611296059563756,
+      "spearman": {
+        "rho": -0.14285714285714288,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 885,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.11173803878357699,
+      "composition_SSE": 0.06673200955860963,
+      "fine_or_junction_MAE": 0.13251155455197608,
+      "spearman": {
+        "rho": -0.3571428571428572,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 885,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.17210760087140703,
+      "composition_SSE": 0.3173272295238226,
+      "fine_or_junction_MAE": 0.1611296059563756,
+      "spearman": {
+        "rho": -0.14285714285714288,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 885,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.11173803878357699,
+      "composition_SSE": 0.06673200955860963,
+      "fine_or_junction_MAE": 0.13251155455197608,
+      "spearman": {
+        "rho": -0.3571428571428572,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1206,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.10918807532289065,
+      "composition_SSE": 0.10736951166186809,
+      "fine_or_junction_MAE": 0.25196075066924095,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1206,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.025561896208576705,
+      "composition_SSE": 0.0030143683692249157,
+      "fine_or_junction_MAE": 0.038342855870723724,
+      "spearman": {
+        "rho": -0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1206,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.10918807532289065,
+      "composition_SSE": 0.10736951166186809,
+      "fine_or_junction_MAE": 0.25196075066924095,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1206,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.025561896208576705,
+      "composition_SSE": 0.0030143683692249157,
+      "fine_or_junction_MAE": 0.038342855870723724,
+      "spearman": {
+        "rho": -0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1382,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.08106916783144696,
+      "composition_SSE": 0.06395232115513846,
+      "fine_or_junction_MAE": 0.09443442057818174,
+      "spearman": {
+        "rho": 0.6000000000000001,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1382,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.026672596361701533,
+      "composition_SSE": 0.0031218110436227802,
+      "fine_or_junction_MAE": 0.03935842961072922,
+      "spearman": {
+        "rho": -0.7378647873726218,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1382,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.08106916783144696,
+      "composition_SSE": 0.06395232115513846,
+      "fine_or_junction_MAE": 0.09443442057818174,
+      "spearman": {
+        "rho": 0.6000000000000001,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1382,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.026672596361701533,
+      "composition_SSE": 0.0031218110436227802,
+      "fine_or_junction_MAE": 0.03935842961072922,
+      "spearman": {
+        "rho": -0.7378647873726218,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1297,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06270936395740137,
+      "composition_SSE": 0.029257834932581394,
+      "fine_or_junction_MAE": 0.054260228760540485,
+      "spearman": {
+        "rho": 0.6000000000000001,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1297,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.033494475501356646,
+      "composition_SSE": 0.005477616155872056,
+      "fine_or_junction_MAE": 0.0493501890450716,
+      "spearman": {
+        "rho": -0.9486832980505139,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1297,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06270936395740137,
+      "composition_SSE": 0.029257834932581394,
+      "fine_or_junction_MAE": 0.054260228760540485,
+      "spearman": {
+        "rho": 0.6000000000000001,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D2",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1297,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.033494475501356646,
+      "composition_SSE": 0.005477616155872056,
+      "fine_or_junction_MAE": 0.0493501890450716,
+      "spearman": {
+        "rho": -0.9486832980505139,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 549,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.12392837505155643,
+      "composition_SSE": 0.1538171092872954,
+      "fine_or_junction_MAE": 0.05703432432242802,
+      "spearman": {
+        "rho": 0.6123724356957946,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 549,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.11300973457504629,
+      "composition_SSE": 0.06357505278983057,
+      "fine_or_junction_MAE": 0.11147505676906024,
+      "spearman": {
+        "rho": 0.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 549,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.12392837505155643,
+      "composition_SSE": 0.1538171092872954,
+      "fine_or_junction_MAE": 0.05703432432242802,
+      "spearman": {
+        "rho": 0.6123724356957946,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 549,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.11300973457504629,
+      "composition_SSE": 0.06357505278983057,
+      "fine_or_junction_MAE": 0.11147505676906024,
+      "spearman": {
+        "rho": 0.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 907,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.08309369141934439,
+      "composition_SSE": 0.06796361593709238,
+      "fine_or_junction_MAE": 0.06374727003276348,
+      "spearman": {
+        "rho": -0.7745966692414834,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 907,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.02878391951768814,
+      "composition_SSE": 0.003113676498777005,
+      "fine_or_junction_MAE": 0.043175866827368736,
+      "spearman": {
+        "rho": -0.2581988897471611,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 907,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.08309369141934439,
+      "composition_SSE": 0.06796361593709238,
+      "fine_or_junction_MAE": 0.06374727003276348,
+      "spearman": {
+        "rho": -0.7745966692414834,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 907,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.02878391951768814,
+      "composition_SSE": 0.003113676498777005,
+      "fine_or_junction_MAE": 0.043175866827368736,
+      "spearman": {
+        "rho": -0.2581988897471611,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1023,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.05108007098097005,
+      "composition_SSE": 0.026055909614258386,
+      "fine_or_junction_MAE": 0.02864295244216919,
+      "spearman": {
+        "rho": 0.632455532033676,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1023,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.04546904799705468,
+      "composition_SSE": 0.008061186958106986,
+      "fine_or_junction_MAE": 0.06820357777178288,
+      "spearman": {
+        "rho": -0.316227766016838,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1023,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.05108007098097005,
+      "composition_SSE": 0.026055909614258386,
+      "fine_or_junction_MAE": 0.02864295244216919,
+      "spearman": {
+        "rho": 0.632455532033676,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1023,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.04546904799705468,
+      "composition_SSE": 0.008061186958106986,
+      "fine_or_junction_MAE": 0.06820357777178288,
+      "spearman": {
+        "rho": -0.316227766016838,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1127,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.09749993143050233,
+      "composition_SSE": 0.08406455615019152,
+      "fine_or_junction_MAE": 0.08883389364928007,
+      "spearman": {
+        "rho": 0.7378647873726218,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1127,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.04401767588933581,
+      "composition_SSE": 0.008439172036586529,
+      "fine_or_junction_MAE": 0.06352387182414532,
+      "spearman": {
+        "rho": 0.9486832980505139,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1127,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.09749993143050233,
+      "composition_SSE": 0.08406455615019152,
+      "fine_or_junction_MAE": 0.08883389364928007,
+      "spearman": {
+        "rho": 0.7378647873726218,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Dongyang_D5",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1127,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.04401767588933581,
+      "composition_SSE": 0.008439172036586529,
+      "fine_or_junction_MAE": 0.06352387182414532,
+      "spearman": {
+        "rho": 0.9486832980505139,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 590,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1806916369524385,
+      "composition_SSE": 0.38844846482654166,
+      "fine_or_junction_MAE": 0.06815308891236782,
+      "spearman": {
+        "rho": -0.2672612419124244,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 590,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.2123633736988441,
+      "composition_SSE": 0.2681854153877262,
+      "fine_or_junction_MAE": 0.11283899507751423,
+      "spearman": {
+        "rho": -0.40089186286863665,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 590,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1806916369524385,
+      "composition_SSE": 0.38844846482654166,
+      "fine_or_junction_MAE": 0.06815308891236782,
+      "spearman": {
+        "rho": -0.2672612419124244,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 590,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.2123633736988441,
+      "composition_SSE": 0.2681854153877262,
+      "fine_or_junction_MAE": 0.11283899507751423,
+      "spearman": {
+        "rho": -0.40089186286863665,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1268,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06595268757082522,
+      "composition_SSE": 0.029003210803297146,
+      "fine_or_junction_MAE": 0.055943842977285385,
+      "spearman": {
+        "rho": 0.7745966692414834,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1268,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.05145825531023244,
+      "composition_SSE": 0.01199765965510302,
+      "fine_or_junction_MAE": 0.07306954730302095,
+      "spearman": {
+        "rho": -0.7745966692414834,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1268,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06595268757082522,
+      "composition_SSE": 0.029003210803297146,
+      "fine_or_junction_MAE": 0.055943842977285385,
+      "spearman": {
+        "rho": 0.7745966692414834,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1268,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.05145825531023244,
+      "composition_SSE": 0.01199765965510302,
+      "fine_or_junction_MAE": 0.07306954730302095,
+      "spearman": {
+        "rho": -0.7745966692414834,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1208,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.09394703987054526,
+      "composition_SSE": 0.07824424890418302,
+      "fine_or_junction_MAE": 0.09955049259588122,
+      "spearman": {
+        "rho": 0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1208,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06503340462222695,
+      "composition_SSE": 0.017740840049680226,
+      "fine_or_junction_MAE": 0.0694065522402525,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1208,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.09394703987054526,
+      "composition_SSE": 0.07824424890418302,
+      "fine_or_junction_MAE": 0.09955049259588122,
+      "spearman": {
+        "rho": 0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1208,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06503340462222695,
+      "composition_SSE": 0.017740840049680226,
+      "fine_or_junction_MAE": 0.0694065522402525,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 824,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.16879472085274755,
+      "composition_SSE": 0.2794350246222182,
+      "fine_or_junction_MAE": 0.12055362784303725,
+      "spearman": {
+        "rho": -0.21081851067789195,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 824,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.08944869452777007,
+      "composition_SSE": 0.033776776983073686,
+      "fine_or_junction_MAE": 0.09693277347832918,
+      "spearman": {
+        "rho": -0.632455532033676,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 824,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.16879472085274755,
+      "composition_SSE": 0.2794350246222182,
+      "fine_or_junction_MAE": 0.12055362784303725,
+      "spearman": {
+        "rho": -0.21081851067789195,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K13",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 824,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.08944869452777007,
+      "composition_SSE": 0.033776776983073686,
+      "fine_or_junction_MAE": 0.09693277347832918,
+      "spearman": {
+        "rho": -0.632455532033676,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 8,
+      "GT_centerline_support_in_selected_patches": 896,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.16935469779418783,
+      "composition_SSE": 0.31590634536990386,
+      "fine_or_junction_MAE": 0.11855756212025881,
+      "spearman": {
+        "rho": -0.13638618139749523,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 8,
+      "GT_centerline_support_in_selected_patches": 896,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.12603123387089,
+      "composition_SSE": 0.14418141912245724,
+      "fine_or_junction_MAE": 0.05427656136453152,
+      "spearman": {
+        "rho": 0.8455943246644704,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 8,
+      "GT_centerline_support_in_selected_patches": 896,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.16935469779418783,
+      "composition_SSE": 0.31590634536990386,
+      "fine_or_junction_MAE": 0.11855756212025881,
+      "spearman": {
+        "rho": -0.13638618139749523,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 8,
+      "GT_centerline_support_in_selected_patches": 896,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.12603123387089,
+      "composition_SSE": 0.14418141912245724,
+      "fine_or_junction_MAE": 0.05427656136453152,
+      "spearman": {
+        "rho": 0.8455943246644704,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1324,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.10760931195691228,
+      "composition_SSE": 0.09689062396960149,
+      "fine_or_junction_MAE": 0.05698740854859352,
+      "spearman": {
+        "rho": -0.9486832980505139,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1324,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.058922092808643356,
+      "composition_SSE": 0.015001845396164953,
+      "fine_or_junction_MAE": 0.08070310764014721,
+      "spearman": {
+        "rho": 0.316227766016838,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1324,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.10760931195691228,
+      "composition_SSE": 0.09689062396960149,
+      "fine_or_junction_MAE": 0.05698740854859352,
+      "spearman": {
+        "rho": -0.9486832980505139,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1324,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.058922092808643356,
+      "composition_SSE": 0.015001845396164953,
+      "fine_or_junction_MAE": 0.08070310764014721,
+      "spearman": {
+        "rho": 0.316227766016838,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1188,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1139028197620064,
+      "composition_SSE": 0.11672951321325098,
+      "fine_or_junction_MAE": 0.08308728132396936,
+      "spearman": {
+        "rho": -0.6000000000000001,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1188,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.042984321131370955,
+      "composition_SSE": 0.008649027411214791,
+      "fine_or_junction_MAE": 0.05853525549173355,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1188,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1139028197620064,
+      "composition_SSE": 0.11672951321325098,
+      "fine_or_junction_MAE": 0.08308728132396936,
+      "spearman": {
+        "rho": -0.6000000000000001,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1188,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.042984321131370955,
+      "composition_SSE": 0.008649027411214791,
+      "fine_or_junction_MAE": 0.05853525549173355,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 757,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06601327356183902,
+      "composition_SSE": 0.04682116597113069,
+      "fine_or_junction_MAE": 0.06125763524323702,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 757,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.04473144459188915,
+      "composition_SSE": 0.008061070567392458,
+      "fine_or_junction_MAE": 0.05680909939110279,
+      "spearman": {
+        "rho": 0.7745966692414834,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 757,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06601327356183902,
+      "composition_SSE": 0.04682116597113069,
+      "fine_or_junction_MAE": 0.06125763524323702,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K15",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 757,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.04473144459188915,
+      "composition_SSE": 0.008061070567392458,
+      "fine_or_junction_MAE": 0.05680909939110279,
+      "spearman": {
+        "rho": 0.7745966692414834,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 653,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.20691634641095463,
+      "composition_SSE": 0.48853821166885814,
+      "fine_or_junction_MAE": 0.10488334377961499,
+      "spearman": {
+        "rho": 0.4531634835874829,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 653,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.22587198929284655,
+      "composition_SSE": 0.4000400159734462,
+      "fine_or_junction_MAE": 0.06504748415734087,
+      "spearman": {
+        "rho": 0.7572401854185358,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 653,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.20691634641095463,
+      "composition_SSE": 0.48853821166885814,
+      "fine_or_junction_MAE": 0.10488334377961499,
+      "spearman": {
+        "rho": 0.4531634835874829,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 653,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.22587198929284655,
+      "composition_SSE": 0.4000400159734462,
+      "fine_or_junction_MAE": 0.06504748415734087,
+      "spearman": {
+        "rho": 0.7572401854185358,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1168,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.10074718638788908,
+      "composition_SSE": 0.10291820074681376,
+      "fine_or_junction_MAE": 0.044492711895145476,
+      "spearman": {
+        "rho": 0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1168,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.0351358948998192,
+      "composition_SSE": 0.006753559484944738,
+      "fine_or_junction_MAE": 0.04772098921239376,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1168,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.10074718638788908,
+      "composition_SSE": 0.10291820074681376,
+      "fine_or_junction_MAE": 0.044492711895145476,
+      "spearman": {
+        "rho": 0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1168,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.0351358948998192,
+      "composition_SSE": 0.006753559484944738,
+      "fine_or_junction_MAE": 0.04772098921239376,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1339,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.09121043800842017,
+      "composition_SSE": 0.08679635595489105,
+      "fine_or_junction_MAE": 0.027304183691740036,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1339,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.02429559520290544,
+      "composition_SSE": 0.0034135116085273073,
+      "fine_or_junction_MAE": 0.03315367549657822,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1339,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.09121043800842017,
+      "composition_SSE": 0.08679635595489105,
+      "fine_or_junction_MAE": 0.027304183691740036,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1339,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.02429559520290544,
+      "composition_SSE": 0.0034135116085273073,
+      "fine_or_junction_MAE": 0.03315367549657822,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 979,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.078703310189303,
+      "composition_SSE": 0.061236268400297215,
+      "fine_or_junction_MAE": 0.09405120485462248,
+      "spearman": {
+        "rho": -0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 979,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.0368051534096594,
+      "composition_SSE": 0.005998277627859551,
+      "fine_or_junction_MAE": 0.052651746198534966,
+      "spearman": {
+        "rho": 0.316227766016838,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 979,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.078703310189303,
+      "composition_SSE": 0.061236268400297215,
+      "fine_or_junction_MAE": 0.09405120485462248,
+      "spearman": {
+        "rho": -0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K18",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 979,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.0368051534096594,
+      "composition_SSE": 0.005998277627859551,
+      "fine_or_junction_MAE": 0.052651746198534966,
+      "spearman": {
+        "rho": 0.316227766016838,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 1075,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1403352137788066,
+      "composition_SSE": 0.2177089855425891,
+      "fine_or_junction_MAE": 0.07762939589364189,
+      "spearman": {
+        "rho": 0.610785564835303,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 1075,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1520492447861692,
+      "composition_SSE": 0.19392086897439223,
+      "fine_or_junction_MAE": 0.043701260866198154,
+      "spearman": {
+        "rho": 0.8468812149338255,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 1075,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1403352137788066,
+      "composition_SSE": 0.2177089855425891,
+      "fine_or_junction_MAE": 0.07762939589364189,
+      "spearman": {
+        "rho": 0.610785564835303,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 7,
+      "GT_centerline_support_in_selected_patches": 1075,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1520492447861692,
+      "composition_SSE": 0.19392086897439223,
+      "fine_or_junction_MAE": 0.043701260866198154,
+      "spearman": {
+        "rho": 0.8468812149338255,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 912,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.09584709850605577,
+      "composition_SSE": 0.07602038839374943,
+      "fine_or_junction_MAE": 0.08418926503509283,
+      "spearman": {
+        "rho": 0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 912,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.016067318569791194,
+      "composition_SSE": 0.001191804120094882,
+      "fine_or_junction_MAE": 0.022937413305044174,
+      "spearman": {
+        "rho": 0.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 912,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.09584709850605577,
+      "composition_SSE": 0.07602038839374943,
+      "fine_or_junction_MAE": 0.08418926503509283,
+      "spearman": {
+        "rho": 0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 912,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.016067318569791194,
+      "composition_SSE": 0.001191804120094882,
+      "fine_or_junction_MAE": 0.022937413305044174,
+      "spearman": {
+        "rho": 0.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1240,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.07469134868588298,
+      "composition_SSE": 0.04153482686993629,
+      "fine_or_junction_MAE": 0.05853054067119956,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1240,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.03826375456992537,
+      "composition_SSE": 0.006164056747758741,
+      "fine_or_junction_MAE": 0.0532006099820137,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1240,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.07469134868588298,
+      "composition_SSE": 0.04153482686993629,
+      "fine_or_junction_MAE": 0.05853054067119956,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1240,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.03826375456992537,
+      "composition_SSE": 0.006164056747758741,
+      "fine_or_junction_MAE": 0.0532006099820137,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 734,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.12598963354248552,
+      "composition_SSE": 0.12860884875481,
+      "fine_or_junction_MAE": 0.06910851690918207,
+      "spearman": {
+        "rho": 1.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 734,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06132875158800744,
+      "composition_SSE": 0.022720901921223207,
+      "fine_or_junction_MAE": 0.07815302163362503,
+      "spearman": {
+        "rho": -0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 734,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.12598963354248552,
+      "composition_SSE": 0.12860884875481,
+      "fine_or_junction_MAE": 0.06910851690918207,
+      "spearman": {
+        "rho": 1.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "KiTS_K8",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 734,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06132875158800744,
+      "composition_SSE": 0.022720901921223207,
+      "fine_or_junction_MAE": 0.07815302163362503,
+      "spearman": {
+        "rho": -0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 8,
+      "GT_centerline_support_in_selected_patches": 1541,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.16141086736461147,
+      "composition_SSE": 0.31550816127550907,
+      "fine_or_junction_MAE": 0.07846064516343176,
+      "spearman": {
+        "rho": 0.19047619047619052,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 8,
+      "GT_centerline_support_in_selected_patches": 1541,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.17410011006480397,
+      "composition_SSE": 0.25583139284225404,
+      "fine_or_junction_MAE": 0.09946654550731182,
+      "spearman": {
+        "rho": 0.6946232319096901,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 8,
+      "GT_centerline_support_in_selected_patches": 1541,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.16141086736461147,
+      "composition_SSE": 0.31550816127550907,
+      "fine_or_junction_MAE": 0.07846064516343176,
+      "spearman": {
+        "rho": 0.19047619047619052,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 8,
+      "GT_centerline_support_in_selected_patches": 1541,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.17410011006480397,
+      "composition_SSE": 0.25583139284225404,
+      "fine_or_junction_MAE": 0.09946654550731182,
+      "spearman": {
+        "rho": 0.6946232319096901,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1047,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.11402383187087253,
+      "composition_SSE": 0.10522834034622652,
+      "fine_or_junction_MAE": 0.18287965096533298,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1047,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.07287853801972233,
+      "composition_SSE": 0.04594123683264141,
+      "fine_or_junction_MAE": 0.09902512934058905,
+      "spearman": {
+        "rho": -0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1047,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.11402383187087253,
+      "composition_SSE": 0.10522834034622652,
+      "fine_or_junction_MAE": 0.18287965096533298,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1047,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.07287853801972233,
+      "composition_SSE": 0.04594123683264141,
+      "fine_or_junction_MAE": 0.09902512934058905,
+      "spearman": {
+        "rho": -0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 2218,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.10666702587914187,
+      "composition_SSE": 0.08875101887575548,
+      "fine_or_junction_MAE": 0.05628404673188925,
+      "spearman": {
+        "rho": -1.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 2218,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.19260627302476982,
+      "composition_SSE": 0.16640694191587171,
+      "fine_or_junction_MAE": 0.28890941478312016,
+      "spearman": {
+        "rho": 1.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 2218,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.10666702587914187,
+      "composition_SSE": 0.08875101887575548,
+      "fine_or_junction_MAE": 0.05628404673188925,
+      "spearman": {
+        "rho": -1.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 2218,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.19260627302476982,
+      "composition_SSE": 0.16640694191587171,
+      "fine_or_junction_MAE": 0.28890941478312016,
+      "spearman": {
+        "rho": 1.0,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1153,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.11465862382756314,
+      "composition_SSE": 0.1115815795468324,
+      "fine_or_junction_MAE": 0.06811429420486093,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1153,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06269833347929914,
+      "composition_SSE": 0.0453308042036004,
+      "fine_or_junction_MAE": 0.09045705758035183,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1153,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.11465862382756314,
+      "composition_SSE": 0.1115815795468324,
+      "fine_or_junction_MAE": 0.06811429420486093,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R10",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1153,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.06269833347929914,
+      "composition_SSE": 0.0453308042036004,
+      "fine_or_junction_MAE": 0.09045705758035183,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 6,
+      "GT_centerline_support_in_selected_patches": 514,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.23368457357088723,
+      "composition_SSE": 0.5167830901990175,
+      "fine_or_junction_MAE": 0.1060238666832447,
+      "spearman": {
+        "rho": null,
+        "reason": "constant_GT_composition"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "CT_uniform",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 6,
+      "GT_centerline_support_in_selected_patches": 514,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.21617977662632862,
+      "composition_SSE": 0.28514306599854883,
+      "fine_or_junction_MAE": 0.055570563301444054,
+      "spearman": {
+        "rho": 0.3380617018914066,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 8,
+      "valid_patches": 6,
+      "GT_centerline_support_in_selected_patches": 514,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.23368457357088723,
+      "composition_SSE": 0.5167830901990175,
+      "fine_or_junction_MAE": 0.1060238666832447,
+      "spearman": {
+        "rho": null,
+        "reason": "constant_GT_composition"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "CT_uniform",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 8,
+      "valid_patches": 6,
+      "GT_centerline_support_in_selected_patches": 514,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.21617977662632862,
+      "composition_SSE": 0.28514306599854883,
+      "fine_or_junction_MAE": 0.055570563301444054,
+      "spearman": {
+        "rho": 0.3380617018914066,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1502,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1440157957840711,
+      "composition_SSE": 0.1859300929295229,
+      "fine_or_junction_MAE": 0.026391934603452682,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1502,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.029663349880138412,
+      "composition_SSE": 0.003931137933697509,
+      "fine_or_junction_MAE": 0.04252976179122925,
+      "spearman": {
+        "rho": 0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1502,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1440157957840711,
+      "composition_SSE": 0.1859300929295229,
+      "fine_or_junction_MAE": 0.026391934603452682,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_fine_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1502,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.029663349880138412,
+      "composition_SSE": 0.003931137933697509,
+      "fine_or_junction_MAE": 0.04252976179122925,
+      "spearman": {
+        "rho": 0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1565,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.13099443138926292,
+      "composition_SSE": 0.16331622608238083,
+      "fine_or_junction_MAE": 0.05340252775931731,
+      "spearman": {
+        "rho": -0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1565,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.04075377300129427,
+      "composition_SSE": 0.007281327554556766,
+      "fine_or_junction_MAE": 0.04520297050476074,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1565,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.13099443138926292,
+      "composition_SSE": 0.16331622608238083,
+      "fine_or_junction_MAE": 0.05340252775931731,
+      "spearman": {
+        "rho": -0.39999999999999997,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_junction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1565,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.04075377300129427,
+      "composition_SSE": 0.007281327554556766,
+      "fine_or_junction_MAE": 0.04520297050476074,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1100,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1029521296848543,
+      "composition_SSE": 0.10278030047011971,
+      "fine_or_junction_MAE": 0.0974890006473288,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "classifier_probabilities",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1100,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.02676563228790959,
+      "composition_SSE": 0.0031898964163886477,
+      "fine_or_junction_MAE": 0.029161320999264717,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "scale",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1100,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.1029521296848543,
+      "composition_SSE": 0.10278030047011971,
+      "fine_or_junction_MAE": 0.0974890006473288,
+      "spearman": {
+        "rho": 0.19999999999999998,
+        "reason": "descriptive_only_no_p_value"
+      }
+    },
+    {
+      "method": "faithful_soft",
+      "case_id": "Rider_R9",
+      "stratum": "GT_large_nonjunction_centred",
+      "prediction_kind": "conditional_compositions_consumed",
+      "head": "structure",
+      "selected_unique_patches": 4,
+      "valid_patches": 4,
+      "GT_centerline_support_in_selected_patches": 1100,
+      "support_note": "overlapping patch support is descriptive, not independent nodes/patients",
+      "composition_MAE": 0.02676563228790959,
+      "composition_SSE": 0.0031898964163886477,
+      "fine_or_junction_MAE": 0.029161320999264717,
+      "spearman": {
+        "rho": 0.7999999999999999,
+        "reason": "descriptive_only_no_p_value"
+      }
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "stage": "val",
+  "training_slot": "ablations_A_soft_platform_bridge",
+  "declared_training_role": "ablations",
+  "declared_training_job": "A_soft_platform_bridge",
+  "model": {
+    "slot": "ablations_A_soft_platform_bridge",
+    "role": "ablations",
+    "job": "A_soft_platform_bridge",
+    "method": "faithful_soft",
+    "origin": "imported_original_v2",
+    "training_version": "bounded_20261022_v2",
+    "selected_step": 10000,
+    "weights_sha256": "5d7ea03b9f0005d0d6eb4fe17f421d8983392f80300e3a874b262af1c8852eb5",
+    "original_checkpoint_sha256": "2c2ee9528cb2ea422ca4547407575a788ecc4fa4dc53e8d8028da26b029b92e1",
+    "provenance_sha256": "9db7ea7c2f94cdc52e1095bd3e0dd67da73ec8cb44331aa738562702ca976154",
+    "recipe_sha256": "b81af859e5c9efbeffa7d3b7af1db00f502b5024d07979299f7e4d90c7657c09"
+  },
+  "same_weights_declared": true,
+  "comparison": "normal full composition minus availability_only on the same selected weights",
+  "normal_original_protocol_FILE_sha256": "a290c69c1951abf6b2a9c3bf05e57d8676f54519065c3fbdbe31edf50cafbaae",
+  "availability_original_protocol_FILE_sha256": "054770d7e6b1086488da85f59de770bc91bee3916d818dad7f487c09484f8850",
+  "protocol_contents_not_disclosed": "Original protocols include private deployment metadata; their FILE hashes are author bindings, not standalone public verification.",
+  "normal_metrics_external": {
+    "summary.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/summary.json",
+      "sha256": "468294c355b354e7b1af7ee1751a97a5ee2f57522b7bd19cb8ddf6ce6261aad1"
+    },
+    "Dongyang_D2/metrics.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/Dongyang_D2/metrics.json",
+      "sha256": "75d56b6d6bd84b980f9b0b18aa1b269f3508a2f7ec123c01caaf5736de3b4b4a"
+    },
+    "Dongyang_D5/metrics.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/Dongyang_D5/metrics.json",
+      "sha256": "2e4d92e41fb2e219af442a1f13a8c0a4f1a780a914546e41b29f5a9536189d7a"
+    },
+    "KiTS_K13/metrics.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/KiTS_K13/metrics.json",
+      "sha256": "2ec8d162d250bb78b85dbf6f1573ad7baedd0ede7850fe65d5897bd4103e2196"
+    },
+    "KiTS_K15/metrics.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/KiTS_K15/metrics.json",
+      "sha256": "78ce8383760aeba92feb81c3a199b383c74b7dbb6eeb9734dbd79683c8440a26"
+    },
+    "KiTS_K18/metrics.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/KiTS_K18/metrics.json",
+      "sha256": "3c8a41cab01df5b1fc4f4ee9ee0c1a64892602ce19025f9ebcddfa719aa775a6"
+    },
+    "KiTS_K8/metrics.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/KiTS_K8/metrics.json",
+      "sha256": "b8f67173cc9cc5bd92b05335fd2110e4b106d5e456a098fb46f6c2bdfccd6c56"
+    },
+    "Rider_R10/metrics.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/Rider_R10/metrics.json",
+      "sha256": "1b12b997202568475e8a3b94cc41af5e68959cdf94f21ea874c8f16eb14be3c5"
+    },
+    "Rider_R9/metrics.json": {
+      "relative_to_this_declaration": "../../minimal4_reference_VAL_20261023/evaluations/ablations_A_soft_platform_bridge/Rider_R9/metrics.json",
+      "sha256": "791e8d1b7e695e76fe3a7ef3c584c7184e8ccf82b928bc5050d4403e26f2bae3"
+    }
+  },
+  "availability_metrics_directory": "evaluations/availability_only",
+  "availability_summary_sha256": "55f1cc24f393d68d58169ea6e3e570c4c8ce2d385ec42efa952262ba1a10baf5",
+  "availability_case_metrics_sha256": {
+    "Dongyang_D2": "3df4dfd52fc13faa68824ee2a84ca081b08e7f6ff17537fcc9c9708d81d458d8",
+    "Dongyang_D5": "e6141e74da6b5068afcf5c3aff2d12d7bfbcb5fb57fc4d48e787a2659c4bc10a",
+    "KiTS_K13": "217d280007b8e34db1134b38fd52e3a25704714e3c457ff431855bdfaf296e5d",
+    "KiTS_K15": "620f0e2bf342b56e453f654f57768a53d7a20f1f8a688b9b4a7bd042a161e118",
+    "KiTS_K18": "a94c42c5fd83cb078bbb1c5f48ece58d0946cc6e6c6f0dfafc255ccef3d305c8",
+    "KiTS_K8": "7ad618b2acde8033b452ed5f6466e2352fb40c4e48782367cf630467e885a6d8",
+    "Rider_R10": "aae28123befef50c73d5870d68ffe591b9633fcfb8f50ca590b1687ed6ef171a",
+    "Rider_R9": "ff34926411ce32936bdcb5543ffc87c93f385683123616038eb5eb1e6aa19939"
+  },
+  "runtime_projection_reference": "../declaration.json",
+  "safe_runtime_projection_canonical_sha256": "4a114fa735cd035a06a9dcd07ecc8129a313ec5cb525c1e9bb920d99dfc65b6e",
+  "intervention": {
+    "name": "availability_only",
+    "stage": "runtime-validation-diagnostic",
+    "separately_trained_model": false,
+    "changes_weights": false,
+    "uses_GT": false,
+    "formula": {
+      "scale": "[q_scale, (1-q_scale)/4, (1-q_scale)/4, (1-q_scale)/4, (1-q_scale)/4]",
+      "structure": "[q_structure, (1-q_structure)/2, (1-q_structure)/2]",
+      "q_definition": "each original image-only head's predicted p_empty"
+    },
+    "intervention_source_sha256": "9da57e8cd3e495357ae6d769561ccf7e0e159e4a4af7d35524655b31e4154664"
+  },
+  "separately_trained_model": false,
+  "weights_changed": false,
+  "not_TEST": true,
+  "not_subtracted_from_trained_constant_effect": true
+}

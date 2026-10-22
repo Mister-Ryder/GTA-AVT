@@ -1,0 +1,45 @@
+SECOND bridge: validation-only same-weight composition intervention
+Delta is NORMAL minus AVAILABILITY_ONLY. This is a runtime intervention on one fixed selected model, not an independently trained comparator.
+For each head, availability_only retains the image-predicted p_empty=q and distributes the remaining probability uniformly over the four positive scale classes or two positive structure classes. Inputs, weights and operator forms stay fixed; conditioned intermediate features and outputs may change.
+
+Normal Dice 85.949030932% versus availability_only 85.924551901%: only +0.024479032 percentage points, with 7 case increases and 1 decrease. All8 cases have lessFP and moreFN. NoGT-geometry group has a positive mean recall change.
+VAL8 already participated in model selection; this is a development mechanism diagnostic, not independent test confirmation. One training seed. Released case IDs are not verified independent patients. Original20000-draw exploratory case-bootstrap intervals are copied unchanged; no new intervals, p-values or multiple-outcome significance claims.
+
+All10 metrics: ratios shown inpercent; differences inpp, ml ormm. W/T/L follows each metric favorable direction.
+metric | normal | availability_only | delta | original 95%case interval | W/T/L | pairs
+dice | 85.949030932 | 85.924551901 | +0.024479032 pp | [0.009191668, 0.041071859] | 7/0/1 | 8/8
+precision | 85.595750760 | 85.499984878 | +0.095765882 pp | [0.065699840, 0.132949709] | 8/0/0 | 8/8
+recall | 86.953263285 | 87.006939615 | -0.053676330 pp | [-0.073645928, -0.034211778] | 0/0/8 | 8/8
+fp_ml | 59.418816103 | 59.910398342 | -0.491582239 ml | [-0.747373007, -0.282619368] | 8/0/0 | 8/8
+fn_ml | 52.422575262 | 52.240938532 | +0.181636730 ml | [0.120483145, 0.252697052] | 0/0/8 | 8/8
+assd_mm | 8.485894125 | 8.526632598 | -0.040738473 mm | [-0.049736224, -0.031749481] | 8/0/0 | 8/8
+hd95_mm | 75.653701831 | 75.832555599 | -0.178853768 mm | [-0.334144644, -0.055744023] | 8/0/0 | 8/8
+centerline_recall | 77.873987475 | 77.985193175 | -0.111205700 pp | [-0.198635535, -0.027901786] | 0/4/4 | 8/8
+centerline_precision | 65.221547547 | 64.917487420 | +0.304060127 pp | [-0.275639627, 0.906518850] | 5/0/3 | 8/8
+cldice | 70.359538646 | 70.227877012 | +0.131661634 pp | [-0.190516550, 0.443464094] | 5/0/3 | 8/8
+
+GT-defined native skeleton recall groups only: equal supported-case means, not pooled nodes, branch detection, arc-length coverage or group precision. All groups have 8/8 supported cases and no unrecorded/no GT cases.
+group | normal% | availability% | delta_pp | original 95%case interval | W/T/L
+radius_le_2 mm | 42.897423678 | 43.012631052 | -0.115207373 | [-0.345622120, 0.000000000] | 0/7/1
+radius_2_to_4 mm | 66.797152088 | 67.034348403 | -0.237196316 | [-0.500870453, -0.048732943] | 0/4/4
+radius_4_to_8 mm | 83.696608597 | 83.722170969 | -0.025562372 | [-0.076687117, 0.000000000] | 0/7/1
+radius_gt_8 mm | 94.682104383 | 94.682104383 | +0.000000000 | [0.000000000, 0.000000000] | 0/8/0
+nonjunction | 77.197742785 | 77.331031283 | -0.133288498 | [-0.250326236, -0.028344671] | 0/4/4
+junction_neighbourhood | 83.457054759 | 83.517150913 | -0.060096154 | [-0.180288462, 0.000000000] | 0/7/1
+
+All8 cases, including counterexamples (the 7 CSV tables retain every metric and group value):
+  Dongyang_D2: the sole Dice decrease(−0.007633 pp), despite clDice +0.918098 pp. Fine recall falls19.815668%→18.894009% on 217 GT skeleton points(2 fewer covered); the 2–4 mm group also loses1 point.
+  Dongyang_D5: Dice +0.007929 pp but clDice −0.768872 pp and centerline recall −0.331675 pp;2–4 mm support 191, with 2 fewer covered points. Fine and junction recall unchanged.
+  KiTS_K13: largest Dice change(+0.067443 pp), FP −1.251801 ml/FN +0.395111 ml; all 6 GTgroup recalls and global centerline recall unchanged.
+  KiTS_K15: Dice +0.046973 pp, clDice −0.061995 pp; all 6 GTgroup recalls unchanged.
+  KiTS_K18: Dice +0.013492 pp but centerline recall −0.198020 pp;2–4 mm support 449 with 2 fewer covered points.
+  KiTS_K8: Dice +0.030084 pp; all 6 GTgroup recalls unchanged.
+  Rider_R10: Dice +0.031932 pp and HD95 −0.430225 mm, but clDice −0.008547 pp; all 6 GTgroup recalls unchanged.
+  Rider_R9: Dice +0.005612 pp but centerline recall −0.136737 pp. Junction support 208 loses1 covered point;4–8 mm support 978 loses2, and 2–4 mm support 513 loses1.
+
+Fine-group support totals 1042 points:7 cases unchanged, with the entire mean decrease coming from D2. Junction support totals 1273 points:7 cases unchanged, with the decrease from R9. These totals describe support only; the estimator weights cases equally. Junction is an operational skeleton-graph neighborhood proxy, not human-confirmed anatomical branching. The original analyzer did not produce leave-one-case-out results; none were added.
+
+The measured effect is small and includes a precision/recall tradeoff: it does not demonstrate improved fine-vessel or junction coverage. A variable or partly faithful classifier does not prove useful segmentation conditioning. The intervention also changes the composition distribution; p_empty can retain anatomical correlates without being calibrated uncertainty.
+This result must not be subtracted from trained-A versus trained-constant. The trained constant model has different learned weights and a fixed empty component as well as fixed nonempty composition throughout training. No percentage of a training effect or claim that p_empty/extra operators dominate is identified here. No checkpoint, threshold, architecture or training rule was changed from this diagnostic.
+
+Raw availability-only metrics and summary are byte-identical copies. Normal bridge metrics are referenced from the separately published normal VAL report; original full protocol FILE hashes and a privacy-safe runtime projection are declared separately. Those declarations are not independent proof of a server, executed weights or experimental chronology.

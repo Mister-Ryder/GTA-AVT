@@ -1,0 +1,22 @@
+{
+  "schema": "GTA-AVT-minimal4-safe-optimization-candidate-manifest-v1",
+  "state": "actual_whitelisted_training_summary_for_independent_review_not_published",
+  "files_sha256": {
+    "optimization_summary.json": "6541a524fdac9703496604062b59a547b258751e8fc6e3b6f498b2e21b9c96cf",
+    "readout.md": "ac9c6cf62c9e8a4de6e7fdff07028757da1628be72a1aec9ca0d3fe90e8e0704"
+  },
+  "source_dynamics_sha256": {
+    "main_C_concat": "63484b25e0a79a07d264d1079fba8bf920bbbd4371dfd7a28e733cc5b75641f2",
+    "main_A_soft": "a4c847c644dc77e0c3652235c62b5ae1b8ca327af368a62813f79e364555bdb2",
+    "ablations_A_soft_platform_bridge": "2f3ea1753dd5928aee0ddaec989f1e717954b4645c64b8f2f5184cbdd00e0a16",
+    "ablations_A_soft_constant": "9fc248f1fabf165203b17f3a717a91efdca1168680b44677c9bf48f310131d07"
+  },
+  "source_endpoint_comparison_sha256": {
+    "MAIN_A_minus_C": "ebf2e4d565e4de071ca0012849e7235e10345ce7e3681666595a1d5a714ff378",
+    "SECOND_A_minus_constant": "9cf6993734a6cff7552bdb98da3c7a20831b4fcd9afa04bd8073036106aaf7f0"
+  },
+  "selection_declaration_FILE_sha256": "1bc254120496e2cdbb68890019caeb4f3df680bc22104f4764428c21cf855cf7",
+  "TEST_results_used": false,
+  "raw_logs_CT_weights_private_paths_or_runtime_receipts_included": false,
+  "new_experiment_or_QA_or_helper_created": false
+}

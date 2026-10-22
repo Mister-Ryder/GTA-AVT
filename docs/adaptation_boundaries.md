@@ -62,11 +62,14 @@ ground-truth fraction alone does not establish a small predicted effect, because
 sampling and segmentation gradients can change head outputs.
 
 The `p_empty` availability term may have a larger effect than the nonempty
-composition terms. Accordingly, the planned same-weight availability-only
-validation intervention preserves each predicted `p_empty` and redistributes the
+composition terms. The completed [same-weight availability-only
+validation intervention](../reports/minimal4_VAL_diagnostics_20261023/composition_intervention/readout.txt) preserves each predicted `p_empty` and redistributes the
 remaining mass uniformly. It is a sensitivity diagnostic, not another trained
-model or proof of anatomical causation. Independent head errors and the
-conditions actually consumed by C, A and constant-A are also required.
+model or proof of anatomical causation. Its normal-minus-intervention Dice
+difference is only +0.024479 percentage points, with no positive geometry-group
+mean recall change; this does not identify which component dominates.
+[Measured head errors and actual consumed conditions](../reports/minimal4_VAL_diagnostics_20261023/attributes/readout.txt)
+retain partial proxy associations, negative-correlation cases and unknown support.
 
 Dense local attribute fields are a possible later GTA extension. They are not
 implemented or evaluated by this global-composition study. In particular, wall

@@ -1,0 +1,37 @@
+{
+  "reviewed_utc": "2026-10-22T09:08:13.436778+00:00",
+  "reviewer": "Codex local image-only audit",
+  "detector_sha256": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a",
+  "scope": "three source-hash-locked exceptions to strict air detector; not a relaxation of the general rule",
+  "calibration_caveat": "air and tissue convention estimate; original DICOM slope/intercept unavailable",
+  "overrides": [
+    {
+      "id": "R1",
+      "pipeline_id": "Rider_R1",
+      "image_sha256": "97f99b54cb7d6110bed8a8e0833d1e82d03e9a955ce885f72333c391581e791e",
+      "offset_subtract": 1024.0,
+      "original_detector_rule": "positive_air_without_spatial_peak_and_contrast_support",
+      "original_detector_requires_review": true,
+      "evidence": "CT-only axial visual review at fixed 60percent slice: offset0 displays soft tissues saturated, offset1024 restores normal tissue contrast; raw air peak24or32, no negative air except<=-1500 sentinel, raw tissue mode near1024; no GT or prediction used"
+    },
+    {
+      "id": "R2",
+      "pipeline_id": "Rider_R2",
+      "image_sha256": "b2bcbd2209dd44938516c141630121ad0cd2bd893b226c110d4b2d27b43c44d5",
+      "offset_subtract": 1024.0,
+      "original_detector_rule": "positive_air_without_spatial_peak_and_contrast_support",
+      "original_detector_requires_review": true,
+      "evidence": "CT-only axial visual review at fixed 60percent slice: offset0 displays soft tissues saturated, offset1024 restores normal tissue contrast; raw air peak24or32, no negative air except<=-1500 sentinel, raw tissue mode near1024; no GT or prediction used"
+    },
+    {
+      "id": "R9",
+      "pipeline_id": "Rider_R9",
+      "image_sha256": "383863ab12d938bd5f4e39891c2e2ef57270f1663acf3c64d4fa7b611a5b20f4",
+      "offset_subtract": 1024.0,
+      "original_detector_rule": "positive_air_without_spatial_peak_and_contrast_support",
+      "original_detector_requires_review": true,
+      "evidence": "CT-only axial visual review at fixed 60percent slice: offset0 displays soft tissues saturated, offset1024 restores normal tissue contrast; raw air peak24or32, no negative air except<=-1500 sentinel, raw tissue mode near1024; no GT or prediction used"
+    }
+  ],
+  "release_note": "CT-only review rationale retained; private review images are not distributed. Original NRRD image hashes and detector identity are preserved."
+}

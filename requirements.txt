@@ -1,0 +1,6 @@
+# Tested Python 3.11 environment: install torch==2.7.1+cu128 separately.
+# Primary packages are pinned; this is not a complete transitive lock file.
+numpy==1.26.4
+scipy==1.15.3
+scikit-image==0.25.2
+SimpleITK==2.5.2

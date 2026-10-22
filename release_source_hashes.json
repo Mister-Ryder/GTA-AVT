@@ -1,0 +1,30 @@
+{
+  "release_stage": "unpublished scaffold; results pending",
+  "source_identity": "byte-identical copy of frozen experimental code",
+  "files": {
+    "common.py": "79edd4ce7623632c602b33124d4653a28d7cb41ee9ae7a0ee4e664a0efba5d5a",
+    "data.py": "9ad4c237e2b0e7e1fdde00391ebba8dc320b3001cc4ee68c04ca23e64e5f62cf",
+    "evaluate.py": "b50ced9813fe14f923af4e9773606c5ca7d275583fffbdd86d1dd7ca5284155d",
+    "faithful_model.py": "c02a222dc92b231cbaf5a3768217028ee74567d166e09d2df979c9ebdff72337",
+    "faithful_smoke.py": "5b83ceb0654234e79a0189530e118d2cedf19e8dc376eb9e7f980e1d6ac56129",
+    "geometry.py": "456f72da13e17dc877ab0a8af8567c4710cd39aca7141066a4b22b68f65e8ac8",
+    "inference.py": "a30b7511b6272f627bd71c9a62c1b068fc3f1c2d3ff0f5e81bd45b15828f6805",
+    "intensity.py": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a",
+    "losses.py": "c3eafe2d492444d5b909d0597ca04459b2df812c9c8723597c75928298afc87d",
+    "metrics.py": "c729a6f4894758407ab3955889f6db60f8f92a724d883b83c9169a81f2fd96ec",
+    "model.py": "59f4cdd9823e11bdd94d6c2d0ebd4c68fcd237c656040ad9fef365323af4d9ca",
+    "prepare.py": "1cf125da4837b100d8c669c7896272c81582f3b0455fb5213af271d6e9fda6e0",
+    "smoke.py": "c1c26685249638a0cf56408cf067cffffab495ee92395dd3ac42fc88e63f71ee",
+    "train.py": "5f60d60fa21fe7032298e9bb3c4a2dbdd7ce27b96fb5ca8990d0b54cf7e497a6",
+    "historical/NaviAirway-MIT.txt": "a8d637dcbcd086a0072c4394565c715f88d0327f3b927067c0e596579cfcfd1c",
+    "historical/provenance.json": "44cc0176c30adb08e83b00a0976183f9d66d6df8ff3e9661f72637b3521430b8",
+    "historical/source_hashes.json": "f792cc0ed802ab119ef173870390b2c015d8d2727eee94d499614876a4dbdd27",
+    "historical/THIRD_PARTY_NOTICES.md": "511bb82ea8773e30f58c0ea5531d187708cde071fd17c213824f4bcc75f8be3b",
+    "historical/__init__.py": "275f71602236a43c1b6288874186ef8ec11077124051b2733d3b95b9dc315ecb",
+    "historical/func/AnatomicalClassifier.py": "f5288c74ce71db97eca63f9665e29dfb0099aa010326ce7d6748377bc0156222",
+    "historical/func/AnatomicalFusionModules.py": "7309281bb296eb7d861050f5ead6b563823b8393addf6ff7c18a594225030b01",
+    "historical/func/EnhancedAirwaySegmentation2gau.py": "13808eeac5c23d084104d18e4b8425c01ba035b84168d1dc6a69cc6a25de28fc",
+    "historical/func/model_arch_model10.py": "55d51ea850efd2b31aa07acd68ad5e24f64fafe6a714d26dc357919f639f3003",
+    "historical/func/__init__.py": "8b611c2073b7bec1691a687085deb8707402d6063f6625dc737f3b62599f24b3"
+  }
+}

@@ -1,0 +1,20 @@
+GTA-AVT research source scaffold
+
+This release contains an AVT wrapper and experiment utilities together with
+historical GTAirway sources. The four historical sources listed in
+code/historical/source_hashes.json remain byte-identical to their source
+snapshot. code/historical/provenance.json explains the wrapper differences.
+
+Some historical code descends from NaviAirway by Anton Wang (2022). Its original
+MIT copyright and license are preserved in code/historical/NaviAirway-MIT.txt;
+see code/historical/THIRD_PARTY_NOTICES.md for the scope and lineage caveat.
+
+That upstream MIT notice does not establish that every later GTAirway addition
+or this entire repository is MIT-licensed. No additional project-wide license
+choice is made in this scaffold. Preserve the included notices and review the
+applicable permissions before redistributing components under a new license.
+
+Dataset rights are separate. AVT data are obtained from their official Figshare
+record and underlying collections; no images or dataset license are included.
+
+This scaffold contains no trained weights or completed AVT result claim.

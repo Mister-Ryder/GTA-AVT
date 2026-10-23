@@ -41,7 +41,7 @@ architecture requires its own algorithm description and validation; retaining
 only an anatomical motivation would justify “GTA-inspired,” rather than the
 identity or evidence of the original implementation.
 
-The present AVT instance retains the historical backbone, independent attribute
+The historical minimal4 AVT instance retains the historical backbone, independent attribute
 encoder, GAAM/SAAM convolutional paths and guidance fusion. It uses physical
 centreline-radius composition and operational junction-neighbourhood composition
 with soft condition arithmetic. Each patch shares its condition vectors: this
@@ -53,7 +53,7 @@ exist. Random joint training and differentiable soft conditions differ from the
 historical training procedure and hard decisions. The airway results therefore
 do not validate the AVT soft formulas or their individual mechanisms.
 
-The current four-model study answers two limited questions separately. MAIN
+That four-model study answers two limited questions separately. MAIN
 A-minus-C tests specialized operations and predicted conditioning jointly; C
 also receives the same auxiliary supervision. SECOND bridge-minus-constant
 tests the overall predicted-condition path, including empty mass, nonempty
@@ -68,6 +68,45 @@ predicted-versus-constant Dice contrast, with coverage/error trade-offs retained
 It does not establish stable overall value of informative conditions or a
 single-component causal effect. One split/seed and unverified subject independence
 remain limitations; mixed or negative evidence must narrow the claim.
+
+The next-stage [learnable interaction](../reports/next_stage_learnable_preflight_20261023/README.txt)
+is a separately named realization of the same attribute-to-feature hypothesis.
+It retains the original constant GAAM output `G0` and learns
+`Y = G0 + alpha * G0 * tanh(b + w*c)` at the same feature site. The predicted
+raw fine-class probability `c=(1-q)*r_f`, including predicted nonempty mass,
+can select signed channel gains; zero-initialized
+`b,w` preserve the starting output. This is an explicit change to the conditional
+operator and needs its own evidence. The condition comes from the same CT as the
+segmentation features, so the experiment tests how the model processes that
+input, rather than an additional source of information at inference.
+
+The new Clearn control learns the same parameters with constant `c=.2`.
+It is distinct from historical ordinary fusion C. Both new arms inherit the same
+warmstart and receive the same attribute losses and gradual introduction of the
+interaction. Their difference tests predicted versus constant conditioning in
+this realization; it does not isolate attribute supervision or the value of the
+training schedule. The independent U/K contrast addresses attribute supervision.
+Case dispersion and two same-seed platform blocks do not measure training-seed
+variance or establish zero-shot behavior. Fixed-endpoint results are pending.
+
+A useful predicted-condition contrast would still need evidence that the
+predicted composition has the stated meaning and that its correspondence to the
+input matters. The fixed TRAIN diagnostic preserves each patch's predicted
+empty mass while re-pairing its conditional composition. It retains all original
+cases and distinguishes unsupported interventions from measured zero effects.
+It does not preserve the raw-condition marginal distribution, and its seen-TRAIN
+results cannot establish independent generalization or a complete causal
+decomposition. Auxiliary supervision, static modulation, variable modulation and
+anatomical correspondence therefore remain distinct claims.
+
+Gaussian-field supervision is a further geometric training constraint. The
+[completed constant-condition GDF pair](../reports/next_stage_GDF_VAL_20261023/readout.txt)
+failed its continuation gate, with coverage and tail tradeoffs retained. The
+[older global joint engineering check](../reports/next_stage_global_joint_engineering_20261023/README.txt)
+demonstrates one combined update for that named operator only. A complete newer
+interaction-plus-GDF candidate requires a separately identified implementation
+and verification; neither interface compatibility nor a successful engineering
+step establishes its scientific benefit.
 
 See the [adaptation boundaries](adaptation_boundaries.md),
 [v2 recipe](common_recipe_v2.md), [four-model scope](minimal4_scope_20261022.md)

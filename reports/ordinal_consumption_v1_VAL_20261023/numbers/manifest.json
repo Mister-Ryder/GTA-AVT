@@ -1,0 +1,70 @@
+{
+  "schema": "GTA-AVT-ordinal-public-numeric-manifest-v1",
+  "certificate_decision": "terminal_failure_unsealing_only",
+  "candidate_claim_eligible": false,
+  "scientific_success": false,
+  "files": {
+    "recompute.py": {
+      "sha256": "e26a2e587c147075670b72a0a63875cb4e521b4691379562d7c0a5a03acc6c43",
+      "bytes": 36359
+    },
+    "protocol.json": {
+      "sha256": "478276000b84a941ec5c59083eba53a852d1a97f8f227b93def1cdcc852ffb47",
+      "bytes": 19984
+    },
+    "numerical_null_addendum.json": {
+      "sha256": "73f394afb2513dd8043993edb820b7832377dcb5ddaadd9aa3950c630dca250b",
+      "bytes": 3883
+    },
+    "arithmetic_identity.json": {
+      "sha256": "1df38dd6e3fad298be9ad61bc2d351413b156c540319bb17544b6eee96fe1e34",
+      "bytes": 3533
+    },
+    "expected_summary.json": {
+      "sha256": "6a4f9949863312feb99a2b7df48c1e39a39ac0395fe0f0c521342007e0b72c13",
+      "bytes": 911657
+    },
+    "README.txt": {
+      "sha256": "2b776ed96ef6d6e0ca351689ba0fe8410ae3e9916d84b1caee8490945969cd02",
+      "bytes": 1977
+    },
+    "blocks/A_PRIMARY/native_case_metrics.json": {
+      "sha256": "b74c5f166445cee6c598b2f0d9a95b31991c03654e247e1dad770ab13d5d1ba4",
+      "bytes": 22799
+    },
+    "blocks/A_PRIMARY/prediction_rows.json": {
+      "sha256": "251bc22478713af83ee1399a0f2d0166348ca450e28f319a4fbc7682fc5354f1",
+      "bytes": 433233
+    },
+    "blocks/A_PRIMARY/patch_rows.json": {
+      "sha256": "9032349a9696769f43d054f940cae1f6050f733e7d959db19d117d9867128026",
+      "bytes": 8616422
+    },
+    "blocks/B_REPLICATION/native_case_metrics.json": {
+      "sha256": "50f2d8acde2f16ca6f687616a05966e7b2ba47046e8a0a959549afd75d457c44",
+      "bytes": 22767
+    },
+    "blocks/B_REPLICATION/prediction_rows.json": {
+      "sha256": "ed5a51649d40615f04d57ef8704d3aae877c27b27efc629b31c0c002bf339d0e",
+      "bytes": 433078
+    },
+    "blocks/B_REPLICATION/patch_rows.json": {
+      "sha256": "1feafff60e07806bb321425ae4596b3efde06b707dc4baf84a01bd3cfa42e689",
+      "bytes": 8628270
+    },
+    "blocks/C_LOCKED_CONFIRMATION/native_case_metrics.json": {
+      "sha256": "9b9ac7374820a3f4196771d5db3a3ff724a59a5e548b0639b75b95d15a33c78c",
+      "bytes": 22791
+    },
+    "blocks/C_LOCKED_CONFIRMATION/prediction_rows.json": {
+      "sha256": "ddc049e95ae2acf5511c032aea0ab0e84cdc7c779d95196341c990d6e9a71ccd",
+      "bytes": 433124
+    },
+    "blocks/C_LOCKED_CONFIRMATION/patch_rows.json": {
+      "sha256": "9ab20c6589e42815e63a460c25ea59b0792c0d8cc8736f5244e9a63c6d439727",
+      "bytes": 8614503
+    }
+  },
+  "numeric_scope": "Same reused8 native cases;48 prediction records;576 derived TRAIN records per block",
+  "publication_performed": false
+}

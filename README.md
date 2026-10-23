@@ -250,11 +250,22 @@ is 1.95% worse than its own baseline on the same probe patches. All 55,294 ancho
 are retained and the cross-grid target error/signal ratio is 0.02754, below 0.25.
 These are attribute-information and implementation checks, **not segmentation efficacy**.
 
-Three matched same-device constant/dynamic pairs are running with fixed endpoints.
-The third block is locked for confirmation. No endpoint outcomes are reported yet;
-new seeds on previously used development cases do not establish blind-patient or
-zero-shot generalization. Both fixed condition-correspondence diagnostics and all
-utility/protection gates remain required. The numerical-null addendum only prevents
-FP32 reconstruction rounding from being counted as a meaningful intervention.
+All three matched same-device pairs completed their fixed 2,000-update endpoints.
+The [complete result and numerical package](reports/ordinal_consumption_v1_VAL_20261023/README.md)
+retain negative evidence: dynamic-minus-constant Dice changes were -0.5125,
++0.1755 and +0.0925 pp, with clDice changes -1.2892, +0.4935 and +1.6580 pp.
+A/B utility gates failed. The locked third block passed utility but failed both
+correspondence gates, as did A/B; supported correct-minus-permuted Dice effects
+were only about 0.00035–0.00130 pp. Dynamic efficacy remains unverified.
+The third block cannot rescue the failed candidate. These reuse VAL8 and one
+common pretrained state; they do not establish blind-patient or zero-shot behavior.
+The numerical-null addendum and narrow cross-platform variance comparison repair
+do not change any scientific gate or measured effect.
+
+The [pretraining provenance audit and bounded next question](reports/ordinal_consumption_v1_VAL_20261023/predictor_pretraining_zh.txt)
+clarify that the common state came from 10,000 updates of joint segmentation and
+attribute training, followed by 2,000 joint updates here. Independent classifier
+pretraining to convergence was not performed. A stable independently prepared
+predictor is a new training hypothesis, not an established explanation or result.
 
 The [ordinal implementation and isolated-source exporter](docs/reproduce_ordinal_source.txt) are now published with separate public/private identities. The [Chinese rationale](reports/ordinal_consumption_v1_prerequisites_20261023/rationale_zh.txt) explains the attribute choice, conditional consumption tests and limits. Public mapped-source GPU execution remains unclaimed.

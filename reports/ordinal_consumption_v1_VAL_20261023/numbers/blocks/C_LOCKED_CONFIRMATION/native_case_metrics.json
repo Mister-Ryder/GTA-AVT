@@ -1,0 +1,758 @@
+{
+  "C_ord": [
+    {
+      "case_id": "Dongyang_D2",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.7816198689308195,
+      "cldice": 0.8019326008921107,
+      "centerline_recall": 0.7671130952380952,
+      "centerline_precision": 0.8400633412509897,
+      "precision": 0.9632232381709921,
+      "recall": 0.6576318337611239,
+      "fp_ml": 11.432627162417848,
+      "fn_ml": 155.8870555130211,
+      "assd_mm": 6.799122247865333,
+      "hd95_mm": 60.11529076525637,
+      "fp_voxels": 9802,
+      "fn_voxels": 133653,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 217,
+          "centerline_recall": 0.3640552995391705
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 476,
+          "centerline_recall": 0.8676470588235294
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 221,
+          "centerline_recall": 0.7782805429864253
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 430,
+          "centerline_recall": 0.8534883720930233
+        },
+        "nonjunction": {
+          "support_nodes": 991,
+          "centerline_recall": 0.7608476286579213
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 150,
+          "centerline_recall": 0.8333333333333334
+        }
+      }
+    },
+    {
+      "case_id": "Dongyang_D5",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.890229548727323,
+      "cldice": 0.6194923271949937,
+      "centerline_recall": 0.7744610281923715,
+      "centerline_precision": 0.5162011173184358,
+      "precision": 0.8560020738230422,
+      "recall": 0.9273082191780821,
+      "fp_ml": 25.25614322994875,
+      "fn_ml": 11.769196403927381,
+      "assd_mm": 8.015673789593388,
+      "hd95_mm": 84.6997445568997,
+      "fp_voxels": 22775,
+      "fn_voxels": 10613,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 90,
+          "centerline_recall": 0.3
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 191,
+          "centerline_recall": 0.675392670157068
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 185,
+          "centerline_recall": 0.9405405405405406
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 137,
+          "centerline_recall": 1.0
+        },
+        "nonjunction": {
+          "support_nodes": 461,
+          "centerline_recall": 0.7440347071583514
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 80,
+          "centerline_recall": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "KiTS_K13",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.8614573949767046,
+      "cldice": 0.74428832316169,
+      "centerline_recall": 0.8410372040586246,
+      "centerline_precision": 0.6675020885547202,
+      "precision": 0.8578676775568866,
+      "recall": 0.8650772807299114,
+      "fp_ml": 54.410858154296875,
+      "fn_ml": 51.220428466796875,
+      "assd_mm": 8.752252556013337,
+      "hd95_mm": 125.8309538523739,
+      "fp_voxels": 14735,
+      "fn_voxels": 13871,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 29,
+          "centerline_recall": 0.6896551724137931
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 188,
+          "centerline_recall": 0.8670212765957447
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 350,
+          "centerline_recall": 0.7428571428571429
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 320,
+          "centerline_recall": 0.946875
+        },
+        "nonjunction": {
+          "support_nodes": 730,
+          "centerline_recall": 0.8164383561643835
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 73,
+          "centerline_recall": 0.9726027397260274
+        }
+      }
+    },
+    {
+      "case_id": "KiTS_K15",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.8757058904549837,
+      "cldice": 0.6995663618520153,
+      "centerline_recall": 0.713091922005571,
+      "centerline_precision": 0.6865443425076453,
+      "precision": 0.9139095852998251,
+      "recall": 0.8405680541171805,
+      "fp_ml": 20.42454246520995,
+      "fn_ml": 41.124746627807596,
+      "assd_mm": 6.821227681832603,
+      "hd95_mm": 105.87726973295298,
+      "fp_voxels": 7187,
+      "fn_voxels": 14471,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 55,
+          "centerline_recall": 0.38181818181818183
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 292,
+          "centerline_recall": 0.5582191780821918
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 166,
+          "centerline_recall": 0.8373493975903614
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 205,
+          "centerline_recall": 0.9219512195121952
+        },
+        "nonjunction": {
+          "support_nodes": 547,
+          "centerline_recall": 0.7276051188299817
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 90,
+          "centerline_recall": 0.6777777777777778
+        }
+      }
+    },
+    {
+      "case_id": "KiTS_K18",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.9183207196915607,
+      "cldice": 0.8099053345991181,
+      "centerline_recall": 0.9178217821782179,
+      "centerline_precision": 0.7246963562753036,
+      "precision": 0.8935419329739344,
+      "recall": 0.9445129831982141,
+      "fp_ml": 43.09875,
+      "fn_ml": 21.25125,
+      "assd_mm": 4.420720746889713,
+      "hd95_mm": 55.333505776747,
+      "fp_voxels": 15324,
+      "fn_voxels": 7556,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 64,
+          "centerline_recall": 0.828125
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 449,
+          "centerline_recall": 0.8463251670378619
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 174,
+          "centerline_recall": 0.9827586206896551
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 323,
+          "centerline_recall": 1.0
+        },
+        "nonjunction": {
+          "support_nodes": 882,
+          "centerline_recall": 0.9240362811791383
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 41,
+          "centerline_recall": 1.0
+        }
+      }
+    },
+    {
+      "case_id": "KiTS_K8",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.7341074568390743,
+      "cldice": 0.36249645036991257,
+      "centerline_recall": 0.5455580865603644,
+      "centerline_precision": 0.27142124166239096,
+      "precision": 0.6756780240906277,
+      "recall": 0.8035988787412967,
+      "fp_ml": 179.12036041259765,
+      "fn_ml": 91.20381646728515,
+      "assd_mm": 15.525423806060271,
+      "hd95_mm": 99.1409649031709,
+      "fp_voxels": 89580,
+      "fn_voxels": 45612,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 31,
+          "centerline_recall": 0.1935483870967742
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 284,
+          "centerline_recall": 0.1936619718309859
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 220,
+          "centerline_recall": 0.5318181818181819
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 343,
+          "centerline_recall": 0.8775510204081632
+        },
+        "nonjunction": {
+          "support_nodes": 654,
+          "centerline_recall": 0.5229357798165137
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 104,
+          "centerline_recall": 0.8173076923076923
+        }
+      }
+    },
+    {
+      "case_id": "Rider_R10",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.8991159669102817,
+      "cldice": 0.7907098590639391,
+      "centerline_recall": 0.8430789560621077,
+      "centerline_precision": 0.744466237041188,
+      "precision": 0.8683383023007256,
+      "recall": 0.932155592257223,
+      "fp_ml": 86.78491973876953,
+      "fn_ml": 41.65809631347656,
+      "assd_mm": 3.6380909174207807,
+      "hd95_mm": 36.58095821159214,
+      "fp_voxels": 280866,
+      "fn_voxels": 134820,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 537,
+          "centerline_recall": 0.62756052141527
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 1106,
+          "centerline_recall": 0.7703435804701627
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 268,
+          "centerline_recall": 0.9216417910447762
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 1116,
+          "centerline_recall": 1.0
+        },
+        "nonjunction": {
+          "support_nodes": 1965,
+          "centerline_recall": 0.9312977099236641
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 527,
+          "centerline_recall": 0.5597722960151803
+        }
+      }
+    },
+    {
+      "case_id": "Rider_R9",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.8947908595184079,
+      "cldice": 0.8416679797052005,
+      "centerline_recall": 0.8947128532360985,
+      "centerline_precision": 0.7945608232267549,
+      "precision": 0.8952790976539762,
+      "recall": 0.8943031536113937,
+      "fp_ml": 36.29976947331168,
+      "fn_ml": 36.6780470919829,
+      "assd_mm": 3.8775614219088306,
+      "hd95_mm": 24.672397964807267,
+      "fp_voxels": 104885,
+      "fn_voxels": 105978,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 19,
+          "centerline_recall": 0.3157894736842105
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 513,
+          "centerline_recall": 0.5867446393762183
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 978,
+          "centerline_recall": 0.9938650306748467
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 684,
+          "centerline_recall": 1.0
+        },
+        "nonjunction": {
+          "support_nodes": 1942,
+          "centerline_recall": 0.893923789907312
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 208,
+          "centerline_recall": 0.9326923076923077
+        }
+      }
+    }
+  ],
+  "D_ord": [
+    {
+      "case_id": "Dongyang_D2",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.7733416335348585,
+      "cldice": 0.7903336486210798,
+      "centerline_recall": 0.7447916666666666,
+      "centerline_precision": 0.8418079096045198,
+      "precision": 0.9632144835093482,
+      "recall": 0.6459995184154845,
+      "fp_ml": 11.23318018784394,
+      "fn_ml": 161.18348072670602,
+      "assd_mm": 6.848589223178492,
+      "hd95_mm": 60.67941025438515,
+      "fp_voxels": 9631,
+      "fn_voxels": 138194,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 217,
+          "centerline_recall": 0.3087557603686636
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 476,
+          "centerline_recall": 0.8298319327731093
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 221,
+          "centerline_recall": 0.7737556561085973
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 430,
+          "centerline_recall": 0.8558139534883721
+        },
+        "nonjunction": {
+          "support_nodes": 991,
+          "centerline_recall": 0.7346115035317861
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 150,
+          "centerline_recall": 0.8333333333333334
+        }
+      }
+    },
+    {
+      "case_id": "Dongyang_D5",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.8905678644085536,
+      "cldice": 0.6882312456985549,
+      "centerline_recall": 0.8291873963515755,
+      "centerline_precision": 0.5882352941176471,
+      "precision": 0.8522617721075234,
+      "recall": 0.9324794520547945,
+      "fp_ml": 26.171019988003973,
+      "fn_ml": 10.931945552616236,
+      "assd_mm": 7.489923922763888,
+      "hd95_mm": 66.0934106262448,
+      "fp_voxels": 23600,
+      "fn_voxels": 9858,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 90,
+          "centerline_recall": 0.3333333333333333
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 191,
+          "centerline_recall": 0.806282722513089
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 185,
+          "centerline_recall": 0.9675675675675676
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 137,
+          "centerline_recall": 1.0
+        },
+        "nonjunction": {
+          "support_nodes": 461,
+          "centerline_recall": 0.8156182212581344
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 80,
+          "centerline_recall": 0.9
+        }
+      }
+    },
+    {
+      "case_id": "KiTS_K13",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.850439545155891,
+      "cldice": 0.7474800422729859,
+      "centerline_recall": 0.826381059751973,
+      "centerline_precision": 0.6823324630113142,
+      "precision": 0.8387856656323318,
+      "recall": 0.8624218195259078,
+      "fp_ml": 62.926055908203125,
+      "fn_ml": 52.228515625,
+      "assd_mm": 9.80451603155991,
+      "hd95_mm": 116.74115515218728,
+      "fp_voxels": 17041,
+      "fn_voxels": 14144,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 29,
+          "centerline_recall": 0.6896551724137931
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 188,
+          "centerline_recall": 0.8776595744680851
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 350,
+          "centerline_recall": 0.7
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 320,
+          "centerline_recall": 0.946875
+        },
+        "nonjunction": {
+          "support_nodes": 730,
+          "centerline_recall": 0.8068493150684931
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 73,
+          "centerline_recall": 0.8904109589041096
+        }
+      }
+    },
+    {
+      "case_id": "KiTS_K15",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.8755782948563094,
+      "cldice": 0.7364306877639791,
+      "centerline_recall": 0.7395543175487466,
+      "centerline_precision": 0.7333333333333333,
+      "precision": 0.9066548672566371,
+      "recall": 0.8465614877817685,
+      "fp_ml": 22.482058639526358,
+      "fn_ml": 39.57876762390134,
+      "assd_mm": 6.28511127288097,
+      "hd95_mm": 98.94767633169674,
+      "fp_voxels": 7911,
+      "fn_voxels": 13927,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 55,
+          "centerline_recall": 0.4
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 292,
+          "centerline_recall": 0.6164383561643836
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 166,
+          "centerline_recall": 0.8433734939759037
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 205,
+          "centerline_recall": 0.9219512195121952
+        },
+        "nonjunction": {
+          "support_nodes": 547,
+          "centerline_recall": 0.7495429616087751
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 90,
+          "centerline_recall": 0.7111111111111111
+        }
+      }
+    },
+    {
+      "case_id": "KiTS_K18",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.918204884575829,
+      "cldice": 0.8393033450495636,
+      "centerline_recall": 0.9148514851485149,
+      "centerline_precision": 0.7752808988764045,
+      "precision": 0.890769241391691,
+      "recall": 0.9473842674186347,
+      "fp_ml": 44.49375,
+      "fn_ml": 20.1515625,
+      "assd_mm": 4.295164662590857,
+      "hd95_mm": 64.0043943803861,
+      "fp_voxels": 15820,
+      "fn_voxels": 7165,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 64,
+          "centerline_recall": 0.859375
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 449,
+          "centerline_recall": 0.8530066815144766
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 174,
+          "centerline_recall": 0.9367816091954023
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 323,
+          "centerline_recall": 1.0
+        },
+        "nonjunction": {
+          "support_nodes": 882,
+          "centerline_recall": 0.9070294784580499
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 41,
+          "centerline_recall": 1.0
+        }
+      }
+    },
+    {
+      "case_id": "KiTS_K8",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.7456365564476906,
+      "cldice": 0.2958809599871643,
+      "centerline_recall": 0.5239179954441914,
+      "centerline_precision": 0.2061524334251607,
+      "precision": 0.6941754599541995,
+      "recall": 0.8053384659768601,
+      "fp_ml": 164.75953848266602,
+      "fn_ml": 90.39599523925781,
+      "assd_mm": 17.114547077833407,
+      "hd95_mm": 103.29104945122167,
+      "fp_voxels": 82398,
+      "fn_voxels": 45208,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 31,
+          "centerline_recall": 0.22580645161290322
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 284,
+          "centerline_recall": 0.15492957746478872
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 220,
+          "centerline_recall": 0.4909090909090909
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 343,
+          "centerline_recall": 0.8775510204081632
+        },
+        "nonjunction": {
+          "support_nodes": 654,
+          "centerline_recall": 0.5015290519877675
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 104,
+          "centerline_recall": 0.7596153846153846
+        }
+      }
+    },
+    {
+      "case_id": "Rider_R10",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.9033958560828919,
+      "cldice": 0.8295637856476402,
+      "centerline_recall": 0.8434093161546086,
+      "centerline_precision": 0.8161654937086799,
+      "precision": 0.8684333436092097,
+      "recall": 0.9412915900510972,
+      "fp_ml": 87.56264877319336,
+      "fn_ml": 36.04837417602539,
+      "assd_mm": 3.468203253152609,
+      "hd95_mm": 35.1865320970343,
+      "fp_voxels": 283383,
+      "fn_voxels": 116665,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 537,
+          "centerline_recall": 0.6294227188081937
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 1106,
+          "centerline_recall": 0.7703435804701627
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 268,
+          "centerline_recall": 0.9216417910447762
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 1116,
+          "centerline_recall": 1.0
+        },
+        "nonjunction": {
+          "support_nodes": 1965,
+          "centerline_recall": 0.9307888040712469
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 527,
+          "centerline_recall": 0.5597722960151803
+        }
+      }
+    },
+    {
+      "case_id": "Rider_R9",
+      "evaluation_grid": "original CT",
+      "fixed_threshold": 0.5,
+      "condition_mode": "predicted",
+      "postprocessing": "none",
+      "empty_prediction": false,
+      "empty_truth": false,
+      "dice": 0.9055836701677473,
+      "cldice": 0.8754762326715498,
+      "centerline_recall": 0.9038286235186873,
+      "centerline_precision": 0.8488485241647745,
+      "precision": 0.9067631280279584,
+      "recall": 0.9044072766441267,
+      "fp_ml": 32.27023030205013,
+      "fn_ml": 33.17179772806889,
+      "assd_mm": 3.2418423484207386,
+      "hd95_mm": 23.03467871922531,
+      "fp_voxels": 93242,
+      "fn_voxels": 95847,
+      "geometry_groups": {
+        "radius_le_2mm": {
+          "support_nodes": 19,
+          "centerline_recall": 0.3684210526315789
+        },
+        "radius_2_to_4mm": {
+          "support_nodes": 513,
+          "centerline_recall": 0.6237816764132553
+        },
+        "radius_4_to_8mm": {
+          "support_nodes": 978,
+          "centerline_recall": 0.9938650306748467
+        },
+        "radius_gt_8mm": {
+          "support_nodes": 684,
+          "centerline_recall": 1.0
+        },
+        "nonjunction": {
+          "support_nodes": 1942,
+          "centerline_recall": 0.9042224510813595
+        },
+        "junction_neighbourhood": {
+          "support_nodes": 208,
+          "centerline_recall": 0.9326923076923077
+        }
+      }
+    }
+  ]
+}

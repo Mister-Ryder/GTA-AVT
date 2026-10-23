@@ -1,0 +1,75 @@
+{
+  "schema": "GTA-AVT-ordinal-public-pure-arithmetic-identity-v1",
+  "functions": {
+    "require": {
+      "source_label": "mechanism",
+      "source_sha256": "31f7b20d315f92a64f30cee6589a362d0e160ff00b09b1b540b726fc8d189d19",
+      "canonical_AST_sha256": "5e0c96b3da2c4221d8cda974a6716a1f31fd945cb39248f24e894c5853ccec96"
+    },
+    "f32": {
+      "source_label": "mechanism",
+      "source_sha256": "31f7b20d315f92a64f30cee6589a362d0e160ff00b09b1b540b726fc8d189d19",
+      "canonical_AST_sha256": "5d3bbfead9533e7aa3caef3f7e687ddab08f88dc1474eae64efc722149e057e1"
+    },
+    "finite_tree": {
+      "source_label": "mechanism",
+      "source_sha256": "31f7b20d315f92a64f30cee6589a362d0e160ff00b09b1b540b726fc8d189d19",
+      "canonical_AST_sha256": "285751888042388d743165bfbd882bc55bb02c09919172304a187917dbee6300"
+    },
+    "permutations": {
+      "source_label": "mechanism",
+      "source_sha256": "31f7b20d315f92a64f30cee6589a362d0e160ff00b09b1b540b726fc8d189d19",
+      "canonical_AST_sha256": "0d2d2fdc0e13ac461da9f575e17e65c904af1bb6970afa48953243f5313ae7aa"
+    },
+    "average": {
+      "source_label": "mechanism",
+      "source_sha256": "31f7b20d315f92a64f30cee6589a362d0e160ff00b09b1b540b726fc8d189d19",
+      "canonical_AST_sha256": "5cd4e804454a227d6d015d0bc94037a9aa66511c3c3530096a422f69660e4e0c"
+    },
+    "aggregate": {
+      "source_label": "mechanism",
+      "source_sha256": "31f7b20d315f92a64f30cee6589a362d0e160ff00b09b1b540b726fc8d189d19",
+      "canonical_AST_sha256": "7a156171662559a7b53dd050eca6e0c47dac756573896a287fffe301afb41b7d"
+    },
+    "summarize": {
+      "source_label": "mechanism",
+      "source_sha256": "31f7b20d315f92a64f30cee6589a362d0e160ff00b09b1b540b726fc8d189d19",
+      "canonical_AST_sha256": "a50593a1062204517adb15d5a2667917438b39ed74f6716c1588bc2802c7d1cb"
+    },
+    "dist": {
+      "source_label": "native_statistics",
+      "source_sha256": "7c3dd2a28147fdf1377230aadf0803b1bb22926eda1c9424348ee2029ac63c49",
+      "canonical_AST_sha256": "81463091d5ade14f19b8ffc5c02bd8751e8283ea2aa4a7a3824cb7f68cdf4cbc"
+    },
+    "scaled": {
+      "source_label": "native_statistics",
+      "source_sha256": "7c3dd2a28147fdf1377230aadf0803b1bb22926eda1c9424348ee2029ac63c49",
+      "canonical_AST_sha256": "09e214a85b0db83d078431075c1723eafdbbf871a5bccae655c37c0af08e608d"
+    },
+    "paired": {
+      "source_label": "native_statistics",
+      "source_sha256": "7c3dd2a28147fdf1377230aadf0803b1bb22926eda1c9424348ee2029ac63c49",
+      "canonical_AST_sha256": "5d069f8b6cf11f4ca3a7af89fa38d48f63cc7852afdc4a34cad820f427a29f06"
+    },
+    "count_summary": {
+      "source_label": "native_counts",
+      "source_sha256": "4119fdf77b5dbda74c41b4f89cdca7d9276a8ab3eefa74ca465dc7fbd88b3ee8",
+      "canonical_AST_sha256": "f9d61f67b5931b0269b65fd2ce7fdf20fa919a2f5a5c7d50c7f2c4f5b6cf862a"
+    },
+    "utility": {
+      "source_label": "utility",
+      "source_sha256": "b2d27de839fdf3ca8e700686088ec423452c6e81488387fac49db2f6427358fd",
+      "canonical_AST_sha256": "5e8744dd53a7aa161296a2306f47219cb7bcce400b77b4ef2ac0354788815646"
+    },
+    "metric": {
+      "source_label": "confusion_checks",
+      "source_sha256": "b4a793cf1ccb826cc2077e741a5cec9491f2f8daf8181c3d2c8893cdd01a6ed1",
+      "canonical_AST_sha256": "0031656be2939395633b6af632aa14a0630775377b07e4d5cb058e9bd81cb5f1"
+    }
+  },
+  "scientific_arithmetic_changed": false,
+  "canonical_AST_excludes": [
+    "type_comment",
+    "type_params"
+  ]
+}

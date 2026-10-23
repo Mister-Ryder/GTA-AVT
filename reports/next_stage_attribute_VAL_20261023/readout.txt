@@ -1,0 +1,11 @@
+This is an amended single-seed auxiliary-supervision pilot at the fixed10000-update endpoint.
+PRIMARY_U and AMENDED_K use constant conditions, GDF0, the same verified source33, random initialization and data protocol.
+The resource-only prelaunch amendment uses different physical GPUs with the same verified capability/software specification.
+The generic evaluation marker predicted does not change the configured constant condition-consumption path.
+Only the joint scale/structure auxiliary weights change:0/0 versus0.1/0.1.
+The pre-existing feature paths remain in both arms; no separate scale/structure-head or dynamic-condition effect is established.
+All8 absolute native-VAL case metrics, FP/FN counts and six geometry/support groups are retained. Nulls remain missing.
+No TEST, zero-shot, training-seed-variance, new-backbone or schedule comparison is claimed.
+Case SD and worst-two summaries describe this development set and are not significance tests.
+Prospective continuation gate passed: True.
+Run python recompute.py --check to verify the public arithmetic without private receipts or patient/model arrays.

@@ -203,6 +203,13 @@ Study partitions, training populations, 2D/3D inputs, resolution, optimization b
 
 ## Results and provenance
 
+The [stage synthesis and bounded next proposal (Chinese)](reports/next_stage_synthesis_20261023/readout_zh.txt)
+distinguishes three contributions. The [completed joint-auxiliary U/K pilot](reports/next_stage_attribute_VAL_20261023/readout.txt)
+improved mean Dice by 3.306pp and clDice by 3.356pp under constant conditions,
+with adverse fine-branch recall and case changes retained. This amended
+cross-physical-GPU single-seed pilot supports a limited supervision signal;
+it does not establish dynamic anatomical conditioning or zero-shot behavior.
+
 The [completed learnable-condition VAL study](reports/next_stage_learnable_VAL_20261023/README.txt)
 reports both prospectively declared platform blocks separately. Predicted versus
 constant conditions reduced mean Dice by 0.376 and 1.093 percentage points; both

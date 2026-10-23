@@ -12,8 +12,12 @@ At this documentation cutoff (23 October 2026):
   local files and configurations are traceability records, not positive results.
 - The 2,000-update Kp/Gp GDF pair completed and failed its screening gate;
   independent arithmetic review agrees. See the [GDF VAL report](../reports/next_stage_GDF_VAL_20261023/readout.txt).
-  The attribute-supervision U arm completed; its matched K arm remains running,
-  with no final paired result here.
+- The [completed U/K auxiliary-supervision pilot](../reports/next_stage_attribute_VAL_20261023/readout.txt)
+  passed its screening rule: Dice +3.306pp and clDice +3.356pp, with tail/false-
+  positive gains but lower fine-branch recall and four Dice declines. Its resource
+  amendment uses different physical GPUs with matched verified specifications;
+  single-seed device/optimization effects remain possible. Both arms consume
+  constant conditions. This does not establish useful dynamic conditioning.
 - The new global preflight passed actual CUDA128, batch2, FP32+AMP QA on
   an isolated source snapshot. See [engineering scope](../reports/next_stage_engineering_20261023/README.txt).
   No local preflight, exact checkpoint replay or efficacy is certified by that pass.
@@ -44,6 +48,9 @@ independent-patient gains, repeated-seed variance or whole-stage completion.
 
 Read [reproduction notes](../docs/reproduce_next_stage.txt) for prerequisites,
 reference versions, inventory scope and remaining exact-replay limitations.
+The [Chinese scientific synthesis and conditional next proposal](../reports/next_stage_synthesis_20261023/readout_zh.txt)
+separates the auxiliary-supervision signal, negative dynamic/GDF evidence and
+engineering completion. No additional formal experiment is launched by a pass.
 Of the original 22 next-stage artifacts (21 Python and one gate JSON), 21
 retain exact bytes; mechanism_probe.py changes only its reported GPU-origin
 label to reference. All 24 core artifacts and all model/trainer bytes are unchanged. The 46 deployed artifacts include the gate JSON;

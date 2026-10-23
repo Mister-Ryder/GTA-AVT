@@ -20,7 +20,11 @@ it does not authorize a new normalization, oracle variant or long run either.
 The 2000-update Kp/Gp GDF pair completed its fixed budget and failed its screening
 gate; independent numerical and scientific review agrees. The complete eight-case
 record is reports/next_stage_GDF_VAL_20261023/readout.txt.
-U/K is still running. No final U/K result or completed whole-stage claim is made.
+The original U/K fixed10000 endpoints now completed and passed the pilot rule;
+see reports/next_stage_attribute_VAL_20261023/readout.txt. This resource-amended
+cross-physical-GPU, single-seed comparison tests joint auxiliary supervision
+under constant conditions. Mean/tail gains coexist with fine-recall and case
+declines; it does not establish dynamic conditions or authorize extra training.
 The new global preflight actually passed CUDA128, batch2, FP32+AMP checks
 on an isolated 47-source snapshot, after fully hashing 144 TRAIN input/target
 files. This is implementation evidence, not a scientific benefit or complete
@@ -216,8 +220,12 @@ Missing prerequisites for exact endpoint reproduction
    readout/oracle/GDF-field diagnostics are separately reported at
    reports/next_stage_diagnostics_20261023/readout.txt. Their original experiment
    identities stay unchanged. GDF fixed-endpoint segmentation evidence passed
-   independent arithmetic review, with its negative gate retained; U/K remains in progress. This documentation
-   adds no new performance, stability or zero-shot claim.
+   independent arithmetic review, with its negative gate retained. U/K now has
+   a separate completed auxiliary-supervision readout. The later learnable
+   constant/predicted pairs completed on both declared platform blocks and failed
+   both continuation gates; reports/next_stage_learnable_VAL_20261023/README.txt
+   retains their native case metrics and supported TRAIN correspondence diagnostics.
+   This documentation adds no seed-variance or zero-shot claim.
 
 Raw data, weights, machine-specific receipts and unpublished manuscripts must
 remain outside a source publication. Actual evaluation still needs original CT

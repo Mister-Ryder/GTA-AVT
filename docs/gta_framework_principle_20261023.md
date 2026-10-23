@@ -93,6 +93,12 @@ warmstart and receive the same attribute losses and gradual introduction of the
 interaction. Their difference tests predicted versus constant conditioning in
 this realization; it does not isolate attribute supervision or the value of the
 training schedule. The independent U/K contrast addresses attribute supervision.
+That [completed amended pilot](../reports/next_stage_attribute_VAL_20261023/readout.txt)
+shows improved mean overlap, case tail and false-positive control with joint
+auxiliary supervision under constant conditions, while fine-branch recall and
+four case Dice values decline. It uses different matched-specification physical
+GPUs and one seed. No shuffled-label control separates label-specific semantics
+from generic auxiliary regularization; no separate head contribution is identified.
 Case dispersion and two same-seed platform blocks do not measure training-seed
 variance or establish zero-shot behavior. The [completed fixed-endpoint report](../reports/next_stage_learnable_VAL_20261023/README.txt)
 shows lower mean Dice and clDice with predicted conditions in both platform

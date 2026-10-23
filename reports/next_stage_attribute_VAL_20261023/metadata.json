@@ -1,0 +1,148 @@
+{
+  "schema": "GTA-AVT-public-amended-attribute-VAL-v1",
+  "release_status": "candidate_not_published",
+  "before_arm": "PRIMARY_U",
+  "after_arm": "AMENDED_K",
+  "case_ids": [
+    "Dongyang_D2",
+    "Dongyang_D5",
+    "KiTS_K13",
+    "KiTS_K15",
+    "KiTS_K18",
+    "KiTS_K8",
+    "Rider_R10",
+    "Rider_R9"
+  ],
+  "question": "Joint scale/structure auxiliary supervision under identical constant condition consumption: weights0/0 versus0.1/0.1.",
+  "fixed_update_budget": 10000,
+  "common_recipe": {
+    "seed": 20261023,
+    "max_steps": 10000,
+    "batch_size": 2,
+    "patch_size": 128,
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "gradient_clip": 12.0,
+    "foreground_probability": 0.5,
+    "conditioning": "constant",
+    "detach_conditions": true,
+    "gdf_seed": 20261023,
+    "gdf_weight": 0.0,
+    "gdf_normalization": "voxel",
+    "q0": 0.2,
+    "s0": 0.2,
+    "alpha_start": 0,
+    "alpha_ramp": 500,
+    "checkpoint_every": 500,
+    "inference_patch_size": 128,
+    "inference_batch_size": 2,
+    "inference_overlap": 0.5,
+    "save_validation_predictions": true,
+    "skip_validation": false,
+    "allow_tf32": false,
+    "sampler_step_offset": 0
+  },
+  "effective_condition_consumption": "Both frozen configured models consume the same constant probabilities; the generic evaluator marker predicted does not mean dynamic conditions are used.",
+  "arm_auxiliary_weights": {
+    "PRIMARY_U": {
+      "scale": 0.0,
+      "structure": 0.0
+    },
+    "AMENDED_K": {
+      "scale": 0.1,
+      "structure": 0.1
+    }
+  },
+  "physical_GPU_relationship": "Prespecified resource-only amendment: same verified capability/software specification, different physical GPUs.",
+  "amendment_preserves": "Original scientific source33, common random initialization, seed, optimizer/sampling/budget and native evaluation remain unchanged.",
+  "scientific_scope": "Single-seed amended pilot; device effects and nondeterministic backward variation are not excluded.",
+  "identity": {
+    "metric_files_sha256": {
+      "PRIMARY_U": {
+        "Dongyang_D2": "899194a8feb8bd91099a0c2c0811fce12dc8674bd781fec49436474713c5751f",
+        "Dongyang_D5": "87e0f70c017311607750aa6a0a991b1a9f573c79dcf582049b71a4b1edb5f101",
+        "KiTS_K13": "62b7e75f1cb9afaf0153c7228385ba65a933aa85f1e7f6b5bc8219ceb62da0fc",
+        "KiTS_K15": "490f27c006041860a3468e16e9d717d112997066a402484aa5d02b1c36980084",
+        "KiTS_K18": "a05080599080750295fc00d7d0ce864d3a8987f79e251d34d47eb55f0d9397f0",
+        "KiTS_K8": "82ba3cf5404e3c9445f3bd60473eadf2e684b6503b6b4a94cf2c81c8d7c0032c",
+        "Rider_R10": "cbf1b79a7967df0e98a4bb3620c2c69d2024e313896c6092889ecee09315b9e3",
+        "Rider_R9": "03a98862ec0164ec4a04ba756d5f47fa70b184dcac6c664dbf13010a0870e2ab"
+      },
+      "AMENDED_K": {
+        "Dongyang_D2": "b7f70481773f796bb24cb4b1905cd4b3fe7a4069105f98990cb5cb8d60fceabc",
+        "Dongyang_D5": "0b1c5876a4a45248cefb5254363d0b08e3054c4f018b59c3845068f44719dd66",
+        "KiTS_K13": "6ee2d1d4442852174ea43ac91be031113d532d42cc4fdfe7e299cfe2b55c1585",
+        "KiTS_K15": "0e8b796acae50d6dc1967b5aa1ddfc001694c1b801c7fc2503b9843c0bf4642c",
+        "KiTS_K18": "152ad658b9afefb97c467f12009d53b5dd1092e04fb9fe8009e4ba6978c3469d",
+        "KiTS_K8": "d8828ef1c938bf552f2662d09d5a3ac8f98296935b491b56f41c53bf203dfc92",
+        "Rider_R10": "7950b806e8e86fde5ec2318d2614b93ca9a6a4ea73ed56f3b565723d9d0b911f",
+        "Rider_R9": "b4ecc3581d4182968813acdf9408e875faed08330128a5b2b4bb625e20948eeb"
+      }
+    },
+    "scientific_source_sha256": {
+      "code/common.py": "79edd4ce7623632c602b33124d4653a28d7cb41ee9ae7a0ee4e664a0efba5d5a",
+      "code/data.py": "9ad4c237e2b0e7e1fdde00391ebba8dc320b3001cc4ee68c04ca23e64e5f62cf",
+      "code/evaluate.py": "b50ced9813fe14f923af4e9773606c5ca7d275583fffbdd86d1dd7ca5284155d",
+      "code/faithful_model.py": "c02a222dc92b231cbaf5a3768217028ee74567d166e09d2df979c9ebdff72337",
+      "code/faithful_smoke.py": "5b83ceb0654234e79a0189530e118d2cedf19e8dc376eb9e7f980e1d6ac56129",
+      "code/geometry.py": "456f72da13e17dc877ab0a8af8567c4710cd39aca7141066a4b22b68f65e8ac8",
+      "code/historical/NaviAirway-MIT.txt": "a8d637dcbcd086a0072c4394565c715f88d0327f3b927067c0e596579cfcfd1c",
+      "code/historical/THIRD_PARTY_NOTICES.md": "511bb82ea8773e30f58c0ea5531d187708cde071fd17c213824f4bcc75f8be3b",
+      "code/historical/__init__.py": "275f71602236a43c1b6288874186ef8ec11077124051b2733d3b95b9dc315ecb",
+      "code/historical/func/AnatomicalClassifier.py": "f5288c74ce71db97eca63f9665e29dfb0099aa010326ce7d6748377bc0156222",
+      "code/historical/func/AnatomicalFusionModules.py": "7309281bb296eb7d861050f5ead6b563823b8393addf6ff7c18a594225030b01",
+      "code/historical/func/EnhancedAirwaySegmentation2gau.py": "13808eeac5c23d084104d18e4b8425c01ba035b84168d1dc6a69cc6a25de28fc",
+      "code/historical/func/__init__.py": "8b611c2073b7bec1691a687085deb8707402d6063f6625dc737f3b62599f24b3",
+      "code/historical/func/model_arch_model10.py": "55d51ea850efd2b31aa07acd68ad5e24f64fafe6a714d26dc357919f639f3003",
+      "code/historical/provenance.json": "44cc0176c30adb08e83b00a0976183f9d66d6df8ff3e9661f72637b3521430b8",
+      "code/historical/source_hashes.json": "f792cc0ed802ab119ef173870390b2c015d8d2727eee94d499614876a4dbdd27",
+      "code/inference.py": "a30b7511b6272f627bd71c9a62c1b068fc3f1c2d3ff0f5e81bd45b15828f6805",
+      "code/intensity.py": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a",
+      "code/losses.py": "c3eafe2d492444d5b909d0597ca04459b2df812c9c8723597c75928298afc87d",
+      "code/metrics.py": "c729a6f4894758407ab3955889f6db60f8f92a724d883b83c9169a81f2fd96ec",
+      "code/model.py": "59f4cdd9823e11bdd94d6c2d0ebd4c68fcd237c656040ad9fef365323af4d9ca",
+      "code/prepare.py": "1cf125da4837b100d8c669c7896272c81582f3b0455fb5213af271d6e9fda6e0",
+      "code/smoke.py": "c1c26685249638a0cf56408cf067cffffab495ee92395dd3ac42fc88e63f71ee",
+      "code/train.py": "ec867cd4922a2a18ccf5cb7fbd23922c02a6ac8464f36f2f6bc61a843b35d461",
+      "next_stage/attribute_audit.py": "c312327b9105639b238a8766015a076f2cac8cd51a4cb91abcc1890e2a8f9e07",
+      "next_stage/gdf.py": "1d12a556b9e638e466e2104aaf34cf99120bdb716ff737ac73eb20cfb9b8c9e9",
+      "next_stage/gdf_checks.py": "d34ff18b8475753990f5896385d034415995eddb922566470df7f5791401ec75",
+      "next_stage/mechanism_probe.py": "8f988ab020c6e77100c014449c98367e7f5188f85d583e43c5fb7a9dda1c8430",
+      "next_stage/next_data.py": "d3d1d4f22097925b06f850f606becb9f240a007d86c8a380ec99043e03e961de",
+      "next_stage/prepare_gdf.py": "8003067d218ddb9b01e3c80e18f22e8f534c35a08d598979661cbf22de21c591",
+      "next_stage/stage_checks.py": "6513292727409dfd000e437c1223b1ec9ffad9ae9cf0af364cfdad811b5ad1c4",
+      "next_stage/stage_model.py": "bba378a8d384ddbe6694491bbabd3ef384cf3796f2e3eb6db647ef02ac965d7b",
+      "next_stage/stage_train.py": "c134b3b61a0c2a0f0ace7868464f2d1ec292f64e42e059d23e6373545043fa79"
+    },
+    "common_initialization": {
+      "state_tensor_digest": "bd141452e35dc19bc10daa1eab7ebac56b16cd0f7de5b187eec6fae91523eb6c",
+      "legacy_tensor_digest": "41e5ae4faff66af1245816bc0d953deb614d8cc0517938bb50c8bbde5215cd61",
+      "gdf_head_digest": "0456a8b04ef11f1b59c55516546c9267ff66538d2e70627875df1b48e7b43433"
+    },
+    "original_bundle_sha256": "80bb22b28214105c0b0c5f200fc60eb87210fbcb6ad581d34e144ce7d0c2fb0f"
+  },
+  "gate_thresholds": {
+    "minimum_single_case_Dice_delta_pp": -3,
+    "substantive_Dice_delta_pp": 0.3,
+    "substantive_clDice_delta_pp": 0.5,
+    "substantive_worst_two_delta_pp": 0.5,
+    "substantive_Dice_SD_reduction_pp": 1
+  },
+  "metric_protocol": {
+    "grid": "original CT",
+    "threshold": 0.5,
+    "postprocessing": "none",
+    "statistical_unit": "released case",
+    "sample_SD": "n-1 over cases; not training-seed variance",
+    "geometry": "GT-centerline group recall only; global FP/FN retained"
+  },
+  "limitations": [
+    "All8 development VAL cases were previously seen; no new blind TEST result.",
+    "Released cases may not be patient independent; no unseen-source zero-shot or seed-variance claim.",
+    "Both arms have the attribute encoder/head feature path and identical operators; only joint auxiliary weights differ.",
+    "This does not separately identify scale versus structure supervision or establish dynamic categorical conditioning.",
+    "No GDF supervision, new backbone, schedule comparison or asymptotic-convergence proof.",
+    "Original scientific33 digests identify the executed snapshot; the expanded public source tree is not claimed GPU-executed.",
+    "Derived-table arithmetic and bound acquisition consistency are not independent remote attestation."
+  ]
+}

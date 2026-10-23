@@ -18,11 +18,13 @@ At this documentation cutoff (23 October 2026):
   an isolated source snapshot. See [engineering scope](../reports/next_stage_engineering_20261023/README.txt).
   No local preflight, exact checkpoint replay or efficacy is certified by that pass.
 - A separately frozen [learnable-interaction study](../reports/next_stage_learnable_preflight_20261023/README.txt)
-  is training constant/predicted-condition pairs on two platforms, with the same
-  seed and a fixed 2,000-update budget per arm. Its support probe and engineering
-  checks passed; adverse attribute groups remain included. Clearn is a new
-  matched control, not historical ordinary fusion C. No fixed-endpoint result,
-  independent-seed variance estimate or full-GDF validation is supplied yet.
+  completed constant/predicted-condition pairs on two platforms, with the same
+  seed and a fixed 2,000-update budget per arm. The [complete VAL and TRAIN mechanism report](../reports/next_stage_learnable_VAL_20261023/README.txt)
+  retains both failed continuation gates, all cases and adverse attribute groups.
+  Correct attribute correspondence has a tiny nonpositive measured effect in
+  both supported TRAIN diagnostics. Clearn is a new matched control, not
+  historical ordinary fusion C. Neither independent-seed variance nor unseen-
+  source generalization was measured; the four runs have GDF weight zero.
 - The separate [global attribute-plus-GDF engineering check](../reports/next_stage_global_joint_engineering_20261023/README.txt)
   completed one synthetic joint update. Its named scientific candidate remains
   untrained and stopped; this check does not reverse the failed GDF gate.

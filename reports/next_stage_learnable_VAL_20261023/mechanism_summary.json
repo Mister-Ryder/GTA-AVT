@@ -1,0 +1,1392 @@
+{
+  "PRIMARY": {
+    "metric_readout": {
+      "per_case": {
+        "Dongyang_D15": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.942748296478847,
+            "repaired_Dice": 0.9427607248912461,
+            "normal_minus_repaired_Dice_pp": -0.0012428412399040356,
+            "repaired_minus_normal_BCE": -1.370700552355813e-07,
+            "normal_minus_repaired_FP_voxels": 0.75,
+            "normal_minus_repaired_FN_voxels": 1,
+            "mean_absolute_logit_response": 0.0006773618806619197,
+            "binary_changed_voxels": 13,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0012428412399040356
+          },
+          "CT_uniform_nonempty": {
+            "patches": 2,
+            "normal_Dice": 0.8701112060243827,
+            "repaired_Dice": 0.8700884493942784,
+            "normal_minus_repaired_Dice_pp": 0.0022756630104259212,
+            "repaired_minus_normal_BCE": 1.5333683973056114e-05,
+            "normal_minus_repaired_FP_voxels": -11.5,
+            "normal_minus_repaired_FN_voxels": 1,
+            "mean_absolute_logit_response": 0.0011498741805553436,
+            "binary_changed_voxels": 25,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0022756630104259212
+          },
+          "CT_uniform_empty": {
+            "patches": 2,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 6.697828952364495e-10,
+            "repaired_mean_BCE": 6.697828952364495e-10,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 6,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0006602046131306688,
+            "known_nonempty_effective_c_changed_patch_count": 6,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.0012428412399040356,
+            "repaired_minus_normal_BCE": -1.370700552355813e-07,
+            "normal_minus_repaired_FP_voxels": 0.75,
+            "normal_minus_repaired_FN_voxels": 1,
+            "mean_absolute_logit_response": 0.0006773618806619197,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0012428412399040356
+          }
+        },
+        "Dongyang_D3": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8925069473541511,
+            "repaired_Dice": 0.8925065196381845,
+            "normal_minus_repaired_Dice_pp": 4.2771596664437084e-05,
+            "repaired_minus_normal_BCE": -2.472691891328843e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 0.5,
+            "mean_absolute_logit_response": 0.0007215328078018501,
+            "binary_changed_voxels": 4,
+            "normal_minus_repaired_real_CT_Dice_pp": 4.2771596664437084e-05
+          },
+          "CT_uniform_nonempty": {
+            "patches": 3,
+            "normal_Dice": 0.6255456693025734,
+            "repaired_Dice": 0.6255502979946879,
+            "normal_minus_repaired_Dice_pp": -0.0004628692114451807,
+            "repaired_minus_normal_BCE": 9.919597592332695e-07,
+            "normal_minus_repaired_FP_voxels": 0.3333333333333333,
+            "normal_minus_repaired_FN_voxels": 0.3333333333333333,
+            "mean_absolute_logit_response": 0.0008338714057269195,
+            "binary_changed_voxels": 2,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0004628692114451807
+          },
+          "CT_uniform_empty": {
+            "patches": 1,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 0.0,
+            "repaired_mean_BCE": 0.0,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 7,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.003166775457772721,
+            "known_nonempty_effective_c_changed_patch_count": 7,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 4.2771596664437084e-05,
+            "repaired_minus_normal_BCE": -2.472691891328843e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 0.5,
+            "mean_absolute_logit_response": 0.0007215328078018501,
+            "normal_minus_repaired_real_CT_Dice_pp": 4.2771596664437084e-05
+          }
+        },
+        "Dongyang_D18": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.9438033754302292,
+            "repaired_Dice": 0.943806786054169,
+            "normal_minus_repaired_Dice_pp": -0.0003410623939742452,
+            "repaired_minus_normal_BCE": 6.393633051563364e-08,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0009867664193734527,
+            "binary_changed_voxels": 7,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0003410623939742452
+          },
+          "CT_uniform_nonempty": {
+            "patches": 4,
+            "normal_Dice": 0.719819543157133,
+            "repaired_Dice": 0.7198173052997431,
+            "normal_minus_repaired_Dice_pp": 0.0002237857389980613,
+            "repaired_minus_normal_BCE": 1.768246877410307e-06,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0008480920951114967,
+            "binary_changed_voxels": 12,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0002237857389980613
+          },
+          "CT_uniform_empty": {
+            "patches": 0,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": null,
+            "repaired_mean_BCE": null,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 8,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.005238893900792324,
+            "known_nonempty_effective_c_changed_patch_count": 8,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.0003410623939742452,
+            "repaired_minus_normal_BCE": 6.393633051563364e-08,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0009867664193734527,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0003410623939742452
+          }
+        },
+        "Dongyang_D12": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.946848035603281,
+            "repaired_Dice": 0.9468447605085397,
+            "normal_minus_repaired_Dice_pp": 0.0003275094741322926,
+            "repaired_minus_normal_BCE": 4.107323653751091e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": -0.25,
+            "mean_absolute_logit_response": 0.0004603075503837317,
+            "binary_changed_voxels": 11,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0003275094741322926
+          },
+          "CT_uniform_nonempty": {
+            "patches": 0,
+            "normal_Dice": null,
+            "repaired_Dice": null,
+            "normal_minus_repaired_Dice_pp": null,
+            "repaired_minus_normal_BCE": null,
+            "mean_absolute_logit_response": null
+          },
+          "CT_uniform_empty": {
+            "patches": 4,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 5.344701866396147e-11,
+            "repaired_mean_BCE": 5.344701866396147e-11,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 4,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0005286393180668758,
+            "known_nonempty_effective_c_changed_patch_count": 4,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.0003275094741322926,
+            "repaired_minus_normal_BCE": 4.107323653751091e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": -0.25,
+            "mean_absolute_logit_response": 0.0004603075503837317,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0003275094741322926
+          }
+        },
+        "KiTS_K12": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.882459993521761,
+            "repaired_Dice": 0.8824726545144336,
+            "normal_minus_repaired_Dice_pp": -0.001266099267260845,
+            "repaired_minus_normal_BCE": -8.784149958026427e-08,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0004558964865282178,
+            "binary_changed_voxels": 9,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.001266099267260845
+          },
+          "CT_uniform_nonempty": {
+            "patches": 2,
+            "normal_Dice": 0.6887636003615945,
+            "repaired_Dice": 0.6887636003615945,
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": 5.257689800978321e-08,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.00021990227105561644,
+            "binary_changed_voxels": 0,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          },
+          "CT_uniform_empty": {
+            "patches": 2,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 0.0,
+            "repaired_mean_BCE": 0.0,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 5,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0001246429330472587,
+            "known_nonempty_effective_c_changed_patch_count": 5,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.001266099267260845,
+            "repaired_minus_normal_BCE": -8.784149958026427e-08,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0004558964865282178,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.001266099267260845
+          }
+        },
+        "KiTS_K16": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8293274552497211,
+            "repaired_Dice": 0.8293031099888908,
+            "normal_minus_repaired_Dice_pp": 0.0024345260830310744,
+            "repaired_minus_normal_BCE": 1.7284361715323715e-09,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": -0.25,
+            "mean_absolute_logit_response": 0.0004055909303133376,
+            "binary_changed_voxels": 1,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0024345260830310744
+          },
+          "CT_uniform_nonempty": {
+            "patches": 3,
+            "normal_Dice": 0.3235941647952226,
+            "repaired_Dice": 0.32363501664342703,
+            "normal_minus_repaired_Dice_pp": -0.004085184820442253,
+            "repaired_minus_normal_BCE": 1.9825311780103405e-07,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0.3333333333333333,
+            "mean_absolute_logit_response": 0.0004014046280644834,
+            "binary_changed_voxels": 1,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.004085184820442253
+          },
+          "CT_uniform_empty": {
+            "patches": 1,
+            "normal_FP_voxels": 11,
+            "repaired_FP_voxels": 11,
+            "normal_mean_BCE": 7.834496544106647e-06,
+            "repaired_mean_BCE": 7.834496544106647e-06,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 7,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0008616991949827491,
+            "known_nonempty_effective_c_changed_patch_count": 7,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.0024345260830310744,
+            "repaired_minus_normal_BCE": 1.7284361715323715e-09,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": -0.25,
+            "mean_absolute_logit_response": 0.0004055909303133376,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0024345260830310744
+          }
+        },
+        "KiTS_K9": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8709435305277833,
+            "repaired_Dice": 0.8709596094512106,
+            "normal_minus_repaired_Dice_pp": -0.00160789234273373,
+            "repaired_minus_normal_BCE": -6.727225199966956e-07,
+            "normal_minus_repaired_FP_voxels": 0.5,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0005531779970624484,
+            "binary_changed_voxels": 9,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.00160789234273373
+          },
+          "CT_uniform_nonempty": {
+            "patches": 4,
+            "normal_Dice": 0.2370294703937589,
+            "repaired_Dice": 0.23703292880480362,
+            "normal_minus_repaired_Dice_pp": -0.0003458411044710008,
+            "repaired_minus_normal_BCE": 4.749620386660519e-09,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.00013314579700818285,
+            "binary_changed_voxels": 1,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0003458411044710008
+          },
+          "CT_uniform_empty": {
+            "patches": 0,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": null,
+            "repaired_mean_BCE": null,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 6,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.002539300987711692,
+            "known_nonempty_effective_c_changed_patch_count": 6,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.00160789234273373,
+            "repaired_minus_normal_BCE": -6.727225199966956e-07,
+            "normal_minus_repaired_FP_voxels": 0.5,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0005531779970624484,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.00160789234273373
+          }
+        },
+        "KiTS_K14": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.7608127694958301,
+            "repaired_Dice": 0.760824631273932,
+            "normal_minus_repaired_Dice_pp": -0.001186177810186262,
+            "repaired_minus_normal_BCE": -2.4569191554905077e-06,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0.75,
+            "mean_absolute_logit_response": 0.0009017276897793636,
+            "binary_changed_voxels": 10,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.001186177810186262
+          },
+          "CT_uniform_nonempty": {
+            "patches": 3,
+            "normal_Dice": 0.42716754649673916,
+            "repaired_Dice": 0.4272288188735304,
+            "normal_minus_repaired_Dice_pp": -0.006127237679128446,
+            "repaired_minus_normal_BCE": -5.594776297760997e-07,
+            "normal_minus_repaired_FP_voxels": 1.3333333333333333,
+            "normal_minus_repaired_FN_voxels": 0.3333333333333333,
+            "mean_absolute_logit_response": 0.000712602884353449,
+            "binary_changed_voxels": 5,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.006127237679128446
+          },
+          "CT_uniform_empty": {
+            "patches": 1,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 3.836929795967333e-11,
+            "repaired_mean_BCE": 3.836929795967333e-11,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 7,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.002027053846200176,
+            "known_nonempty_effective_c_changed_patch_count": 7,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.001186177810186262,
+            "repaired_minus_normal_BCE": -2.4569191554905077e-06,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0.75,
+            "mean_absolute_logit_response": 0.0009017276897793636,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.001186177810186262
+          }
+        },
+        "Rider_R5": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.7952153747217181,
+            "repaired_Dice": 0.7952095635962202,
+            "normal_minus_repaired_Dice_pp": 0.0005811125497856562,
+            "repaired_minus_normal_BCE": 5.715615330151682e-06,
+            "normal_minus_repaired_FP_voxels": -10.25,
+            "normal_minus_repaired_FN_voxels": 2,
+            "mean_absolute_logit_response": 0.0005216313074924983,
+            "binary_changed_voxels": 59,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0005811125497856562
+          },
+          "CT_uniform_nonempty": {
+            "patches": 4,
+            "normal_Dice": 0.5524368918203141,
+            "repaired_Dice": 0.5524307468127065,
+            "normal_minus_repaired_Dice_pp": 0.0006145007607538666,
+            "repaired_minus_normal_BCE": 2.0347456405146519e-07,
+            "normal_minus_repaired_FP_voxels": 0.5,
+            "normal_minus_repaired_FN_voxels": -0.5,
+            "mean_absolute_logit_response": 0.0005128090633661486,
+            "binary_changed_voxels": 4,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0006145007607538666
+          },
+          "CT_uniform_empty": {
+            "patches": 0,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": null,
+            "repaired_mean_BCE": null,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 8,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.002248076133843862,
+            "known_nonempty_effective_c_changed_patch_count": 8,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.0005811125497856562,
+            "repaired_minus_normal_BCE": 5.715615330151682e-06,
+            "normal_minus_repaired_FP_voxels": -10.25,
+            "normal_minus_repaired_FN_voxels": 2,
+            "mean_absolute_logit_response": 0.0005216313074924983,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0005811125497856562
+          }
+        },
+        "Rider_R15": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.6245269016530093,
+            "repaired_Dice": 0.6245375804607536,
+            "normal_minus_repaired_Dice_pp": -0.001067880774421881,
+            "repaired_minus_normal_BCE": -1.3077521347666654e-06,
+            "normal_minus_repaired_FP_voxels": 1.25,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0005210236486163922,
+            "binary_changed_voxels": 7,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.001067880774421881
+          },
+          "CT_uniform_nonempty": {
+            "patches": 1,
+            "normal_Dice": 0.7275394642833225,
+            "repaired_Dice": 0.7275394642833225,
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": 1.1748892941865208e-07,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.00031787820626050234,
+            "binary_changed_voxels": 0,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          },
+          "CT_uniform_empty": {
+            "patches": 3,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 0.0,
+            "repaired_mean_BCE": 0.0,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 5,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0007065153830708581,
+            "known_nonempty_effective_c_changed_patch_count": 5,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.001067880774421881,
+            "repaired_minus_normal_BCE": -1.3077521347666654e-06,
+            "normal_minus_repaired_FP_voxels": 1.25,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0005210236486163922,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.001067880774421881
+          }
+        },
+        "Rider_R3": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.9214507513060353,
+            "repaired_Dice": 0.9214517182012385,
+            "normal_minus_repaired_Dice_pp": -9.668952031804956e-05,
+            "repaired_minus_normal_BCE": -3.238856454105144e-07,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0005255345749901608,
+            "binary_changed_voxels": 1,
+            "normal_minus_repaired_real_CT_Dice_pp": -9.668952031804956e-05
+          },
+          "CT_uniform_nonempty": {
+            "patches": 2,
+            "normal_Dice": 0.9448665136942589,
+            "repaired_Dice": 0.9448665136942589,
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": 6.363170493349588e-08,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.00031330563069786876,
+            "binary_changed_voxels": 0,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          },
+          "CT_uniform_empty": {
+            "patches": 2,
+            "normal_FP_voxels": 1627,
+            "repaired_FP_voxels": 1627,
+            "normal_mean_BCE": 0.0030421789962264806,
+            "repaired_mean_BCE": 0.0030421789962264806,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 6,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.003423592659427636,
+            "known_nonempty_effective_c_changed_patch_count": 6,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -9.668952031804956e-05,
+            "repaired_minus_normal_BCE": -3.238856454105144e-07,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0005255345749901608,
+            "normal_minus_repaired_real_CT_Dice_pp": -9.668952031804956e-05
+          }
+        },
+        "Rider_R11": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8740006589270475,
+            "repaired_Dice": 0.8740109984468053,
+            "normal_minus_repaired_Dice_pp": -0.0010339519757901483,
+            "repaired_minus_normal_BCE": -7.609721092817837e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 2,
+            "mean_absolute_logit_response": 0.0005212511605350301,
+            "binary_changed_voxels": 10,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0010339519757901483
+          },
+          "CT_uniform_nonempty": {
+            "patches": 3,
+            "normal_Dice": 0.582192137847694,
+            "repaired_Dice": 0.582192137847694,
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": -4.6895955792269906e-08,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0001055931206792593,
+            "binary_changed_voxels": 0,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          },
+          "CT_uniform_empty": {
+            "patches": 1,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 6.284607779353331e-10,
+            "repaired_mean_BCE": 6.284607779353331e-10,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 5,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0018125505918352297,
+            "known_nonempty_effective_c_changed_patch_count": 5,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.0010339519757901483,
+            "repaired_minus_normal_BCE": -7.609721092817837e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 2,
+            "mean_absolute_logit_response": 0.0005212511605350301,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0010339519757901483
+          }
+        }
+      },
+      "primary_case_equal": {
+        "normal_Dice": 0.8570536741891178,
+        "repaired_Dice": 0.8570573880854686,
+        "normal_minus_repaired_Dice_pp": -0.00037138963508131134,
+        "repaired_minus_normal_BCE": 1.6465012776588356e-08,
+        "normal_minus_repaired_FP_voxels": -0.75,
+        "normal_minus_repaired_FN_voxels": 0.5208333333333334,
+        "mean_absolute_logit_response": 0.0006043168711282002,
+        "normal_minus_repaired_real_CT_Dice_pp": -0.00037138963508131134
+      },
+      "positive_primary_cases": 4,
+      "negative_primary_cases": 8,
+      "case_count": 12,
+      "primary_patch_count": 48,
+      "primary_definition": "Original four GT-jitter full128 Dice/BCE means, then equal mean over12 cases",
+      "primary_case_equal_scope": "Fixed-bank effect over ALL original cases/primary inputs, including unperturbed cases; not an intervention-supported mechanism estimate",
+      "primary_mechanism_case_equal": {
+        "normal_minus_repaired_Dice_pp": -0.00037138963508131134,
+        "repaired_minus_normal_BCE": 1.6465012776588356e-08,
+        "normal_minus_repaired_FP_voxels": -0.75,
+        "normal_minus_repaired_FN_voxels": 0.5208333333333334,
+        "mean_absolute_logit_response": 0.0006043168711282002,
+        "normal_minus_repaired_real_CT_Dice_pp": -0.00037138963508131134
+      },
+      "mechanism_supported_case_ids": [
+        "Dongyang_D15",
+        "Dongyang_D3",
+        "Dongyang_D18",
+        "Dongyang_D12",
+        "KiTS_K12",
+        "KiTS_K16",
+        "KiTS_K9",
+        "KiTS_K14",
+        "Rider_R5",
+        "Rider_R15",
+        "Rider_R3",
+        "Rider_R11"
+      ],
+      "mechanism_supported_case_count": 12,
+      "mechanism_null_case_ids": [],
+      "mechanism_null_case_count": 0,
+      "eligible_primary_patch_count": 48,
+      "primary_effective_c_changed_patch_count": 48,
+      "positive_mechanism_primary_cases": 4,
+      "negative_mechanism_primary_cases": 8,
+      "mechanism_supported_mean_scope": "Original four-primary-patch case effects, equal mean over intervention-supported cases; null cases retained explicitly, not replaced by zeros or used to choose an experiment",
+      "interpretation": "TRAIN correspondence diagnostic only; no new efficacy decision threshold or automatic experiment"
+    },
+    "learned_interaction_parameters": {
+      "interaction_weight": {
+        "elements": 128,
+        "norm": 0.03426909074187279,
+        "minimum": -0.006215405184775591,
+        "maximum": 0.009080620482563972,
+        "nonzero_elements": 128
+      },
+      "interaction_bias": {
+        "elements": 128,
+        "norm": 0.0293533056974411,
+        "minimum": -0.004159153904765844,
+        "maximum": 0.007837382145226002,
+        "nonzero_elements": 128
+      }
+    },
+    "elapsed_seconds": 64.1892249584198,
+    "model_state_BN_RNG_unchanged": true,
+    "parameters_updated": false,
+    "TEST_used": false,
+    "VAL_arrays_opened": false,
+    "raw_c_multiset_preservation_claimed": false
+  },
+  "SECONDARY": {
+    "metric_readout": {
+      "per_case": {
+        "Dongyang_D15": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.9499115277465506,
+            "repaired_Dice": 0.9499098007533147,
+            "normal_minus_repaired_Dice_pp": 0.00017269932360564066,
+            "repaired_minus_normal_BCE": -4.6422283314423093e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 1,
+            "mean_absolute_logit_response": 0.0005386878037825227,
+            "binary_changed_voxels": 10,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.00017269932360564066
+          },
+          "CT_uniform_nonempty": {
+            "patches": 2,
+            "normal_Dice": 0.9105180549150801,
+            "repaired_Dice": 0.9105142377653002,
+            "normal_minus_repaired_Dice_pp": 0.0003817149779872242,
+            "repaired_minus_normal_BCE": 9.961608998456002e-07,
+            "normal_minus_repaired_FP_voxels": -2,
+            "normal_minus_repaired_FN_voxels": 0.5,
+            "mean_absolute_logit_response": 0.0006875471444800496,
+            "binary_changed_voxels": 5,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0003817149779872242
+          },
+          "CT_uniform_empty": {
+            "patches": 2,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 4.919836921175549e-09,
+            "repaired_mean_BCE": 4.919836921175549e-09,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 6,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0007179294615779932,
+            "known_nonempty_effective_c_changed_patch_count": 6,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.00017269932360564066,
+            "repaired_minus_normal_BCE": -4.6422283314423093e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": 1,
+            "mean_absolute_logit_response": 0.0005386878037825227,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.00017269932360564066
+          }
+        },
+        "Dongyang_D3": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8931149772885091,
+            "repaired_Dice": 0.8931203693660832,
+            "normal_minus_repaired_Dice_pp": -0.0005392077574106757,
+            "repaired_minus_normal_BCE": 4.319881028464617e-07,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0005247464650892653,
+            "binary_changed_voxels": 6,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0005392077574106757
+          },
+          "CT_uniform_nonempty": {
+            "patches": 3,
+            "normal_Dice": 0.6297426509688474,
+            "repaired_Dice": 0.6297411586353078,
+            "normal_minus_repaired_Dice_pp": 0.00014923335396691922,
+            "repaired_minus_normal_BCE": 8.995216732637113e-07,
+            "normal_minus_repaired_FP_voxels": 0.3333333333333333,
+            "normal_minus_repaired_FN_voxels": -0.3333333333333333,
+            "mean_absolute_logit_response": 0.000666180169597889,
+            "binary_changed_voxels": 2,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.00014923335396691922
+          },
+          "CT_uniform_empty": {
+            "patches": 1,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 5.6843415472676226e-14,
+            "repaired_mean_BCE": 5.6843415472676226e-14,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 7,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.003375994995642403,
+            "known_nonempty_effective_c_changed_patch_count": 7,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.0005392077574106757,
+            "repaired_minus_normal_BCE": 4.319881028464617e-07,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0005247464650892653,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0005392077574106757
+          }
+        },
+        "Dongyang_D18": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.9456526875992586,
+            "repaired_Dice": 0.9456566423949204,
+            "normal_minus_repaired_Dice_pp": -0.00039547956618701807,
+            "repaired_minus_normal_BCE": -2.6339890888001614e-07,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0006201423384482041,
+            "binary_changed_voxels": 3,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.00039547956618701807
+          },
+          "CT_uniform_nonempty": {
+            "patches": 4,
+            "normal_Dice": 0.7288085018137886,
+            "repaired_Dice": 0.7288179532212965,
+            "normal_minus_repaired_Dice_pp": -0.0009451407507800672,
+            "repaired_minus_normal_BCE": -1.2983483540318728e-06,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0009780043037608266,
+            "binary_changed_voxels": 15,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0009451407507800672
+          },
+          "CT_uniform_empty": {
+            "patches": 0,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": null,
+            "repaired_mean_BCE": null,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 8,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.005176813940964023,
+            "known_nonempty_effective_c_changed_patch_count": 8,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.00039547956618701807,
+            "repaired_minus_normal_BCE": -2.6339890888001614e-07,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0006201423384482041,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.00039547956618701807
+          }
+        },
+        "Dongyang_D12": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.9460864546500882,
+            "repaired_Dice": 0.946082563461862,
+            "normal_minus_repaired_Dice_pp": 0.00038911882261905006,
+            "repaired_minus_normal_BCE": 8.793748565785742e-08,
+            "normal_minus_repaired_FP_voxels": -0.75,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0004515346809057519,
+            "binary_changed_voxels": 8,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.00038911882261905006
+          },
+          "CT_uniform_nonempty": {
+            "patches": 0,
+            "normal_Dice": null,
+            "repaired_Dice": null,
+            "normal_minus_repaired_Dice_pp": null,
+            "repaired_minus_normal_BCE": null,
+            "mean_absolute_logit_response": null
+          },
+          "CT_uniform_empty": {
+            "patches": 4,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 9.330845839059865e-11,
+            "repaired_mean_BCE": 9.330845839059865e-11,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 4,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0007308178393338706,
+            "known_nonempty_effective_c_changed_patch_count": 4,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.00038911882261905006,
+            "repaired_minus_normal_BCE": 8.793748565785742e-08,
+            "normal_minus_repaired_FP_voxels": -0.75,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0004515346809057519,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.00038911882261905006
+          }
+        },
+        "KiTS_K12": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8783673676440795,
+            "repaired_Dice": 0.8783525795206018,
+            "normal_minus_repaired_Dice_pp": 0.0014788123477826876,
+            "repaired_minus_normal_BCE": -9.490190958430511e-08,
+            "normal_minus_repaired_FP_voxels": -0.25,
+            "normal_minus_repaired_FN_voxels": -1,
+            "mean_absolute_logit_response": 0.0004174745117779821,
+            "binary_changed_voxels": 11,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0014788123477826876
+          },
+          "CT_uniform_nonempty": {
+            "patches": 2,
+            "normal_Dice": 0.3133554356911196,
+            "repaired_Dice": 0.3133554356911196,
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": 1.71596671759075e-08,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.00013984010729473084,
+            "binary_changed_voxels": 0,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          },
+          "CT_uniform_empty": {
+            "patches": 2,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 0.0,
+            "repaired_mean_BCE": 0.0,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 5,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.00033935960214929393,
+            "known_nonempty_effective_c_changed_patch_count": 5,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.0014788123477826876,
+            "repaired_minus_normal_BCE": -9.490190958430511e-08,
+            "normal_minus_repaired_FP_voxels": -0.25,
+            "normal_minus_repaired_FN_voxels": -1,
+            "mean_absolute_logit_response": 0.0004174745117779821,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0014788123477826876
+          }
+        },
+        "KiTS_K16": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8267767556324275,
+            "repaired_Dice": 0.8267767556324275,
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": 8.533760182706518e-08,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0003487093053990975,
+            "binary_changed_voxels": 0,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          },
+          "CT_uniform_nonempty": {
+            "patches": 3,
+            "normal_Dice": 0.29317478078068304,
+            "repaired_Dice": 0.2931577989706324,
+            "normal_minus_repaired_Dice_pp": 0.0016981810050686165,
+            "repaired_minus_normal_BCE": -3.880447760953402e-07,
+            "normal_minus_repaired_FP_voxels": 0.3333333333333333,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.00035443087108433247,
+            "binary_changed_voxels": 3,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0016981810050686165
+          },
+          "CT_uniform_empty": {
+            "patches": 1,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 1.0279807957846278e-06,
+            "repaired_mean_BCE": 1.0279807957846278e-06,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 7,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0008252632567016068,
+            "known_nonempty_effective_c_changed_patch_count": 7,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": 8.533760182706518e-08,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0003487093053990975,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          }
+        },
+        "KiTS_K9": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8671521026432863,
+            "repaired_Dice": 0.8671613543060431,
+            "normal_minus_repaired_Dice_pp": -0.0009251662756809553,
+            "repaired_minus_normal_BCE": 2.3539010507011432e-07,
+            "normal_minus_repaired_FP_voxels": 0.5,
+            "normal_minus_repaired_FN_voxels": -0.5,
+            "mean_absolute_logit_response": 0.00042750845750560984,
+            "binary_changed_voxels": 6,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0009251662756809553
+          },
+          "CT_uniform_nonempty": {
+            "patches": 4,
+            "normal_Dice": 0.23691588410704995,
+            "repaired_Dice": 0.23691934101130058,
+            "normal_minus_repaired_Dice_pp": -0.00034569042506316094,
+            "repaired_minus_normal_BCE": -8.275814600278153e-08,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0.25,
+            "mean_absolute_logit_response": 0.0001665709278313443,
+            "binary_changed_voxels": 1,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.00034569042506316094
+          },
+          "CT_uniform_empty": {
+            "patches": 0,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": null,
+            "repaired_mean_BCE": null,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 6,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.002528524600421108,
+            "known_nonempty_effective_c_changed_patch_count": 6,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.0009251662756809553,
+            "repaired_minus_normal_BCE": 2.3539010507011432e-07,
+            "normal_minus_repaired_FP_voxels": 0.5,
+            "normal_minus_repaired_FN_voxels": -0.5,
+            "mean_absolute_logit_response": 0.00042750845750560984,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0009251662756809553
+          }
+        },
+        "KiTS_K14": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.744946745012861,
+            "repaired_Dice": 0.744933089499801,
+            "normal_minus_repaired_Dice_pp": 0.0013655513060012447,
+            "repaired_minus_normal_BCE": -5.489600120602532e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": -0.25,
+            "mean_absolute_logit_response": 0.0005922354030190036,
+            "binary_changed_voxels": 13,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0013655513060012447
+          },
+          "CT_uniform_nonempty": {
+            "patches": 3,
+            "normal_Dice": 0.4377397012161629,
+            "repaired_Dice": 0.43775025070607815,
+            "normal_minus_repaired_Dice_pp": -0.0010549489915227341,
+            "repaired_minus_normal_BCE": -4.3770647621792686e-07,
+            "normal_minus_repaired_FP_voxels": 0.3333333333333333,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.00045443714285890263,
+            "binary_changed_voxels": 1,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0010549489915227341
+          },
+          "CT_uniform_empty": {
+            "patches": 1,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 1.7280396474102407e-11,
+            "repaired_mean_BCE": 1.7280396474102407e-11,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 7,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0022798954313957283,
+            "known_nonempty_effective_c_changed_patch_count": 7,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.0013655513060012447,
+            "repaired_minus_normal_BCE": -5.489600120602532e-07,
+            "normal_minus_repaired_FP_voxels": -0.5,
+            "normal_minus_repaired_FN_voxels": -0.25,
+            "mean_absolute_logit_response": 0.0005922354030190036,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0013655513060012447
+          }
+        },
+        "Rider_R5": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.7915061811299338,
+            "repaired_Dice": 0.7915323278623941,
+            "normal_minus_repaired_Dice_pp": -0.0026146732460333166,
+            "repaired_minus_normal_BCE": 2.2693608484568566e-07,
+            "normal_minus_repaired_FP_voxels": -9.5,
+            "normal_minus_repaired_FN_voxels": 8.75,
+            "mean_absolute_logit_response": 0.0004919050843454897,
+            "binary_changed_voxels": 79,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0026146732460333166
+          },
+          "CT_uniform_nonempty": {
+            "patches": 4,
+            "normal_Dice": 0.5514556792268844,
+            "repaired_Dice": 0.5514683825603183,
+            "normal_minus_repaired_Dice_pp": -0.0012703333433783381,
+            "repaired_minus_normal_BCE": 3.189066713275542e-07,
+            "normal_minus_repaired_FP_voxels": 0.25,
+            "normal_minus_repaired_FN_voxels": 0.5,
+            "mean_absolute_logit_response": 0.0003770107723539695,
+            "binary_changed_voxels": 3,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0012703333433783381
+          },
+          "CT_uniform_empty": {
+            "patches": 0,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": null,
+            "repaired_mean_BCE": null,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 8,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.002371372017419386,
+            "known_nonempty_effective_c_changed_patch_count": 8,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.0026146732460333166,
+            "repaired_minus_normal_BCE": 2.2693608484568566e-07,
+            "normal_minus_repaired_FP_voxels": -9.5,
+            "normal_minus_repaired_FN_voxels": 8.75,
+            "mean_absolute_logit_response": 0.0004919050843454897,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0026146732460333166
+          }
+        },
+        "Rider_R15": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.6573251700351754,
+            "repaired_Dice": 0.6573232787893117,
+            "normal_minus_repaired_Dice_pp": 0.00018912458636388685,
+            "repaired_minus_normal_BCE": -6.113720401636213e-08,
+            "normal_minus_repaired_FP_voxels": -1.75,
+            "normal_minus_repaired_FN_voxels": 0.5,
+            "mean_absolute_logit_response": 0.000493178449687548,
+            "binary_changed_voxels": 13,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.00018912458636388685
+          },
+          "CT_uniform_nonempty": {
+            "patches": 1,
+            "normal_Dice": 0.7627424129540511,
+            "repaired_Dice": 0.7627424129540511,
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": -3.8123814111168386e-07,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.00032753206323832273,
+            "binary_changed_voxels": 2,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          },
+          "CT_uniform_empty": {
+            "patches": 3,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 0.0,
+            "repaired_mean_BCE": 0.0,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 5,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.0009086401036849967,
+            "known_nonempty_effective_c_changed_patch_count": 5,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.00018912458636388685,
+            "repaired_minus_normal_BCE": -6.113720401636213e-08,
+            "normal_minus_repaired_FP_voxels": -1.75,
+            "normal_minus_repaired_FN_voxels": 0.5,
+            "mean_absolute_logit_response": 0.000493178449687548,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.00018912458636388685
+          }
+        },
+        "Rider_R3": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.9215629619732715,
+            "repaired_Dice": 0.9215551182753375,
+            "normal_minus_repaired_Dice_pp": 0.0007843697934023508,
+            "repaired_minus_normal_BCE": 7.486465929758442e-08,
+            "normal_minus_repaired_FP_voxels": -0.75,
+            "normal_minus_repaired_FN_voxels": -0.25,
+            "mean_absolute_logit_response": 0.00038758003211114556,
+            "binary_changed_voxels": 6,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0007843697934023508
+          },
+          "CT_uniform_nonempty": {
+            "patches": 2,
+            "normal_Dice": 0.9247604673488242,
+            "repaired_Dice": 0.9247604673488242,
+            "normal_minus_repaired_Dice_pp": 0.0,
+            "repaired_minus_normal_BCE": 3.8637682324698264e-07,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 0.0002759600320132449,
+            "binary_changed_voxels": 0,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0
+          },
+          "CT_uniform_empty": {
+            "patches": 2,
+            "normal_FP_voxels": 1563,
+            "repaired_FP_voxels": 1563,
+            "normal_mean_BCE": 0.002855996494062473,
+            "repaired_mean_BCE": 0.002855996494062473,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 6,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.003862907759939682,
+            "known_nonempty_effective_c_changed_patch_count": 6,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": 0.0007843697934023508,
+            "repaired_minus_normal_BCE": 7.486465929758442e-08,
+            "normal_minus_repaired_FP_voxels": -0.75,
+            "normal_minus_repaired_FN_voxels": -0.25,
+            "mean_absolute_logit_response": 0.00038758003211114556,
+            "normal_minus_repaired_real_CT_Dice_pp": 0.0007843697934023508
+          }
+        },
+        "Rider_R11": {
+          "primary_four_GT_jitter": {
+            "patches": 4,
+            "normal_Dice": 0.8619170243837666,
+            "repaired_Dice": 0.8619204098003673,
+            "normal_minus_repaired_Dice_pp": -0.0003385416600776292,
+            "repaired_minus_normal_BCE": -3.145315669965073e-06,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0.5,
+            "mean_absolute_logit_response": 0.0004084796746610664,
+            "binary_changed_voxels": 6,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0003385416600776292
+          },
+          "CT_uniform_nonempty": {
+            "patches": 3,
+            "normal_Dice": 0.843921565255202,
+            "repaired_Dice": 0.843936502076973,
+            "normal_minus_repaired_Dice_pp": -0.0014936821771042532,
+            "repaired_minus_normal_BCE": -3.110380186339042e-08,
+            "normal_minus_repaired_FP_voxels": 0.6666666666666666,
+            "normal_minus_repaired_FN_voxels": 0,
+            "mean_absolute_logit_response": 9.517939179204404e-05,
+            "binary_changed_voxels": 2,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0014936821771042532
+          },
+          "CT_uniform_empty": {
+            "patches": 1,
+            "normal_FP_voxels": 0,
+            "repaired_FP_voxels": 0,
+            "normal_mean_BCE": 1.1116866202476208e-09,
+            "repaired_mean_BCE": 1.1116866202476208e-09,
+            "Dice_not_pooled": true
+          },
+          "mechanism_support": {
+            "known_nonempty_patch_count": 5,
+            "eligible_primary_patch_count": 4,
+            "known_nonempty_normal_consumed_FP32_population_variance": 0.001784126453106918,
+            "known_nonempty_effective_c_changed_patch_count": 5,
+            "primary_effective_c_changed_patch_count": 4,
+            "intervention_supported": true,
+            "null_reasons": [],
+            "criterion": "At least2 known-nonempty patches, nonzero exact FP32 normal-c variance, and at least1 eligible primary patch with changed FP32 c; no tuned threshold"
+          },
+          "primary_mechanism_delta": {
+            "normal_minus_repaired_Dice_pp": -0.0003385416600776292,
+            "repaired_minus_normal_BCE": -3.145315669965073e-06,
+            "normal_minus_repaired_FP_voxels": 0,
+            "normal_minus_repaired_FN_voxels": 0.5,
+            "mean_absolute_logit_response": 0.0004084796746610664,
+            "normal_minus_repaired_real_CT_Dice_pp": -0.0003385416600776292
+          }
+        }
+      },
+      "primary_case_equal": {
+        "normal_Dice": 0.8570266629782674,
+        "repaired_Dice": 0.8570270241385387,
+        "normal_minus_repaired_Dice_pp": -3.611602713456119e-05,
+        "repaired_minus_normal_BCE": -2.86290208175456e-07,
+        "normal_minus_repaired_FP_voxels": -1.1041666666666667,
+        "normal_minus_repaired_FN_voxels": 0.7916666666666666,
+        "mean_absolute_logit_response": 0.0004751818505610572,
+        "normal_minus_repaired_real_CT_Dice_pp": -3.611602713456119e-05
+      },
+      "positive_primary_cases": 6,
+      "negative_primary_cases": 5,
+      "case_count": 12,
+      "primary_patch_count": 48,
+      "primary_definition": "Original four GT-jitter full128 Dice/BCE means, then equal mean over12 cases",
+      "primary_case_equal_scope": "Fixed-bank effect over ALL original cases/primary inputs, including unperturbed cases; not an intervention-supported mechanism estimate",
+      "primary_mechanism_case_equal": {
+        "normal_minus_repaired_Dice_pp": -3.611602713456119e-05,
+        "repaired_minus_normal_BCE": -2.86290208175456e-07,
+        "normal_minus_repaired_FP_voxels": -1.1041666666666667,
+        "normal_minus_repaired_FN_voxels": 0.7916666666666666,
+        "mean_absolute_logit_response": 0.0004751818505610572,
+        "normal_minus_repaired_real_CT_Dice_pp": -3.611602713456119e-05
+      },
+      "mechanism_supported_case_ids": [
+        "Dongyang_D15",
+        "Dongyang_D3",
+        "Dongyang_D18",
+        "Dongyang_D12",
+        "KiTS_K12",
+        "KiTS_K16",
+        "KiTS_K9",
+        "KiTS_K14",
+        "Rider_R5",
+        "Rider_R15",
+        "Rider_R3",
+        "Rider_R11"
+      ],
+      "mechanism_supported_case_count": 12,
+      "mechanism_null_case_ids": [],
+      "mechanism_null_case_count": 0,
+      "eligible_primary_patch_count": 48,
+      "primary_effective_c_changed_patch_count": 48,
+      "positive_mechanism_primary_cases": 6,
+      "negative_mechanism_primary_cases": 5,
+      "mechanism_supported_mean_scope": "Original four-primary-patch case effects, equal mean over intervention-supported cases; null cases retained explicitly, not replaced by zeros or used to choose an experiment",
+      "interpretation": "TRAIN correspondence diagnostic only; no new efficacy decision threshold or automatic experiment"
+    },
+    "learned_interaction_parameters": {
+      "interaction_weight": {
+        "elements": 128,
+        "norm": 0.03305952996015549,
+        "minimum": -0.006153179798275232,
+        "maximum": 0.011914022266864777,
+        "nonzero_elements": 128
+      },
+      "interaction_bias": {
+        "elements": 128,
+        "norm": 0.030738556757569313,
+        "minimum": -0.00486090499907732,
+        "maximum": 0.011952639557421207,
+        "nonzero_elements": 128
+      }
+    },
+    "elapsed_seconds": 85.42000555992126,
+    "model_state_BN_RNG_unchanged": true,
+    "parameters_updated": false,
+    "TEST_used": false,
+    "VAL_arrays_opened": false,
+    "raw_c_multiset_preservation_claimed": false
+  }
+}

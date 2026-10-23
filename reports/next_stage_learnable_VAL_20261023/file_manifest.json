@@ -1,0 +1,78 @@
+{
+  "schema": "GTA-AVT-public-derived-learnable-endpoint-file-whitelist-v1",
+  "scope": "Two separate fixed-VAL endpoint blocks and seen-TRAIN diagnostics; both gates FAILED; no combined-model efficacy",
+  "files": {
+    "arithmetic.py": {
+      "sha256": "e62b39e6c3a4b8bf84570c84b6a92279d0838666bc18c5d16ac4ae63392802f8",
+      "bytes": 12968
+    },
+    "Clearn_recipe.json": {
+      "sha256": "3c44f2dbdb6e934cb941b76bddc55524d286ace71a34b3c124044ac5f56119d3",
+      "bytes": 849
+    },
+    "definitions.json": {
+      "sha256": "1a59e96fca38bf8fd9faeb49fd4c79abac054a44f3165801aa879a909c1962c8",
+      "bytes": 3363
+    },
+    "Dlearn_recipe.json": {
+      "sha256": "1ec1ef1e0682de42e667b6d43e3574bc0a242ba01d0895886fb6c6c7e6d24f77",
+      "bytes": 851
+    },
+    "mechanism_summary.json": {
+      "sha256": "57cf9a949df8a8c304954ec69fb03d0b965b535cad984194dd9e7c4b9375e67e",
+      "bytes": 67447
+    },
+    "provenance.json": {
+      "sha256": "4e2612bdc1fad628a7661a7af8c3905c81a96faa05a14682dc7564e5f16d0708",
+      "bytes": 20536
+    },
+    "README.txt": {
+      "sha256": "fafe6cfcc810093197b09aa09e2a264fa84a1bd63a66d1555be3c30ad97ca927",
+      "bytes": 10978
+    },
+    "recompute.py": {
+      "sha256": "a1365d9832e477d8a5bf7d06d503dc2af17d46b74ad313eb5f343b0d0b94cab1",
+      "bytes": 11916
+    },
+    "semantics_summary.json": {
+      "sha256": "0aba92e99e982764d8e3a3acf696c4e45a862c3952a5934839907aded581dbd9",
+      "bytes": 86592
+    },
+    "table_schemas.json": {
+      "sha256": "5992b3edb4b0a3bdabbef2c156ffc1b2589b7b0786def6dd53e0dfe146359439",
+      "bytes": 3548
+    },
+    "TRAIN_attribute_predictions.csv": {
+      "sha256": "9fef573cd79d2fd97fadc3ca656c7554c135b97cfd2ea9667429b605abc3e6dc",
+      "bytes": 106102
+    },
+    "TRAIN_intervention_patchwise.csv": {
+      "sha256": "42841e756508ebfbd0c76907ce2dca635db4055682c964328df0bde81f2f0a35",
+      "bytes": 89622
+    },
+    "training_summary.json": {
+      "sha256": "1633704529d50d2a65622d565ea2a611d4a09e2694ef33fa62c9de2f51da1700",
+      "bytes": 6824
+    },
+    "training_windows.csv": {
+      "sha256": "f3aeb18566d4f5a650d65687109d4414f5316d6d31fac4d7320aae517473bd23",
+      "bytes": 115931
+    },
+    "VAL_casewise.csv": {
+      "sha256": "d05eb7d7d18a991c1ad68b059f546e535b25985970392ab2b4c3d2e2e2a73410",
+      "bytes": 13493
+    },
+    "VAL_FP_FN_counts.csv": {
+      "sha256": "cc9691d3794b25cdd914b895d30c698234971f539eb4f335568baead834893c6",
+      "bytes": 1549
+    },
+    "VAL_geometry.csv": {
+      "sha256": "2220b416ac19549ee19d02a1b343a0caaadfbb1b0033004432e9b9c54c00e497",
+      "bytes": 7939
+    },
+    "VAL_summary.json": {
+      "sha256": "10975888217b15c1e91bf27f9b38222e29a6a7fedfd254d4b053de2293c08b83",
+      "bytes": 97104
+    }
+  }
+}

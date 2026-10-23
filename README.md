@@ -203,6 +203,13 @@ Study partitions, training populations, 2D/3D inputs, resolution, optimization b
 
 ## Results and provenance
 
+The [completed learnable-condition VAL study](reports/next_stage_learnable_VAL_20261023/README.txt)
+reports both prospectively declared platform blocks separately. Predicted versus
+constant conditions reduced mean Dice by 0.376 and 1.093 percentage points; both
+continuation gates failed. Supported same-weight TRAIN correspondence effects
+were tiny and nonpositive. All case metrics, geometry support, attribute predictions
+and numerical recomputation are supplied; these are development results.
+
 The [new learnable-interaction plus GDF implementation](reports/next_stage_learnable_integrated_source_20261023/README.txt)
 completed a separate synthetic joint CUDA check on its original isolated source
 snapshot. Public source binding, physical fixtures, gradient routes and numerical

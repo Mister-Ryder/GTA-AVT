@@ -28,6 +28,13 @@ attribute-to-operation relationship. The computation and appropriate controls
 must distinguish the claim from extra capacity, auxiliary supervision or generic
 attention. This relationship alone also establishes no novelty or causal proof.
 
+When the deployed condition is a deterministic estimate from the same full CT
+input, it adds no independent observation beyond that input. Its proposed value
+is an inductive bias, access to context or a useful processing choice in a model
+with finite capacity. Reliable geometric meaning, image predictability and an
+appropriate feature operation are separate requirements; this framing does not
+guarantee improvement or constitute a new mathematical theorem.
+
 | Adaptation axis | What must be disclosed |
 | --- | --- |
 | Attributes | Geometric meaning, units, classes or continuous targets, empty/unknown policy and reliability |
@@ -87,7 +94,10 @@ interaction. Their difference tests predicted versus constant conditioning in
 this realization; it does not isolate attribute supervision or the value of the
 training schedule. The independent U/K contrast addresses attribute supervision.
 Case dispersion and two same-seed platform blocks do not measure training-seed
-variance or establish zero-shot behavior. Fixed-endpoint results are pending.
+variance or establish zero-shot behavior. The [completed fixed-endpoint report](../reports/next_stage_learnable_VAL_20261023/README.txt)
+shows lower mean Dice and clDice with predicted conditions in both platform
+blocks; both continuation gates failed. Small case-SD reductions accompanying
+mean and adverse-case losses do not establish a stability benefit.
 
 A useful predicted-condition contrast would still need evidence that the
 predicted composition has the stated meaning and that its correspondence to the
@@ -99,14 +109,22 @@ results cannot establish independent generalization or a complete causal
 decomposition. Auxiliary supervision, static modulation, variable modulation and
 anatomical correspondence therefore remain distinct claims.
 
+At the two completed endpoints, every original TRAIN case supports an effective
+intervention and all 48 primary conditions change. Correct-minus-re-paired Dice
+effects are approximately -0.000371 and -0.000036 percentage points. Both
+interaction tensors learned nonzero parameters, but useful anatomical
+correspondence was not demonstrated. These fixed-bank, seen-TRAIN diagnostics
+do not refute all possible GTA instances or provide a reason to extend this one.
+
 Gaussian-field supervision is a further geometric training constraint. The
 [completed constant-condition GDF pair](../reports/next_stage_GDF_VAL_20261023/readout.txt)
 failed its continuation gate, with coverage and tail tradeoffs retained. The
 [older global joint engineering check](../reports/next_stage_global_joint_engineering_20261023/README.txt)
-demonstrates one combined update for that named operator only. A complete newer
-interaction-plus-GDF candidate requires a separately identified implementation
-and verification; neither interface compatibility nor a successful engineering
-step establishes its scientific benefit.
+demonstrates one combined update for that named operator only. The [newer interaction-plus-GDF implementation](../reports/next_stage_learnable_integrated_source_20261023/README.txt)
+now has its own separately identified synthetic joint-update check. Its complete
+scientific candidate remains stopped and untrained. Neither interface
+compatibility nor that successful engineering step establishes its scientific
+benefit or overrides the negative conditional/GDF continuation evidence.
 
 See the [adaptation boundaries](adaptation_boundaries.md),
 [v2 recipe](common_recipe_v2.md), [four-model scope](minimal4_scope_20261022.md)

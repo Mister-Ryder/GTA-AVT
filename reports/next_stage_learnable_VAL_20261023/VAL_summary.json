@@ -1,0 +1,2926 @@
+{
+  "PRIMARY": {
+    "case_ids": [
+      "Dongyang_D2",
+      "Dongyang_D5",
+      "KiTS_K13",
+      "KiTS_K15",
+      "KiTS_K18",
+      "KiTS_K8",
+      "Rider_R10",
+      "Rider_R9"
+    ],
+    "metrics": {
+      "dice": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 86.22885612334352,
+          "defined_case_mean": 86.22885612334352,
+          "sample_SD": 5.475405224935501
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 86.60512409286201,
+          "defined_case_mean": 86.60512409286201,
+          "sample_SD": 5.6651908594820535
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -0.37626796951850316,
+          "defined_case_mean": -0.37626796951850316,
+          "sample_SD": 1.3953130234981879
+        },
+        "positive": 5,
+        "ties": 0,
+        "negative": 3
+      },
+      "cldice": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 73.32603559029573,
+          "defined_case_mean": 73.32603559029573,
+          "sample_SD": 12.829026188374618
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 73.7844636846605,
+          "defined_case_mean": 73.7844636846605,
+          "sample_SD": 12.952234822431544
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -0.45842809436476095,
+          "defined_case_mean": -0.45842809436476095,
+          "sample_SD": 2.0290610869354784
+        },
+        "positive": 5,
+        "ties": 0,
+        "negative": 3
+      },
+      "centerline_recall": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 79.80670305296589,
+          "defined_case_mean": 79.80670305296589,
+          "sample_SD": 11.090236925308304
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 80.39909356351471,
+          "defined_case_mean": 80.39909356351471,
+          "sample_SD": 11.144034700117102
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -0.5923905105488299,
+          "defined_case_mean": -0.5923905105488299,
+          "sample_SD": 2.7133206080101817
+        },
+        "positive": 1,
+        "ties": 0,
+        "negative": 7
+      },
+      "centerline_precision": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 68.73180224086445,
+          "defined_case_mean": 68.73180224086445,
+          "sample_SD": 16.089268821855654
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 69.03991676920771,
+          "defined_case_mean": 69.03991676920771,
+          "sample_SD": 15.917006934978378
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -0.30811452834326225,
+          "defined_case_mean": -0.30811452834326225,
+          "sample_SD": 2.164515124517488
+        },
+        "positive": 5,
+        "ties": 0,
+        "negative": 3
+      },
+      "precision": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 85.92700937557937,
+          "defined_case_mean": 85.92700937557937,
+          "sample_SD": 8.060734169202508
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 86.59601778885659,
+          "defined_case_mean": 86.59601778885659,
+          "sample_SD": 7.826649687959419
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -0.6690084132772078,
+          "defined_case_mean": -0.6690084132772078,
+          "sample_SD": 2.9945072604668326
+        },
+        "positive": 6,
+        "ties": 0,
+        "negative": 2
+      },
+      "recall": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 87.35142183620735,
+          "defined_case_mean": 87.35142183620735,
+          "sample_SD": 8.336252486087252
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 87.35032533254063,
+          "defined_case_mean": 87.35032533254063,
+          "sample_SD": 8.270801239690105
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 0.0010965036667069938,
+          "defined_case_mean": 0.0010965036667069938,
+          "sample_SD": 0.6664470205732553
+        },
+        "positive": 3,
+        "ties": 0,
+        "negative": 5
+      },
+      "fp_ml": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 56.51754633798593,
+          "defined_case_mean": 56.51754633798593,
+          "sample_SD": 44.031549382100295
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 56.29083236850903,
+          "defined_case_mean": 56.29083236850903,
+          "sample_SD": 46.1667800136453
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 0.2267139694768987,
+          "defined_case_mean": 0.2267139694768987,
+          "sample_SD": 7.4136943650048375
+        },
+        "positive": 2,
+        "ties": 0,
+        "negative": 6
+      },
+      "fn_ml": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 49.66818672925161,
+          "defined_case_mean": 49.66818672925161,
+          "sample_SD": 39.776041445788486
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 49.143490557299316,
+          "defined_case_mean": 49.143490557299316,
+          "sample_SD": 39.837627488809076
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 0.5246961719522911,
+          "defined_case_mean": 0.5246961719522911,
+          "sample_SD": 1.8648653430005135
+        },
+        "positive": 5,
+        "ties": 0,
+        "negative": 3
+      },
+      "assd_mm": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 7.156742997415464,
+          "defined_case_mean": 7.156742997415464,
+          "sample_SD": 4.51605635124425
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 6.75206334136883,
+          "defined_case_mean": 6.75206334136883,
+          "sample_SD": 4.31590026772831
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 0.4046796560466341,
+          "defined_case_mean": 0.4046796560466341,
+          "sample_SD": 1.7700813760621592
+        },
+        "positive": 2,
+        "ties": 0,
+        "negative": 6
+      },
+      "hd95_mm": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 70.81924787057294,
+          "defined_case_mean": 70.81924787057294,
+          "sample_SD": 35.91739958287717
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 67.10083668643554,
+          "defined_case_mean": 67.10083668643554,
+          "sample_SD": 34.928077487276504
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 3.718411184137395,
+          "defined_case_mean": 3.718411184137395,
+          "sample_SD": 11.885112372121249
+        },
+        "positive": 3,
+        "ties": 0,
+        "negative": 5
+      }
+    },
+    "cases": [
+      {
+        "case_id": "Dongyang_D2",
+        "after": {
+          "dice": 82.72803367081045,
+          "cldice": 84.70367111893145,
+          "centerline_recall": 79.01785714285714,
+          "centerline_precision": 91.27118644067797,
+          "precision": 97.8605116578498,
+          "recall": 71.64876094452043,
+          "fp_ml": 7.13227046502603,
+          "fn_ml": 129.08884681237708,
+          "assd_mm": 4.865765118514341,
+          "hd95_mm": 43.20629943341859
+        },
+        "before": {
+          "dice": 82.41755313637077,
+          "cldice": 84.62574724256967,
+          "centerline_recall": 79.16666666666666,
+          "centerline_precision": 90.893470790378,
+          "precision": 97.62509293419558,
+          "recall": 71.30934632586877,
+          "fp_ml": 7.898566735757363,
+          "fn_ml": 130.63426927618076,
+          "assd_mm": 5.028708217738843,
+          "hd95_mm": 43.54628971666711
+        },
+        "delta": {
+          "dice": 0.3104805344396766,
+          "cldice": 0.07792387636177978,
+          "centerline_recall": -0.1488095238095184,
+          "centerline_precision": 0.3777156502999617,
+          "precision": 0.23541872365422023,
+          "recall": 0.33941461865165934,
+          "fp_ml": -0.766296270731333,
+          "fn_ml": -1.5454224638036749,
+          "assd_mm": -0.1629430992245018,
+          "hd95_mm": -0.3399902832485182
+        }
+      },
+      {
+        "case_id": "Dongyang_D5",
+        "after": {
+          "dice": 87.09129578574242,
+          "cldice": 74.79280002920882,
+          "centerline_recall": 84.5771144278607,
+          "centerline_precision": 67.0375521557719,
+          "precision": 80.6436177972283,
+          "recall": 94.6595890410959,
+          "fp_ml": 36.7858082644944,
+          "fn_ml": 8.64641706976555,
+          "assd_mm": 10.94879764504135,
+          "hd95_mm": 93.40648527936644
+        },
+        "before": {
+          "dice": 90.86641357734082,
+          "cldice": 73.07152098961177,
+          "centerline_recall": 79.27031509121062,
+          "centerline_precision": 67.77188328912467,
+          "precision": 88.64683157545001,
+          "recall": 93.2,
+          "fp_ml": 19.325523954701072,
+          "fn_ml": 11.009571459360314,
+          "assd_mm": 6.246578343591169,
+          "hd95_mm": 61.53035166208849
+        },
+        "delta": {
+          "dice": -3.7751177915984044,
+          "cldice": 1.72127903959705,
+          "centerline_recall": 5.306799336650087,
+          "centerline_precision": -0.734331133352768,
+          "precision": -8.003213778221706,
+          "recall": 1.4595890410958958,
+          "fp_ml": 17.460284309793327,
+          "fn_ml": -2.363154389594765,
+          "assd_mm": 4.70221930145018,
+          "hd95_mm": 31.876133617277944
+        }
+      },
+      {
+        "case_id": "KiTS_K13",
+        "after": {
+          "dice": 81.72478000737246,
+          "cldice": 70.8209493697648,
+          "centerline_recall": 78.46674182638105,
+          "centerline_precision": 64.53287197231833,
+          "precision": 79.47716263293839,
+          "recall": 84.10322254321204,
+          "fp_ml": 82.44528198242188,
+          "fn_ml": 60.348602294921875,
+          "assd_mm": 9.609331585561206,
+          "hd95_mm": 111.7587668687109
+        },
+        "before": {
+          "dice": 81.28563683610327,
+          "cldice": 71.9887295281396,
+          "centerline_recall": 80.72153325817362,
+          "centerline_precision": 64.96097137901128,
+          "precision": 78.23258994035463,
+          "recall": 84.58665265983834,
+          "fp_ml": 89.3468017578125,
+          "fn_ml": 58.51336669921875,
+          "assd_mm": 10.394644251183475,
+          "hd95_mm": 116.07337926800696
+        },
+        "delta": {
+          "dice": 0.439143171269194,
+          "cldice": -1.1677801583747964,
+          "centerline_recall": -2.254791431792569,
+          "centerline_precision": -0.4280994066929509,
+          "precision": 1.244572692583759,
+          "recall": -0.48343011662629465,
+          "fp_ml": -6.901519775390625,
+          "fn_ml": 1.835235595703125,
+          "assd_mm": -0.7853126656222695,
+          "hd95_mm": -4.314612399296067
+        }
+      },
+      {
+        "case_id": "KiTS_K15",
+        "after": {
+          "dice": 86.56071489169165,
+          "cldice": 72.48523412684949,
+          "centerline_recall": 73.67688022284122,
+          "centerline_precision": 71.33152173913044,
+          "precision": 88.9358932639115,
+          "recall": 84.30910252737809,
+          "fp_ml": 27.054632568359363,
+          "fn_ml": 40.47395767211912,
+          "assd_mm": 6.011428358509018,
+          "hd95_mm": 98.06632756563178
+        },
+        "before": {
+          "dice": 86.63367455313764,
+          "cldice": 71.80691038380893,
+          "centerline_recall": 74.3732590529248,
+          "centerline_precision": 69.41176470588235,
+          "precision": 88.90383322125084,
+          "recall": 84.47656611506511,
+          "fp_ml": 27.196726226806625,
+          "fn_ml": 40.04199295043943,
+          "assd_mm": 6.131170553976528,
+          "hd95_mm": 91.38553152857371
+        },
+        "delta": {
+          "dice": -0.0729596614459922,
+          "cldice": 0.6783237430405649,
+          "centerline_recall": -0.6963788300835745,
+          "centerline_precision": 1.9197570332480893,
+          "precision": 0.032060042660660315,
+          "recall": -0.16746358768702407,
+          "fp_ml": -0.14209365844726207,
+          "fn_ml": 0.4319647216796909,
+          "assd_mm": -0.11974219546751019,
+          "hd95_mm": 6.680796037058073
+        }
+      },
+      {
+        "case_id": "KiTS_K18",
+        "after": {
+          "dice": 91.07055109536789,
+          "cldice": 72.33735573521032,
+          "centerline_recall": 90.1980198019802,
+          "centerline_precision": 60.38095238095238,
+          "precision": 87.80479491741481,
+          "recall": 94.58862060862413,
+          "fp_ml": 50.315625,
+          "fn_ml": 20.7253125,
+          "assd_mm": 4.6786573147552115,
+          "hd95_mm": 60.84252213707121
+        },
+        "before": {
+          "dice": 91.04317218489378,
+          "cldice": 77.39506225664284,
+          "centerline_recall": 94.25742574257426,
+          "centerline_precision": 65.65040650406505,
+          "precision": 87.50821248840091,
+          "recall": 94.8757490306662,
+          "fp_ml": 51.8709375,
+          "fn_ml": 19.625625,
+          "assd_mm": 5.255244591646263,
+          "hd95_mm": 64.74806946928997
+        },
+        "delta": {
+          "dice": 0.027378910474112672,
+          "cldice": -5.057706521432522,
+          "centerline_recall": -4.059405940594061,
+          "centerline_precision": -5.269454123112666,
+          "precision": 0.2965824290138954,
+          "recall": -0.28712842204207334,
+          "fp_ml": -1.5553124999999994,
+          "fn_ml": 1.0996875000000017,
+          "assd_mm": -0.5765872768910514,
+          "hd95_mm": -3.9055473322187666
+        }
+      },
+      {
+        "case_id": "KiTS_K8",
+        "after": {
+          "dice": 76.84426147041897,
+          "cldice": 45.18000136327784,
+          "centerline_recall": 56.71981776765376,
+          "centerline_precision": 37.541974479516455,
+          "precision": 72.1279770336374,
+          "recall": 82.22047115256265,
+          "fp_ml": 147.54134889221191,
+          "fn_ml": 82.5637285308838,
+          "assd_mm": 15.557842320715341,
+          "hd95_mm": 105.9224783872781
+        },
+        "before": {
+          "dice": 77.19760310752893,
+          "cldice": 45.00429524879402,
+          "centerline_recall": 58.54214123006833,
+          "centerline_precision": 36.55172413793103,
+          "precision": 72.31051574616593,
+          "recall": 82.79315704941892,
+          "fp_ml": 147.2234192504883,
+          "fn_ml": 79.90431706237793,
+          "assd_mm": 15.577349028521843,
+          "hd95_mm": 106.75067005418893
+        },
+        "delta": {
+          "dice": -0.35334163710996336,
+          "cldice": 0.17570611448381612,
+          "centerline_recall": -1.8223234624145732,
+          "centerline_precision": 0.9902503415854227,
+          "precision": -0.18253871252852605,
+          "recall": -0.5726858968562709,
+          "fp_ml": 0.31792964172362304,
+          "fn_ml": 2.6594114685058656,
+          "assd_mm": -0.01950670780650121,
+          "hd95_mm": -0.8281916669108256
+        }
+      },
+      {
+        "case_id": "Rider_R10",
+        "after": {
+          "dice": 92.40582531297665,
+          "cldice": 79.43360706113721,
+          "centerline_recall": 84.27485959696068,
+          "centerline_precision": 75.11835875854813,
+          "precision": 89.29267188075644,
+          "recall": 95.74389818004684,
+          "fp_ml": 70.49555969238281,
+          "fn_ml": 26.133487701416016,
+          "assd_mm": 3.4876309884484256,
+          "hd95_mm": 34.09874789220808
+        },
+        "before": {
+          "dice": 92.24002002282738,
+          "cldice": 79.26628680718811,
+          "centerline_recall": 84.47307565246118,
+          "centerline_precision": 74.6641074856046,
+          "precision": 88.62749335946721,
+          "recall": 96.15955966050622,
+          "fp_ml": 75.76446533203125,
+          "fn_ml": 23.581226348876953,
+          "assd_mm": 3.141729283509816,
+          "hd95_mm": 32.422877430381405
+        },
+        "delta": {
+          "dice": 0.16580529014926526,
+          "cldice": 0.1673202539491001,
+          "centerline_recall": -0.19821605550049526,
+          "centerline_precision": 0.4542512729435231,
+          "precision": 0.6651785212892349,
+          "recall": -0.41566148045937723,
+          "fp_ml": -5.2689056396484375,
+          "fn_ml": 2.5522613525390625,
+          "assd_mm": 0.3459017049386097,
+          "hd95_mm": 1.6758704618266762
+        }
+      },
+      {
+        "case_id": "Rider_R9",
+        "after": {
+          "dice": 91.40538675236765,
+          "cldice": 86.85466591798597,
+          "centerline_recall": 91.52233363719235,
+          "centerline_precision": 82.64,
+          "precision": 91.27344582089835,
+          "recall": 91.5377096922187,
+          "fp_ml": 30.369843838991024,
+          "fn_ml": 29.365141252529437,
+          "assd_mm": 2.0944906477788208,
+          "hd95_mm": 19.252355400898452
+        },
+        "before": {
+          "dice": 91.15691932469356,
+          "cldice": 87.11715702052905,
+          "centerline_recall": 92.38833181403828,
+          "centerline_precision": 82.41500586166471,
+          "precision": 90.91357304556755,
+          "recall": 91.40157181896156,
+          "fp_ml": 31.700218190475127,
+          "fn_ml": 29.837555661940414,
+          "assd_mm": 2.2410824607827036,
+          "hd95_mm": 20.34952436228781
+        },
+        "delta": {
+          "dice": 0.24846742767408614,
+          "cldice": -0.2624911025430805,
+          "centerline_recall": -0.8659981768459346,
+          "centerline_precision": 0.22499413833529047,
+          "precision": 0.35987277533079975,
+          "recall": 0.136137873257141,
+          "fp_ml": -1.330374351484103,
+          "fn_ml": -0.4724144094109768,
+          "assd_mm": -0.1465918130038828,
+          "hd95_mm": -1.0971689613893574
+        }
+      }
+    ],
+    "geometry": {
+      "radius_le_2mm": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 48.2697731804855,
+            "defined_case_mean": 48.2697731804855,
+            "sample_SD": 20.356754239306202
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 48.98220212201244,
+            "defined_case_mean": 48.98220212201244,
+            "sample_SD": 21.666697929075504
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": -0.7124289415269396,
+            "defined_case_mean": -0.7124289415269396,
+            "sample_SD": 3.357956925560419
+          },
+          "positive": 2,
+          "ties": 2,
+          "negative": 4
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 217,
+            "after_support_nodes": 217,
+            "before_support_nodes": 217,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 41.935483870967744,
+            "before_recall_pp": 41.013824884792626
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 90,
+            "after_support_nodes": 90,
+            "before_support_nodes": 90,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 31.11111111111111,
+            "before_recall_pp": 33.33333333333333
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 29,
+            "after_support_nodes": 29,
+            "before_support_nodes": 29,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 62.06896551724138,
+            "before_recall_pp": 62.06896551724138
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 55,
+            "after_support_nodes": 55,
+            "before_support_nodes": 55,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 49.09090909090909,
+            "before_recall_pp": 49.09090909090909
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 64,
+            "after_support_nodes": 64,
+            "before_support_nodes": 64,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 82.8125,
+            "before_recall_pp": 89.0625
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 31,
+            "after_support_nodes": 31,
+            "before_support_nodes": 31,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 19.35483870967742,
+            "before_recall_pp": 22.58064516129032
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 537,
+            "after_support_nodes": 537,
+            "before_support_nodes": 537,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 62.94227188081937,
+            "before_recall_pp": 63.128491620111724
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 19,
+            "after_support_nodes": 19,
+            "before_support_nodes": 19,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 36.84210526315789,
+            "before_recall_pp": 31.57894736842105
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "radius_2_to_4mm": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 71.4330745781546,
+            "defined_case_mean": 71.4330745781546,
+            "sample_SD": 20.2001958017255
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 71.71438220150324,
+            "defined_case_mean": 71.71438220150324,
+            "sample_SD": 20.349022694443455
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": -0.2813076233486429,
+            "defined_case_mean": -0.2813076233486429,
+            "sample_SD": 7.288607184869692
+          },
+          "positive": 2,
+          "ties": 0,
+          "negative": 6
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 476,
+            "after_support_nodes": 476,
+            "before_support_nodes": 476,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 88.23529411764706,
+            "before_recall_pp": 89.07563025210085
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 191,
+            "after_support_nodes": 191,
+            "before_support_nodes": 191,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 85.86387434554975,
+            "before_recall_pp": 69.10994764397905
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 188,
+            "after_support_nodes": 188,
+            "before_support_nodes": 188,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 79.25531914893617,
+            "before_recall_pp": 83.51063829787235
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 292,
+            "after_support_nodes": 292,
+            "before_support_nodes": 292,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 59.93150684931506,
+            "before_recall_pp": 61.64383561643836
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 449,
+            "after_support_nodes": 449,
+            "before_support_nodes": 449,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 83.51893095768375,
+            "before_recall_pp": 90.42316258351893
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 284,
+            "after_support_nodes": 284,
+            "before_support_nodes": 284,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 26.76056338028169,
+            "before_recall_pp": 27.464788732394368
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 1106,
+            "after_support_nodes": 1106,
+            "before_support_nodes": 1106,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 76.94394213381554,
+            "before_recall_pp": 76.85352622061484
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 513,
+            "after_support_nodes": 513,
+            "before_support_nodes": 513,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 70.9551656920078,
+            "before_recall_pp": 75.6335282651072
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "radius_4_to_8mm": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 82.1187935663219,
+            "defined_case_mean": 82.1187935663219,
+            "sample_SD": 16.365133578926326
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 83.81062670804555,
+            "defined_case_mean": 83.81062670804555,
+            "sample_SD": 14.697999513230602
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": -1.6918331417236558,
+            "defined_case_mean": -1.6918331417236558,
+            "sample_SD": 2.4498669526911683
+          },
+          "positive": 2,
+          "ties": 2,
+          "negative": 4
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 221,
+            "after_support_nodes": 221,
+            "before_support_nodes": 221,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 77.37556561085974,
+            "before_recall_pp": 77.37556561085974
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 185,
+            "after_support_nodes": 185,
+            "before_support_nodes": 185,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 97.83783783783784,
+            "before_recall_pp": 96.75675675675676
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 350,
+            "after_support_nodes": 350,
+            "before_support_nodes": 350,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 65.14285714285715,
+            "before_recall_pp": 68.57142857142857
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 166,
+            "after_support_nodes": 166,
+            "before_support_nodes": 166,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 83.13253012048193,
+            "before_recall_pp": 83.13253012048193
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 174,
+            "after_support_nodes": 174,
+            "before_support_nodes": 174,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 91.95402298850574,
+            "before_recall_pp": 95.40229885057471
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 220,
+            "after_support_nodes": 220,
+            "before_support_nodes": 220,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 52.27272727272727,
+            "before_recall_pp": 58.18181818181818
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 268,
+            "after_support_nodes": 268,
+            "before_support_nodes": 268,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 91.7910447761194,
+            "before_recall_pp": 94.02985074626866
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 978,
+            "after_support_nodes": 978,
+            "before_support_nodes": 978,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 97.4437627811861,
+            "before_recall_pp": 97.03476482617587
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "radius_gt_8mm": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 95.29810212691146,
+            "defined_case_mean": 95.29810212691146,
+            "sample_SD": 5.404403302933842
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 95.29810212691146,
+            "defined_case_mean": 95.29810212691146,
+            "sample_SD": 5.404403302933842
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 0.0,
+            "defined_case_mean": 0.0,
+            "sample_SD": 0.0
+          },
+          "positive": 0,
+          "ties": 8,
+          "negative": 0
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 430,
+            "after_support_nodes": 430,
+            "before_support_nodes": 430,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 88.37209302325581,
+            "before_recall_pp": 88.37209302325581
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 137,
+            "after_support_nodes": 137,
+            "before_support_nodes": 137,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 320,
+            "after_support_nodes": 320,
+            "before_support_nodes": 320,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 94.0625,
+            "before_recall_pp": 94.0625
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 205,
+            "after_support_nodes": 205,
+            "before_support_nodes": 205,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 92.19512195121952,
+            "before_recall_pp": 92.19512195121952
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 323,
+            "after_support_nodes": 323,
+            "before_support_nodes": 323,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 343,
+            "after_support_nodes": 343,
+            "before_support_nodes": 343,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 87.75510204081633,
+            "before_recall_pp": 87.75510204081633
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 1116,
+            "after_support_nodes": 1116,
+            "before_support_nodes": 1116,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 684,
+            "after_support_nodes": 684,
+            "before_support_nodes": 684,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "nonjunction": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 80.07960819642301,
+            "defined_case_mean": 80.07960819642301,
+            "sample_SD": 12.184173257715988
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 80.95644343960365,
+            "defined_case_mean": 80.95644343960365,
+            "sample_SD": 12.34449377286796
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": -0.876835243180631,
+            "defined_case_mean": -0.876835243180631,
+            "sample_SD": 2.892311038689768
+          },
+          "positive": 1,
+          "ties": 1,
+          "negative": 6
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 991,
+            "after_support_nodes": 991,
+            "before_support_nodes": 991,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 77.90110998990917,
+            "before_recall_pp": 77.90110998990917
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 461,
+            "after_support_nodes": 461,
+            "before_support_nodes": 461,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 81.77874186550976,
+            "before_recall_pp": 76.78958785249458
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 730,
+            "after_support_nodes": 730,
+            "before_support_nodes": 730,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 76.84931506849315,
+            "before_recall_pp": 79.31506849315069
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 547,
+            "after_support_nodes": 547,
+            "before_support_nodes": 547,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 74.9542961608775,
+            "before_recall_pp": 76.41681901279708
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 882,
+            "after_support_nodes": 882,
+            "before_support_nodes": 882,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 89.1156462585034,
+            "before_recall_pp": 94.33106575963718
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 654,
+            "after_support_nodes": 654,
+            "before_support_nodes": 654,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 55.35168195718655,
+            "before_recall_pp": 57.3394495412844
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 1965,
+            "after_support_nodes": 1965,
+            "before_support_nodes": 1965,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 93.02798982188295,
+            "before_recall_pp": 93.2824427480916
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 1942,
+            "after_support_nodes": 1942,
+            "before_support_nodes": 1942,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 91.65808444902163,
+            "before_recall_pp": 92.27600411946447
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "junction_neighbourhood": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 83.73851522108895,
+            "defined_case_mean": 83.73851522108895,
+            "sample_SD": 14.725214790093673
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 82.49310704288968,
+            "defined_case_mean": 82.49310704288968,
+            "sample_SD": 13.698272077261635
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 1.2454081781992734,
+            "defined_case_mean": 1.2454081781992734,
+            "sample_SD": 3.7846905350142572
+          },
+          "positive": 3,
+          "ties": 4,
+          "negative": 1
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 150,
+            "after_support_nodes": 150,
+            "before_support_nodes": 150,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 83.33333333333334,
+            "before_recall_pp": 83.33333333333334
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 80,
+            "after_support_nodes": 80,
+            "before_support_nodes": 80,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 90.0
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 73,
+            "after_support_nodes": 73,
+            "before_support_nodes": 73,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 80.82191780821918,
+            "before_recall_pp": 83.56164383561644
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 90,
+            "after_support_nodes": 90,
+            "before_support_nodes": 90,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 73.33333333333333,
+            "before_recall_pp": 71.11111111111111
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 41,
+            "after_support_nodes": 41,
+            "before_support_nodes": 41,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 104,
+            "after_support_nodes": 104,
+            "before_support_nodes": 104,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 82.6923076923077,
+            "before_recall_pp": 82.6923076923077
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 527,
+            "after_support_nodes": 527,
+            "before_support_nodes": 527,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 55.97722960151803,
+            "before_recall_pp": 55.97722960151803
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 208,
+            "after_support_nodes": 208,
+            "before_support_nodes": 208,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 93.75,
+            "before_recall_pp": 93.26923076923077
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      }
+    },
+    "worst_two": {
+      "after": {
+        "case_ids": [
+          "KiTS_K8",
+          "KiTS_K13"
+        ],
+        "mean_Dice_pp": 79.28452073889571
+      },
+      "before": {
+        "case_ids": [
+          "KiTS_K8",
+          "KiTS_K13"
+        ],
+        "mean_Dice_pp": 79.2416199718161
+      }
+    },
+    "worst_two_mean_Dice_difference_pp": 0.04290076707960111,
+    "Dice_SD_reduction_pp": 0.18978563454655273,
+    "worst_paired_Dice_difference_pp": -3.7751177915984044,
+    "leave_one_case_out_Dice_delta_pp": {
+      "Dongyang_D2": -0.474374898655386,
+      "Dongyang_D5": 0.10928200506433987,
+      "KiTS_K13": -0.49275527534531705,
+      "KiTS_K15": -0.41959772781457616,
+      "KiTS_K18": -0.4339318095174483,
+      "KiTS_K8": -0.3795431598625803,
+      "Rider_R10": -0.4537070066138987,
+      "Rider_R9": -0.4655158834031588
+    },
+    "continue_gate": {
+      "parts": {
+        "mean_Dice_nonnegative": false,
+        "mean_clDice_defined_and_nonnegative": false,
+        "worst_two_Dice_nonnegative": true,
+        "no_case_Dice_decline_gt_3pp": false,
+        "substantive_signal": false
+      },
+      "passed": false,
+      "policy": "Prospective exploratory pilot rule, not significance or clinical margin"
+    },
+    "FP_FN_voxel_counts": {
+      "fp_voxels": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 59838.75,
+            "defined_case_mean": 59838.75,
+            "sample_SD": 74256.13346432353
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 60853.875,
+            "defined_case_mean": 60853.875,
+            "sample_SD": 80777.42742240646
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": -1015.125,
+            "defined_case_mean": -1015.125,
+            "sample_SD": 8859.753583117954
+          },
+          "positive": 2,
+          "ties": 0,
+          "negative": 6
+        },
+        "after_total": 478710,
+        "before_total": 486831,
+        "difference_total": -8121,
+        "cases": [
+          {
+            "case_id": "Dongyang_D2",
+            "after": 6115,
+            "before": 6772,
+            "difference": -657
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "after": 33172,
+            "before": 17427,
+            "difference": 15745
+          },
+          {
+            "case_id": "KiTS_K13",
+            "after": 22327,
+            "before": 24196,
+            "difference": -1869
+          },
+          {
+            "case_id": "KiTS_K15",
+            "after": 9520,
+            "before": 9570,
+            "difference": -50
+          },
+          {
+            "case_id": "KiTS_K18",
+            "after": 17890,
+            "before": 18443,
+            "difference": -553
+          },
+          {
+            "case_id": "KiTS_K8",
+            "after": 73787,
+            "before": 73628,
+            "difference": 159
+          },
+          {
+            "case_id": "Rider_R10",
+            "after": 228148,
+            "before": 245200,
+            "difference": -17052
+          },
+          {
+            "case_id": "Rider_R9",
+            "after": 87751,
+            "before": 91595,
+            "difference": -3844
+          }
+        ],
+        "scope": "Native voxel counts; totals reflect different native voxel volumes, not pooled physical volume"
+      },
+      "fn_voxels": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 45893,
+            "defined_case_mean": 45893,
+            "sample_SD": 41477.155560965984
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 45166.875,
+            "defined_case_mean": 45166.875,
+            "sample_SD": 40839.06408763026
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 726.125,
+            "defined_case_mean": 726.125,
+            "sample_SD": 3259.3041517433485
+          },
+          "positive": 5,
+          "ties": 0,
+          "negative": 3
+        },
+        "after_total": 367144,
+        "before_total": 361335,
+        "difference_total": 5809,
+        "cases": [
+          {
+            "case_id": "Dongyang_D2",
+            "after": 110677,
+            "before": 112002,
+            "difference": -1325
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "after": 7797,
+            "before": 9928,
+            "difference": -2131
+          },
+          {
+            "case_id": "KiTS_K13",
+            "after": 16343,
+            "before": 15846,
+            "difference": 497
+          },
+          {
+            "case_id": "KiTS_K15",
+            "after": 14242,
+            "before": 14090,
+            "difference": 152
+          },
+          {
+            "case_id": "KiTS_K18",
+            "after": 7369,
+            "before": 6978,
+            "difference": 391
+          },
+          {
+            "case_id": "KiTS_K8",
+            "after": 41291,
+            "before": 39961,
+            "difference": 1330
+          },
+          {
+            "case_id": "Rider_R10",
+            "after": 84577,
+            "before": 76317,
+            "difference": 8260
+          },
+          {
+            "case_id": "Rider_R9",
+            "after": 84848,
+            "before": 86213,
+            "difference": -1365
+          }
+        ],
+        "scope": "Native voxel counts; totals reflect different native voxel volumes, not pooled physical volume"
+      }
+    }
+  },
+  "SECONDARY": {
+    "case_ids": [
+      "Dongyang_D2",
+      "Dongyang_D5",
+      "KiTS_K13",
+      "KiTS_K15",
+      "KiTS_K18",
+      "KiTS_K8",
+      "Rider_R10",
+      "Rider_R9"
+    ],
+    "metrics": {
+      "dice": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 85.46796019007988,
+          "defined_case_mean": 85.46796019007988,
+          "sample_SD": 5.1687036720334145
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 86.5613024799657,
+          "defined_case_mean": 86.5613024799657,
+          "sample_SD": 5.878940126295272
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -1.093342289885829,
+          "defined_case_mean": -1.093342289885829,
+          "sample_SD": 2.124802287593627
+        },
+        "positive": 1,
+        "ties": 0,
+        "negative": 7
+      },
+      "cldice": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 72.06450469364506,
+          "defined_case_mean": 72.06450469364506,
+          "sample_SD": 12.070827027616854
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 73.56265532721186,
+          "defined_case_mean": 73.56265532721186,
+          "sample_SD": 15.128062893498617
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -1.4981506335668069,
+          "defined_case_mean": -1.4981506335668069,
+          "sample_SD": 4.007261668274601
+        },
+        "positive": 2,
+        "ties": 0,
+        "negative": 6
+      },
+      "centerline_recall": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 80.64614972192106,
+          "defined_case_mean": 80.64614972192106,
+          "sample_SD": 11.014415808488046
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 80.43430122171057,
+          "defined_case_mean": 80.43430122171057,
+          "sample_SD": 10.70501128020983
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 0.2118485002104924,
+          "defined_case_mean": 0.2118485002104924,
+          "sample_SD": 0.8363427778337897
+        },
+        "positive": 4,
+        "ties": 1,
+        "negative": 3
+      },
+      "centerline_precision": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 66.04007267964487,
+          "defined_case_mean": 66.04007267964487,
+          "sample_SD": 14.767252753791109
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 69.23955686936058,
+          "defined_case_mean": 69.23955686936058,
+          "sample_SD": 19.352250527680397
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -3.1994841897157222,
+          "defined_case_mean": -3.1994841897157222,
+          "sample_SD": 6.371679169949081
+        },
+        "positive": 2,
+        "ties": 0,
+        "negative": 6
+      },
+      "precision": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 84.7358167073833,
+          "defined_case_mean": 84.7358167073833,
+          "sample_SD": 8.424374123455916
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 87.00274114717186,
+          "defined_case_mean": 87.00274114717186,
+          "sample_SD": 8.550808625686733
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -2.2669244397885677,
+          "defined_case_mean": -2.2669244397885677,
+          "sample_SD": 3.523318549680162
+        },
+        "positive": 1,
+        "ties": 0,
+        "negative": 7
+      },
+      "recall": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 87.15845411472978,
+          "defined_case_mean": 87.15845411472978,
+          "sample_SD": 8.065976262212848
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 86.88117698503898,
+          "defined_case_mean": 86.88117698503898,
+          "sample_SD": 7.891083909914363
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 0.2772771296907983,
+          "defined_case_mean": 0.2772771296907983,
+          "sample_SD": 0.6303763454001744
+        },
+        "positive": 5,
+        "ties": 0,
+        "negative": 3
+      },
+      "fp_ml": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 63.61342425664847,
+          "defined_case_mean": 63.61342425664847,
+          "sample_SD": 51.37527570024626
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 55.20475887095418,
+          "defined_case_mean": 55.20475887095418,
+          "sample_SD": 50.60549111557157
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 8.408665385694293,
+          "defined_case_mean": 8.408665385694293,
+          "sample_SD": 10.09758186456112
+        },
+        "positive": 7,
+        "ties": 0,
+        "negative": 1
+      },
+      "fn_ml": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 51.26506428705694,
+          "defined_case_mean": 51.26506428705694,
+          "sample_SD": 39.6407002902159
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 52.634970491403486,
+          "defined_case_mean": 52.634970491403486,
+          "sample_SD": 38.85154152363464
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": -1.3699062043465458,
+          "defined_case_mean": -1.3699062043465458,
+          "sample_SD": 2.891784212653901
+        },
+        "positive": 3,
+        "ties": 0,
+        "negative": 5
+      },
+      "assd_mm": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 7.801447640208262,
+          "defined_case_mean": 7.801447640208262,
+          "sample_SD": 4.498037642917705
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 6.4859831789705105,
+          "defined_case_mean": 6.4859831789705105,
+          "sample_SD": 4.450220995152075
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 1.3154644612377517,
+          "defined_case_mean": 1.3154644612377517,
+          "sample_SD": 2.3968874935185167
+        },
+        "positive": 7,
+        "ties": 0,
+        "negative": 1
+      },
+      "hd95_mm": {
+        "after": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 71.12627166162859,
+          "defined_case_mean": 71.12627166162859,
+          "sample_SD": 32.985311860077815
+        },
+        "before": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 65.07964630857931,
+          "defined_case_mean": 65.07964630857931,
+          "sample_SD": 33.872813133581495
+        },
+        "difference": {
+          "cases": 8,
+          "defined_cases": 8,
+          "mean": 6.046625353049275,
+          "defined_case_mean": 6.046625353049275,
+          "sample_SD": 14.802075855703775
+        },
+        "positive": 6,
+        "ties": 0,
+        "negative": 2
+      }
+    },
+    "cases": [
+      {
+        "case_id": "Dongyang_D2",
+        "after": {
+          "dice": 81.87922450826909,
+          "cldice": 82.96489502085444,
+          "centerline_recall": 79.83630952380952,
+          "centerline_precision": 86.34868421052632,
+          "precision": 97.30986148978721,
+          "recall": 70.67252765268535,
+          "fp_ml": 8.895801608626906,
+          "fn_ml": 133.53383172524943,
+          "assd_mm": 5.333946359221287,
+          "hd95_mm": 43.818096124310046
+        },
+        "before": {
+          "dice": 82.52758501324466,
+          "cldice": 85.6231390745471,
+          "centerline_recall": 78.94345238095238,
+          "centerline_precision": 93.53769676884839,
+          "precision": 98.2399734015273,
+          "recall": 71.14822044275037,
+          "fp_ml": 5.803790324443095,
+          "fn_ml": 131.36790756277134,
+          "assd_mm": 4.766951811316599,
+          "hd95_mm": 44.03087058599725
+        },
+        "delta": {
+          "dice": -0.648360504975571,
+          "cldice": -2.6582440536926555,
+          "centerline_recall": 0.8928571428571388,
+          "centerline_precision": -7.1890125583220765,
+          "precision": -0.9301119117400845,
+          "recall": -0.4756927900650254,
+          "fp_ml": 3.092011284183811,
+          "fn_ml": 2.165924162478092,
+          "assd_mm": 0.5669945479046872,
+          "hd95_mm": -0.2127744616872036
+        }
+      },
+      {
+        "case_id": "Dongyang_D5",
+        "after": {
+          "dice": 87.11704634721131,
+          "cldice": 75.28330851120143,
+          "centerline_recall": 83.74792703150912,
+          "centerline_precision": 68.37270341207349,
+          "precision": 81.03285721020129,
+          "recall": 94.18904109589042,
+          "fp_ml": 35.69460980397763,
+          "fn_ml": 9.408259897382447,
+          "assd_mm": 10.92167149269844,
+          "hd95_mm": 93.37805078001773
+        },
+        "before": {
+          "dice": 92.7848895961539,
+          "cldice": 80.07411026205904,
+          "centerline_recall": 84.74295190713102,
+          "centerline_precision": 75.89285714285714,
+          "precision": 90.99439619125384,
+          "recall": 94.6472602739726,
+          "fp_ml": 15.16588429474332,
+          "fn_ml": 8.66637801721403,
+          "assd_mm": 4.2441665423391255,
+          "hd95_mm": 52.239939437037
+        },
+        "delta": {
+          "dice": -5.667843248942589,
+          "cldice": -4.790801750857611,
+          "centerline_recall": -0.995024875621894,
+          "centerline_precision": -7.5201537307836475,
+          "precision": -9.961538981052556,
+          "recall": -0.4582191780821887,
+          "fp_ml": 20.528725509234306,
+          "fn_ml": 0.7418818801684175,
+          "assd_mm": 6.677504950359315,
+          "hd95_mm": 41.13811134298073
+        }
+      },
+      {
+        "case_id": "KiTS_K13",
+        "after": {
+          "dice": 83.94066430183813,
+          "cldice": 72.3108683497484,
+          "centerline_recall": 82.41262683201805,
+          "centerline_precision": 64.41515650741351,
+          "precision": 81.90003794153301,
+          "recall": 86.08557783030338,
+          "fp_ml": 72.22409057617188,
+          "fn_ml": 52.823028564453125,
+          "assd_mm": 7.522550574871205,
+          "hd95_mm": 100.57866021740435
+        },
+        "before": {
+          "dice": 82.32257942761166,
+          "cldice": 69.22442047226922,
+          "centerline_recall": 81.05975197294251,
+          "centerline_precision": 60.40485829959514,
+          "precision": 79.9316518090282,
+          "recall": 84.86095304794421,
+          "fp_ml": 80.88330078125,
+          "fn_ml": 57.4720458984375,
+          "assd_mm": 9.243122912622646,
+          "hd95_mm": 108.95726028781584
+        },
+        "delta": {
+          "dice": 1.6180848742264686,
+          "cldice": 3.0864478774791877,
+          "centerline_recall": 1.3528748590755413,
+          "centerline_precision": 4.010298207818373,
+          "precision": 1.9683861325048184,
+          "recall": 1.2246247823591716,
+          "fp_ml": -8.659210205078125,
+          "fn_ml": -4.649017333984375,
+          "assd_mm": -1.7205723377514408,
+          "hd95_mm": -8.378600070411494
+        }
+      },
+      {
+        "case_id": "KiTS_K15",
+        "after": {
+          "dice": 86.17745051376096,
+          "cldice": 69.60279512289512,
+          "centerline_recall": 72.28412256267409,
+          "centerline_precision": 67.11327649208283,
+          "precision": 87.62340723533632,
+          "recall": 84.77844126655356,
+          "fp_ml": 30.888319473266588,
+          "fn_ml": 39.263319702148415,
+          "assd_mm": 6.406789495129875,
+          "hd95_mm": 97.87966916773357
+        },
+        "before": {
+          "dice": 86.30076764397552,
+          "cldice": 70.32599867326867,
+          "centerline_recall": 72.56267409470752,
+          "centerline_precision": 68.2230869001297,
+          "precision": 88.34525732748672,
+          "recall": 84.34876495604081,
+          "fp_ml": 28.702919006347642,
+          "fn_ml": 40.371650238037084,
+          "assd_mm": 5.885957041441221,
+          "hd95_mm": 93.0617147660799
+        },
+        "delta": {
+          "dice": -0.12331713021455926,
+          "cldice": -0.7232035503735545,
+          "centerline_recall": -0.27855153203343264,
+          "centerline_precision": -1.1098104080468687,
+          "precision": -0.7218500921504045,
+          "recall": 0.4296763105127468,
+          "fp_ml": 2.1854004669189457,
+          "fn_ml": -1.108330535888669,
+          "assd_mm": 0.5208324536886542,
+          "hd95_mm": 4.817954401653665
+        }
+      },
+      {
+        "case_id": "KiTS_K18",
+        "after": {
+          "dice": 88.06614363142708,
+          "cldice": 70.38157811762883,
+          "centerline_recall": 92.87128712871288,
+          "centerline_precision": 56.660638939119956,
+          "precision": 82.13666143473536,
+          "recall": 94.91834097050875,
+          "fp_ml": 79.0621875,
+          "fn_ml": 19.4625,
+          "assd_mm": 7.755359303506141,
+          "hd95_mm": 68.0312428226914
+        },
+        "before": {
+          "dice": 90.28414202550522,
+          "cldice": 74.99942477163435,
+          "centerline_recall": 92.87128712871288,
+          "centerline_precision": 62.89592760180995,
+          "precision": 86.2633870935374,
+          "recall": 94.69803783339208,
+          "fp_ml": 57.7546875,
+          "fn_ml": 20.30625,
+          "assd_mm": 6.3686343053600245,
+          "hd95_mm": 67.74308082749116
+        },
+        "delta": {
+          "dice": -2.217998394078137,
+          "cldice": -4.617846654005518,
+          "centerline_recall": 0.0,
+          "centerline_precision": -6.235288662689996,
+          "precision": -4.1267256588020444,
+          "recall": 0.22030313711667304,
+          "fp_ml": 21.30749999999999,
+          "fn_ml": -0.84375,
+          "assd_mm": 1.386724998146117,
+          "hd95_mm": 0.288161995200241
+        }
+      },
+      {
+        "case_id": "KiTS_K8",
+        "after": {
+          "dice": 75.1433009496011,
+          "cldice": 44.942742708862184,
+          "centerline_recall": 58.54214123006833,
+          "centerline_precision": 36.470588235294116,
+          "precision": 68.85484524402791,
+          "recall": 82.69584350604335,
+          "fp_ml": 173.7035591583252,
+          "fn_ml": 80.35621705627442,
+          "assd_mm": 17.22238989995137,
+          "hd95_mm": 106.31883940464411
+        },
+        "before": {
+          "dice": 75.95749811247663,
+          "cldice": 40.07084278510332,
+          "centerline_recall": 59.111617312072894,
+          "centerline_precision": 30.30812324929972,
+          "precision": 70.20258297864567,
+          "recall": 82.7401943687322,
+          "fp_ml": 163.0839093017578,
+          "fn_ml": 80.15026263427734,
+          "assd_mm": 16.06688604565309,
+          "hd95_mm": 103.56033308685635
+        },
+        "delta": {
+          "dice": -0.81419716287553,
+          "cldice": 4.8718999237588605,
+          "centerline_recall": -0.569476082004563,
+          "centerline_precision": 6.162464985994397,
+          "precision": -1.347737734617752,
+          "recall": -0.04435086268885868,
+          "fp_ml": 10.619649856567378,
+          "fn_ml": 0.20595442199707747,
+          "assd_mm": 1.1555038542982814,
+          "hd95_mm": 2.758506317787763
+        }
+      },
+      {
+        "case_id": "Rider_R10",
+        "after": {
+          "dice": 90.34358133931222,
+          "cldice": 79.21248050503561,
+          "centerline_recall": 84.0436075322101,
+          "centerline_precision": 74.90658235125036,
+          "precision": 88.10712176036313,
+          "recall": 92.6965359194925,
+          "fp_ml": 76.82893753051758,
+          "fn_ml": 44.84502410888672,
+          "assd_mm": 3.8774894429976414,
+          "hd95_mm": 35.7888399428247
+        },
+        "before": {
+          "dice": 90.73015852448808,
+          "cldice": 79.65475928238183,
+          "centerline_recall": 83.84539147670962,
+          "centerline_precision": 75.86308645618176,
+          "precision": 89.86116999826751,
+          "recall": 91.6161180035769,
+          "fp_ml": 63.47066116333008,
+          "fn_ml": 51.47904968261719,
+          "assd_mm": 3.5349130341086057,
+          "hd95_mm": 32.520125975502765
+        },
+        "delta": {
+          "dice": -0.3865771851758524,
+          "cldice": -0.44227877734621757,
+          "centerline_recall": 0.19821605550048105,
+          "centerline_precision": -0.9565041049313976,
+          "precision": -1.7540482379043851,
+          "recall": 1.0804179159156035,
+          "fp_ml": 13.3582763671875,
+          "fn_ml": -6.634025573730469,
+          "assd_mm": 0.34257640888903573,
+          "hd95_mm": 3.2687139673219363
+        }
+      },
+      {
+        "case_id": "Rider_R9",
+        "after": {
+          "dice": 91.0762699292191,
+          "cldice": 81.81736921293442,
+          "centerline_recall": 91.43117593436645,
+          "centerline_precision": 74.03295128939828,
+          "precision": 90.92174134308212,
+          "recall": 91.23132467636088,
+          "fp_ml": 31.60988840230204,
+          "fn_ml": 30.428333242060955,
+          "assd_mm": 3.3713845532901368,
+          "hd95_mm": 23.21677483340279
+        },
+        "before": {
+          "dice": 91.58279949626996,
+          "cldice": 88.52854729643137,
+          "centerline_recall": 90.33728350045578,
+          "centerline_precision": 86.79081853616285,
+          "precision": 92.18351037762825,
+          "recall": 90.98986695390262,
+          "fp_ml": 26.772918595761503,
+          "fn_ml": 31.266219897873395,
+          "assd_mm": 1.7772337389227717,
+          "hd95_mm": 18.52384550185423
+        },
+        "delta": {
+          "dice": -0.5065295670508618,
+          "cldice": -6.7111780834969466,
+          "centerline_recall": 1.0938924339106677,
+          "centerline_precision": -12.757867246764562,
+          "precision": -1.261769034546134,
+          "recall": 0.24145772245826436,
+          "fp_ml": 4.836969806540537,
+          "fn_ml": -0.83788665581244,
+          "assd_mm": 1.594150814367365,
+          "hd95_mm": 4.692929331548562
+        }
+      }
+    ],
+    "geometry": {
+      "radius_le_2mm": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 49.05216468574092,
+            "defined_case_mean": 49.05216468574092,
+            "sample_SD": 20.17232789687828
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 48.625661411877765,
+            "defined_case_mean": 48.625661411877765,
+            "sample_SD": 20.305608198094298
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 0.42650327386315734,
+            "defined_case_mean": 0.42650327386315734,
+            "sample_SD": 1.1329648029863704
+          },
+          "positive": 2,
+          "ties": 6,
+          "negative": 0
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 217,
+            "after_support_nodes": 217,
+            "before_support_nodes": 217,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 43.77880184331797,
+            "before_recall_pp": 40.55299539170507
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 90,
+            "after_support_nodes": 90,
+            "before_support_nodes": 90,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 34.44444444444444,
+            "before_recall_pp": 34.44444444444444
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 29,
+            "after_support_nodes": 29,
+            "before_support_nodes": 29,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 62.06896551724138,
+            "before_recall_pp": 62.06896551724138
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 55,
+            "after_support_nodes": 55,
+            "before_support_nodes": 55,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 43.63636363636363,
+            "before_recall_pp": 43.63636363636363
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 64,
+            "after_support_nodes": 64,
+            "before_support_nodes": 64,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 85.9375,
+            "before_recall_pp": 85.9375
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 31,
+            "after_support_nodes": 31,
+            "before_support_nodes": 31,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 22.58064516129032,
+            "before_recall_pp": 22.58064516129032
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 537,
+            "after_support_nodes": 537,
+            "before_support_nodes": 537,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 63.128491620111724,
+            "before_recall_pp": 62.94227188081937
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 19,
+            "after_support_nodes": 19,
+            "before_support_nodes": 19,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 36.84210526315789,
+            "before_recall_pp": 36.84210526315789
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "radius_2_to_4mm": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 72.29546582156092,
+            "defined_case_mean": 72.29546582156092,
+            "sample_SD": 20.05942427058849
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 71.9951856913247,
+            "defined_case_mean": 71.9951856913247,
+            "sample_SD": 19.504594422864933
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 0.30028013023622124,
+            "defined_case_mean": 0.30028013023622124,
+            "sample_SD": 2.194581256086006
+          },
+          "positive": 3,
+          "ties": 1,
+          "negative": 4
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 476,
+            "after_support_nodes": 476,
+            "before_support_nodes": 476,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 89.70588235294117,
+            "before_recall_pp": 87.81512605042016
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 191,
+            "after_support_nodes": 191,
+            "before_support_nodes": 191,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 82.19895287958116,
+            "before_recall_pp": 84.29319371727748
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 188,
+            "after_support_nodes": 188,
+            "before_support_nodes": 188,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 80.85106382978722,
+            "before_recall_pp": 80.85106382978722
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 292,
+            "after_support_nodes": 292,
+            "before_support_nodes": 292,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 57.534246575342465,
+            "before_recall_pp": 58.21917808219178
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 449,
+            "after_support_nodes": 449,
+            "before_support_nodes": 449,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 86.63697104677061,
+            "before_recall_pp": 87.08240534521158
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 284,
+            "after_support_nodes": 284,
+            "before_support_nodes": 284,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 28.87323943661972,
+            "before_recall_pp": 30.28169014084507
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 1106,
+            "after_support_nodes": 1106,
+            "before_support_nodes": 1106,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 77.124773960217,
+            "before_recall_pp": 76.85352622061484
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 513,
+            "after_support_nodes": 513,
+            "before_support_nodes": 513,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 75.43859649122807,
+            "before_recall_pp": 70.56530214424951
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "radius_4_to_8mm": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 84.17614701068084,
+            "defined_case_mean": 84.17614701068084,
+            "sample_SD": 14.453770143819929
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 84.08151805917343,
+            "defined_case_mean": 84.08151805917343,
+            "sample_SD": 14.647937805465952
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 0.09462895150740547,
+            "defined_case_mean": 0.09462895150740547,
+            "sample_SD": 1.5948852034163463
+          },
+          "positive": 2,
+          "ties": 1,
+          "negative": 5
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 221,
+            "after_support_nodes": 221,
+            "before_support_nodes": 221,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 77.37556561085974,
+            "before_recall_pp": 79.18552036199095
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 185,
+            "after_support_nodes": 185,
+            "before_support_nodes": 185,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 97.2972972972973,
+            "before_recall_pp": 98.37837837837839
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 350,
+            "after_support_nodes": 350,
+            "before_support_nodes": 350,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 74.28571428571429,
+            "before_recall_pp": 70.85714285714285
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 166,
+            "after_support_nodes": 166,
+            "before_support_nodes": 166,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 83.13253012048193,
+            "before_recall_pp": 83.13253012048193
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 174,
+            "after_support_nodes": 174,
+            "before_support_nodes": 174,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 98.27586206896551,
+            "before_recall_pp": 97.12643678160919
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 220,
+            "after_support_nodes": 220,
+            "before_support_nodes": 220,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 56.36363636363636,
+            "before_recall_pp": 56.81818181818182
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 268,
+            "after_support_nodes": 268,
+            "before_support_nodes": 268,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 91.7910447761194,
+            "before_recall_pp": 92.16417910447761
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 978,
+            "after_support_nodes": 978,
+            "before_support_nodes": 978,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 94.88752556237219,
+            "before_recall_pp": 94.98977505112475
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "radius_gt_8mm": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 95.18609495845267,
+            "defined_case_mean": 95.18609495845267,
+            "sample_SD": 5.301337285130557
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 95.15249280791504,
+            "defined_case_mean": 95.15249280791504,
+            "sample_SD": 5.273736804748051
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 0.033602150537634046,
+            "defined_case_mean": 0.033602150537634046,
+            "sample_SD": 0.09504123403044891
+          },
+          "positive": 1,
+          "ties": 7,
+          "negative": 0
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 430,
+            "after_support_nodes": 430,
+            "before_support_nodes": 430,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 88.37209302325581,
+            "before_recall_pp": 88.37209302325581
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 137,
+            "after_support_nodes": 137,
+            "before_support_nodes": 137,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 320,
+            "after_support_nodes": 320,
+            "before_support_nodes": 320,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 94.0625,
+            "before_recall_pp": 94.0625
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 205,
+            "after_support_nodes": 205,
+            "before_support_nodes": 205,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 92.19512195121952,
+            "before_recall_pp": 92.19512195121952
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 323,
+            "after_support_nodes": 323,
+            "before_support_nodes": 323,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 343,
+            "after_support_nodes": 343,
+            "before_support_nodes": 343,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 87.75510204081633,
+            "before_recall_pp": 87.75510204081633
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 1116,
+            "after_support_nodes": 1116,
+            "before_support_nodes": 1116,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 99.10394265232975,
+            "before_recall_pp": 98.83512544802868
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 684,
+            "after_support_nodes": 684,
+            "before_support_nodes": 684,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "nonjunction": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 81.08268267343084,
+            "defined_case_mean": 81.08268267343084,
+            "sample_SD": 11.780071079540324
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 80.77676519776847,
+            "defined_case_mean": 80.77676519776847,
+            "sample_SD": 11.539013320647404
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 0.3059174756623637,
+            "defined_case_mean": 0.3059174756623637,
+            "sample_SD": 0.8077171228757277
+          },
+          "positive": 4,
+          "ties": 1,
+          "negative": 3
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 991,
+            "after_support_nodes": 991,
+            "before_support_nodes": 991,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 78.80928355196771,
+            "before_recall_pp": 77.49747729566094
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 461,
+            "after_support_nodes": 461,
+            "before_support_nodes": 461,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 81.77874186550976,
+            "before_recall_pp": 81.77874186550976
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 730,
+            "after_support_nodes": 730,
+            "before_support_nodes": 730,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 81.64383561643835,
+            "before_recall_pp": 80.0
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 547,
+            "after_support_nodes": 547,
+            "before_support_nodes": 547,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 73.6745886654479,
+            "before_recall_pp": 73.85740402193784
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 882,
+            "after_support_nodes": 882,
+            "before_support_nodes": 882,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 92.06349206349206,
+            "before_recall_pp": 92.29024943310658
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 654,
+            "after_support_nodes": 654,
+            "before_support_nodes": 654,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 57.3394495412844,
+            "before_recall_pp": 58.103975535168196
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 1965,
+            "after_support_nodes": 1965,
+            "before_support_nodes": 1965,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 92.6208651399491,
+            "before_recall_pp": 92.31552162849873
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 1942,
+            "after_support_nodes": 1942,
+            "before_support_nodes": 1942,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 90.73120494335737,
+            "before_recall_pp": 90.3707518022657
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      },
+      "junction_neighbourhood": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 83.33520325527698,
+            "defined_case_mean": 83.33520325527698,
+            "sample_SD": 14.488144357396473
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 83.59962633220006,
+            "defined_case_mean": 83.59962633220006,
+            "sample_SD": 14.842152941786008
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": -0.26442307692307665,
+            "defined_case_mean": -0.26442307692307665,
+            "sample_SD": 2.163385224539278
+          },
+          "positive": 1,
+          "ties": 6,
+          "negative": 1
+        },
+        "case_support": [
+          {
+            "case_id": "Dongyang_D2",
+            "support_nodes": 150,
+            "after_support_nodes": 150,
+            "before_support_nodes": 150,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 83.33333333333334,
+            "before_recall_pp": 83.33333333333334
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "support_nodes": 80,
+            "after_support_nodes": 80,
+            "before_support_nodes": 80,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 95.0,
+            "before_recall_pp": 100.0
+          },
+          {
+            "case_id": "KiTS_K13",
+            "support_nodes": 73,
+            "after_support_nodes": 73,
+            "before_support_nodes": 73,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 80.82191780821918,
+            "before_recall_pp": 80.82191780821918
+          },
+          {
+            "case_id": "KiTS_K15",
+            "support_nodes": 90,
+            "after_support_nodes": 90,
+            "before_support_nodes": 90,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 72.22222222222221,
+            "before_recall_pp": 72.22222222222221
+          },
+          {
+            "case_id": "KiTS_K18",
+            "support_nodes": 41,
+            "after_support_nodes": 41,
+            "before_support_nodes": 41,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 100.0,
+            "before_recall_pp": 100.0
+          },
+          {
+            "case_id": "KiTS_K8",
+            "support_nodes": 104,
+            "after_support_nodes": 104,
+            "before_support_nodes": 104,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 82.6923076923077,
+            "before_recall_pp": 82.6923076923077
+          },
+          {
+            "case_id": "Rider_R10",
+            "support_nodes": 527,
+            "after_support_nodes": 527,
+            "before_support_nodes": 527,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 55.97722960151803,
+            "before_recall_pp": 55.97722960151803
+          },
+          {
+            "case_id": "Rider_R9",
+            "support_nodes": 208,
+            "after_support_nodes": 208,
+            "before_support_nodes": 208,
+            "after_missing_reason": null,
+            "before_missing_reason": null,
+            "after_recall_pp": 96.63461538461539,
+            "before_recall_pp": 93.75
+          }
+        ],
+        "scope": "GT centerline recall; no group precision; equal supported cases"
+      }
+    },
+    "worst_two": {
+      "after": {
+        "case_ids": [
+          "KiTS_K8",
+          "Dongyang_D2"
+        ],
+        "mean_Dice_pp": 78.5112627289351
+      },
+      "before": {
+        "case_ids": [
+          "KiTS_K8",
+          "KiTS_K13"
+        ],
+        "mean_Dice_pp": 79.14003877004414
+      }
+    },
+    "worst_two_mean_Dice_difference_pp": -0.6287760411090488,
+    "Dice_SD_reduction_pp": 0.7102364542618576,
+    "worst_paired_Dice_difference_pp": -5.667843248942589,
+    "leave_one_case_out_Dice_delta_pp": {
+      "Dongyang_D2": -1.1569111163015802,
+      "Dongyang_D5": -0.4398421528777204,
+      "KiTS_K13": -1.480689027616157,
+      "KiTS_K15": -1.2319173126960103,
+      "KiTS_K18": -0.9326771321440707,
+      "KiTS_K8": -1.1332201651730145,
+      "Rider_R10": -1.1943087334158256,
+      "Rider_R9": -1.1771726788622527
+    },
+    "continue_gate": {
+      "parts": {
+        "mean_Dice_nonnegative": false,
+        "mean_clDice_defined_and_nonnegative": false,
+        "worst_two_Dice_nonnegative": false,
+        "no_case_Dice_decline_gt_3pp": false,
+        "substantive_signal": false
+      },
+      "passed": false,
+      "policy": "Prospective exploratory pilot rule, not significance or clinical margin"
+    },
+    "FP_FN_voxel_counts": {
+      "fp_voxels": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 65650.5,
+            "defined_case_mean": 65650.5,
+            "sample_SD": 80727.10418971526
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 54440.25,
+            "defined_case_mean": 54440.25,
+            "sample_SD": 67966.52828047052
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 11210.25,
+            "defined_case_mean": 11210.25,
+            "sample_SD": 14640.41172088896
+          },
+          "positive": 7,
+          "ties": 0,
+          "negative": 1
+        },
+        "after_total": 525204,
+        "before_total": 435522,
+        "difference_total": 89682,
+        "cases": [
+          {
+            "case_id": "Dongyang_D2",
+            "after": 7627,
+            "before": 4976,
+            "difference": 2651
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "after": 32188,
+            "before": 13676,
+            "difference": 18512
+          },
+          {
+            "case_id": "KiTS_K13",
+            "after": 19559,
+            "before": 21904,
+            "difference": -2345
+          },
+          {
+            "case_id": "KiTS_K15",
+            "after": 10869,
+            "before": 10100,
+            "difference": 769
+          },
+          {
+            "case_id": "KiTS_K18",
+            "after": 28111,
+            "before": 20535,
+            "difference": 7576
+          },
+          {
+            "case_id": "KiTS_K8",
+            "after": 86871,
+            "before": 81560,
+            "difference": 5311
+          },
+          {
+            "case_id": "Rider_R10",
+            "after": 248645,
+            "before": 205413,
+            "difference": 43232
+          },
+          {
+            "case_id": "Rider_R9",
+            "after": 91334,
+            "before": 77358,
+            "difference": 13976
+          }
+        ],
+        "scope": "Native voxel counts; totals reflect different native voxel volumes, not pooled physical volume"
+      },
+      "fn_voxels": {
+        "paired": {
+          "after": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 53906.75,
+            "defined_case_mean": 53906.75,
+            "sample_SD": 54490.07700162349
+          },
+          "before": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": 56808.125,
+            "defined_case_mean": 56808.125,
+            "sample_SD": 59702.602172141545
+          },
+          "difference": {
+            "cases": 8,
+            "defined_cases": 8,
+            "mean": -2901.375,
+            "defined_case_mean": -2901.375,
+            "sample_SD": 7608.380021632162
+          },
+          "positive": 3,
+          "ties": 0,
+          "negative": 5
+        },
+        "after_total": 431254,
+        "before_total": 454465,
+        "difference_total": -23211,
+        "cases": [
+          {
+            "case_id": "Dongyang_D2",
+            "after": 114488,
+            "before": 112631,
+            "difference": 1857
+          },
+          {
+            "case_id": "Dongyang_D5",
+            "after": 8484,
+            "before": 7815,
+            "difference": 669
+          },
+          {
+            "case_id": "KiTS_K13",
+            "after": 14305,
+            "before": 15564,
+            "difference": -1259
+          },
+          {
+            "case_id": "KiTS_K15",
+            "after": 13816,
+            "before": 14206,
+            "difference": -390
+          },
+          {
+            "case_id": "KiTS_K18",
+            "after": 6920,
+            "before": 7220,
+            "difference": -300
+          },
+          {
+            "case_id": "KiTS_K8",
+            "after": 40187,
+            "before": 40084,
+            "difference": 103
+          },
+          {
+            "case_id": "Rider_R10",
+            "after": 145134,
+            "before": 166604,
+            "difference": -21470
+          },
+          {
+            "case_id": "Rider_R9",
+            "after": 87920,
+            "before": 90341,
+            "difference": -2421
+          }
+        ],
+        "scope": "Native voxel counts; totals reflect different native voxel volumes, not pooled physical volume"
+      }
+    }
+  }
+}

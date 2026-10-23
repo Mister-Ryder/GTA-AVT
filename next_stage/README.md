@@ -26,6 +26,12 @@ At this documentation cutoff (23 October 2026):
 - The separate [global attribute-plus-GDF engineering check](../reports/next_stage_global_joint_engineering_20261023/README.txt)
   completed one synthetic joint update. Its named scientific candidate remains
   untrained and stopped; this check does not reverse the failed GDF gate.
+- The newer [learnable interaction plus GDF implementation and actual joint check](../reports/next_stage_learnable_integrated_source_20261023/README.txt)
+  has its own isolated synthetic CUDA128/batch2 AMP update, including the new
+  interaction parameters and GDF gradient routes. It uses the original private37
+  source identity; the mapped public37 identity is checked separately by inert
+  plans. The full combined candidate remains STOPPED and UNTRAINED. This
+  engineering result does not establish AVT efficacy or reopen a failed gate.
 
 The [completed diagnostic report](../reports/next_stage_diagnostics_20261023/readout.txt)
 retains the negative readout/oracle results and the limited GDF field audit.

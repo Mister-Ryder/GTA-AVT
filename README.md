@@ -203,6 +203,12 @@ Study partitions, training populations, 2D/3D inputs, resolution, optimization b
 
 ## Results and provenance
 
+The [new learnable-interaction plus GDF implementation](reports/next_stage_learnable_integrated_source_20261023/README.txt)
+completed a separate synthetic joint CUDA check on its original isolated source
+snapshot. Public source binding, physical fixtures, gradient routes and numerical
+recomputation are supplied. Its formal combined candidate remains stopped and
+untrained; this engineering result does not establish a segmentation gain.
+
 The [complete four-model TEST12 report](reports/minimal4_reference_TEST_20261023/README.md) provides held-out measurements and both favorable and adverse evidence. The [VAL8 report](reports/minimal4_reference_VAL_20261023/README.md), [condition diagnostics](reports/minimal4_VAL_diagnostics_20261023/README.md), and [training summary](reports/minimal4_optimization_summary_20261023/readout.md) remain separate development evidence. The [reproduction guide](docs/reproduce_minimal4.md) gives the exact current four-model entry points. Historical records below preserve earlier versions and scope decisions.
 
 [V1 development measurements](reports/development_v1_20261022/summary.json) include 32 case/timepoint/model rows in [casewise.csv](reports/development_v1_20261022/casewise.csv), with original run, source and checkpoint hashes. The original summary's `statistical_unit: "patient"` label is inaccurate: its observations are eight released case IDs with unverified subject independence; the [reporting erratum](reports/development_v1_20261022/reporting_erratum_20261022.json) preserves the original file identity and numerical values. At 5,000 updates, C achieved VAL8 Dice 73.8430% and the full-A bridge 69.5451%; both retained substantial errors. They trained under different hardware/software roles, so this difference does not estimate the GTA effect.

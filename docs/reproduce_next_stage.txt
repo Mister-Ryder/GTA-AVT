@@ -237,3 +237,14 @@ After actual success, pass checks/global_preflight/receipt.json through the
 global trainer --preflight-receipt option and separately add --execute to
 that training command. Warm-start recipes additionally need genuine --warmstart
 and --warmstart-sha256 arguments. No command here resumes the stopped local A.
+
+New learnable-interaction plus GDF source and actual synthetic joint check
+
+See reports/next_stage_learnable_integrated_source_20261023/README.txt for the
+new isolated combined trainer, unchanged requested recipe, original/private vs
+mapped/public37 source identities, actual one-update CUDA result and stdlib
+numerical checks. This check includes the new signed interaction; the older
+global joint check does not cover it. The combined scientific candidate remains
+STOPPED_UNTRAINED. Default commands only print metadata; no formal run is
+authorized by source publication or an engineering pass. Exact weights, original
+input/target manifests and FULL preflight remain controlled prerequisites.

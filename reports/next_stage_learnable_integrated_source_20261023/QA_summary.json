@@ -1,0 +1,392 @@
+{
+  "schema": "GTA-AVT-learnable-integrated-joint-QA-v1",
+  "status": "passed",
+  "scope": "synthetic_learnable_integrated_joint_objective_AMP_one_update",
+  "study_data_read": false,
+  "TEST_files_read": false,
+  "formal_training": false,
+  "efficacy_established": false,
+  "successful_optimizer_updates": 1,
+  "checkpoint_saved": false,
+  "model_alpha": 1.0,
+  "batch_size": 2,
+  "patch_size": 128,
+  "precision": "CUDA_AMP",
+  "normal_CT_only_conditions": true,
+  "warmstart_sha256": "7406a3ba7e5bac1a7d8ee24898cb954ff8576f37fcf5fba0e26ef9a2cb5c43e6",
+  "initialization": {
+    "state_tensor_digest": "196b9c3c2b421d591d1f78b9f4ce2817390c0b3ebeb790151f97d62c7e46e8cd",
+    "legacy_tensor_digest": "c5a6702dac63ce1ec27a5e30858b7d95a8677d5582a244754339a0133afc032f",
+    "gdf_head_digest": "0456a8b04ef11f1b59c55516546c9267ff66538d2e70627875df1b48e7b43433",
+    "interaction_digest": "9456c48a0ba5bb3b7e257efa77ea2f1d10bc1207fe899f6426d9b9f9fb7f22da"
+  },
+  "gdf_weight": 0.1,
+  "physical_synthetic_target": true,
+  "recipe_sha256": "22db4b29da9e24aba12e3aa83db6e3b4cb799c90b90b0fc057f5ba69020d7d97",
+  "helper_sha256": "3220ad6f41330e8913ab4da3a7ac9d1dcf5fa4af387ab3ea99a37fbc542f440c",
+  "gdf_only_routing": {
+    "status": "passed",
+    "passed": true,
+    "optimizer_updates": 0,
+    "diagnostic_gradient_scale": 1024.0,
+    "no_graph_retained_for_joint_update": true,
+    "BN_RNG_restored": true,
+    "gradients": {
+      "segmentation_head": {
+        "parameter": "anatomical_output_fusion.3.weight",
+        "finite": true,
+        "gradient_nonzero_elements": 0,
+        "unscaled_absmax": 0.0,
+        "expected_direct_gradient": false
+      },
+      "scale_head": {
+        "parameter": "classifier.generation_head.0.weight",
+        "finite": true,
+        "gradient_nonzero_elements": 0,
+        "unscaled_absmax": 0.0,
+        "expected_direct_gradient": false
+      },
+      "structure_head": {
+        "parameter": "classifier.structure_head.0.weight",
+        "finite": true,
+        "gradient_nonzero_elements": 0,
+        "unscaled_absmax": 0.0,
+        "expected_direct_gradient": false
+      },
+      "gdf_head": {
+        "parameter": "gdf_head.weight",
+        "finite": true,
+        "gradient_nonzero_elements": 32,
+        "unscaled_absmax": 1.34375,
+        "expected_direct_gradient": true
+      },
+      "shared_segmentation_feature": {
+        "parameter": "anatomical_output_fusion.0.weight",
+        "finite": true,
+        "gradient_nonzero_elements": 16416,
+        "unscaled_absmax": 1.4404296875,
+        "expected_direct_gradient": true
+      },
+      "shared_attribute_encoder": {
+        "parameter": "classifier.encoder.0.conv.weight",
+        "finite": true,
+        "gradient_nonzero_elements": 864,
+        "unscaled_absmax": 0.28662109375,
+        "expected_direct_gradient": true
+      },
+      "interaction_weight": {
+        "parameter": "interaction_weight",
+        "finite": true,
+        "gradient_nonzero_elements": 128,
+        "unscaled_absmax": 3.275008566561155e-05,
+        "expected_direct_gradient": true
+      },
+      "interaction_bias": {
+        "parameter": "interaction_bias",
+        "finite": true,
+        "gradient_nonzero_elements": 128,
+        "unscaled_absmax": 0.0011219686130061746,
+        "expected_direct_gradient": true
+      }
+    },
+    "scope": "One physical synthetic fixture; routing evidence, not training gradient dominance or efficacy"
+  },
+  "warmstart_load": {
+    "missing_keys": [
+      "interaction_weight",
+      "interaction_bias",
+      "gdf_head.weight",
+      "gdf_head.bias"
+    ],
+    "unexpected_keys": []
+  },
+  "component_details": {
+    "segmentation": 1.8454604148864746,
+    "scale": 2.9491565227508545,
+    "scale_valid_cases": 2,
+    "scale_weight": 0.1,
+    "structure": 2.001149892807007,
+    "structure_valid_cases": 2,
+    "structure_weight": 0.1,
+    "gdf_normalization": "voxel",
+    "gdf_prediction_transform": "already_softplus_in_model",
+    "gdf_valid_cases": 2,
+    "gdf_valid_voxels": 4194304,
+    "gdf_foreground_mse": 0.08667480945587158,
+    "gdf_background_mse": 0.717160701751709,
+    "gdf_foreground_cases": 2,
+    "gdf_background_cases": 2,
+    "gdf_mse": 0.7145082950592041,
+    "total": 2.4119420051574707,
+    "gdf_weight": 0.1
+  },
+  "optimizer_update": {
+    "gradient_norm": 8.918920516967773,
+    "amp_attempts": 2,
+    "amp_retries": 1,
+    "loss_scale_before": 65536.0,
+    "loss_scale_after": 32768.0
+  },
+  "gradient_and_parameter_change": {
+    "segmentation_head": {
+      "parameter": "anatomical_output_fusion.3.weight",
+      "finite": true,
+      "gradient_nonzero_elements": 64,
+      "clipped_gradient_absmax": 0.005237579345703125,
+      "changed_elements": 64,
+      "parameter_delta_absmax": 0.00010001659393310547
+    },
+    "scale_head": {
+      "parameter": "classifier.generation_head.0.weight",
+      "finite": true,
+      "gradient_nonzero_elements": 21350,
+      "clipped_gradient_absmax": 0.0266876220703125,
+      "changed_elements": 21350,
+      "parameter_delta_absmax": 0.00010000169277191162
+    },
+    "structure_head": {
+      "parameter": "classifier.structure_head.0.weight",
+      "finite": true,
+      "gradient_nonzero_elements": 21210,
+      "clipped_gradient_absmax": 0.01934814453125,
+      "changed_elements": 21210,
+      "parameter_delta_absmax": 0.00010000169277191162
+    },
+    "gdf_head": {
+      "parameter": "gdf_head.weight",
+      "finite": true,
+      "gradient_nonzero_elements": 32,
+      "clipped_gradient_absmax": 0.1343994140625,
+      "changed_elements": 32,
+      "parameter_delta_absmax": 0.00010000169277191162
+    },
+    "shared_segmentation_feature": {
+      "parameter": "anatomical_output_fusion.0.weight",
+      "finite": true,
+      "gradient_nonzero_elements": 16416,
+      "clipped_gradient_absmax": 0.1265869140625,
+      "changed_elements": 16416,
+      "parameter_delta_absmax": 0.00010000169277191162
+    },
+    "shared_attribute_encoder": {
+      "parameter": "classifier.encoder.0.conv.weight",
+      "finite": true,
+      "gradient_nonzero_elements": 864,
+      "clipped_gradient_absmax": 1.1455078125,
+      "changed_elements": 864,
+      "parameter_delta_absmax": 0.00010000169277191162
+    },
+    "interaction_weight": {
+      "parameter": "interaction_weight",
+      "finite": true,
+      "gradient_nonzero_elements": 128,
+      "clipped_gradient_absmax": 0.000282412365777418,
+      "changed_elements": 128,
+      "parameter_delta_absmax": 9.999646135838702e-05
+    },
+    "interaction_bias": {
+      "parameter": "interaction_bias",
+      "finite": true,
+      "gradient_nonzero_elements": 128,
+      "clipped_gradient_absmax": 0.0024782009422779083,
+      "changed_elements": 128,
+      "parameter_delta_absmax": 9.999960457207635e-05
+    }
+  },
+  "overflow_attempts": [
+    {
+      "attempt": 1,
+      "max_attempts": 8,
+      "loss_scale_before": 65536.0,
+      "loss_scale_after": 32768.0,
+      "optimizer_step_skipped": true,
+      "buffers_and_rng_restored": true,
+      "retry_will_occur": true,
+      "reason": "finite_forward_loss_nonfinite_unscaled_gradient_elements",
+      "finite_forward_loss": 2.4119420051574707
+    }
+  ],
+  "forward_attempts": [
+    {
+      "logits_dtype": "torch.float16",
+      "normal_predicted_conditions": true,
+      "alpha": 1.0,
+      "details": {
+        "segmentation": 1.8454604148864746,
+        "scale": 2.9491565227508545,
+        "scale_valid_cases": 2,
+        "scale_weight": 0.1,
+        "structure": 2.001149892807007,
+        "structure_valid_cases": 2,
+        "structure_weight": 0.1,
+        "gdf_normalization": "voxel",
+        "gdf_prediction_transform": "already_softplus_in_model",
+        "gdf_valid_cases": 2,
+        "gdf_valid_voxels": 4194304,
+        "gdf_foreground_mse": 0.08667480945587158,
+        "gdf_background_mse": 0.717160701751709,
+        "gdf_foreground_cases": 2,
+        "gdf_background_cases": 2,
+        "gdf_mse": 0.7145082950592041,
+        "total": 2.4119420051574707,
+        "gdf_weight": 0.1
+      }
+    },
+    {
+      "logits_dtype": "torch.float16",
+      "normal_predicted_conditions": true,
+      "alpha": 1.0,
+      "details": {
+        "segmentation": 1.8454604148864746,
+        "scale": 2.9491565227508545,
+        "scale_valid_cases": 2,
+        "scale_weight": 0.1,
+        "structure": 2.001149892807007,
+        "structure_valid_cases": 2,
+        "structure_weight": 0.1,
+        "gdf_normalization": "voxel",
+        "gdf_prediction_transform": "already_softplus_in_model",
+        "gdf_valid_cases": 2,
+        "gdf_valid_voxels": 4194304,
+        "gdf_foreground_mse": 0.08667480945587158,
+        "gdf_background_mse": 0.717160701751709,
+        "gdf_foreground_cases": 2,
+        "gdf_background_cases": 2,
+        "gdf_mse": 0.7145082950592041,
+        "total": 2.4119420051574707,
+        "gdf_weight": 0.1
+      }
+    }
+  ],
+  "cuda_peak_allocated_bytes": 13747663872,
+  "cuda_peak_reserved_bytes": 19732103168,
+  "fixture": {
+    "kind": "synthetic_128mm_cylinders_not_AVT",
+    "cases": [
+      {
+        "synthetic_mask_radius_mm": 3.0,
+        "foreground_voxels": 2755,
+        "centreline_nodes": 93,
+        "measured_radius_min_mm": 2.0,
+        "measured_radius_max_mm": 3.1622776985168457,
+        "field": {
+          "target_definition": "physical-cumulative-log1p-Gaussian-v1",
+          "sigma_scale": 1.0,
+          "sigma_floor_mm": 0.001,
+          "fixed_train_field_scale": 2.8707158419291448,
+          "spacing_zyx_mm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "start_zyx": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "complete_case_centerline_points": 93,
+          "foreground_voxels_in_input": 2755,
+          "kernel_evaluations": 256215,
+          "geometry_valid": true,
+          "target_used_as_model_input": false,
+          "foreground_unknown_voxels": 0,
+          "kernel_truncation": null,
+          "status": "supported_foreground",
+          "valid_voxels": 2097152,
+          "known_background_voxels": 2094397,
+          "target_min": 0.0,
+          "target_max": 0.7625421285629272,
+          "raw_sum_foreground_min": 1.8519151680307253,
+          "raw_sum_foreground_max": 7.926654691337372,
+          "foreground_target_mean": 0.6742674112319946
+        }
+      },
+      {
+        "synthetic_mask_radius_mm": 6.0,
+        "foreground_voxels": 10735,
+        "centreline_nodes": 89,
+        "measured_radius_min_mm": 4.0,
+        "measured_radius_max_mm": 6.082762718200684,
+        "field": {
+          "target_definition": "physical-cumulative-log1p-Gaussian-v1",
+          "sigma_scale": 1.0,
+          "sigma_floor_mm": 0.001,
+          "fixed_train_field_scale": 2.8707158419291448,
+          "spacing_zyx_mm": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "start_zyx": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "complete_case_centerline_points": 89,
+          "foreground_voxels_in_input": 10735,
+          "kernel_evaluations": 955415,
+          "geometry_valid": true,
+          "target_used_as_model_input": false,
+          "foreground_unknown_voxels": 0,
+          "kernel_truncation": null,
+          "status": "supported_foreground",
+          "valid_voxels": 2097152,
+          "known_background_voxels": 2086417,
+          "target_min": 0.0,
+          "target_max": 0.9711592197418213,
+          "raw_sum_foreground_min": 2.7394724880132704,
+          "raw_sum_foreground_max": 15.247225017229638,
+          "foreground_target_mean": 0.8505966067314148
+        }
+      }
+    ],
+    "physical_spacing_mm": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "geometry": "Frozen sparse_geometry: physical EDT at Lee skeleton points",
+    "target": "Frozen exact complete-seed cumulative Gaussian, masked foreground, log1p/fixed TRAIN scale",
+    "fixed_train_field_scale": 2.8707158419291448,
+    "per_case_normalization": false,
+    "patient_arrays_opened": false
+  },
+  "limits": [
+    "No AVT arrays, no VAL/TEST, no scientific gain or seed stability",
+    "Not a formal integrated endpoint; old failed GDF and dynamic gates remain unchanged",
+    "No local+GDF claim; SAAM constant; one original-constant origin only"
+  ],
+  "seconds": 11.458112478256226,
+  "public_report_schema": "GTA-AVT-learnable-integrated-public-actual-engineering-QA-v1",
+  "original_private_result_sha256": "1449463607c7c305633b01dc2f2a0c38f069711dd0db7366ebc2a47bf6eac0eb",
+  "original_private_manifest_sha256": "b08643e41e8e405127d280d30ebd23f34cb81774dd2438eb85e41abc521aed0c",
+  "corresponding_public_manifest_sha256": "73a393f8278db2c3a81a66c67225ddab3674db7a147ba6d2af94e6b6412bba3c",
+  "actual_scientific_source_files": 37,
+  "public_source_exact_count": 36,
+  "existing_public_metadata_adaptations": 1,
+  "public_manifest_CUDA_executed": false,
+  "whole_expanded_public_tree_CUDA_executed": false,
+  "runtime_profile": {
+    "packages": {
+      "torch": "1.11.0+cu113",
+      "numpy": "1.22.4",
+      "scipy": "1.10.1",
+      "scikit-image": "0.21.0",
+      "SimpleITK": "2.3.1"
+    },
+    "torch_cuda": "11.3",
+    "cudnn": 8200,
+    "device_name": "NVIDIA GeForce RTX 4080",
+    "driver_version": "595.71.05",
+    "backend": {
+      "cudnn_benchmark": false,
+      "cudnn_deterministic": true,
+      "deterministic_algorithms": true,
+      "deterministic_warn_only": true,
+      "matmul_tf32": false,
+      "cudnn_tf32": false,
+      "cublas_workspace_config": ":4096:8"
+    }
+  },
+  "observed_exit_code": 0
+}

@@ -1,0 +1,9 @@
+group,parameter,finite,gradient_nonzero_elements,unscaled_absmax,expected_direct_gradient
+segmentation_head,anatomical_output_fusion.3.weight,True,0,0.0,False
+scale_head,classifier.generation_head.0.weight,True,0,0.0,False
+structure_head,classifier.structure_head.0.weight,True,0,0.0,False
+gdf_head,gdf_head.weight,True,32,1.34375,True
+shared_segmentation_feature,anatomical_output_fusion.0.weight,True,16416,1.4404296875,True
+shared_attribute_encoder,classifier.encoder.0.conv.weight,True,864,0.28662109375,True
+interaction_weight,interaction_weight,True,128,3.275008566561155e-05,True
+interaction_bias,interaction_bias,True,128,0.0011219686130061746,True

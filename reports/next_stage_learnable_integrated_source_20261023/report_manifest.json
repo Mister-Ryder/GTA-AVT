@@ -1,0 +1,37 @@
+{
+  "schema": "GTA-AVT-public-engineering-report-file-whitelist-v1",
+  "files": {
+    "check_public_binding.py": {
+      "sha256": "29af99733112b1c334d848296264730ef9523b7bba25298591d8521ff7aac8c2",
+      "bytes": 5175
+    },
+    "GDF_routing_groups.csv": {
+      "sha256": "100462e118898cb168d81585883f5b013ba819848acbcc512e89649ae9d683a4",
+      "bytes": 666
+    },
+    "joint_gradient_groups.csv": {
+      "sha256": "595df2faef21ff0aa62f9156e0ddf38b02544cea1d540fe56728839c9838905f",
+      "bytes": 927
+    },
+    "physical_fixtures.csv": {
+      "sha256": "4eb7cf288f3cfe4bde1e0788c0b5140a53db0dd568a147d0872dd60783b928a0",
+      "bytes": 451
+    },
+    "QA_summary.json": {
+      "sha256": "85ac906aefa94b937595ea9410cf67885f4cbb5c66fc04c840b4240f4cbe55ba",
+      "bytes": 13891
+    },
+    "README.txt": {
+      "sha256": "127fddb8af15b2039af8624aa3da78ea1d540a1129a9fbeb4c1544b8cbaa1ce2",
+      "bytes": 8262
+    },
+    "recompute.py": {
+      "sha256": "7be5cee42e08dad235b46413d14ed60a6f4b77d5709da93714af38c2ccf7a228",
+      "bytes": 7633
+    },
+    "source_identity_mapping.json": {
+      "sha256": "2af634e60fc50eca43102cff18079a7d81dccb1faab6de4603d42a990e7962f9",
+      "bytes": 9779
+    }
+  }
+}

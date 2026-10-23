@@ -1,0 +1,46 @@
+{
+  "schema": "GTA-AVT-ordinal-mechanism-numerical-null-addendum-v1",
+  "status": "requires_root_external_freeze_before_any_ordinal_endpoint_mechanism_predictions",
+  "parent_protocol_sha256": "478276000b84a941ec5c59083eba53a852d1a97f8f227b93def1cdcc852ffb47",
+  "attribute_prerequisite_protocol_sha256": "826e23e6604ef34d5aa8d6af398bc3d6201d8b1e74d30e8b5cd8de5dedfbd99c",
+  "scientific_source_manifest_sha256": "cf3b70d2c153d3976c0249ce03f76afc91ce0a15b84083f58ee01946db3077ff",
+  "candidate": "ordinal_cumulative_readout_v1",
+  "affected_diagnostic": "own_presence_composition_permutation",
+  "reason": "The raw ordinal score and its own-presence times conditional-ordinal reconstruction can differ by floating-point rounding. Distinct conditional ordinal values can also yield identical FP32 products after multiplication by the receiver's own presence. A reconstruction-only difference must not count as actual composition consumption or a mechanism response.",
+  "prospective_authorization": "Root approved this exact numerical-null safeguard before ordinal training launch and before any final ordinal endpoint mechanism predictions; root separately freezes the files and records the execution state.",
+  "definitions": {
+    "f32": "Round to the IEEE-754 binary32 value at each explicitly stated operation; no fitted tolerance, epsilon or quantitative change threshold.",
+    "a_own": "f32(1 - f32(p0_own))",
+    "u_own": "f32(ordinal(r_own)), with the same existing FP32 conditional-ordinal computation",
+    "u_donor": "f32(ordinal(r_donor)), with the same existing FP32 conditional-ordinal computation",
+    "self_product": "f32(a_own * u_own)",
+    "donor_product": "f32(a_own * u_donor)",
+    "normal_c": "The exact FP32 raw ordinal score normally consumed by the unchanged trained model"
+  },
+  "override_rule": {
+    "undefined_own_or_donor_conditional_composition": "Keep exact normal_c and mark unsupported/null under the original zero-nonempty-mass rule; no uniform fallback.",
+    "if_u_own_equals_u_donor_OR_self_product_equals_donor_product": "Keep exact normal_c, even when normal_c differs from self_product by reconstruction rounding.",
+    "otherwise": "Use donor_product.",
+    "actual_condition_change": "Compare the final supplied FP32 override directly with exact normal_c, as in the parent protocol. A preserved numerical null cannot count toward the changed-score support requirement."
+  },
+  "required_reporting": [
+    "u_own and u_donor FP32 equality",
+    "self_product and donor_product FP32 equality",
+    "normal_c versus self_product reconstruction error",
+    "whether exact normal_c was preserved due to equal conditional score or equal FP32 product",
+    "all fixed donor mappings, actual supplied scores and unsupported/null reasons"
+  ],
+  "unchanged": {
+    "original_protocol_and_prerequisite_files": true,
+    "training_model_source36_and_recipes": true,
+    "normal_ordinal_score_and_constant_point4_control": true,
+    "all_576_bank_rows_and_CASE_by_STRATUM_half_ring_donors": true,
+    "raw_consumed_score_permutation": true,
+    "zero_mass_unsupported_rule": true,
+    "all12_support_and_point1pp_and_8positive_mechanism_gates": true,
+    "all_utility_and_anatomical_protection_gates": true,
+    "no_TEST_or_new_model_execution_authorized": true
+  },
+  "required_verification": "A synthetic fixture must contain distinct FP32 conditional ordinals whose receiver-presence products are exactly equal, with exact normal_c differing from self_product; the repaired override must equal exact normal_c and must not count as a condition change. Existing same-u, zero-mass, multiset, stratum, support and effect-gate checks remain required.",
+  "interpretation": "This is a prospective numerical-null correction to a diagnostic intervention, not an additional scientific candidate, relaxed success gate or performance-selected amendment."
+}

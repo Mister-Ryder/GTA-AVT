@@ -232,3 +232,27 @@ The [complete four-model TEST12 report](reports/minimal4_reference_TEST_20261023
 Result records identify the immutable configuration, full training recipe, code, split, checkpoint, evaluator, environment and prediction provenance. A single-seed internal ablation cannot be described as independent multi-seed or complete five-fold evidence.
 
 [release_source_hashes.json](release_source_hashes.json) records the copied source bytes. [NOTICE](NOTICE) and the historical third-party notices explain source lineage and licensing boundaries. No blanket MIT license is selected for this repository or for later GTA additions.
+
+
+## Ordinal condition consumption: a new minimal round (23 October 2026)
+
+Dynamic efficacy remains unverified. The new round changes only how the existing
+five scale probabilities are consumed: `c = p1 + (2*p2+p3)/3`, the mean of three
+nonempty radius CDF masses at the original 2/4/8 mm operational thresholds.
+The matching uniform-five-class constant is `0.4`. Labels, classifier, 256 zero
+interaction parameters, common initialization, auxiliary losses and schedule stay fixed.
+
+The [prospective protocol](reports/ordinal_consumption_v1_protocol_20261023/protocol.txt)
+was externally frozen before the new bank outputs. The [actual prerequisite report](reports/ordinal_consumption_v1_prerequisites_20261023/README.txt)
+retains all 576 TRAIN rows and independently recomputable gates. Ordinal prediction
+has 63.48% lower case-equal MSE than its fit-mean baseline; the old fine-only score
+is 1.95% worse than its own baseline on the same probe patches. All 55,294 anchors
+are retained and the cross-grid target error/signal ratio is 0.02754, below 0.25.
+These are attribute-information and implementation checks, **not segmentation efficacy**.
+
+Three matched same-device constant/dynamic pairs are running with fixed endpoints.
+The third block is locked for confirmation. No endpoint outcomes are reported yet;
+new seeds on previously used development cases do not establish blind-patient or
+zero-shot generalization. Both fixed condition-correspondence diagnostics and all
+utility/protection gates remain required. The numerical-null addendum only prevents
+FP32 reconstruction rounding from being counted as a meaningful intervention.

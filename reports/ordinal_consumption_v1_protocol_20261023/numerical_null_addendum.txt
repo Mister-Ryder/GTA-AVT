@@ -1,0 +1,35 @@
+GTA-AVT ordinal mechanism numerical-null addendum
+
+This separate addendum leaves the frozen main protocol47827600...fb47,
+attribute prerequisite wrapper826e23e6...d99c, and scientific source36 map
+cf3b70d2...77ff unchanged. Root approved the correction before ordinal training
+launch and before any ordinal endpoint mechanism predictions. It requires a
+separate external freeze before the mechanism diagnostic runs.
+
+The correction applies only to the own-presence/composition permutation.
+Its purpose is to prevent floating-point reconstruction alone from creating a
+changed condition or an apparent mechanism response. The normal raw ordinal
+score can differ slightly from its presence-times-composition reconstruction.
+Two different conditional ordinal values can also become the same FP32 product
+after multiplication by the receiver's own presence.
+
+Use the existing FP32 own and donor conditional ordinals. Compute:
+  a = f32(1 - f32(p0_own))
+  self_product = f32(a * f32(u_own))
+  donor_product = f32(a * f32(u_donor))
+
+If either the conditional ordinals are exactly equal or these two products are
+exactly equal, preserve the exact normally consumed raw c. Otherwise supply
+donor_product. Undefined own/donor nonempty composition remains unsupported and
+keeps the normal c under the original rule. No tolerance or change threshold is
+introduced. Preserved numerical nulls cannot count as actually changed scores.
+
+Record both equalities, self-reconstruction error, the preservation reason, all
+donor mappings and actual supplied scores. A synthetic fixture must verify the
+distinct-u/equal-product case when normal c differs from its reconstructed
+product, together with all existing permutation and gate checks.
+
+The model, normal score, constant .4 reference, training, auxiliary weights,
+all576 rows, CASE-by-STRATUM donors, raw-score permutation, utility protection
+criteria and both .1pp/8-positive/all12-supported mechanism gates stay fixed.
+This correction authorizes no TEST, model training or additional experiment.

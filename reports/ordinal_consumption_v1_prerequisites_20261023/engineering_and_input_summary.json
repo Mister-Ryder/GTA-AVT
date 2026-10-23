@@ -1,0 +1,53 @@
+[
+  {
+    "block": "A_PRIMARY",
+    "source_files": 36,
+    "actual_QA_status": "passed",
+    "successful_optimizer_updates": 2,
+    "patch_size": 128,
+    "batch_size": 2,
+    "precision": "CUDA_AMP",
+    "representative_groups_per_arm": {
+      "constant": 7,
+      "scale_only": 7
+    },
+    "TRAIN_VAL_cache_files_rehashed": 124,
+    "native_VAL_files_rehashed": 16,
+    "TEST_arrays_opened": false,
+    "scientific_efficacy_claim": false
+  },
+  {
+    "block": "B_REPLICATION",
+    "source_files": 36,
+    "actual_QA_status": "passed",
+    "successful_optimizer_updates": 2,
+    "patch_size": 128,
+    "batch_size": 2,
+    "precision": "CUDA_AMP",
+    "representative_groups_per_arm": {
+      "constant": 7,
+      "scale_only": 7
+    },
+    "TRAIN_VAL_cache_files_rehashed": 124,
+    "native_VAL_files_rehashed": 16,
+    "TEST_arrays_opened": false,
+    "scientific_efficacy_claim": false
+  },
+  {
+    "block": "C_LOCKED_CONFIRMATION",
+    "source_files": 36,
+    "actual_QA_status": "passed",
+    "successful_optimizer_updates": 2,
+    "patch_size": 128,
+    "batch_size": 2,
+    "precision": "CUDA_AMP",
+    "representative_groups_per_arm": {
+      "constant": 7,
+      "scale_only": 7
+    },
+    "TRAIN_VAL_cache_files_rehashed": 124,
+    "native_VAL_files_rehashed": 16,
+    "TEST_arrays_opened": false,
+    "scientific_efficacy_claim": false
+  }
+]

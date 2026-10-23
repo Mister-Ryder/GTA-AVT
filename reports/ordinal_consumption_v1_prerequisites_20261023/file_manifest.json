@@ -1,0 +1,46 @@
+{
+  "audit_definitions.json": {
+    "sha256": "26d9f3b540f224740418a9bf1b3f7cf3fb23fbee2751bbf15b586d9f5df4b622",
+    "bytes": 5768
+  },
+  "engineering_and_input_summary.json": {
+    "sha256": "32023da45047a2c80ab1db5977016fc874912460e8547b1e91988a35c41c19f0",
+    "bytes": 1410
+  },
+  "fine_vs_ordinal_descriptive.json": {
+    "sha256": "dfcf2a60cca5acf1a68edbe0ff7e8e4a77654334f11fd2f60aa4e7a73f5ff5fd",
+    "bytes": 1421
+  },
+  "provenance.json": {
+    "sha256": "a84d8a8773a8da56380531490efe518792a5dee52f33542a8c04ba07190d4771",
+    "bytes": 4590
+  },
+  "README.txt": {
+    "sha256": "d9fd2f89aea33d97c36eb6dd3d7bf67b8d640c13793492d167610c746394af79",
+    "bytes": 2331
+  },
+  "recompute.py": {
+    "sha256": "6020b3d5a5fc0a8aac530b56d218382ae75c3fa4016e2050bcaee2af8a3ecc23",
+    "bytes": 8106
+  },
+  "TRAIN_geometry.json": {
+    "sha256": "a35f40179b41439f7d0ed2a82ccbb887c1a1ac888b1e6e4a0a6dde708834f265",
+    "bytes": 387900
+  },
+  "TRAIN_geometry_casewise.csv": {
+    "sha256": "5d096bc7635d1f1af2969a6d9a2aa1466bdae06e607223eb5864a5aae6c03fba",
+    "bytes": 10555
+  },
+  "TRAIN_head_rows.json": {
+    "sha256": "a312f196b7d111d6fa6111d1f3de75fb1dd1d1ff3fd0c95443a38ace76eed31c",
+    "bytes": 480047
+  },
+  "TRAIN_head_summary.json": {
+    "sha256": "067f8037bcca81657031f601ec4d6d3344f452f8cce712f935cf4c3ee2be62e1",
+    "bytes": 93638
+  },
+  "TRAIN_patchwise.csv": {
+    "sha256": "8bc533491e31161383d843b0e75d7e303ad69e2a77b7947b123ab69673e5a536",
+    "bytes": 191537
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "schema": "GTA-AVT-ordinal-public-source-release-v1",
+  "files": {
+    "configs/ordinal_C_ord.json": {
+      "sha256": "a04fede2f8cdd3695024c9142fef297b50d0df75bf221f7314ebe5215287d0cd",
+      "bytes": 931
+    },
+    "configs/ordinal_D_ord.json": {
+      "sha256": "d22461804670110673c3c4be06bc9ecec54b0cabffc34df8a3ae5c999e4120dc",
+      "bytes": 933
+    },
+    "docs/reproduce_ordinal_source.txt": {
+      "sha256": "a74890f317ca78a4c4d5f2485299f06e4a727a7011847c924bba8fc61f298b4d",
+      "bytes": 3627
+    },
+    "next_stage/ordinal_source_identity_20261023.json": {
+      "sha256": "9e3558eb29fa627dc22fbe984065a353506829169f6eaa0e21cec0f51f0d0b7b",
+      "bytes": 9507
+    },
+    "next_stage/ordinal_source_manifest_20261023.json": {
+      "sha256": "4c6fbfb938fb99a76dcd00118281733d878c5aa27aa9a0523ca912b92b4cdabd",
+      "bytes": 3745
+    },
+    "next_stage/ordinal_stage_checks.py": {
+      "sha256": "984d461ff49e255e4e51b95be8eb4cdff1f1ddf6235256e0be9cb6a641da0d50",
+      "bytes": 19519
+    },
+    "next_stage/ordinal_stage_model.py": {
+      "sha256": "196932825a4b85a7f6eafb1b9b828c5ce79c3a4bb398b956e4206fa33b2d6ebd",
+      "bytes": 8397
+    },
+    "next_stage/ordinal_stage_train.py": {
+      "sha256": "8c4f3026b15b8b9c0d2cedede415dcf28e2d97297c19ea76f181a12417359fcb",
+      "bytes": 33659
+    },
+    "tools/export_ordinal_source.py": {
+      "sha256": "75806e87e4b752b5a36c8da8ad14b85cee07754131ea8c629e6e50ad9e182957",
+      "bytes": 5489
+    }
+  },
+  "original_preparation_manifest_sha256": "ddbe683743f62d86d597ed3eab583ddbede3ab7d5cb52b9f9bbada2ff8a72a95",
+  "public_scientific_source_manifest_sha256": "4c6fbfb938fb99a76dcd00118281733d878c5aa27aa9a0523ca912b92b4cdabd",
+  "public_GPU_QA_executed": false,
+  "public_training_executed": false,
+  "efficacy_claimed": false,
+  "root_explanation_redaction": "Removed unnecessary private numeric deployment label from non-scientific identity explanation; all36 source hashes unchanged."
+}

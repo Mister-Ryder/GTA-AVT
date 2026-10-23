@@ -256,3 +256,5 @@ new seeds on previously used development cases do not establish blind-patient or
 zero-shot generalization. Both fixed condition-correspondence diagnostics and all
 utility/protection gates remain required. The numerical-null addendum only prevents
 FP32 reconstruction rounding from being counted as a meaningful intervention.
+
+The [ordinal implementation and isolated-source exporter](docs/reproduce_ordinal_source.txt) are now published with separate public/private identities. The [Chinese rationale](reports/ordinal_consumption_v1_prerequisites_20261023/rationale_zh.txt) explains the attribute choice, conditional consumption tests and limits. Public mapped-source GPU execution remains unclaimed.

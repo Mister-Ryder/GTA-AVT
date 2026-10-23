@@ -15,6 +15,10 @@
     "sha256": "a84d8a8773a8da56380531490efe518792a5dee52f33542a8c04ba07190d4771",
     "bytes": 4590
   },
+  "rationale_zh.txt": {
+    "sha256": "79b8affc3dc6e5b92f0db4295661f0ba2e23ab8fd15732ce5802798d817b43d0",
+    "bytes": 7578
+  },
   "README.txt": {
     "sha256": "d9fd2f89aea33d97c36eb6dd3d7bf67b8d640c13793492d167610c746394af79",
     "bytes": 2331

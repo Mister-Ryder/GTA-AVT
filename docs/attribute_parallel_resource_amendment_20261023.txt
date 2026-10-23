@@ -1,0 +1,43 @@
+Resource-only amendment to the ongoing attribute-supervision pilot
+2026-10-23
+
+Before K was launched or its result was available, a resource amendment was
+frozen at 06:40:40 UTC following the user's explicit instruction to reduce billed
+idle time. Its private original-file SHA256 is
+972ec54570845daaa903d382da4b256f9b440619a87ed498b7ad86e88bce2e10.
+The timestamp and hash are author records, not independent timing attestation.
+
+Only the still-pending K job moves from serial execution after U on one device
+to concurrent execution on a second physical device. U continues without restart.
+There is no additional scientific arm. Original K configuration bytes, seed,
+initialization, source, sampling, loss weights, update budget, validation endpoint,
+threshold and continuation rule are retained. Only declared execution/data-path
+locations change. Descriptive original role labels do not identify physical hosts.
+
+The actual devices match in reported model, memory (33,796,456,448 bytes),
+76 multiprocessors, compute capability 8.9 and driver. The complete Python build,
+kernel/platform, Torch/CUDA/cuDNN and primary library versions match. All 33
+original source hashes and canonical cache/preprocessing/split metadata match.
+Manifest file hashes differ with local paths. Actual TRAIN byte audits, the full
+CUDA128 batch-two FP32+AMP engineering check, and a fresh constructor tensor-digest
+comparison are execution prerequisites, not substitutes for outcome evidence.
+
+An exact-identity parent-only scheduling hold prevents the original queue from
+launching a second K. It does not signal U. The original request/state/lock remain
+unchanged; the old parent must not be resumed into its pending auto-launch loop.
+A separately identified single-K supervisor permits one launch and verifies its
+natural exit and fixed 10,000-update VAL8 endpoint. U completion must separately
+bind the same process identity and observed natural exit, not infer exit0 merely
+from a saved completion file. These controls are administrative, not algorithms.
+
+This is now a same-specification, different-physical-device, single-seed pilot.
+It no longer meets the original same-physical-GPU condition. Matching reported
+capabilities and software does not prove hardware effects absent or eliminate
+nondeterministic backward variation. The old strict same-runtime reader remains
+unchanged; a separately identified amendment-aware analysis must enumerate the
+allowed provenance differences while still rejecting scientific differences.
+
+Both favorable and unfavorable results will retain this limitation. Small score
+differences cannot establish a mechanism, repeated-seed stability or zero-shot
+generalization. No stopped local/GDF recipe, TEST tuning, new backbone or enlarged
+experiment search is introduced by this scheduling amendment.

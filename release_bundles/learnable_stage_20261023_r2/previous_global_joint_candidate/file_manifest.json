@@ -1,0 +1,56 @@
+{
+  "schema": "GTA-AVT-public-candidate-file-whitelist-v1",
+  "files": {
+    "overlay_index.json": {
+      "sha256": "01d88113885a3e9613a11eedb3a22a97b0646dcc7d63956b4bdb735dde9de90f",
+      "bytes": 650
+    },
+    "reports/next_stage_global_joint_engineering_20261023/check_public_binding.py": {
+      "sha256": "514679ab1a151e4cb5c5cbeab433d98b19c447d6755a1f009c608b7d5c93a7fd",
+      "bytes": 4327
+    },
+    "reports/next_stage_global_joint_engineering_20261023/engineering_summary.json": {
+      "sha256": "92565ac424ebba94674a2679d7ab62d3f5e9b78df4d4d03ef9e27e80f68bacdf",
+      "bytes": 6660
+    },
+    "reports/next_stage_global_joint_engineering_20261023/README.txt": {
+      "sha256": "e5fe8e54a9f3a9eeb092f55b94ffe7b3b92c9ebad9dc09d9297f3817acdc15fa",
+      "bytes": 5312
+    },
+    "reports/next_stage_global_joint_engineering_20261023/source_identity_mapping.json": {
+      "sha256": "c80b07c541bba55c411ec4ada67d68da21c798214806e177e9ffabee02e70832",
+      "bytes": 7858
+    },
+    "source_overlay/next_stage/global_integrated_candidate_manifest_20261023.json": {
+      "sha256": "f59cbf748dd0a1b179cad957f67fa92dcc907e22c0648fd2f61fbb20783ff891",
+      "bytes": 5584
+    },
+    "source_overlay/next_stage/global_integrated_candidate_UNTRAINED_20261023.json": {
+      "sha256": "aa2e7e876618469b2a6cfce5b36860d9e658fc9551145b4909b0b5cf0cbee77d",
+      "bytes": 839
+    },
+    "source_overlay/next_stage/global_integrated_joint_qa.py": {
+      "sha256": "485f758b41ff8ffbd32bb6beb3dafe46d173960076857f04e31f1d554fac0873",
+      "bytes": 14390
+    }
+  },
+  "total_files_excluding_this_manifest": 8,
+  "total_bytes_excluding_this_manifest": 45620,
+  "sensitive_scan_findings": 0,
+  "isolated_public_binding_check": {
+    "status": "passed",
+    "scope": "isolated_public_source_hash_binding_and_stdlib_plan_only",
+    "public_source_files": 33,
+    "original_exact_files": 32,
+    "public_metadata_adaptations": 1,
+    "original_manifest_rejected_public_tree": true,
+    "default_plan_exit_code": 0,
+    "reported_joint_loss_FP32_rounding_tolerance": 5e-07,
+    "six_positive_gradient_change_groups": true,
+    "Torch_imported": false,
+    "CUDA_executed": false,
+    "model_updates": 0,
+    "limitation": "Historical CUDA result belongs to the original manifest only; this check is not a second GPU pass"
+  },
+  "actual_model_QA_executed_in_this_packaging": false
+}

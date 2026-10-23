@@ -1,0 +1,13 @@
+{
+  "schema": "GTA-AVT-global-joint-public-candidate-overlay-index-v1",
+  "scope": "Public preparation only; no Git action",
+  "source_overlay_target": "repository root; files under source_overlay retain relative paths",
+  "report_target": "repository root; reports retain relative paths",
+  "source_files_original_byte_exact": [
+    "source_overlay/next_stage/global_integrated_joint_qa.py",
+    "source_overlay/next_stage/global_integrated_candidate_UNTRAINED_20261023.json"
+  ],
+  "public_manifest_is_new_metadata_binding": true,
+  "scientific_sources_models_losses_optimizers_changed": false,
+  "formal_training_authorized": false
+}

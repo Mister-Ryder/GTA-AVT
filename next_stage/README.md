@@ -12,10 +12,20 @@ At this documentation cutoff (23 October 2026):
   local files and configurations are traceability records, not positive results.
 - The 2,000-update Kp/Gp GDF pair completed and failed its screening gate;
   independent arithmetic review agrees. See the [GDF VAL report](../reports/next_stage_GDF_VAL_20261023/readout.txt).
-  U/K remains running, with no final result here.
+  The attribute-supervision U arm completed; its matched K arm remains running,
+  with no final paired result here.
 - The new global preflight passed actual CUDA128, batch2, FP32+AMP QA on
   an isolated source snapshot. See [engineering scope](../reports/next_stage_engineering_20261023/README.txt).
   No local preflight, exact checkpoint replay or efficacy is certified by that pass.
+- A separately frozen [learnable-interaction study](../reports/next_stage_learnable_preflight_20261023/README.txt)
+  is training constant/predicted-condition pairs on two platforms, with the same
+  seed and a fixed 2,000-update budget per arm. Its support probe and engineering
+  checks passed; adverse attribute groups remain included. Clearn is a new
+  matched control, not historical ordinary fusion C. No fixed-endpoint result,
+  independent-seed variance estimate or full-GDF validation is supplied yet.
+- The separate [global attribute-plus-GDF engineering check](../reports/next_stage_global_joint_engineering_20261023/README.txt)
+  completed one synthetic joint update. Its named scientific candidate remains
+  untrained and stopped; this check does not reverse the failed GDF gate.
 
 The [completed diagnostic report](../reports/next_stage_diagnostics_20261023/readout.txt)
 retains the negative readout/oracle results and the limited GDF field audit.

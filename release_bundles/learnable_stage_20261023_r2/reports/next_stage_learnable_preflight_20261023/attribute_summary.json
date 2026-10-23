@@ -1,0 +1,316 @@
+{
+  "schema": "GTA-AVT-public-attribute-audit-summary-v1",
+  "scope": {
+    "train_cases_only": true,
+    "heldout_images_masks_geometry_opened": false,
+    "models_loaded": false,
+    "targets_changed": false,
+    "old_artifacts_changed": false
+  },
+  "definitions": {
+    "radius": "annotation-derived physical EDT at skeleton points; not clinical diameter",
+    "radius_thresholds_mm": [
+      2.0,
+      4.0,
+      8.0
+    ],
+    "thresholds_status": "operational, not validated clinical categories",
+    "vulnerability_margins_mm": [
+      0.25,
+      0.5
+    ],
+    "vulnerability_status": "hypothetical sensitivity intervals, not measured annotation error",
+    "points": "correlated skeleton nodes, not independent vessels or branch length",
+    "local_probe": "GT-enriched centres; not natural CT occupancy; no model inference",
+    "structure": "supported skeleton-neighbourhood proxy; unknown excluded, not false background",
+    "legacy_separation": "legacy and formal outputs must not be pooled"
+  },
+  "parameters": {
+    "seed": 20261023,
+    "window_mm": 16.0,
+    "grid_mm": 4.0,
+    "window_centres": 256,
+    "patch_samples_per_case": 16,
+    "patch_size": 128
+  },
+  "code_sha256": "c312327b9105639b238a8766015a076f2cac8cd51a4cb91abcc1890e2a8f9e07",
+  "all_train": {
+    "cases": 36,
+    "nodes": 55294,
+    "cases_with_fine_support": 36,
+    "original_geometry_nodes": 55294,
+    "excluded_nonfinite_radius_nodes": 0,
+    "excluded_nonpositive_radius_nodes": 0,
+    "scale_bin_node_counts": [
+      8477,
+      19020,
+      13639,
+      14158
+    ],
+    "fine_fraction_case_stats": {
+      "defined": 36,
+      "mean": 0.1366932929899656,
+      "median": 0.11423676292996954,
+      "min": 0.006345177664974619,
+      "max": 0.5211267605633803,
+      "q10": 0.03105936004784689,
+      "q90": 0.27279824209302084
+    },
+    "radius_median_case_stats": {
+      "defined": 36,
+      "mean": 4.629659059974882,
+      "median": 4.296245336532593,
+      "min": 1.974361777305603,
+      "max": 8.217844009399414,
+      "q10": 2.9591294527053833,
+      "q90": 7.091837406158447
+    },
+    "near_2mm_within_025_case_stats": {
+      "defined": 36,
+      "mean": 0.08272094253911363,
+      "median": 0.08028720662194432,
+      "min": 0.010786802030456852,
+      "max": 0.176056338028169,
+      "q10": 0.021853146853146856,
+      "q90": 0.148271679805943
+    },
+    "near_2mm_within_05_case_stats": {
+      "defined": 36,
+      "mean": 0.15795962135782837,
+      "median": 0.14543730392103277,
+      "min": 0.02284263959390863,
+      "max": 0.35708154506437767,
+      "q10": 0.053924481417458946,
+      "q90": 0.26082832763931596
+    },
+    "unknown_structure_case_stats": {
+      "defined": 36,
+      "mean": 0.08512445072569458,
+      "median": 0.06682360249960412,
+      "min": 0.0068669527896995704,
+      "max": 0.418794133623031,
+      "q10": 0.009739780868099453,
+      "q90": 0.15010269455885886
+    },
+    "local_mixed_case_stats": {
+      "defined": 36,
+      "mean": 0.26850506627548804,
+      "median": 0.232421875,
+      "min": 0.03515625,
+      "max": 0.7578125,
+      "q10": 0.09375,
+      "q90": 0.458984375
+    }
+  },
+  "cohorts": {
+    "Dongyang": {
+      "cases": 12,
+      "nodes": 12904,
+      "cases_with_fine_support": 12,
+      "original_geometry_nodes": 12904,
+      "excluded_nonfinite_radius_nodes": 0,
+      "excluded_nonpositive_radius_nodes": 0,
+      "scale_bin_node_counts": [
+        1496,
+        3830,
+        3090,
+        4488
+      ],
+      "fine_fraction_case_stats": {
+        "defined": 12,
+        "mean": 0.11123901660576534,
+        "median": 0.1136552181848349,
+        "min": 0.030539772727272728,
+        "max": 0.22119060622610595,
+        "q10": 0.05940510746234635,
+        "q90": 0.16789071818398132
+      },
+      "radius_median_case_stats": {
+        "defined": 12,
+        "mean": 5.923399368921916,
+        "median": 6.204089403152466,
+        "min": 2.961460828781128,
+        "max": 8.217844009399414,
+        "q10": 3.713533067703247,
+        "q90": 7.452263259887696
+      },
+      "near_2mm_within_025_case_stats": {
+        "defined": 12,
+        "mean": 0.06703475964740645,
+        "median": 0.06354106158248964,
+        "min": 0.018465909090909092,
+        "max": 0.11851447296559257,
+        "q10": 0.03535826226401341,
+        "q90": 0.10871555724256533
+      },
+      "near_2mm_within_05_case_stats": {
+        "defined": 12,
+        "mean": 0.12954313146771504,
+        "median": 0.10397446107086844,
+        "min": 0.0390625,
+        "max": 0.241398143091207,
+        "q10": 0.08761204481792717,
+        "q90": 0.1959658913465586
+      },
+      "unknown_structure_case_stats": {
+        "defined": 12,
+        "mean": 0.08484154123983435,
+        "median": 0.08324220098998503,
+        "min": 0.050514499532273154,
+        "max": 0.1174221736755871,
+        "q10": 0.05667907525235191,
+        "q90": 0.11475944660014782
+      },
+      "local_mixed_case_stats": {
+        "defined": 12,
+        "mean": 0.23346104356490685,
+        "median": 0.211343443627451,
+        "min": 0.1015625,
+        "max": 0.44140625,
+        "q10": 0.13782948369565218,
+        "q90": 0.326953125
+      }
+    },
+    "KiTS": {
+      "cases": 12,
+      "nodes": 16127,
+      "cases_with_fine_support": 12,
+      "original_geometry_nodes": 16127,
+      "excluded_nonfinite_radius_nodes": 0,
+      "excluded_nonpositive_radius_nodes": 0,
+      "scale_bin_node_counts": [
+        1904,
+        5766,
+        4137,
+        4320
+      ],
+      "fine_fraction_case_stats": {
+        "defined": 12,
+        "mean": 0.1565310135842852,
+        "median": 0.10450826394766713,
+        "min": 0.006345177664974619,
+        "max": 0.5211267605633803,
+        "q10": 0.03178643724696356,
+        "q90": 0.372407784656158
+      },
+      "radius_median_case_stats": {
+        "defined": 12,
+        "mean": 3.7859298984209695,
+        "median": 3.772118091583252,
+        "min": 1.974361777305603,
+        "max": 4.980906963348389,
+        "q10": 2.6589096665382383,
+        "q90": 4.913141202926636
+      },
+      "near_2mm_within_025_case_stats": {
+        "defined": 12,
+        "mean": 0.10302464392051923,
+        "median": 0.10124440698075188,
+        "min": 0.010786802030456852,
+        "max": 0.176056338028169,
+        "q10": 0.02685669703103914,
+        "q90": 0.1753045825834141
+      },
+      "near_2mm_within_05_case_stats": {
+        "defined": 12,
+        "mean": 0.18643261872550262,
+        "median": 0.17894247418713527,
+        "min": 0.02284263959390863,
+        "max": 0.35708154506437767,
+        "q10": 0.06047250337381917,
+        "q90": 0.3102356071915363
+      },
+      "unknown_structure_case_stats": {
+        "defined": 12,
+        "mean": 0.055704263408666944,
+        "median": 0.04157858031697412,
+        "min": 0.0068669527896995704,
+        "max": 0.1643192488262911,
+        "q10": 0.010830722995148135,
+        "q90": 0.11508413461538462
+      },
+      "local_mixed_case_stats": {
+        "defined": 12,
+        "mean": 0.2602051969282238,
+        "median": 0.291015625,
+        "min": 0.03515625,
+        "max": 0.4765625,
+        "q10": 0.10703125,
+        "q90": 0.43398437500000003
+      }
+    },
+    "Rider": {
+      "cases": 12,
+      "nodes": 26263,
+      "cases_with_fine_support": 12,
+      "original_geometry_nodes": 26263,
+      "excluded_nonfinite_radius_nodes": 0,
+      "excluded_nonpositive_radius_nodes": 0,
+      "scale_bin_node_counts": [
+        5077,
+        9424,
+        6412,
+        5350
+      ],
+      "fine_fraction_case_stats": {
+        "defined": 12,
+        "mean": 0.14230984877984618,
+        "median": 0.12417901170620532,
+        "min": 0.013496932515337423,
+        "max": 0.3058120586637697,
+        "q10": 0.02196084326030589,
+        "q90": 0.2787840149465588
+      },
+      "radius_median_case_stats": {
+        "defined": 12,
+        "mean": 4.179647912581761,
+        "median": 3.5913708806037903,
+        "min": 2.9567980766296387,
+        "max": 6.955421209335327,
+        "q10": 3.143177628517151,
+        "q90": 6.428030562400818
+      },
+      "near_2mm_within_025_case_stats": {
+        "defined": 12,
+        "mean": 0.07810342404941521,
+        "median": 0.08543725353746232,
+        "min": 0.01544943820224719,
+        "max": 0.13415518491660625,
+        "q10": 0.018804604304737675,
+        "q90": 0.11712658444672833
+      },
+      "near_2mm_within_05_case_stats": {
+        "defined": 12,
+        "mean": 0.15790311388026743,
+        "median": 0.18024251184453544,
+        "min": 0.029447852760736196,
+        "max": 0.271211022480058,
+        "q10": 0.04975010334072376,
+        "q90": 0.2188870944061078
+      },
+      "unknown_structure_case_stats": {
+        "defined": 12,
+        "mean": 0.11482754752858242,
+        "median": 0.08254619834041549,
+        "min": 0.007525083612040134,
+        "max": 0.418794133623031,
+        "q10": 0.008299319727891157,
+        "q90": 0.304939312353798
+      },
+      "local_mixed_case_stats": {
+        "defined": 12,
+        "mean": 0.3118489583333333,
+        "median": 0.232421875,
+        "min": 0.04296875,
+        "max": 0.7578125,
+        "q10": 0.0859375,
+        "q90": 0.67734375
+      }
+    }
+  },
+  "unknown_structure_nodes": 6665,
+  "unknown_structure_node_weighted_fraction": 0.12053749050529895,
+  "dynamic_junction_paused": true,
+  "radius_bins_retained_as_operational": true,
+  "segmentation_benefit_proved": false
+}

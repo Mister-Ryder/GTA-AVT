@@ -1,4 +1,4 @@
-GTA-AVT research source scaffold
+GTA-AVT research source and experiment reports
 
 This release contains an AVT wrapper and experiment utilities together with
 historical GTAirway sources. The four historical sources listed in
@@ -17,4 +17,7 @@ applicable permissions before redistributing components under a new license.
 Dataset rights are separate. AVT data are obtained from their official Figshare
 record and underlying collections; no images or dataset license are included.
 
-This scaffold contains no trained weights or completed AVT result claim.
+This repository includes completed AVT experiment reports, prospective protocols
+and source-bound engineering records. Each report identifies its scope and
+limitations; implemented or checked candidates are not necessarily validated
+methods. No trained weights are included.

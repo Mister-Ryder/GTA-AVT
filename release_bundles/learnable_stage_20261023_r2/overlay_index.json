@@ -1,0 +1,11 @@
+{
+  "schema": "GTA-AVT-learnable-publication-candidate-overlay-index-v1",
+  "scope": "Public preparation only; no Git or public checkout modification",
+  "new_source_overlay_target": "source_overlay contents -> repository root",
+  "new_report_target": "reports contents -> repository reports directory",
+  "prior_bundle": "previous_global_joint_candidate is a byte-exact separate9-file bundle; apply its source_overlay/reports targets separately, preserve its original manifest identity",
+  "new_source_science_files": 3,
+  "exact_requested_recipes": 2,
+  "actual_QA36_scope_not_expanded_public_tree": true,
+  "new_fixed_endpoint_segmentation_results_included": false
+}

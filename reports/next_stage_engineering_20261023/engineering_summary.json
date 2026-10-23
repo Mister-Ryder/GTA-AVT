@@ -1,0 +1,300 @@
+{
+  "schema": "GTA-AVT-public-global-engineering-QA-summary-v1",
+  "status": "observed_reference_global_preflight_pass",
+  "date": "2026-10-23",
+  "verification": {
+    "original_collected_JSON_files": 7,
+    "independent_local_consistency_checks": 56,
+    "source_files": 47,
+    "original_source_files_byte_unchanged": 45,
+    "new_QA_source_files": 2,
+    "observed_model_subprocess_exit_code": 0,
+    "observed_sampler_subprocess_exit_code": 0,
+    "remote_execution_independently_attested": false
+  },
+  "data_audit": {
+    "TRAIN_cases": 36,
+    "full_SHA_array_files": 144,
+    "full_SHA_array_bytes": 13977659043,
+    "files_per_TRAIN_case": 4,
+    "heldout_case_arrays_opened": false,
+    "GDF_centerline_seed_samples_same_source_CPU64": 288,
+    "GDF_known_background_samples_zero": 288,
+    "independent_full_field_numerical_derivation": false,
+    "VAL_images_rehashed": false
+  },
+  "model_QA": {
+    "device": "cuda",
+    "patch_size": 128,
+    "batch_size": 2,
+    "autocast_modes": [
+      false,
+      true
+    ],
+    "manual_AMP_backward_loss_scale": 1024.0,
+    "model_updates": 0,
+    "study_data_read": false,
+    "phase_count": 16,
+    "phases": [
+      {
+        "name": "parity_legacy_ampFalse",
+        "status": "passed",
+        "seconds": 1.0442240238189697,
+        "cuda_peak_allocated_bytes": 9843698176,
+        "cuda_peak_reserved_bytes": 13648265216,
+        "cuda_allocated_after_cleanup_bytes": 16777216,
+        "cuda_reserved_after_cleanup_bytes": 16777216
+      },
+      {
+        "name": "parity_constant_ampFalse",
+        "status": "passed",
+        "seconds": 1.0055410861968994,
+        "cuda_peak_allocated_bytes": 9843700224,
+        "cuda_peak_reserved_bytes": 13648265216,
+        "cuda_allocated_after_cleanup_bytes": 16779264,
+        "cuda_reserved_after_cleanup_bytes": 18874368
+      },
+      {
+        "name": "parity_alpha0_ampFalse",
+        "status": "passed",
+        "seconds": 1.0055513381958008,
+        "cuda_peak_allocated_bytes": 9843701760,
+        "cuda_peak_reserved_bytes": 13648265216,
+        "cuda_allocated_after_cleanup_bytes": 16780800,
+        "cuda_reserved_after_cleanup_bytes": 20971520
+      },
+      {
+        "name": "parity_legacy_ampTrue",
+        "status": "passed",
+        "seconds": 0.42815113067626953,
+        "cuda_peak_allocated_bytes": 5616834560,
+        "cuda_peak_reserved_bytes": 10695475200,
+        "cuda_allocated_after_cleanup_bytes": 16780800,
+        "cuda_reserved_after_cleanup_bytes": 20971520
+      },
+      {
+        "name": "parity_constant_ampTrue",
+        "status": "passed",
+        "seconds": 0.39032721519470215,
+        "cuda_peak_allocated_bytes": 5616834560,
+        "cuda_peak_reserved_bytes": 10695475200,
+        "cuda_allocated_after_cleanup_bytes": 16780800,
+        "cuda_reserved_after_cleanup_bytes": 23068672
+      },
+      {
+        "name": "parity_alpha0_ampTrue",
+        "status": "passed",
+        "seconds": 0.39626264572143555,
+        "cuda_peak_allocated_bytes": 5616834560,
+        "cuda_peak_reserved_bytes": 10695475200,
+        "cuda_allocated_after_cleanup_bytes": 16780800,
+        "cuda_reserved_after_cleanup_bytes": 25165824
+      },
+      {
+        "name": "override_ampFalse",
+        "status": "passed",
+        "seconds": 0.8624227046966553,
+        "cuda_peak_allocated_bytes": 9843700224,
+        "cuda_peak_reserved_bytes": 13648265216,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "detached_ampFalse",
+        "status": "passed",
+        "seconds": 2.4592466354370117,
+        "cuda_peak_allocated_bytes": 21804416000,
+        "cuda_peak_reserved_bytes": 28730982400,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "differentiable_ampFalse",
+        "status": "passed",
+        "seconds": 2.6170499324798584,
+        "cuda_peak_allocated_bytes": 21837980672,
+        "cuda_peak_reserved_bytes": 28735176704,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "supervised_ampFalse",
+        "status": "passed",
+        "seconds": 1.0908966064453125,
+        "cuda_peak_allocated_bytes": 20584583168,
+        "cuda_peak_reserved_bytes": 21479030784,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "gdf_ampFalse",
+        "status": "passed",
+        "seconds": 2.4884300231933594,
+        "cuda_peak_allocated_bytes": 21804416000,
+        "cuda_peak_reserved_bytes": 28730982400,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "override_ampTrue",
+        "status": "passed",
+        "seconds": 0.324537992477417,
+        "cuda_peak_allocated_bytes": 5616833024,
+        "cuda_peak_reserved_bytes": 10695475200,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "detached_ampTrue",
+        "status": "passed",
+        "seconds": 1.0733428001403809,
+        "cuda_peak_allocated_bytes": 13609666560,
+        "cuda_peak_reserved_bytes": 15959326720,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "differentiable_ampTrue",
+        "status": "passed",
+        "seconds": 1.0549876689910889,
+        "cuda_peak_allocated_bytes": 13626443776,
+        "cuda_peak_reserved_bytes": 15959326720,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "supervised_ampTrue",
+        "status": "passed",
+        "seconds": 0.36538267135620117,
+        "cuda_peak_allocated_bytes": 13609666560,
+        "cuda_peak_reserved_bytes": 15959326720,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      },
+      {
+        "name": "gdf_ampTrue",
+        "status": "passed",
+        "seconds": 1.0638346672058105,
+        "cuda_peak_allocated_bytes": 13609666560,
+        "cuda_peak_reserved_bytes": 15959326720,
+        "cuda_allocated_after_cleanup_bytes": 82438144,
+        "cuda_reserved_after_cleanup_bytes": 88080384
+      }
+    ],
+    "checks": [
+      "legacy_parameter_and_rng_parity",
+      "constant_logit_exact_parity",
+      "alpha0_exact_constant_fallback",
+      "constant_and_alpha0_DS_exact_parity",
+      "gdf_shape_finite_nonnegative",
+      "q_r_simplex_and_composition",
+      "detached_probability_segmentation_route",
+      "differentiable_probability_segmentation_route",
+      "attribute_supervision_head_gradient",
+      "gdf_shared_feature_gradient"
+    ],
+    "seconds": 25.15811538696289
+  },
+  "sampler_QA": {
+    "status": "passed",
+    "synthetic_only": true,
+    "Torch_used": false,
+    "patch_size": 128,
+    "counts": {
+      "samples": 24,
+      "padded_samples": 16,
+      "foreground_unknown_samples": 8
+    },
+    "distinct_augmented_mask_hashes": 21,
+    "field_manifest_schema_rejections": 4,
+    "TEST_file_open_attempts": 0,
+    "checks": [
+      "frozen_new_common_fields_byte_parity",
+      "batch_sequence_byte_parity",
+      "asymmetric_mask_field_flip_rotation_alignment",
+      "padding_valid_zero",
+      "foreground_unknown_only_masking",
+      "known_background_valid",
+      "no_field_zero_placeholders",
+      "list_case_manifest",
+      "malformed_manifest_rejection",
+      "no_TEST_file_open"
+    ],
+    "seconds": 5.732111930847168
+  },
+  "backend_settings": {
+    "matmul_tf32": false,
+    "cudnn_tf32": false,
+    "cudnn_benchmark": false,
+    "cudnn_deterministic": true,
+    "deterministic_algorithms": true,
+    "deterministic_warn_only": true,
+    "cublas_workspace_config": ":4096:8"
+  },
+  "global_preflight_seconds": 52.52205753326416,
+  "source_sha256": {
+    "code/common.py": "79edd4ce7623632c602b33124d4653a28d7cb41ee9ae7a0ee4e664a0efba5d5a",
+    "code/data.py": "9ad4c237e2b0e7e1fdde00391ebba8dc320b3001cc4ee68c04ca23e64e5f62cf",
+    "code/evaluate.py": "b50ced9813fe14f923af4e9773606c5ca7d275583fffbdd86d1dd7ca5284155d",
+    "code/faithful_model.py": "c02a222dc92b231cbaf5a3768217028ee74567d166e09d2df979c9ebdff72337",
+    "code/faithful_smoke.py": "5b83ceb0654234e79a0189530e118d2cedf19e8dc376eb9e7f980e1d6ac56129",
+    "code/geometry.py": "456f72da13e17dc877ab0a8af8567c4710cd39aca7141066a4b22b68f65e8ac8",
+    "code/inference.py": "a30b7511b6272f627bd71c9a62c1b068fc3f1c2d3ff0f5e81bd45b15828f6805",
+    "code/intensity.py": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a",
+    "code/losses.py": "c3eafe2d492444d5b909d0597ca04459b2df812c9c8723597c75928298afc87d",
+    "code/metrics.py": "c729a6f4894758407ab3955889f6db60f8f92a724d883b83c9169a81f2fd96ec",
+    "code/model.py": "59f4cdd9823e11bdd94d6c2d0ebd4c68fcd237c656040ad9fef365323af4d9ca",
+    "code/prepare.py": "1cf125da4837b100d8c669c7896272c81582f3b0455fb5213af271d6e9fda6e0",
+    "code/smoke.py": "c1c26685249638a0cf56408cf067cffffab495ee92395dd3ac42fc88e63f71ee",
+    "code/train.py": "ec867cd4922a2a18ccf5cb7fbd23922c02a6ac8464f36f2f6bc61a843b35d461",
+    "code/historical/NaviAirway-MIT.txt": "a8d637dcbcd086a0072c4394565c715f88d0327f3b927067c0e596579cfcfd1c",
+    "code/historical/provenance.json": "44cc0176c30adb08e83b00a0976183f9d66d6df8ff3e9661f72637b3521430b8",
+    "code/historical/source_hashes.json": "f792cc0ed802ab119ef173870390b2c015d8d2727eee94d499614876a4dbdd27",
+    "code/historical/THIRD_PARTY_NOTICES.md": "511bb82ea8773e30f58c0ea5531d187708cde071fd17c213824f4bcc75f8be3b",
+    "code/historical/__init__.py": "275f71602236a43c1b6288874186ef8ec11077124051b2733d3b95b9dc315ecb",
+    "code/historical/func/AnatomicalClassifier.py": "f5288c74ce71db97eca63f9665e29dfb0099aa010326ce7d6748377bc0156222",
+    "code/historical/func/AnatomicalFusionModules.py": "7309281bb296eb7d861050f5ead6b563823b8393addf6ff7c18a594225030b01",
+    "code/historical/func/EnhancedAirwaySegmentation2gau.py": "13808eeac5c23d084104d18e4b8425c01ba035b84168d1dc6a69cc6a25de28fc",
+    "code/historical/func/model_arch_model10.py": "55d51ea850efd2b31aa07acd68ad5e24f64fafe6a714d26dc357919f639f3003",
+    "code/historical/func/__init__.py": "8b611c2073b7bec1691a687085deb8707402d6063f6625dc737f3b62599f24b3",
+    "next_stage/stage_model.py": "bba378a8d384ddbe6694491bbabd3ef384cf3796f2e3eb6db647ef02ac965d7b",
+    "next_stage/stage_train.py": "c134b3b61a0c2a0f0ace7868464f2d1ec292f64e42e059d23e6373545043fa79",
+    "next_stage/stage_checks.py": "6513292727409dfd000e437c1223b1ec9ffad9ae9cf0af364cfdad811b5ad1c4",
+    "next_stage/next_data.py": "d3d1d4f22097925b06f850f606becb9f240a007d86c8a380ec99043e03e961de",
+    "next_stage/gdf.py": "1d12a556b9e638e466e2104aaf34cf99120bdb716ff737ac73eb20cfb9b8c9e9",
+    "next_stage/gdf_checks.py": "d34ff18b8475753990f5896385d034415995eddb922566470df7f5791401ec75",
+    "next_stage/prepare_gdf.py": "8003067d218ddb9b01e3c80e18f22e8f534c35a08d598979661cbf22de21c591",
+    "next_stage/mechanism_probe.py": "8f988ab020c6e77100c014449c98367e7f5188f85d583e43c5fb7a9dda1c8430",
+    "next_stage/attribute_audit.py": "c312327b9105639b238a8766015a076f2cac8cd51a4cb91abcc1890e2a8f9e07",
+    "next_stage/data_checks.py": "f15cec38c412dbfbc8328aa417296c4c44df828001e414c567f6817515001c8d",
+    "next_stage/local_learning_data.py": "888c471a47e588a49e872c5397934af611c84b02314b9ee94ce41a66f24c8d91",
+    "next_stage/local_learning_data_checks.py": "2155baecb2672761dfec0b08c161e7b0b8b7c8dfa1fc47340dfaa7d359cae849",
+    "next_stage/frozen_readout.py": "81d3f26176095306ae7a1f724ffc36fb861da28992b750d3d58b06150dfe480e",
+    "next_stage/frozen_readout_fit.py": "b65422401a096451977bcb92088e99831e3a61b687180e04126e6ca3cb6b376c",
+    "next_stage/frozen_readout_checks.py": "872c7fca9c3aefe299762d5ba3dc0cbbf98d84f2ec351e871d5792d320c94b47",
+    "next_stage/local_model.py": "53e70826e64f708e080e3aca17c1ce8c9666858f0fe126affcc1474b3c90fac3",
+    "next_stage/local_checks.py": "b49ece78785fd644575829f25fbbaaf95737ca98c0a7baca3d173ec98eb70f69",
+    "next_stage/local_learning_model.py": "4de40e538fbbcabe628aca230d2ad5ec3645cbe95874d42839bb344977475c58",
+    "next_stage/local_learning_train.py": "4f1695f28a7255f1da4d8090808431c876b0a6de05ebb9f98e76a2add0a36704",
+    "next_stage/local_learning_inference.py": "fa8cb040f1df4a2c968129f0fae0c8b1a4c49cb91b18198067bcadbff61931d4",
+    "next_stage/local_learning_checks.py": "09f7eb9dd888a196ab8d268a05ee8ec810300127abe34dc29fad4a06b209eb51",
+    "next_stage/stage_checks_memory_safe.py": "34c936d1e5793a6f79fe58fb064a34cbe5313d26812a6364d1ae6dd488ad7aa6",
+    "next_stage/stage_checks_memory_safe_checks.py": "e661f2ae52a65163095e09181ebfc167ea362b2be95164b6b8aff3afc6bbf841"
+  },
+  "public_QA_tool_source_sha256": {
+    "portable_preflight.py": "a4cfcac563d81d9c7aa49df58504941de656a8c88420311a92c6499df8af21ed",
+    "portable_preflight_checks.py": "f90bbc0e09e159d90d1f9a7326552b4a8b2d3bb0c686a727252fcd66b71d7a5f"
+  },
+  "limitations": [
+    "Observed JSON bytes, source hashes, subprocess exits and declared scopes were checked for consistency; this is not independent remote-execution attestation.",
+    "The reference execution tested a 47-source snapshot plus the portable tools outside that snapshot; the assembled public source superset contains 52 executable/historical files and has not been run as a whole in that reference execution.",
+    "Matching portable entrypoint and QA function bytes do not certify an unexecuted public source inventory or a future user environment. Each local source/data/runtime requires its own new preflight.",
+    "TRAIN image, mask, geometry and GDF files were fully rehashed in the observed preflight; this local review read JSON only and did not independently rehash those study arrays.",
+    "GDF numerical sampling checks agreement with the same-source CPU64 reference at selected seed/background positions; it is not independent derivation or a full-field numerical proof.",
+    "VAL image bytes and native source-image bytes were not rehashed; held-out case arrays were not opened by the preflight.",
+    "A global engineering preflight is not segmentation efficacy, GDF benefit, topology preservation, stability, zero-shot validation, end-to-end endpoint reproduction or local-learning preflight approval.",
+    "Raw local A and its predicted-normalization successor remain stopped; no local formal experiment was launched or authorized by this engineering result.",
+    "The prior graph-retaining QA failure remains in the private audit history. This pass used the separately identified memory-safe QA without changing the scientific model/trainer.",
+    "Peak CUDA allocator measurements belong to this observed QA and are not a hardware-independent memory guarantee or training benchmark."
+  ]
+}

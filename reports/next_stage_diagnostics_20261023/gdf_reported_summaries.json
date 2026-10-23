@@ -1,0 +1,918 @@
+{
+  "all_TRAIN": {
+    "all_nodes": {
+      "cases_in_scope": 36,
+      "cases_with_support": 36,
+      "cases_without_support": 0,
+      "case_equal": {
+        "node_support": 55294,
+        "radius_mean_mm": 5.751222121088387,
+        "target_mean": 0.9170146879070001,
+        "target_mean_square": 0.9077971029883655,
+        "target_sd": 0.2586139306982385,
+        "target_quantiles": {
+          "0.0": 0.241455078125,
+          "0.1": 0.58544921875,
+          "0.25": 0.7021484375,
+          "0.5": 0.92041015625,
+          "0.75": 1.130859375,
+          "0.9": 1.2392578125,
+          "0.99": 1.4501953125,
+          "1.0": 1.85546875
+        },
+        "radius_target_Pearson": 0.7842990693113915,
+        "Pearson_null_reason": null
+      },
+      "node_weighted": {
+        "node_support": 55294,
+        "radius_mean_mm": 5.4462539044599225,
+        "target_mean": 0.940598875884618,
+        "target_mean_square": 0.9641108518869174,
+        "target_sd": 0.2817527401313259,
+        "target_quantiles": {
+          "0.0": 0.241455078125,
+          "0.1": 0.58935546875,
+          "0.25": 0.705078125,
+          "0.5": 0.9384765625,
+          "0.75": 1.1572265625,
+          "0.9": 1.294921875,
+          "0.99": 1.5166015625,
+          "1.0": 1.85546875
+        },
+        "radius_target_Pearson": 0.6623616663824596,
+        "Pearson_null_reason": null
+      },
+      "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+      "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+    },
+    "bins": {
+      "radius_le_2mm": {
+        "cases_in_scope": 36,
+        "cases_with_support": 36,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 8477,
+          "radius_mean_mm": 1.511838753291751,
+          "target_mean": 0.6240713197922602,
+          "target_mean_square": 0.433929403951656,
+          "target_sd": 0.21086581459402653,
+          "target_quantiles": {
+            "0.0": 0.241455078125,
+            "0.1": 0.44140625,
+            "0.25": 0.50732421875,
+            "0.5": 0.57470703125,
+            "0.75": 0.6484375,
+            "0.9": 0.908203125,
+            "0.99": 1.3720703125,
+            "1.0": 1.822265625
+          },
+          "radius_target_Pearson": -0.11575988745716079,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 8477,
+          "radius_mean_mm": 1.3848985242405225,
+          "target_mean": 0.7078726380251342,
+          "target_mean_square": 0.6029073746805276,
+          "target_sd": 0.3190982654541776,
+          "target_quantiles": {
+            "0.0": 0.241455078125,
+            "0.1": 0.423828125,
+            "0.25": 0.5009765625,
+            "0.5": 0.578125,
+            "0.75": 0.83837890625,
+            "0.9": 1.2763671875,
+            "0.99": 1.4794921875,
+            "1.0": 1.822265625
+          },
+          "radius_target_Pearson": -0.3042358154745785,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_2_to_4mm": {
+        "cases_in_scope": 36,
+        "cases_with_support": 36,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 19020,
+          "radius_mean_mm": 2.953449910799562,
+          "target_mean": 0.7582169826712432,
+          "target_mean_square": 0.5991891333935669,
+          "target_sd": 0.1558721931021783,
+          "target_quantiles": {
+            "0.0": 0.3525390625,
+            "0.1": 0.61083984375,
+            "0.25": 0.6640625,
+            "0.5": 0.72607421875,
+            "0.75": 0.79931640625,
+            "0.9": 0.96337890625,
+            "0.99": 1.314453125,
+            "1.0": 1.845703125
+          },
+          "radius_target_Pearson": 0.3923046559178932,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 19020,
+          "radius_mean_mm": 2.9345676576426847,
+          "target_mean": 0.7803849052806257,
+          "target_mean_square": 0.6460436333993255,
+          "target_sd": 0.19246566709279475,
+          "target_quantiles": {
+            "0.0": 0.3525390625,
+            "0.1": 0.61376953125,
+            "0.25": 0.66455078125,
+            "0.5": 0.72705078125,
+            "0.75": 0.81103515625,
+            "0.9": 1.0625,
+            "0.99": 1.443359375,
+            "1.0": 1.845703125
+          },
+          "radius_target_Pearson": 0.33100682755476335,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_4_to_8mm": {
+        "cases_in_scope": 36,
+        "cases_with_support": 36,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 13639,
+          "radius_mean_mm": 5.7472217148286715,
+          "target_mean": 0.9995235657617901,
+          "target_mean_square": 1.0244118825482766,
+          "target_sd": 0.1592624376151273,
+          "target_quantiles": {
+            "0.0": 0.59130859375,
+            "0.1": 0.8232421875,
+            "0.25": 0.8837890625,
+            "0.5": 0.98046875,
+            "0.75": 1.06640625,
+            "0.9": 1.2041015625,
+            "0.99": 1.486328125,
+            "1.0": 1.85546875
+          },
+          "radius_target_Pearson": 0.4483167192816536,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 13639,
+          "radius_mean_mm": 5.674788214190369,
+          "target_mean": 1.0362074204716252,
+          "target_mean_square": 1.1171061040474284,
+          "target_sd": 0.2082793456081718,
+          "target_quantiles": {
+            "0.0": 0.59130859375,
+            "0.1": 0.8203125,
+            "0.25": 0.88427734375,
+            "0.5": 0.9931640625,
+            "0.75": 1.1279296875,
+            "0.9": 1.337890625,
+            "0.99": 1.7998046875,
+            "1.0": 1.85546875
+          },
+          "radius_target_Pearson": 0.40102495274850847,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_gt_8mm": {
+        "cases_in_scope": 36,
+        "cases_with_support": 34,
+        "cases_without_support": 2,
+        "case_equal": {
+          "node_support": 14158,
+          "radius_mean_mm": 10.924874996241428,
+          "target_mean": 1.1901757462337614,
+          "target_mean_square": 1.427191125144971,
+          "target_sd": 0.10330933269497405,
+          "target_quantiles": {
+            "0.0": 0.88037109375,
+            "0.1": 1.080078125,
+            "0.25": 1.1181640625,
+            "0.5": 1.166015625,
+            "0.75": 1.248046875,
+            "0.9": 1.3203125,
+            "0.99": 1.498046875,
+            "1.0": 1.8271484375
+          },
+          "radius_target_Pearson": 0.3648341256246617,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 14158,
+          "radius_mean_mm": 11.032028909557395,
+          "target_mean": 1.2030713366559547,
+          "target_mean_square": 1.4602867332045717,
+          "target_sd": 0.11360498281953749,
+          "target_quantiles": {
+            "0.0": 0.88037109375,
+            "0.1": 1.087890625,
+            "0.25": 1.1220703125,
+            "0.5": 1.1767578125,
+            "0.75": 1.2626953125,
+            "0.9": 1.3525390625,
+            "0.99": 1.513671875,
+            "1.0": 1.8271484375
+          },
+          "radius_target_Pearson": 0.2803839051451191,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      }
+    }
+  },
+  "Dongyang": {
+    "all_nodes": {
+      "cases_in_scope": 12,
+      "cases_with_support": 12,
+      "cases_without_support": 0,
+      "case_equal": {
+        "node_support": 12904,
+        "radius_mean_mm": 6.582381165737782,
+        "target_mean": 0.9515718022322831,
+        "target_mean_square": 0.9651861602208605,
+        "target_sd": 0.24433023844228846,
+        "target_quantiles": {
+          "0.0": 0.2666015625,
+          "0.1": 0.6083984375,
+          "0.25": 0.72265625,
+          "0.5": 1.0166015625,
+          "0.75": 1.138671875,
+          "0.9": 1.240234375,
+          "0.99": 1.345703125,
+          "1.0": 1.41796875
+        },
+        "radius_target_Pearson": 0.849330047370725,
+        "Pearson_null_reason": null
+      },
+      "node_weighted": {
+        "node_support": 12904,
+        "radius_mean_mm": 6.418038186997691,
+        "target_mean": 0.9386028897592315,
+        "target_mean_square": 0.9434227235915493,
+        "target_sd": 0.2498946556594779,
+        "target_quantiles": {
+          "0.0": 0.2666015625,
+          "0.1": 0.60107421875,
+          "0.25": 0.703125,
+          "0.5": 0.9970703125,
+          "0.75": 1.1376953125,
+          "0.9": 1.2421875,
+          "0.99": 1.3515625,
+          "1.0": 1.41796875
+        },
+        "radius_target_Pearson": 0.8477067979826921,
+        "Pearson_null_reason": null
+      },
+      "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+      "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+    },
+    "bins": {
+      "radius_le_2mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 1496,
+          "radius_mean_mm": 1.5033710670154588,
+          "target_mean": 0.5964494873770679,
+          "target_mean_square": 0.3809614493264964,
+          "target_sd": 0.1587748668213238,
+          "target_quantiles": {
+            "0.0": 0.2666015625,
+            "0.1": 0.43994140625,
+            "0.25": 0.496826171875,
+            "0.5": 0.57080078125,
+            "0.75": 0.63818359375,
+            "0.9": 0.8369140625,
+            "0.99": 1.12109375,
+            "1.0": 1.3779296875
+          },
+          "radius_target_Pearson": 0.12194285916923958,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 1496,
+          "radius_mean_mm": 1.4929323418534055,
+          "target_mean": 0.5806706882415608,
+          "target_mean_square": 0.36279467015183553,
+          "target_sd": 0.1600506856246093,
+          "target_quantiles": {
+            "0.0": 0.2666015625,
+            "0.1": 0.43408203125,
+            "0.25": 0.484130859375,
+            "0.5": 0.556640625,
+            "0.75": 0.619140625,
+            "0.9": 0.77392578125,
+            "0.99": 1.259765625,
+            "1.0": 1.3779296875
+          },
+          "radius_target_Pearson": 0.16555124893420559,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_2_to_4mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 3830,
+          "radius_mean_mm": 2.9248653522101073,
+          "target_mean": 0.754303988290473,
+          "target_mean_square": 0.588878206379915,
+          "target_sd": 0.14108047217457528,
+          "target_quantiles": {
+            "0.0": 0.3525390625,
+            "0.1": 0.6142578125,
+            "0.25": 0.66552734375,
+            "0.5": 0.71826171875,
+            "0.75": 0.8056640625,
+            "0.9": 0.97705078125,
+            "0.99": 1.181640625,
+            "1.0": 1.3974609375
+          },
+          "radius_target_Pearson": 0.41493111161230123,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 3830,
+          "radius_mean_mm": 2.8940020010925775,
+          "target_mean": 0.7377321566987595,
+          "target_mean_square": 0.5612556931244175,
+          "target_sd": 0.13041072845826016,
+          "target_quantiles": {
+            "0.0": 0.3525390625,
+            "0.1": 0.6142578125,
+            "0.25": 0.6630859375,
+            "0.5": 0.703125,
+            "0.75": 0.77734375,
+            "0.9": 0.91845703125,
+            "0.99": 1.16796875,
+            "1.0": 1.3974609375
+          },
+          "radius_target_Pearson": 0.4530018323151598,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_4_to_8mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 3090,
+          "radius_mean_mm": 6.06740128466578,
+          "target_mean": 1.009507109088058,
+          "target_mean_square": 1.033643896302217,
+          "target_sd": 0.12057899071931565,
+          "target_quantiles": {
+            "0.0": 0.59130859375,
+            "0.1": 0.84814453125,
+            "0.25": 0.955078125,
+            "0.5": 1.005859375,
+            "0.75": 1.072265625,
+            "0.9": 1.1787109375,
+            "0.99": 1.2958984375,
+            "1.0": 1.41796875
+          },
+          "radius_target_Pearson": 0.43922055599390813,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 3090,
+          "radius_mean_mm": 6.070587366221407,
+          "target_mean": 1.0096648083535598,
+          "target_mean_square": 1.0341188878303207,
+          "target_sd": 0.12122649299014594,
+          "target_quantiles": {
+            "0.0": 0.59130859375,
+            "0.1": 0.84619140625,
+            "0.25": 0.95458984375,
+            "0.5": 1.0078125,
+            "0.75": 1.0703125,
+            "0.9": 1.177734375,
+            "0.99": 1.2998046875,
+            "1.0": 1.41796875
+          },
+          "radius_target_Pearson": 0.4410745925666692,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_gt_8mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 4488,
+          "radius_mean_mm": 11.111374661158544,
+          "target_mean": 1.174431487502302,
+          "target_mean_square": 1.3864941053973743,
+          "target_sd": 0.08488101413451997,
+          "target_quantiles": {
+            "0.0": 0.97265625,
+            "0.1": 1.080078125,
+            "0.25": 1.115234375,
+            "0.5": 1.1455078125,
+            "0.75": 1.236328125,
+            "0.9": 1.3037109375,
+            "0.99": 1.3837890625,
+            "1.0": 1.416015625
+          },
+          "radius_target_Pearson": 0.647439637718456,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 4488,
+          "radius_mean_mm": 11.30632695093512,
+          "target_mean": 1.1804077366031638,
+          "target_mean_square": 1.4006571592281631,
+          "target_sd": 0.08540921844601325,
+          "target_quantiles": {
+            "0.0": 0.97265625,
+            "0.1": 1.08984375,
+            "0.25": 1.1171875,
+            "0.5": 1.154296875,
+            "0.75": 1.2431640625,
+            "0.9": 1.306640625,
+            "0.99": 1.3837890625,
+            "1.0": 1.416015625
+          },
+          "radius_target_Pearson": 0.6432011216241449,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      }
+    }
+  },
+  "KiTS": {
+    "all_nodes": {
+      "cases_in_scope": 12,
+      "cases_with_support": 12,
+      "cases_without_support": 0,
+      "case_equal": {
+        "node_support": 16127,
+        "radius_mean_mm": 5.2955864881956,
+        "target_mean": 0.8606157206491483,
+        "target_mean_square": 0.7990635865652872,
+        "target_sd": 0.24166954284070385,
+        "target_quantiles": {
+          "0.0": 0.24951171875,
+          "0.1": 0.56005859375,
+          "0.25": 0.671875,
+          "0.5": 0.8310546875,
+          "0.75": 1.0830078125,
+          "0.9": 1.19921875,
+          "0.99": 1.3076171875,
+          "1.0": 1.3564453125
+        },
+        "radius_target_Pearson": 0.8809117014468617,
+        "Pearson_null_reason": null
+      },
+      "node_weighted": {
+        "node_support": 16127,
+        "radius_mean_mm": 5.6117628753423645,
+        "target_mean": 0.8865504690309729,
+        "target_mean_square": 0.8407323684800011,
+        "target_sd": 0.23400990222843746,
+        "target_quantiles": {
+          "0.0": 0.24951171875,
+          "0.1": 0.5908203125,
+          "0.25": 0.70458984375,
+          "0.5": 0.85107421875,
+          "0.75": 1.115234375,
+          "0.9": 1.2060546875,
+          "0.99": 1.3115234375,
+          "1.0": 1.3564453125
+        },
+        "radius_target_Pearson": 0.8764670579322679,
+        "Pearson_null_reason": null
+      },
+      "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+      "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+    },
+    "bins": {
+      "radius_le_2mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 1904,
+          "radius_mean_mm": 1.5664893213779645,
+          "target_mean": 0.6168981765433773,
+          "target_mean_square": 0.413317729721003,
+          "target_sd": 0.1809816827705473,
+          "target_quantiles": {
+            "0.0": 0.24951171875,
+            "0.1": 0.457763671875,
+            "0.25": 0.52734375,
+            "0.5": 0.580078125,
+            "0.75": 0.630859375,
+            "0.9": 0.8173828125,
+            "0.99": 1.2744140625,
+            "1.0": 1.2998046875
+          },
+          "radius_target_Pearson": -0.06395498735814802,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 1904,
+          "radius_mean_mm": 1.5444619309924104,
+          "target_mean": 0.5789225602350314,
+          "target_mean_square": 0.3574424727248544,
+          "target_sd": 0.14930218342599935,
+          "target_quantiles": {
+            "0.0": 0.24951171875,
+            "0.1": 0.43603515625,
+            "0.25": 0.50439453125,
+            "0.5": 0.5625,
+            "0.75": 0.611328125,
+            "0.9": 0.7275390625,
+            "0.99": 1.205078125,
+            "1.0": 1.2998046875
+          },
+          "radius_target_Pearson": 0.11958435439263741,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_2_to_4mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 5766,
+          "radius_mean_mm": 2.9600163657546177,
+          "target_mean": 0.736622637440412,
+          "target_mean_square": 0.5571916014864755,
+          "target_sd": 0.12074225232621229,
+          "target_quantiles": {
+            "0.0": 0.368896484375,
+            "0.1": 0.6005859375,
+            "0.25": 0.6552734375,
+            "0.5": 0.72998046875,
+            "0.75": 0.79052734375,
+            "0.9": 0.8623046875,
+            "0.99": 1.1767578125,
+            "1.0": 1.30078125
+          },
+          "radius_target_Pearson": 0.5390418956540091,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 5766,
+          "radius_mean_mm": 2.96130080199101,
+          "target_mean": 0.7381244173820671,
+          "target_mean_square": 0.5594097498883153,
+          "target_sd": 0.12075634290876386,
+          "target_quantiles": {
+            "0.0": 0.368896484375,
+            "0.1": 0.60693359375,
+            "0.25": 0.6591796875,
+            "0.5": 0.728515625,
+            "0.75": 0.79052734375,
+            "0.9": 0.86083984375,
+            "0.99": 1.1904296875,
+            "1.0": 1.30078125
+          },
+          "radius_target_Pearson": 0.511277648339944,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_4_to_8mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 4137,
+          "radius_mean_mm": 5.506851043197126,
+          "target_mean": 0.9444801638482214,
+          "target_mean_square": 0.9057855191669507,
+          "target_sd": 0.1172294300258589,
+          "target_quantiles": {
+            "0.0": 0.646484375,
+            "0.1": 0.818359375,
+            "0.25": 0.85546875,
+            "0.5": 0.92041015625,
+            "0.75": 1.025390625,
+            "0.9": 1.1162109375,
+            "0.99": 1.2607421875,
+            "1.0": 1.330078125
+          },
+          "radius_target_Pearson": 0.631756576817091,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 4137,
+          "radius_mean_mm": 5.394485915199929,
+          "target_mean": 0.9346496272208122,
+          "target_mean_square": 0.8879722473498615,
+          "target_sd": 0.12000967330118979,
+          "target_quantiles": {
+            "0.0": 0.646484375,
+            "0.1": 0.81103515625,
+            "0.25": 0.84765625,
+            "0.5": 0.90087890625,
+            "0.75": 1.0126953125,
+            "0.9": 1.1123046875,
+            "0.99": 1.265625,
+            "1.0": 1.330078125
+          },
+          "radius_target_Pearson": 0.6410221656767977,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_gt_8mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 10,
+        "cases_without_support": 2,
+        "case_equal": {
+          "node_support": 4320,
+          "radius_mean_mm": 11.007965363975533,
+          "target_mean": 1.1699261791797877,
+          "target_mean_square": 1.3740787980873388,
+          "target_sd": 0.07315417525420255,
+          "target_quantiles": {
+            "0.0": 0.89501953125,
+            "0.1": 1.0732421875,
+            "0.25": 1.119140625,
+            "0.5": 1.1611328125,
+            "0.75": 1.2197265625,
+            "0.9": 1.275390625,
+            "0.99": 1.3291015625,
+            "1.0": 1.3564453125
+          },
+          "radius_target_Pearson": 0.6811118623611631,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 4320,
+          "radius_mean_mm": 11.150091601521881,
+          "target_mean": 1.1741805465133104,
+          "target_mean_square": 1.38398672066353,
+          "target_sd": 0.0727101427122384,
+          "target_quantiles": {
+            "0.0": 0.89501953125,
+            "0.1": 1.0771484375,
+            "0.25": 1.123046875,
+            "0.5": 1.1689453125,
+            "0.75": 1.2216796875,
+            "0.9": 1.2802734375,
+            "0.99": 1.330078125,
+            "1.0": 1.3564453125
+          },
+          "radius_target_Pearson": 0.6730428712492234,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      }
+    }
+  },
+  "Rider": {
+    "all_nodes": {
+      "cases_in_scope": 12,
+      "cases_with_support": 12,
+      "cases_without_support": 0,
+      "case_equal": {
+        "node_support": 26263,
+        "radius_mean_mm": 5.375698709331778,
+        "target_mean": 0.9388565408395684,
+        "target_mean_square": 0.9591415621789487,
+        "target_sd": 0.27872918379981104,
+        "target_quantiles": {
+          "0.0": 0.241455078125,
+          "0.1": 0.5947265625,
+          "0.25": 0.708984375,
+          "0.5": 0.94091796875,
+          "0.75": 1.1513671875,
+          "0.9": 1.2841796875,
+          "0.99": 1.5068359375,
+          "1.0": 1.85546875
+        },
+        "radius_target_Pearson": 0.6570210315971741,
+        "Pearson_null_reason": null
+      },
+      "node_weighted": {
+        "node_support": 26263,
+        "radius_mean_mm": 4.867147650212934,
+        "target_mean": 0.9747684247667227,
+        "target_mean_square": 1.0500372277551264,
+        "target_sd": 0.31601225582709325,
+        "target_quantiles": {
+          "0.0": 0.241455078125,
+          "0.1": 0.58203125,
+          "0.25": 0.70556640625,
+          "0.5": 0.98583984375,
+          "0.75": 1.21484375,
+          "0.9": 1.4033203125,
+          "0.99": 1.7763671875,
+          "1.0": 1.85546875
+        },
+        "radius_target_Pearson": 0.550250047650242,
+        "Pearson_null_reason": null
+      },
+      "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+      "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+    },
+    "bins": {
+      "radius_le_2mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 5077,
+          "radius_mean_mm": 1.465655871481831,
+          "target_mean": 0.6588662954563361,
+          "target_mean_square": 0.5075090328074692,
+          "target_sd": 0.2709321640542397,
+          "target_quantiles": {
+            "0.0": 0.241455078125,
+            "0.1": 0.425537109375,
+            "0.25": 0.49365234375,
+            "0.5": 0.57177734375,
+            "0.75": 0.716796875,
+            "0.9": 1.16796875,
+            "0.99": 1.4462890625,
+            "1.0": 1.822265625
+          },
+          "radius_target_Pearson": -0.2560416605842428,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 5077,
+          "radius_mean_mm": 1.2932248355258351,
+          "target_mean": 0.7937136986886327,
+          "target_mean_square": 0.7657148947314482,
+          "target_sd": 0.3684202210051163,
+          "target_quantiles": {
+            "0.0": 0.241455078125,
+            "0.1": 0.414794921875,
+            "0.25": 0.505859375,
+            "0.5": 0.6015625,
+            "0.75": 1.18359375,
+            "0.9": 1.3447265625,
+            "0.99": 1.5166015625,
+            "1.0": 1.822265625
+          },
+          "radius_target_Pearson": -0.3379512335392852,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_2_to_4mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 9424,
+          "radius_mean_mm": 2.975468014433959,
+          "target_mean": 0.7837243222828443,
+          "target_mean_square": 0.6514975923143104,
+          "target_sd": 0.19306418356755514,
+          "target_quantiles": {
+            "0.0": 0.404052734375,
+            "0.1": 0.61865234375,
+            "0.25": 0.66943359375,
+            "0.5": 0.728515625,
+            "0.75": 0.81005859375,
+            "0.9": 1.06640625,
+            "0.99": 1.4541015625,
+            "1.0": 1.845703125
+          },
+          "radius_target_Pearson": 0.30444041517542103,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 9424,
+          "radius_mean_mm": 2.9346974490555118,
+          "target_mean": 0.8235761192334731,
+          "target_mean_square": 0.7335084873442941,
+          "target_sd": 0.2350124745042831,
+          "target_quantiles": {
+            "0.0": 0.404052734375,
+            "0.1": 0.619140625,
+            "0.25": 0.66845703125,
+            "0.5": 0.7353515625,
+            "0.75": 0.90966796875,
+            "0.9": 1.2119140625,
+            "0.99": 1.4873046875,
+            "1.0": 1.845703125
+          },
+          "radius_target_Pearson": 0.2847965588879541,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_4_to_8mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 6412,
+          "radius_mean_mm": 5.667412816623102,
+          "target_mean": 1.044583424349093,
+          "target_mean_square": 1.1338062321756612,
+          "target_sd": 0.20652288432710447,
+          "target_quantiles": {
+            "0.0": 0.64990234375,
+            "0.1": 0.81591796875,
+            "0.25": 0.8974609375,
+            "0.5": 0.9990234375,
+            "0.75": 1.142578125,
+            "0.9": 1.3505859375,
+            "0.99": 1.7890625,
+            "1.0": 1.85546875
+          },
+          "radius_target_Pearson": 0.39025138935556597,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 6412,
+          "radius_mean_mm": 5.664899136078632,
+          "target_mean": 1.1145232754503276,
+          "target_mean_square": 1.3049347477262645,
+          "target_sd": 0.25054463914787267,
+          "target_quantiles": {
+            "0.0": 0.64990234375,
+            "0.1": 0.82373046875,
+            "0.25": 0.921875,
+            "0.5": 1.048828125,
+            "0.75": 1.2900390625,
+            "0.9": 1.45703125,
+            "0.99": 1.8232421875,
+            "1.0": 1.85546875
+          },
+          "radius_target_Pearson": 0.3804609522863829,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      },
+      "radius_gt_8mm": {
+        "cases_in_scope": 12,
+        "cases_with_support": 12,
+        "cases_without_support": 0,
+        "case_equal": {
+          "node_support": 5350,
+          "radius_mean_mm": 10.66913335821256,
+          "target_mean": 1.2227946441768647,
+          "target_mean_square": 1.5121484174405941,
+          "target_sd": 0.13008334102785316,
+          "target_quantiles": {
+            "0.0": 0.88037109375,
+            "0.1": 1.0888671875,
+            "0.25": 1.123046875,
+            "0.5": 1.1884765625,
+            "0.75": 1.2861328125,
+            "0.9": 1.43359375,
+            "0.99": 1.529296875,
+            "1.0": 1.8271484375
+          },
+          "radius_target_Pearson": 0.09852886372901513,
+          "Pearson_null_reason": null
+        },
+        "node_weighted": {
+          "node_support": 5350,
+          "radius_mean_mm": 10.70659331348455,
+          "target_mean": 1.2454119816004674,
+          "target_mean_square": 1.5719191784725008,
+          "target_sd": 0.14445821042259388,
+          "target_quantiles": {
+            "0.0": 0.88037109375,
+            "0.1": 1.0927734375,
+            "0.25": 1.130859375,
+            "0.5": 1.205078125,
+            "0.75": 1.345703125,
+            "0.9": 1.462890625,
+            "0.99": 1.59375,
+            "1.0": 1.8271484375
+          },
+          "radius_target_Pearson": 0.0250795676074209,
+          "Pearson_null_reason": null
+        },
+        "case_equal_definition": "each supported case has total weight1; within its selected bin nodes are equal",
+        "node_weighted_definition": "each selected centerline node has weight1; not vessel length weighting"
+      }
+    }
+  }
+}

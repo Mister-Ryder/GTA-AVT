@@ -1,0 +1,140 @@
+GTA-AVT: completed diagnostic candidate, 2026-10-23
+Status: public-release preparation only; not published by this package.
+
+Scope and interpretation
+
+This package contains derived numerical records for three completed TRAIN-only
+diagnostics: a frozen local-attribute readout, a frozen local-scale oracle test,
+and a centerline audit of a Gaussian density field (GDF). It does not report
+unfinished segmentation comparisons or declare the research stage complete.
+
+AVT's public anonymized case IDs and source labels Dongyang/KiTS/Rider are kept.
+The backbone had previously seen all 36 TRAIN cases. The 24/12 split holds out
+attribute labels from fitting the new readout, not patients from the backbone.
+These are not independent-patient segmentation, zero-shot, cross-domain or
+repeated-seed variance results.
+
+1. Frozen readout: semantic gate failed
+
+At fixed 16mm windows, the target is the proportion of supported centerline
+nodes with radius<=2mm among known nonempty nodes. The 2/4/8mm boundaries are
+operational geometry bins, not clinical vessel-size categories. Unknown geometry
+is excluded from proxy supervision. Raw fine probability includes presence/empty
+mass; conditional fine probability divides raw fine by total nonempty mass.
+
+The classifier was frozen in eval mode. One CPU64 full-batch L-BFGS optimization
+of a 64-to-5 linear readout converged: gradient infinity norm5.357974e-7,
+82 optimizer iterations,85 function evaluations. Endpoint metrics use the
+FP32 deployed head and FP32 features, not CPU64 fitting predictions.
+
+Check12 case-equal nonempty MSE (fraction squared):
+                   model           fit-mean constant    relative improvement
+raw                0.091397711776  0.082314927885       -11.034187996%
+conditional        0.079189683906  0.082314927885       +3.796691632%
+
+The prospective gate required at least10% improvement for both, conditional
+MSE improvement in at least8/12 cases, and neither raw nor conditional MSE worse
+in any source. It failed: only6/12 conditional wins and source inconsistency.
+Fine-positive support passed in11/12 cases; optimization was resolved.
+MAE/fit-median and the arithmetic0.2 baseline are retained, but MAE was report-only.
+
+Mean raw fine probability on check nonempty windows was0.014385281 versus
+target0.119606166. The fit objective's target empty mass was0.957876696.
+This is consistent with a presence-dominated readout; it does not establish
+a useful dynamic-condition signal or a segmentation benefit.
+
+The per-case errors are fixed sampled-window inverse-inclusion estimates:
+eight patches/case, at most64 nonempty+64 empty windows/patch; N_stratum/m weights
+restore uniform valid-window measure, with equal patch/case weighting. They are
+not exact full-field errors. Overlapping windows are not independent patients.
+
+2. Frozen local oracle: correspondence gate failed; stop decision retained
+
+The same12 cases and all eight already fixed patches/case were used, without
+resampling or fitting. Only slots0..3 (four GT-centerline+jitter patches) define
+the primary Dice: patch mean within each case, then equal mean of12 cases.
+The other48 CT-uniform patches are descriptive and split by actual emptiness.
+
+Three routes shared the same frozen common constant initialization and alpha1:
+constant score0.2; correct local GT composition; and a fixed half-ring relocation
+of complete composition rows at the same eligible positions. Eligibility is
+known nonempty GT geometry plus complete CT support. Unknown/empty/unsupported
+positions stay neutral0.2 in both oracle fields. This GT support is confined to
+an oracle intervention, not a normal inference rule. Operator q0=0.2 is distinct
+from the nonempty oracle target's empty probability0.
+
+                   mean Dice(%)   case sample SD(pp)  worst2 mean Dice(%)
+constant           85.257309986    9.489371644         69.711123407
+correct            85.264255417    9.447953283         69.820557535
+permuted           85.279989118    9.438565204         69.832210615
+
+correct-permuted: -0.015733701pp; positive in5/12 cases.
+correct-constant: +0.006945431pp.
+Mean absolute correct/permuted logit response:0.008378367.
+
+The registered budget gate required correct-permuted>=+0.1pp,8/12 positive
+cases, response>=0.001, correct-constant>=0,12 complete cases, at least8 informative
+cases and all invariants. Support12/12,response and invariants passed; Dice and
+case-wins clauses failed. Both negative results and all cases are retained.
+
+Decision: stop the current raw-A long-run proposal and the predicted conditional-
+normalization follow-up. Do not change the oracle window, threshold, permutation,
+seed or gain to obtain a pass. A responsive operator is not evidence that correct
+anatomical correspondence is useful. Cold constant weights were not jointly
+adapted to this local condition, so the result does not refute all learnable GTA
+implementations. The similar SD/tail of the mismatched route also prevents a claim
+of condition-specific stability from this diagnostic.
+
+The17 trueempty CT-uniform patches had identical predictions, with1508 FP voxels
+under all three routes. Empty Dice is null, never pooled into a favorable mean.
+Only derived counts/hashes are released; exact voxel changes, near-threshold
+distributions, branch-local errors or quantization causality cannot be recovered.
+
+3. GDF centerline-scale audit: target audit, not segmentation validation
+
+Definition: mask*log1p(sum of centerline Gaussians with sigma=native local radius)
+divided by fixed TRAIN RMS2.8707158419291448. Stored target values were float16;
+selected centerline values were summarized in float64. These are dimensionless
+stored-field statistics, not pre-quantization targets.
+
+36 cases,55294 centerline nodes. Radius bins use upper-inclusive2/4/8mm edges.
+                              nodes  supported cases  case-equal mean target
+radius<=2mm                   8477   36               0.624071320
+2<radius<=4mm                 19020  36               0.758216983
+4<radius<=8mm                 13639  36               0.999523566
+radius>8mm                    14158  34               1.190175746
+
+Two unsupported >8mm case/bin entries remain null, not zero. Case-equal and
+node-weighted summaries are both retained. Node weighting is not vessel-length
+weighting. Global weighted empirical quantiles/Pearson are original summaries;
+they are not re-created by averaging case quantiles or correlations.
+
+Radius association can reflect node density, Gaussian overlap, branching and
+adjacent anatomy. E[target^2] here is at centerline nodes, not full-volume loss,
+gradient contribution or GDF segmentation benefit. All36 geometry-file hashes
+were checked in the original audit; this audit checked target headers/sizes and
+selected values, not a new full target-file hash. Physical I/O was not measured.
+
+Files, units and independent arithmetic checks
+
+metadata.json gives the exact definitions, gates, precision, source identity
+hashes, support/null semantics and limits. readout_casewise.csv has72 rows
+(36 cases x raw/conditional); oracle_patchwise.csv has96 fixed patch records;
+gdf_casewise.csv has180 rows (36 cases x all-nodes/four bins).
+gdf_reported_summaries.json retains the original GDF summaries.
+
+Run from this folder: python recompute.py --check
+
+Only Python's standard library is required. The script checks the file allowlist,
+hashes and infrastructure safety patterns, re-averages case MSE, recomputes both
+gates, oracle case/source means, sample SD and worst2, and GDF target moments under
+both weightings. It compares with expected_summary.json. It uses released derived
+case errors, not unreleased per-window predictions/features, to aggregate MSE.
+It does not re-fit the head or reconstruct original model outputs.
+
+Oracle predictions were thresholded using native-precision sigmoid>=0.5, followed
+by FP32 Dice arithmetic. This package keeps those stored Dice ratios. A stdlib
+float64 count-formula check allows absolute error2e-7 in ratio units; summary
+comparisons allow2e-12*max(1,abs(values)). Neither check is called bit-exact native
+sigmoid reproduction. Scientific source/input/weight hashes identify the original
+experiments; their bytes and infrastructure execution records are not included.

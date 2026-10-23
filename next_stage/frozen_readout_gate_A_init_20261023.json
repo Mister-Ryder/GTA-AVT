@@ -1,0 +1,13 @@
+{
+  "locked_before_fit": true,
+  "minimum_relative_raw_MSE_reduction": 0.1,
+  "minimum_relative_conditional_MSE_reduction": 0.1,
+  "minimum_conditional_MSE_better_cases": 8,
+  "minimum_fine_supported_cases": 8,
+  "minimum_sampled_fine_cells_per_case": 16,
+  "all_three_source_raw_and_conditional_MSE_not_worse": true,
+  "optimizer_resolved_required": true,
+  "MAE_is_report_only": true,
+  "automatic_segmentation_training_authorized": false,
+  "reference": "fixed readout-label diagnostic only; root A protocol governs any paired segmentation continuation"
+}

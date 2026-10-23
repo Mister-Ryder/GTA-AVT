@@ -1,0 +1,173 @@
+{
+  "schema": "GTA-AVT-public-fixed-GDF-VAL-v1",
+  "release_status": "candidate_not_published",
+  "date": "2026-10-23",
+  "after_arm": "Gp",
+  "before_arm": "Kp",
+  "case_ids": [
+    "Dongyang_D2",
+    "Dongyang_D5",
+    "KiTS_K13",
+    "KiTS_K15",
+    "KiTS_K18",
+    "KiTS_K8",
+    "Rider_R10",
+    "Rider_R9"
+  ],
+  "status": "Both fixed2000-update endpoints completed; prospective continuation gate failed; independent numerical review completed. U/K remains outside this report.",
+  "question": "Auxiliary GDF supervision only: same historical constant warmstart, complete initial state including GDF head, optimizer reset, seed and fixed recipe. The only scientific arm difference is GDF weight0 versus0.1; both use constant conditions and global attribute auxiliary weights0.1/0.1.",
+  "common_recipe": {
+    "stage": "gdf_warmstart_probe",
+    "seed": 20261023,
+    "max_steps": 2000,
+    "batch_size": 2,
+    "patch_size": 128,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "gradient_clip": 12.0,
+    "foreground_probability": 0.5,
+    "conditioning": "constant",
+    "detach_conditions": true,
+    "gdf_seed": 20261023,
+    "gdf_normalization": "voxel",
+    "q0": 0.2,
+    "s0": 0.2,
+    "alpha_start": 0,
+    "alpha_ramp": 500,
+    "checkpoint_every": 500,
+    "log_every": 100,
+    "cpu_threads": 4,
+    "inference_patch_size": 128,
+    "inference_batch_size": 2,
+    "inference_overlap": 0.5,
+    "save_validation_predictions": true,
+    "skip_validation": false,
+    "allow_tf32": false,
+    "scale_weight": 0.1,
+    "structure_weight": 0.1,
+    "sampler_step_offset": 0
+  },
+  "arm_GDF_weight": {
+    "Kp": 0.0,
+    "Gp": 0.1
+  },
+  "identity": {
+    "metric_files_sha256": {
+      "Kp": {
+        "Dongyang_D2": "f50ff4aeaedb95920f9ae3fda130fcf803a2d612cfb8635d866b35a19b6bd243",
+        "Dongyang_D5": "97b698c4988d84e03a4ad2f5e410135675677c43ab987ec4f635c36b90f6fcc9",
+        "KiTS_K13": "b5570a200aaa36ff6ff8c7086b87b441f3e6ec364426a531bc35c3587af59ae7",
+        "KiTS_K15": "6291f41e77070a7fe502ecdeba4aff05fb467afcd89f5e147ab39aadc0939fe2",
+        "KiTS_K18": "563c5a6b10d2d0429789fc4ba9231c26ad8a87858f60be5a144f45aa409e422a",
+        "KiTS_K8": "270e52ca402f4a6a5cb2e3eafff8b8bedae8554eddc66c6201f910c6ebcd1961",
+        "Rider_R10": "053a90e36b4f5c7ddc8f85b51dae83ab8532e0b342b39e945e164463361eb011",
+        "Rider_R9": "9d25c3ab2d9097b482442f46049c658727a6813200fe9567f40b06202a449d9c"
+      },
+      "Gp": {
+        "Dongyang_D2": "03376d01cfe81f3b704d5bfc435420760db063109d7c6cce83f5d4d1fbee24bc",
+        "Dongyang_D5": "70ca9b3b15ae6a6a797e96f558dce65563bbad3a63712e86b49c4edd57ba4417",
+        "KiTS_K13": "a6d8f267c157718b4f49a31a73fa5f2c0ce5927bb8cb3b593b05418355412c23",
+        "KiTS_K15": "3cdadda9ab3a671a1c93ff275aa263d3a19039c589402fad2197d88cdf4ddf6a",
+        "KiTS_K18": "f2c3afbcfa431639fe725d40a60a22384b8f63df4891e5010ce923710479c076",
+        "KiTS_K8": "5a77a7a037ced3719199960f13facdf3e61d4dbc64e64c83b018167762fae2c8",
+        "Rider_R10": "1ce617bf1228b86d248f748f58c45a710bdb3752ba618397e9055660ff4f9a04",
+        "Rider_R9": "0cec6b51b17372b4e75c137ec151065cf028e215bcd49c0ab4414ab5467ffb37"
+      }
+    },
+    "checkpoint_files_sha256": {
+      "Kp": "a35b7b0283302b68c71799217d4b0e062b7d9aafda037e5a09ea03ccfdd0f68a",
+      "Gp": "9560d9176d7e9e23d21f4e4e4bb9806a1268f1e688ea99ccee2d6393e8f951d9"
+    },
+    "initialization_files_sha256": {
+      "Kp": "65584411e3f42a47f2c938d918a8a1290da423e555cdfaf8e45a3eb1e1935728",
+      "Gp": "65584411e3f42a47f2c938d918a8a1290da423e555cdfaf8e45a3eb1e1935728"
+    },
+    "historical_initial_weight_file_sha256": "7406a3ba7e5bac1a7d8ee24898cb954ff8576f37fcf5fba0e26ef9a2cb5c43e6",
+    "common_initial_state_tensor_sha256": "143473ab4d56f87fbdfc970903d9d78f5cb304767f047e41f754c50832d919cb",
+    "common_initial_legacy_tensor_sha256": "c5a6702dac63ce1ec27a5e30858b7d95a8677d5582a244754339a0133afc032f",
+    "common_initial_GDF_head_tensor_sha256": "0456a8b04ef11f1b59c55516546c9267ff66538d2e70627875df1b48e7b43433",
+    "source_archive_files_sha256": {
+      "code/common.py": "79edd4ce7623632c602b33124d4653a28d7cb41ee9ae7a0ee4e664a0efba5d5a",
+      "code/data.py": "9ad4c237e2b0e7e1fdde00391ebba8dc320b3001cc4ee68c04ca23e64e5f62cf",
+      "code/evaluate.py": "b50ced9813fe14f923af4e9773606c5ca7d275583fffbdd86d1dd7ca5284155d",
+      "code/faithful_model.py": "c02a222dc92b231cbaf5a3768217028ee74567d166e09d2df979c9ebdff72337",
+      "code/faithful_smoke.py": "5b83ceb0654234e79a0189530e118d2cedf19e8dc376eb9e7f980e1d6ac56129",
+      "code/geometry.py": "456f72da13e17dc877ab0a8af8567c4710cd39aca7141066a4b22b68f65e8ac8",
+      "code/historical/NaviAirway-MIT.txt": "a8d637dcbcd086a0072c4394565c715f88d0327f3b927067c0e596579cfcfd1c",
+      "code/historical/THIRD_PARTY_NOTICES.md": "511bb82ea8773e30f58c0ea5531d187708cde071fd17c213824f4bcc75f8be3b",
+      "code/historical/__init__.py": "275f71602236a43c1b6288874186ef8ec11077124051b2733d3b95b9dc315ecb",
+      "code/historical/func/AnatomicalClassifier.py": "f5288c74ce71db97eca63f9665e29dfb0099aa010326ce7d6748377bc0156222",
+      "code/historical/func/AnatomicalFusionModules.py": "7309281bb296eb7d861050f5ead6b563823b8393addf6ff7c18a594225030b01",
+      "code/historical/func/EnhancedAirwaySegmentation2gau.py": "13808eeac5c23d084104d18e4b8425c01ba035b84168d1dc6a69cc6a25de28fc",
+      "code/historical/func/__init__.py": "8b611c2073b7bec1691a687085deb8707402d6063f6625dc737f3b62599f24b3",
+      "code/historical/func/model_arch_model10.py": "55d51ea850efd2b31aa07acd68ad5e24f64fafe6a714d26dc357919f639f3003",
+      "code/historical/provenance.json": "44cc0176c30adb08e83b00a0976183f9d66d6df8ff3e9661f72637b3521430b8",
+      "code/historical/source_hashes.json": "f792cc0ed802ab119ef173870390b2c015d8d2727eee94d499614876a4dbdd27",
+      "code/inference.py": "a30b7511b6272f627bd71c9a62c1b068fc3f1c2d3ff0f5e81bd45b15828f6805",
+      "code/intensity.py": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a",
+      "code/losses.py": "c3eafe2d492444d5b909d0597ca04459b2df812c9c8723597c75928298afc87d",
+      "code/metrics.py": "c729a6f4894758407ab3955889f6db60f8f92a724d883b83c9169a81f2fd96ec",
+      "code/model.py": "59f4cdd9823e11bdd94d6c2d0ebd4c68fcd237c656040ad9fef365323af4d9ca",
+      "code/prepare.py": "1cf125da4837b100d8c669c7896272c81582f3b0455fb5213af271d6e9fda6e0",
+      "code/smoke.py": "c1c26685249638a0cf56408cf067cffffab495ee92395dd3ac42fc88e63f71ee",
+      "code/train.py": "ec867cd4922a2a18ccf5cb7fbd23922c02a6ac8464f36f2f6bc61a843b35d461",
+      "next_stage/attribute_audit.py": "c312327b9105639b238a8766015a076f2cac8cd51a4cb91abcc1890e2a8f9e07",
+      "next_stage/gdf.py": "1d12a556b9e638e466e2104aaf34cf99120bdb716ff737ac73eb20cfb9b8c9e9",
+      "next_stage/gdf_checks.py": "d34ff18b8475753990f5896385d034415995eddb922566470df7f5791401ec75",
+      "next_stage/mechanism_probe.py": "8f988ab020c6e77100c014449c98367e7f5188f85d583e43c5fb7a9dda1c8430",
+      "next_stage/next_data.py": "d3d1d4f22097925b06f850f606becb9f240a007d86c8a380ec99043e03e961de",
+      "next_stage/prepare_gdf.py": "8003067d218ddb9b01e3c80e18f22e8f534c35a08d598979661cbf22de21c591",
+      "next_stage/stage_checks.py": "6513292727409dfd000e437c1223b1ec9ffad9ae9cf0af364cfdad811b5ad1c4",
+      "next_stage/stage_model.py": "bba378a8d384ddbe6694491bbabd3ef384cf3796f2e3eb6db647ef02ac965d7b",
+      "next_stage/stage_train.py": "c134b3b61a0c2a0f0ace7868464f2d1ec292f64e42e059d23e6373545043fa79"
+    }
+  },
+  "identity_scope": "Hashes identify original metric/checkpoint/initialization/archived scientific-source bytes. Released CSVs are whitelisted derived tables, not byte-identical original JSON. No original execution infrastructure records, original predictions or model weights are distributed; these hashes alone are not independent attestation of acquisition or evaluation.",
+  "source_inventory": "This GDF training experiment saved33 archived scientific files. Later local/diagnostic additions are not retroactively part of that original inventory.",
+  "units": {
+    "casewise_CSV": "dice/cldice/centerline_recall/centerline_precision/precision/recall are fractions0..1; FP/FN mL; distances mm; counts native voxels or skeleton voxels.",
+    "geometry_CSV": "centerline_recall fraction0..1; support_nodes count of GT-defined native centerline nodes.",
+    "summary": "The six proportion metrics are multiplied by100 for means/SD and paired deltas are percentage points(pp). mL/mm metrics retain units. Positive/negative counts are arithmetic Gp-Kp signs; lower is preferred for FP/FN/distances."
+  },
+  "metric_definitions": {
+    "Dice": "2*TP/max(predicted_foreground+truth_foreground,1); no added epsilon. Original native-grid metric values are retained.",
+    "ASSD": "Pooled bidirectional six-neighbour boundary-voxel distances; not surfel-area weighting or unweighted directional-mean averaging.",
+    "HD95": "Maximum of the two directional95th percentiles.",
+    "centerline": "Lee skeleton voxel coverage on the original CT grid; not physical arc-length weighted.",
+    "clDice": "Harmonic mean of GT skeleton recall and predicted skeleton precision.",
+    "FP_FN": "Native voxel counts times original native voxel volume divided by1000 for mL."
+  },
+  "inference": "Original CT grid, fixed threshold0.5, no connected-component cleanup or other postprocessing. Condition configured constant in both models. Fixed step2000, not best-VAL selection.",
+  "geometry": "GT-defined recall only for four upper-inclusive physical radius bins2/4/8mm and nonjunction/junction neighbourhood. No group precision or FP attribution. Operational geometry proxies are not clinical class labels; unknown structure is not reassigned.",
+  "null_policy": "Empty CSV field represents null/unavailable, never zero. Unsupported group recall would remain null and its support reported. In this actual VAL8 pair all ten metrics and all six groups have support in all8 cases in both arms.",
+  "weighting": "Equal cases for primary native metrics and supported-case geometry recall; no voxel pooling or physical vessel-length weighting. Worst two are separately ranked within each arm with fixed case order for ties, not the same fixed subgroup.",
+  "gate_thresholds": {
+    "minimum_single_case_Dice_delta_pp": -3.0,
+    "substantive_Dice_delta_pp": 0.3,
+    "substantive_clDice_delta_pp": 0.5,
+    "substantive_worst_two_delta_pp": 0.5,
+    "substantive_Dice_SD_reduction_pp": 1.0
+  },
+  "gate_policy": "Require mean_Dice_delta>=0 and defined mean_clDice_delta>=0, worst_two_Dice_delta>=0, no caseDice decline beyond3pp; additionally any substantive threshold must pass. Prospective exploratory budget rule, not significance or a clinical margin. No threshold rounding or post-hoc tuning.",
+  "recorded_gate": {
+    "parts": {
+      "mean_Dice_nonnegative": true,
+      "mean_clDice_defined_and_nonnegative": true,
+      "worst_two_Dice_nonnegative": false,
+      "no_case_Dice_decline_gt_3pp": true,
+      "substantive_signal": false
+    },
+    "passed": false,
+    "policy": "Prospective exploratory pilot rule, not significance or clinical margin"
+  },
+  "scope_limits": [
+    "One common warmstart and seed; case dispersion is not repeated-run variance.",
+    "Eight reused development VAL cases; patient independence is not established.",
+    "All source cohorts occur in TRAIN; this is not zero-shot or unknown-source generalization.",
+    "Auxiliary supervision comparison does not test dynamic predicted-condition consumption, local adaptation or spatial conditioning.",
+    "Native evaluation is not re-executed by this package; source images, masks, predictions and weights are absent.",
+    "The completed2000-update budget does not establish optimization convergence or sufficient asymptotic training."
+  ],
+  "decision": "Gate failed. Retain all eight cases and adverse geometry/tail results; do not expand this same GDF recipe or change threshold/weight/case definitions to obtain a pass. Other experiments and the stopped raw-local-A study remain separate.",
+  "precision": "Original JSON decimal values are retained in CSV without report rounding. Standard-library recomputation uses Python float64 with tolerance2e-11*max(1,abs(values)); this is arithmetic verification of derived metrics, not bit-exact inference or independent re-evaluation."
+}

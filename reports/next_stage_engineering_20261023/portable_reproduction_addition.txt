@@ -1,0 +1,64 @@
+Portable global preflight: observed reference check and local replay
+2026-10-23
+
+One observed reference global preflight has now passed, with the collected
+evidence independently checked for local byte/hash/source/exit consistency.
+It used a 47-source QA snapshot plus separate portable tools. The public
+52-source superset has identical tested entrypoint/QA function bytes but was
+not run as a whole in that execution. Do not describe the public tree itself
+as already end-to-end validated, or overwrite historical run source identities.
+The numerical QA summary and limits are in the engineering report.
+
+The following commands are for the assembled public repository root PROJECT,
+which must include portable_preflight.py, portable_preflight_checks.py,
+stage_checks_memory_safe.py and stage_checks_memory_safe_checks.py under
+next_stage/. They are examples for a reader's own new validation, not commands
+executed by this documentation release. Supply a genuine complete local cache
+manifest and, when requested, locally prepared TRAIN-only GDF targets. The
+original reference data/manifests/weights and private execution receipts are
+not supplied. Use a new output directory for every actual validation.
+
+1. Inspect the plan without opening the manifest arrays or importing Torch:
+
+  python next_stage/portable_preflight.py --manifest cache/manifest.json --project . --output checks/global_preflight --gdf-root gdf_train --gdf-sample-points 8
+
+2. Pin the current public tree's own source inventory. This hashes code files,
+   not study arrays, and uses only the standard library. Do not use the original
+   47-source reference map as the expected inventory for the public 52-source tree.
+
+  python -c "import json,sys;sys.path.insert(0,'next_stage');from portable_preflight import source_inventory;print(json.dumps(source_inventory('.'),indent=2))" > public_source_inventory.json
+
+3. With the actual intended QA interpreter/environment, explicitly execute:
+
+  python next_stage/portable_preflight.py --manifest cache/manifest.json --project . --output checks/global_preflight --gdf-root gdf_train --gdf-sample-points 8 --expected-source-inventory public_source_inventory.json --execute
+
+Without GDF supervision/targets, omit both --gdf-root and --gdf-sample-points.
+The audit will then cover image/mask/geometry rather than four files per case.
+--python can explicitly select the interpreter used by both observed QA
+subprocesses. A real CUDA128 batch-two FP32+AMP model check and independent
+synthetic sampler check must exit zero; otherwise no passed receipt is issued.
+The script does not shrink batch/patch or skip precision/gradient assertions
+to accommodate insufficient GPU memory. Observed allocator peaks are reported,
+not promised for every hardware/runtime.
+
+Manifest cache_dir and GDF target_file must resolve to paths the trainer will
+actually consume. Relocation flags cannot certify different unused locations.
+Prepare an explicitly revised local manifest when relocating data; this changes
+data origin/identity and is not exact replay of a historical manifest.
+
+A passed receipt is OUTPUT/receipt.json. The global trainer can record its hash:
+
+  python next_stage/stage_train.py --config next_stage/configs/U_random10000.json --manifest cache/manifest.json --output runs/U --preflight-receipt checks/global_preflight/receipt.json
+
+That final command is still a training PLAN because it has no --execute. A new
+long training run remains a separate action after checking its matched recipe,
+initialization and budget. The frozen trainer records the provided receipt hash;
+it does not itself independently validate that receipt's semantics. Supplying a
+JSON file is not a substitute for the successful source/data-bound preflight.
+Later source/data/runtime changes require new validation. Exact warm-start
+endpoint reproduction still needs the unavailable original checkpoint bytes.
+
+This portable workflow supports only global-stage validation. --mode local is
+explicitly unsupported. The pass does not authorize formal raw local A, does
+not erase its failed fixed-oracle decision, and provides no efficacy, GDF-benefit,
+local-adaptation, stability, zero-shot or whole-stage-completion evidence.

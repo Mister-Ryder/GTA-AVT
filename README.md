@@ -1,5 +1,8 @@
 # GTA-AVT
 
+**Latest completed diagnostic (24 October 2026):** the [four-field frozen-radius study](reports/calibre_basis_frozen_TRAIN_20261024/README.md) separates local radius variation from patch-level and FIT-level means on the same completed AR weights.
+Local variation improves vascular coverage but exposes a localized voxel cost; the original candidate remains STOP. No extra optimization or CT predictor training was performed.
+
 **Latest completed experiment (24 October 2026):** the [original-branch learning study](reports/calibre_basis_TRAIN_20261024/README.md) has completed all three matched C0/A_only/AR runs, each with2000 successful updates.
 The full report preserves the original primary checks and the prospectively tighter CT-uniform guard separately, with their combined result.
 [Recorded learning trajectories](reports/calibre_basis_learning_TRAIN_20261024/readout.txt) describe all fixed windows and15 parameter-tensor gradients without claiming convergence.

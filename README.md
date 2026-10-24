@@ -1,6 +1,13 @@
 # GTA-AVT
 
-**Latest completed diagnostic (24 October 2026):** the [fixed-G0 gradient-demand scan](reports/boundary_gradient_demand_TRAIN_20261024/readout.txt)
+**Latest completed diagnostic (24 October 2026):** the [SAAM64 location test](reports/boundary_gradient_SAAM_TRAIN_20261024/readout.txt)
+changes only the fixed feature measurement site. Both predeclared conditional
+direction checks fail; moving the same boundary conditions to this stage does
+not justify output-gain training. Additive demand is retained as descriptive
+evidence and cannot rescue the primary result. No dynamic GTA efficacy is established.
+
+
+**Earlier completed diagnostic (24 October 2026):** the [fixed-G0 gradient-demand scan](reports/boundary_gradient_demand_TRAIN_20261024/readout.txt)
 retains all576 TRAIN patches and fits only prespecified tiny conditional directions.
 The incremental boundary direction fails the source-consistency gate, and the
 full separable direction does not outperform the constant direction. This stops

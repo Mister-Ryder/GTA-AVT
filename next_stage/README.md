@@ -94,3 +94,12 @@ All576 patches remain, with24-case OLS fitting and12-case probe readout. The fix
 source-consistency criterion fails. No training, finite-step benefit, unfreezing or
 dynamic-GTA efficacy follows. Exact measured sources are bound by
 boundary_gradient_demand_source_identity_20261024.json; no trained assets are included.
+
+
+## SAAM64 location test
+
+The [complete location diagnostic](../reports/boundary_gradient_SAAM_TRAIN_20261024/readout.txt)
+retains the same conditions and fixed model, measuring the existing64-channel
+SAAM output. Both conditional direction checks fail. Additive moments cannot
+replace the primary multiplicative result or authorize unfreezing. Exact
+measured sources are bound in boundary_gradient_SAAM_source_identity_20261024.json.

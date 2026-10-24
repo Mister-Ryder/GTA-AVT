@@ -298,3 +298,12 @@ The same eight developed VAL cases recur in three blocks, with no pooled or best
 
 A metadata-field precheck in the result reader was corrected before locked numerical reading;
 training, raw results, formulas and scientific gates were unchanged. Historical files remain unchanged.
+
+
+## Attribute construction: local boundary measurement (24 October 2026)
+
+A [fixed TRAIN36 boundary-attribute diagnostic](reports/boundary_attribute_TRAIN_diagnostic_20261024/readout.txt)
+measures local CT rank separability at annotation-derived boundaries. In the fixed12-case analytical probe,
+adding this quantity reduced local boundary-error regression MSE by24.7758%, with11/12 cases improved.
+This is a task-association result, not a Dice gain, a new blind test, a trained CT attribute predictor,
+or successful dynamic GTA adaptation. The negative matched-GTA results above remain unchanged.

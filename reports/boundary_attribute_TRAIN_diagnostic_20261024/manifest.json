@@ -1,0 +1,35 @@
+{
+  "schema": "GTA-AVT-boundary-attribute-public-report-manifest-v1",
+  "files": {
+    "readout.txt": {
+      "sha256": "7f86fbd973105f6231be73949ea181a4c5cdec0c6318509de1cf316aa15aed90",
+      "bytes": 3183
+    },
+    "summary.json": {
+      "sha256": "56f279f0a66c93904e2d288cb4c4129558347b9288ebb9cd630dc5f6d2cdc9ba",
+      "bytes": 38131
+    },
+    "casewise.csv": {
+      "sha256": "9ba87efba8e6c823fc6ffaee7428890859776b0e80779e51d12a042a2e025df9",
+      "bytes": 9630
+    },
+    "patchwise.csv": {
+      "sha256": "8e3ddb3c074a837309d69ee15d884e9279ef4ccafa1a3b883eb10e19129783d7",
+      "bytes": 76799
+    }
+  },
+  "file_count": 5,
+  "source_sha256": {
+    "worker": "016157cf52f7e9d9b7593435d5557dc55166881e94c59ad70bc68857186c8604",
+    "readout": "e23fe5b67c639e2b002e22c392dd2c8e2f3b598fee1d40202fd5395a22b7c28c",
+    "measurement_method": "5fa691b83aafd34994a418e54cbaedf62013f28f29f0c1d65ea3345f2b5467f0",
+    "bank": "9be42890017341e4cc32fb0f17688d859a13e84643f95cd21e347462043419d6",
+    "scientific_source_manifest": "f311c9fbe6ea55be70e72ed220ab0562da08b3ee267863fc0d78509a30c3654e",
+    "common_reference_weights": "7406a3ba7e5bac1a7d8ee24898cb954ff8576f37fcf5fba0e26ef9a2cb5c43e6",
+    "private_analysis": "5aef3352a46df3787369e720f8f545e4578dc731ebde326128102f39911b1b8d"
+  },
+  "source_population": "Reused TRAIN36, fit24/probe12 for analytical fitting only",
+  "GTA_efficacy_established": false,
+  "publication_performed": false,
+  "raw_arrays_weights_private_paths_or_coordinates_included": false
+}

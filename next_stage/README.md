@@ -117,7 +117,6 @@ Exact measured sources are bound in boundary_context_contrast_source_identity_20
 ## Partial calibre and limited coadaptation
 
 [Method and CLI](calibre_coadapt_method_20261024/README.md) describe the matched
-C0/A_only/AR oracle capability experiment. Actual-size CUDA QA passed; formal
-training is running. [Measurement results](../reports/calibre_measurement_TRAIN_20261024/readout_zh.txt)
+C0/A_only/AR oracle capability experiment. The formal study has completed. [All three-seed results](../reports/calibre_coadapt_TRAIN_20261024/readout_zh.txt) retain every locked utility and correspondence check. [Measurement results](../reports/calibre_measurement_TRAIN_20261024/readout_zh.txt)
 are complete and include strong proxy/support limitations. A positive oracle
 result would still require CT-only predictor transfer and native confirmation.

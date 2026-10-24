@@ -1,0 +1,14 @@
+完成后的固定训练轨迹说明；不建立新成功/收敛标准，不救回实验结论。
+seed 20261030 / C0：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.6479904651641846, "availability": 0.0, "radius": 0.0}。
+seed 20261030 / A_only：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.6776599884033203, "availability": 5.153386116027832, "radius": 0.0}。
+seed 20261030 / AR：半径参数张量梯度有限=2000，精确0=83，正maxabs=1917，None=0；末次gate norms={"bias": 0.7132266759872437, "availability": 4.136727333068848, "radius": 3.9561097621917725}。
+seed 20261031 / C0：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.6147943139076233, "availability": 0.0, "radius": 0.0}。
+seed 20261031 / A_only：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.6627369523048401, "availability": 5.355526924133301, "radius": 0.0}。
+seed 20261031 / AR：半径参数张量梯度有限=2000，精确0=71，正maxabs=1929，None=0；末次gate norms={"bias": 0.7009172439575195, "availability": 4.254842758178711, "radius": 4.280531406402588}。
+seed 20261032 / C0：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.7123234272003174, "availability": 0.0, "radius": 0.0}。
+seed 20261032 / A_only：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.7457464933395386, "availability": 5.337287425994873, "radius": 0.0}。
+seed 20261032 / AR：半径参数张量梯度有限=2000，精确0=67，正maxabs=1933，None=0；末次gate norms={"bias": 0.7769173979759216, "availability": 4.2894182205200195, "radius": 4.1339192390441895}。
+BCE/Dice若原日志未分别记录，保持null，不由总loss反推。
+第1个250步块含alpha爬坡；字段/loss/梯度与更新后的参数norm时间不同。
+非零梯度或非零gate只说明该路径被优化器触及；不等于条件对应、泛化或分割收益。
+随机区块构成影响窗口loss；同样本配对差也包含全部学习轨迹差异，不能证明收敛、梯度竞争或允许追加训练。

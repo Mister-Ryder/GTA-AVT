@@ -1,15 +1,12 @@
 # GTA-AVT
 
-**Experiment in progress (24 October 2026):** the [partial-calibre coadaptation candidate](next_stage/calibre_coadapt_method_20261024/README.md)
-has passed actual128/B2 CUDA checks and is running three matched seeds, each
-with C0/A_only/AR arms and2000 successful updates per arm. This uses privileged
-geometry conditions to test learned consumption; it is not CT-only GTA validation.
-The [completed measurement evidence](reports/calibre_measurement_TRAIN_20261024/readout_zh.txt)
-retains analytic radius errors, missing skeleton configurations and all fixed
-TRAIN oracle coverage. No segmentation efficacy result is claimed for this candidate.
+**Latest completed experiment (24 October 2026):** the [partial-calibre coadaptation study](reports/calibre_coadapt_TRAIN_20261024/readout_zh.txt) retains all three matched seeds and all C0/A_only/AR arms, each with2000 successful updates.
+The candidate fails its complete prespecified screen; this exact candidate stops.
+These are privileged GT geometry conditions on fixed TRAIN patches, not CT-only GTA or independent native validation.
+[Recorded learning trajectories](reports/calibre_coadapt_learning_TRAIN_20261024/readout.txt) explain gradient/gate activity without changing the scientific criteria or claiming convergence.
+The [measurement evidence](reports/calibre_measurement_TRAIN_20261024/readout_zh.txt) retains proxy error and sparse-support limitations.
 
-
-**Latest completed diagnostic (24 October 2026):** the [fixed context-contrast test](reports/boundary_context_contrast_TRAIN_20261024/readout.txt)
+**Earlier completed diagnostic (24 October 2026):** the [fixed context-contrast test](reports/boundary_context_contrast_TRAIN_20261024/readout.txt)
 uses the original receptive-field branches at unchanged SAAM64 output.
 The predeclared joint direction criterion fails; this exact attribute-plus-context-basis route stops.
 No optimizer updates or dynamic GTA efficacy are established. All earlier

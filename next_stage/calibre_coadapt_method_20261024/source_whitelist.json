@@ -35,7 +35,19 @@
       "relative_path": "next_stage/calibre_coadapt_readout.py",
       "sha256": "478a41fd87b5d4def485c2a010f0c76e69ee29f089ab7185b9a5a94cd573871d",
       "bytes": 28960,
-      "actual_execution_scope": "Seven CPU synthetic/default checks passed; no completed formal coadaptation endpoint has yet been read"
+      "actual_execution_scope": "Completed all three formal2000-update seed endpoints; see the final scalar report"
+    },
+    {
+      "relative_path": "next_stage/build_calibre_coadapt_report.py",
+      "sha256": "0607736193942e7cc578da0bcc09085d5e6b9fd025da314ec93617f8fa0a19b9",
+      "bytes": 22177,
+      "actual_execution_scope": "Completed fixed final-analysis scalar report; no arrays, models or live endpoints read"
+    },
+    {
+      "relative_path": "next_stage/calibre_coadapt_learning_summary.py",
+      "sha256": "84025d2fa5050001a0645cf4d74f71369ae138b0228347c63c12dcafb2deb252",
+      "bytes": 12894,
+      "actual_execution_scope": "Completed fixed250-step block summaries after final reader; no new training or convergence criterion"
     }
   ],
   "existing_dependencies_checked": [
@@ -159,5 +171,6 @@
     "Existing helper retains its original source-map/data/checkpoint byte constraints; import closure does not bypass these asset requirements.",
     "No new public mapped-source runtime QA was performed for this candidate; final portable entry remains pending.",
     "Analytic radius calibration is a54-configuration synthetic measurement check, not an AVT accuracy or conditional-adaptation result."
-  ]
+  ],
+  "completed_result_report": "reports/calibre_coadapt_TRAIN_20261024/readout_zh.txt"
 }

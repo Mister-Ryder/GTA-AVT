@@ -307,3 +307,12 @@ measures local CT rank separability at annotation-derived boundaries. In the fix
 adding this quantity reduced local boundary-error regression MSE by24.7758%, with11/12 cases improved.
 This is a task-association result, not a Dice gain, a new blind test, a trained CT attribute predictor,
 or successful dynamic GTA adaptation. The negative matched-GTA results above remain unchanged.
+
+
+## CT readability of the candidate boundary attribute (24 October 2026)
+
+The [fixed frozen-feature readability diagnostic](reports/boundary_attribute_CT_readability_20261024/readout.txt)
+keeps both readouts at64 features plus an intercept. Local-grid features reduce probe attribute MSE
+by12.035% versus the fixed constant (9/12 cases); the whole-patch mean-feature reference is worse.
+These results support testing a spatial attribute estimator. They do not establish GTA segmentation
+benefit, availability prediction, or a complete comparison of all possible global attribute heads.

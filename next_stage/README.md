@@ -128,3 +128,7 @@ result would still require CT-only predictor transfer and native confirmation.
 
 
 [Operator identity](../docs/calibre_basis_operator_identity_20261024.md) explains how the same original branch responses are conditionally fused, with explicit AMP limitations. The fixed [final readout](calibre_basis_readout.py), [scalar report builder](build_calibre_basis_report.py) and [learning-log explanation](calibre_basis_learning_summary.py) have passed synthetic/default checks. All three final formal basis endpoints have been read; the completed report retains their results and limitations.
+# Bounded branch-routing candidate (24 October 2026)
+
+`calibre_routing_stage_model.py` and `calibre_routing_pilot.py` implement the current matched candidate with three relative-routing coordinates over the same four original branches. The3x64 coefficient tensors add384 parameters; the shared114882 parameters, conditions, main loss and2000-update budget are unchanged. All three hosts passed actual128/B2 QA and began formal runs; efficacy is pending. See the [fixed protocol](../docs/calibre_routing_protocol_20261024.txt). The [completed frozen diagnostic](../reports/calibre_basis_frozen_TRAIN_20261024/README.md) motivates this limited hypothesis and preserves the earlier STOP result.
+

@@ -1,5 +1,9 @@
 # GTA-AVT
 
+**Experiment in progress (24 October 2026):** [bounded relative branch routing](docs/calibre_routing_protocol_20261024.txt) passed actual128/B2 CUDA QA on all three hosts and began its fixed matched C0/A_only/AR runs at06:35UTC.
+The existing four branches and radius conditions are retained; two additional within-pair routing directions remove the fixed group binding while preserving the original coefficient bounds. All three controls are retrained, with2000 updates per arm and the original seeds/plans.
+All original checks remain, with an additional prospective source-consistency guard. These remain GT-oracle TRAIN experiments, not CT-only efficacy results; no final routing endpoint is available.
+
 **Latest completed diagnostic (24 October 2026):** the [four-field frozen-radius study](reports/calibre_basis_frozen_TRAIN_20261024/README.md) separates local radius variation from patch-level and FIT-level means on the same completed AR weights.
 Local variation improves vascular coverage but exposes a localized voxel cost; the original candidate remains STOP. No extra optimization or CT predictor training was performed.
 

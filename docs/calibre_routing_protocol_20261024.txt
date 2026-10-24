@@ -1,0 +1,66 @@
+有界三维零和局部路由：前瞻最小能力实验
+2026-10-24；独立新candidate，原basis候选STOP保留，不续训或救回旧结果。
+
+依据与待检验命题
+原basis读出21b6c23b394e391c628cc43433a1ebdf6f755cd823bf1ce031d3f7718f817e70：
+PRIMARY全部通过，但第二seed尾部/uniform保护失败，第三seed同权机制未达到0.1pp；
+Rider同权来源均值三seed均负。冻结四条件诊断的修正显示版本为
+fd038293596eefd9ea50148da52f18fdce8c2db5a96ee3f6db5dea6c9a076b4e，CPU读出源码
+9807c001dfe91ffd44054cd637ce329d5338db1f96f91ca2d327246cf3e413bb。
+patch均值提高总体Dice/尾部、降低病例SD，但正确局部R仍改善clDice与细支召回；
+R15同一病例内slot3与slot5的对应效应反向，主要错误增量在16–31格区域而非最外层。
+这支持检验“原单方向把不同感受野贡献绑得过紧”的有限表示假设，不证明瓶颈已定位。
+不以冻结常量替换救旧结果，不据此试延迟R、增加预算或改属性；不把病例SD当推理方差。
+
+唯一训练构造改变：1维对比变为完整3维有界零和对比
+原四branch保持原卷积/次序、原融合W及共有因子。对每个64通道输出位置，
+  zA=A；zR=A*(logR−固定FIT µ)/σ
+  gj=tanh(bj+vj*zA+wj*zR)，j=1,2,3；a=1−abs(g1)
+  s1=[−1,−1,+1,+1]；s2=[+1,−1,0,0]；s3=[0,0,+1,−1]
+  p=s1*g1+a*(s2*g2+s3*g3)；q=1+alpha*p
+原branch对应的D1/D2/D3由同一融合W作用于上述符号对比，所有原共有因子不变。
+实现保留旧F0+alpha*g1*D1的操作顺序，再加alpha*a*(g2*D2+g3*D3)。
+实数下sum(q)=4，q各分量在[0,2]；g2=g3=0包含旧单方向。当alpha=1、把三个g视为
+独立局部变量时，此参数化覆盖有界零和多面体内部；不代表共享的线性条件函数能
+任意表示整幅空间路由场。alpha<1时覆盖的是相应缩小的系数范围。
+约束的是branch系数，不保证实际特征能量/范数守恒，不宣称跨实现全局bitwise等价。
+不新增卷积、骨干、属性或空间输入。三组coef名称不变，shape由64变为3×64，
+gate参数192→576（新增384）；shared仍114882，总115458，仍15个参数tensor。
+新增容量、Adam坐标与abs轴耦合均是限制，不能将任何收益单独归因“边界约束更好”。
+trace的legacy gain/D_RMS只表示axis1；必须另报三轴gate与direction标量和q界限/和残差。
+
+固定数据、初始化与训练
+仍使用原TRAIN36中的FIT24及PROBE12、原576 patch bank、16槽位、128³/B2、无增强；
+原A/R/support/FOV规则与FIT病例等权µσ完全保持。GT oracle不是CT-only条件，不在正常
+推理中可用，也不是数学性能上界。共同7406从头加载；不读取或继续任何旧AR最终权重。
+锁定seed20261030/31/32与原各自采样计划，每host串行C0→A_only→AR；三臂全部重训，
+不复用旧controls。C0隐藏A/R，A_only隐藏R，AR使用两轴；三臂参数/初始化/优化器相同。
+每臂2000 successful updates，FIT病例均匀再slot均匀；原Dice+BCE，shared lr1e−4、
+gate lr1e−3、AdamW wd1e−5，无clip；alpha=min(1,step/250)。保持原最多8次同batch
+AMP梯度重试，禁止新FP32 fallback或跳过失败样本计成功步。无aux/DS/GDF，全部BN及
+Dropout eval，其余参数和buffers固定。没有阶段训练、骨干替换或新的超参数搜索。
+
+工程QA与读出
+实际128³/B2/AMP，每臂2个独立成功更新：共同零起点前向与原Stage G0一致；每个axis
+偏置均真实有梯度并更新；A/R斜率在启用臂的三行分别真实有梯度并更新，C0斜率与
+A_only的R行保持0/不更新；四原branch均有真实梯度和更新；冻结state保持。
+正式只在各2000步最终点读PROBE12原192patch；不看VAL/TEST，不保存新影像。
+whole metric沿原88，最终CPU评价沿原basis的病例等权及fine累计计数口径。
+
+全部原判定保持，SOURCE仅额外收紧
+1) AR比C0、A_only的病例等权Dice均严格>0；clDice、CLrecall、fine以及各臂自身最差
+   2例Dice均不降；固定病例matched tails另报告，不能靠删好例降低SD。
+2) 同AR权重保持ownA与每patch完整R多重集，在A1展平序列半环移动floor(N/2)。
+   原primary支持定义不变；正确−半环Dice均值>=0.1pp、>=8例正且12例均支持。
+3) 原CT_uniform known-nonempty slots8..15保护保持：相同、非空的定义病例支持上，
+   clDice/CLrecall/fine对两对照均不降；细支在病例内合并covered/nodes，不把null补0。
+4) 新前瞻SOURCE保护：同一primary支持上，Dongyang/KiTS/Rider各原4病例的同权
+   正确−半环Dice病例等权均值分别>=0。必须4/4支持，不重分类、删除来源或病例。
+每seed分别取以上全部合取，再三seed全部合取。不选最好seed、合池平均或放宽0.1pp；
+这些是实用继续条件，不是显著性检验。原判定与两项保护分开显示，保护不能救原失败。
+
+停止与后继边界
+任何一项/任何seed失败，停止当前R→SAAM routing构造，不追加时序、预算、阈值、seed
+救援。若全过，仍仅为重复使用TRAIN的oracle消费能力证据；ROOT再决定固定CT-only
+预测器独立预训练与匹配移交方案，绝不自动启动。CT预测、native确认与完整GTA目标
+均未由本实验完成；当前已准备的CT worker不因代码存在而获得部署授权。

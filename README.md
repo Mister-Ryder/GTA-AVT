@@ -325,3 +325,13 @@ improved boundary-applicability prediction but remained weaker than the fixed li
 for boundary rank ambiguity in all three seeds. This shared-MLP version is stopped before
 consumer deployment;2000 updates do not establish convergence. All fit/probe/source scores and
 training windows are retained, with no best-seed rescue or GTA efficacy claim.
+
+
+## Independent boundary-attribute preparation (24 October 2026)
+
+The [independent affine-head preparation](reports/boundary_attribute_independent_preparation_20261024/readout.txt)
+fits applicability separately while preserving the existing fixed linear ambiguity estimator.
+Probe applicability Brier improves from0.06764 to0.04726 in12/12 cases; ambiguity MSE
+is0.03105 versus0.03541 for the fixed prior. The applicability numerical optimization
+criterion passes. These are attribute scores on reused TRAIN features, not GTA
+segmentation gains or blind generalization. Earlier shared-head and GTA stop results remain.

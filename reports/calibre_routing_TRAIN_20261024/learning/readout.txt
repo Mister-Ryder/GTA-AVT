@@ -1,0 +1,53 @@
+完成后的固定训练轨迹说明；不建立新成功/收敛标准，不救回实验结论。
+seed 20261030 / C0：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.6379922032356262, "availability": 0.0, "radius": 0.0}。
+  R axis1：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 0.8291704058647156, "route_coeff_max": 1.2257778644561768, "route_coeff_sum_residual_maxabs": 2.384185791015625e-07, "routing_axes.0.gain_RMS": 0.047151464968919754, "routing_axes.0.gain_absmean": 0.03796359524130821, "routing_axes.0.gain_maxabs": 0.16184940934181213, "routing_axes.0.direction_RMS": 2.7787625789642334, "routing_axes.1.gain_RMS": 0.03792302682995796, "routing_axes.1.gain_absmean": 0.028716307133436203, "routing_axes.1.gain_maxabs": 0.1045711487531662, "routing_axes.1.direction_RMS": 1.8921141624450684, "routing_axes.2.gain_RMS": 0.05158114805817604, "routing_axes.2.gain_absmean": 0.040425218641757965, "routing_axes.2.gain_maxabs": 0.1280049979686737, "routing_axes.2.direction_RMS": 1.5713554620742798}。
+seed 20261030 / A_only：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.732215166091919, "availability": 8.132555961608887, "radius": 0.0}。
+  R axis1：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 0.07666784524917603, "route_coeff_max": 1.9408471584320068, "route_coeff_sum_residual_maxabs": 2.384185791015625e-07, "routing_axes.0.gain_RMS": 0.05759275704622269, "routing_axes.0.gain_absmean": 0.04274563491344452, "routing_axes.0.gain_maxabs": 0.793050229549408, "routing_axes.0.direction_RMS": 5.217991828918457, "routing_axes.1.gain_RMS": 0.053355831652879715, "routing_axes.1.gain_absmean": 0.03624104708433151, "routing_axes.1.gain_maxabs": 0.8186708688735962, "routing_axes.1.direction_RMS": 3.184380054473877, "routing_axes.2.gain_RMS": 0.06531254202127457, "routing_axes.2.gain_absmean": 0.048039909452199936, "routing_axes.2.gain_maxabs": 0.7534559965133667, "routing_axes.2.direction_RMS": 3.114182710647583}。
+seed 20261030 / AR：半径参数张量梯度有限=2000，精确0=83，正maxabs=1917，None=0；末次gate norms={"bias": 0.7292177081108093, "availability": 6.169060230255127, "radius": 5.485828399658203}。
+  R axis1：有限=2000，精确0=83，正maxabs=1917，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=83，正maxabs=1917，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=83，正maxabs=1917，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 0.001173853874206543, "route_coeff_max": 1.9987373352050781, "route_coeff_sum_residual_maxabs": 4.76837158203125e-07, "routing_axes.0.gain_RMS": 0.055311549454927444, "routing_axes.0.gain_absmean": 0.04418259859085083, "routing_axes.0.gain_maxabs": 0.9936999678611755, "routing_axes.0.direction_RMS": 5.9292144775390625, "routing_axes.1.gain_RMS": 0.05951179936528206, "routing_axes.1.gain_absmean": 0.0432887002825737, "routing_axes.1.gain_maxabs": 0.9954830408096313, "routing_axes.1.direction_RMS": 3.7530875205993652, "routing_axes.2.gain_RMS": 0.05842859297990799, "routing_axes.2.gain_absmean": 0.04386123642325401, "routing_axes.2.gain_maxabs": 0.9946823716163635, "routing_axes.2.direction_RMS": 3.867105484008789}。
+seed 20261031 / C0：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.7327361106872559, "availability": 0.0, "radius": 0.0}。
+  R axis1：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 0.7913762331008911, "route_coeff_max": 1.1915321350097656, "route_coeff_sum_residual_maxabs": 2.384185791015625e-07, "routing_axes.0.gain_RMS": 0.05478663370013237, "routing_axes.0.gain_absmean": 0.04316479712724686, "routing_axes.0.gain_maxabs": 0.16752511262893677, "routing_axes.0.direction_RMS": 3.8404769897460938, "routing_axes.1.gain_RMS": 0.051837436854839325, "routing_axes.1.gain_absmean": 0.03940931707620621, "routing_axes.1.gain_maxabs": 0.14215193688869476, "routing_axes.1.direction_RMS": 2.6706244945526123, "routing_axes.2.gain_RMS": 0.05132292956113815, "routing_axes.2.gain_absmean": 0.04063663259148598, "routing_axes.2.gain_maxabs": 0.14006906747817993, "routing_axes.2.direction_RMS": 1.533586859703064}。
+seed 20261031 / A_only：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.7556243538856506, "availability": 8.58987045288086, "radius": 0.0}。
+  R axis1：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 0.0651276707649231, "route_coeff_max": 1.9368677139282227, "route_coeff_sum_residual_maxabs": 2.384185791015625e-07, "routing_axes.0.gain_RMS": 0.05672087520360947, "routing_axes.0.gain_absmean": 0.04311494901776314, "routing_axes.0.gain_maxabs": 0.7944575548171997, "routing_axes.0.direction_RMS": 6.7049970626831055, "routing_axes.1.gain_RMS": 0.05609166994690895, "routing_axes.1.gain_absmean": 0.04349889978766441, "routing_axes.1.gain_maxabs": 0.7881601452827454, "routing_axes.1.direction_RMS": 4.162961006164551, "routing_axes.2.gain_RMS": 0.0629291981458664, "routing_axes.2.gain_absmean": 0.050482265651226044, "routing_axes.2.gain_maxabs": 0.7392240762710571, "routing_axes.2.direction_RMS": 3.1277551651000977}。
+seed 20261031 / AR：半径参数张量梯度有限=2000，精确0=71，正maxabs=1929，None=0；末次gate norms={"bias": 0.8090135455131531, "availability": 6.435093879699707, "radius": 5.8704376220703125}。
+  R axis1：有限=2000，精确0=71，正maxabs=1929，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=71，正maxabs=1929，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=71，正maxabs=1929，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 7.939338684082031e-05, "route_coeff_max": 1.9998713731765747, "route_coeff_sum_residual_maxabs": 4.76837158203125e-07, "routing_axes.0.gain_RMS": 0.056155335158109665, "routing_axes.0.gain_absmean": 0.04393678903579712, "routing_axes.0.gain_maxabs": 0.9984385371208191, "routing_axes.0.direction_RMS": 7.147097587585449, "routing_axes.1.gain_RMS": 0.06034272909164429, "routing_axes.1.gain_absmean": 0.04563217610120773, "routing_axes.1.gain_maxabs": 0.9989392757415771, "routing_axes.1.direction_RMS": 4.637920379638672, "routing_axes.2.gain_RMS": 0.07019966840744019, "routing_axes.2.gain_absmean": 0.05345821753144264, "routing_axes.2.gain_maxabs": 0.9989728927612305, "routing_axes.2.direction_RMS": 3.6133265495300293}。
+seed 20261032 / C0：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.773367166519165, "availability": 0.0, "radius": 0.0}。
+  R axis1：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 0.782129168510437, "route_coeff_max": 1.2160160541534424, "route_coeff_sum_residual_maxabs": 4.76837158203125e-07, "routing_axes.0.gain_RMS": 0.05727294087409973, "routing_axes.0.gain_absmean": 0.04508305341005325, "routing_axes.0.gain_maxabs": 0.1664876788854599, "routing_axes.0.direction_RMS": 2.3781468868255615, "routing_axes.1.gain_RMS": 0.059065818786621094, "routing_axes.1.gain_absmean": 0.04698536917567253, "routing_axes.1.gain_maxabs": 0.1480347216129303, "routing_axes.1.direction_RMS": 1.6073112487792969, "routing_axes.2.gain_RMS": 0.05013502389192581, "routing_axes.2.gain_absmean": 0.04034740477800369, "routing_axes.2.gain_maxabs": 0.13358867168426514, "routing_axes.2.direction_RMS": 1.2250338792800903}。
+seed 20261032 / A_only：半径参数张量梯度有限=2000，精确0=2000，正maxabs=0，None=0；末次gate norms={"bias": 0.6845287680625916, "availability": 8.211457252502441, "radius": 0.0}。
+  R axis1：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=2000，正maxabs=0，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 0.06724441051483154, "route_coeff_max": 1.9176393747329712, "route_coeff_sum_residual_maxabs": 2.384185791015625e-07, "routing_axes.0.gain_RMS": 0.04972164332866669, "routing_axes.0.gain_absmean": 0.03953913599252701, "routing_axes.0.gain_maxabs": 0.7904477119445801, "routing_axes.0.direction_RMS": 5.915403366088867, "routing_axes.1.gain_RMS": 0.05231895297765732, "routing_axes.1.gain_absmean": 0.040024951100349426, "routing_axes.1.gain_maxabs": 0.7742326259613037, "routing_axes.1.direction_RMS": 3.633988618850708, "routing_axes.2.gain_RMS": 0.05392926558852196, "routing_axes.2.gain_absmean": 0.04111046344041824, "routing_axes.2.gain_maxabs": 0.7430651783943176, "routing_axes.2.direction_RMS": 3.047841787338257}。
+seed 20261032 / AR：半径参数张量梯度有限=2000，精确0=67，正maxabs=1933，None=0；末次gate norms={"bias": 0.7147457003593445, "availability": 6.124296188354492, "radius": 5.17393684387207}。
+  R axis1：有限=2000，精确0=67，正maxabs=1933，None=0，非法负maxabs=0。
+  R axis2：有限=2000，精确0=67，正maxabs=1933，None=0，非法负maxabs=0。
+  R axis3：有限=2000，精确0=67，正maxabs=1933，None=0，非法负maxabs=0。
+  末次forward三轴/系数标量={"route_coeff_min": 0.0004392862319946289, "route_coeff_max": 1.9996211528778076, "route_coeff_sum_residual_maxabs": 4.76837158203125e-07, "routing_axes.0.gain_RMS": 0.05280890688300133, "routing_axes.0.gain_absmean": 0.042670294642448425, "routing_axes.0.gain_maxabs": 0.9969074726104736, "routing_axes.0.direction_RMS": 7.100122928619385, "routing_axes.1.gain_RMS": 0.05991692095994949, "routing_axes.1.gain_absmean": 0.044537562876939774, "routing_axes.1.gain_maxabs": 0.9964840412139893, "routing_axes.1.direction_RMS": 4.453319072723389, "routing_axes.2.gain_RMS": 0.05207259580492973, "routing_axes.2.gain_absmean": 0.03925106301903725, "routing_axes.2.gain_maxabs": 0.9970227479934692, "routing_axes.2.direction_RMS": 3.8943228721618652}。
+本worker只记录main loss；不从总loss反推未记录的BCE/Dice分项。
+第1个250步块含alpha爬坡；字段/loss/梯度与更新后的参数norm时间不同。
+15个参数张量共115458参数；新增8项是原四分支的weight/bias梯度maxabs观测。原日志没有分支权重norm或完整梯度向量，不重建权重变化，也不把其梯度单独归因条件D路径。
+三轴R各行只记录64项梯度的maxabs；总3×64系数norm不能拆成各行weight norm。
+legacy gain/D_RMS仅axis1，不能称总gain或总响应能量；三轴g/D RMS分别报告。q界限与sum残差是本forward观测，不是特征能量守恒。
+非零梯度或非零gate只说明该路径被优化器触及；不等于条件对应、泛化或分割收益。
+随机区块构成影响窗口loss；同样本配对差也包含全部学习轨迹差异，不能证明收敛、梯度竞争或允许追加训练。

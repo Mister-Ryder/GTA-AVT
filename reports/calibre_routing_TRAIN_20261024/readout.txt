@@ -1,0 +1,50 @@
+Three-axis original-branch routing: completed TRAIN oracle capability screen, not CT deployment.
+Seed20261030: original=True; CT_uniform=True; SOURCE=False; combined=False.
+ Dongyang sameweight Dice=0.3040704227912142 pp; supported4/4; guard=True.
+ KiTS sameweight Dice=0.16362468921307868 pp; supported4/4; guard=True.
+ Rider sameweight Dice=-0.1321829586412004 pp; supported4/4; guard=False.
+Seed20261031: original=True; CT_uniform=True; SOURCE=False; combined=False.
+ Dongyang sameweight Dice=0.3899820444237676 pp; supported4/4; guard=True.
+ KiTS sameweight Dice=0.2689405822825338 pp; supported4/4; guard=True.
+ Rider sameweight Dice=-0.12016779402658895 pp; supported4/4; guard=False.
+Seed20261032: original=False; CT_uniform=True; SOURCE=False; combined=False.
+ Dongyang sameweight Dice=0.2936169781794628 pp; supported4/4; guard=True.
+ KiTS sameweight Dice=0.16875406792335285 pp; supported4/4; guard=True.
+ Rider sameweight Dice=-0.09318173360065937 pp; supported4/4; guard=False.
+局部半径GT oracle与四原SAAM分支共同学习能力筛查；不是CT部署、真正上界或native确认。
+Seed 20261030：screen=screen_not_passed。
+ 原主要检查=True；前瞻CT_uniform保护=True；全部检查合取继续=False。
+ CT_uniform AR−C0 cldice=6.268998368319605 pp；支持12；gate=True。
+ CT_uniform AR−C0 centerline_recall=7.1794586091866135 pp；支持12；gate=True。
+ CT_uniform AR−C0 fine_recall=34.13840747021239 pp；支持10；gate=True。
+ CT_uniform AR−A_only cldice=1.5477135539595446 pp；支持12；gate=True。
+ CT_uniform AR−A_only centerline_recall=0.798067820505885 pp；支持12；gate=True。
+ CT_uniform AR−A_only fine_recall=8.289340149639521 pp；支持10；gate=True。
+ AR−C0 Dice=2.825157686884695 pp；正病例12/12。
+ AR−A_only Dice=0.23818317903181638 pp；正病例9/12。
+ own_A_half_ring_radius：correct−donor=0.11183738445436418 pp；positive=11，supported=12/12，gate=True。
+Seed 20261031：screen=screen_not_passed。
+ 原主要检查=True；前瞻CT_uniform保护=True；全部检查合取继续=False。
+ CT_uniform AR−C0 cldice=5.821913209183716 pp；支持12；gate=True。
+ CT_uniform AR−C0 centerline_recall=4.206114356618064 pp；支持12；gate=True。
+ CT_uniform AR−C0 fine_recall=21.72237152306865 pp；支持10；gate=True。
+ CT_uniform AR−A_only cldice=2.8073956178997523 pp；支持12；gate=True。
+ CT_uniform AR−A_only centerline_recall=3.186499141621024 pp；支持12；gate=True。
+ CT_uniform AR−A_only fine_recall=16.656207611234972 pp；支持10；gate=True。
+ AR−C0 Dice=2.7944545625223842 pp；正病例11/12。
+ AR−A_only Dice=0.9408524013526848 pp；正病例11/12。
+ own_A_half_ring_radius：correct−donor=0.17958494422657081 pp；positive=11，supported=12/12，gate=True。
+Seed 20261032：screen=screen_not_passed。
+ 原主要检查=False；前瞻CT_uniform保护=True；全部检查合取继续=False。
+ CT_uniform AR−C0 cldice=5.718878800271992 pp；支持12；gate=True。
+ CT_uniform AR−C0 centerline_recall=6.181862539913339 pp；支持12；gate=True。
+ CT_uniform AR−C0 fine_recall=31.987799590057588 pp；支持10；gate=True。
+ CT_uniform AR−A_only cldice=0.8527237995379772 pp；支持12；gate=True。
+ CT_uniform AR−A_only centerline_recall=0.017858675973689286 pp；支持12；gate=True。
+ CT_uniform AR−A_only fine_recall=2.4881663436639188 pp；支持10；gate=True。
+ AR−C0 Dice=3.145349784204865 pp；正病例12/12。
+ AR−A_only Dice=0.08262200482407797 pp；正病例10/12。
+ own_A_half_ring_radius：correct−donor=0.12306310416738542 pp；positive=11，supported=12/12，gate=True。
+三个seed单独保留；不互救、不自动启动后续。GT支持与半径已直接给定，且原四分支与共享投影共同学习；不能写成CT条件化GTA有效验证或真正性能上界。
+
+All fixed seeds/sources remain. No threshold change, source removal, candidate rescue or automatic successor.

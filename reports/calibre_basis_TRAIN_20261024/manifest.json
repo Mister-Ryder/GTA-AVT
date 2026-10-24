@@ -1,0 +1,47 @@
+{
+  "schema": "GTA-AVT-calibre-basis-report-manifest-v1",
+  "source_bindings": {
+    "final_analysis_sha256": "21b6c23b394e391c628cc43433a1ebdf6f755cd823bf1ce031d3f7718f817e70",
+    "readout_sha256": "1f7fe250df11b96f831850c9eccafa5a4ba3e51d0b3dd224cea9953d95542d44",
+    "model_sha256": "6f5e6fcf84600c737fc8844c0fdce6839f980d19d734512686f374cce1a0c294",
+    "worker_sha256": "68840bce80d3576c353fe6c43c49c5ea7bfc7db44e772e9bd687283af1198f7c",
+    "source_manifest_sha256": "f311c9fbe6ea55be70e72ed220ab0562da08b3ee267863fc0d78509a30c3654e",
+    "initial_common_weights_sha256": "7406a3ba7e5bac1a7d8ee24898cb954ff8576f37fcf5fba0e26ef9a2cb5c43e6",
+    "TRAIN_patch_bank_sha256": "9be42890017341e4cc32fb0f17688d859a13e84643f95cd21e347462043419d6",
+    "oracle_bank_sha256": "98c639be40fea8df7d72e9fc97835e8147c87c47fe1ce57e317f232794c2cde5",
+    "oracle_helper_sha256": "00dbec1b9230f2613a3fa90236eed9842228bcd6f6fb96f6c40f9d29eb4f86ed",
+    "report_builder_sha256": "99727f72b4d4607761c7126aa4c30cc9153b80368e4b648762b6fc38effe20ae"
+  },
+  "files": {
+    "readout_zh.txt": {
+      "sha256": "901336ac44b0f1f87693a16a7ac979e51b86736e76ea8c889f8dcc385a273449",
+      "bytes": 9080
+    },
+    "summary.json": {
+      "sha256": "a8e223703b6bc9c672e53718d5a712ba87941d9a99f216342c0e38fd2048c6ff",
+      "bytes": 1294359
+    },
+    "casewise.csv": {
+      "sha256": "7344cc84373e02065828ce2b33ac4522a2d0548b133ab8d57f2277c0d5978e90",
+      "bytes": 156873
+    },
+    "mechanism_cases.csv": {
+      "sha256": "2dbffa4a8766faffbfb357a55d5d5479ff76cf6e1d6936dcc92461c4ac69212a",
+      "bytes": 7088
+    },
+    "source_strata_metrics.csv": {
+      "sha256": "41016812ff2bf395f7e1602d5fc2b3a9c86655e37a492c720b39f93b70e6b65b",
+      "bytes": 38110
+    }
+  },
+  "rows": {
+    "casewise": 540,
+    "mechanism_cases": 36,
+    "source_strata_metrics": 180
+  },
+  "all_three_seeds_retained": true,
+  "scalar_only": true,
+  "no_private_paths_or_machine_identity": true,
+  "no_data_arrays_or_weights": true,
+  "scope": "Oracle TRAIN capability; not CT-only GTA or native/independent validation"
+}

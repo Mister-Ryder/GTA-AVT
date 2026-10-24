@@ -1,0 +1,21 @@
+已完成basis同权半径错配的血管/体素分解（事后描述，不增改门槛）。
+正值表示正确−错配；Dice/clDice/召回为pp，BCE为原loss单位（负值更好），FP/FN为每采样区块计数差。
+seed 20261030：dice_pp均值=0.1238563628164452，正11/支持12；cldice_pp均值=1.4298988078771186，正11/支持12；centerline_recall_pp均值=2.7051440988640763，正12/支持12；fine_recall_pp均值=11.880077490670942，正12/支持12；BCE_correct_minus_permuted均值=-0.0009495776897256374，正1/支持12。
+ R15 primary：{"dice_pp": -0.6166992252502785, "cldice_pp": 4.176035355512062, "centerline_recall_pp": 5.477919708834626, "centerline_precision_pp": -0.15080219325401267, "BCE_correct_minus_permuted": 0.0014611283081848508, "FP": 287.875, "FN": 142.25, "TP": -142.25, "fine_recall_pp": 40.74074074074074}；fine支持27，correct/permuted covered=14/3。
+ Dongyang：dice_pp=0.315216371220034；cldice_pp=2.114198392068118；centerline_recall_pp=4.003707107500078；fine_recall_pp=7.655101136473188。
+ KiTS：dice_pp=0.17623513907157537；cldice_pp=0.752466838583765；centerline_recall_pp=2.0006154252095407；fine_recall_pp=14.245870628849355。
+ Rider：dice_pp=-0.11988242184227375；cldice_pp=1.4230311929794728；centerline_recall_pp=2.1111097638826095；fine_recall_pp=13.739260706690283。
+seed 20261031：dice_pp均值=0.12501512091796255，正10/支持12；cldice_pp均值=1.7151630271370646，正11/支持12；centerline_recall_pp均值=3.0801805152678767，正12/支持12；fine_recall_pp均值=11.629394265118052，正12/支持12；BCE_correct_minus_permuted均值=-0.0009685956795821428，正2/支持12。
+ R15 primary：{"dice_pp": -0.5336680019779799, "cldice_pp": 4.2666790027994725, "centerline_recall_pp": 5.356707836725687, "centerline_precision_pp": -0.7143382997505596, "BCE_correct_minus_permuted": 0.0020577996960341816, "FP": 332.75, "FN": 68.75, "TP": -68.75, "fine_recall_pp": 29.629629629629626}；fine支持27，correct/permuted covered=13/5。
+ Dongyang：dice_pp=0.33256080508237834；cldice_pp=2.634885576835543；centerline_recall_pp=4.8526815887664805；fine_recall_pp=10.58403273753314。
+ KiTS：dice_pp=0.15699347537584743；cldice_pp=0.7574719494711172；centerline_recall_pp=2.08766632203717；fine_recall_pp=12.194254215530806。
+ Rider：dice_pp=-0.11450891770433819；cldice_pp=1.753131555104534；centerline_recall_pp=2.3001936349999803；fine_recall_pp=12.109895842290205。
+seed 20261032：dice_pp均值=0.09239288955788227，正9/支持12；cldice_pp均值=1.6841095584217267，正12/支持12；centerline_recall_pp均值=2.9965997297562246，正12/支持12；fine_recall_pp均值=12.337320441986853，正12/支持12；BCE_correct_minus_permuted均值=-0.0007268933414954003，正2/支持12。
+ R15 primary：{"dice_pp": -0.6491470025435181, "cldice_pp": 3.6180660527922517, "centerline_recall_pp": 5.150141573596777, "centerline_precision_pp": -2.0732008323954014, "BCE_correct_minus_permuted": 0.0021121563730318055, "FP": 378.125, "FN": 128.625, "TP": -128.625, "fine_recall_pp": 29.629629629629626}；fine支持27，correct/permuted covered=16/8。
+ Dongyang：dice_pp=0.29996433605135875；cldice_pp=2.3667464062830494；centerline_recall_pp=4.68701630153931；fine_recall_pp=11.268932094581011。
+ KiTS：dice_pp=0.12650959099365713；cldice_pp=1.2958151591244096；centerline_recall_pp=2.0990402162195805；fine_recall_pp=13.562377658122339。
+ Rider：dice_pp=-0.1492952583713691；cldice_pp=1.3897671098577207；centerline_recall_pp=2.2037426715097825；fine_recall_pp=12.180651573257203。
+正确半径可以提高骨架/细支覆盖，同时带来体素Dice或BCE代价；两者必须共同报告，不能用后加指标救回原判定。
+节点覆盖与体素FN/FP衡量不同几何量；不能从其不一致直接定位为粗管、细支或测量错误。
+R15的27个primary fine节点计数可在重叠区块中重复，不是独立分支样本；病例、来源和种子均不合池。
+原最终判定、候选停止和CT_uniform保护完全不变；GT oracle不是CT部署、native确认或GTA目标完成。

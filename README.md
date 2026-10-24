@@ -1,17 +1,11 @@
 # GTA-AVT
 
-**Experiment in progress (24 October 2026):** the [original-branch learning candidate](docs/calibre_basis_protocol_20261024.txt)
-passed actual128/B2 CUDA QA on all three GPUs and began its fixed matched runs.
-Only the learning scope changes: the four existing SAAM branches join the
-same projections/gates; no layer, property, loss, step budget or primary
-criterion is added or relaxed. The same seeds and sampling plans reset from
-the common checkpoint. A prospectively tighter CT-uniform vascular guard
-addresses the previous sampling-stratum regression. No new efficacy result
-is available. The [operator identity](docs/calibre_basis_operator_identity_20261024.md) explains the conditional fusion and its precision limits. The [completed previous interpretation](reports/calibre_coadapt_TRAIN_20261024/README.md)
-explains its positive signals, failed0.1pp criterion and remaining risks.
+**Latest completed experiment (24 October 2026):** the [original-branch learning study](reports/calibre_basis_TRAIN_20261024/README.md) has completed all three matched C0/A_only/AR runs, each with2000 successful updates.
+The full report preserves the original primary checks and the prospectively tighter CT-uniform guard separately, with their combined result.
+[Recorded learning trajectories](reports/calibre_basis_learning_TRAIN_20261024/readout.txt) describe all fixed windows and15 parameter-tensor gradients without claiming convergence.
+These reused-TRAIN GT-oracle results are not CT-only GTA or independent native confirmation. See the [fixed protocol](docs/calibre_basis_protocol_20261024.txt) and [operator identity](docs/calibre_basis_operator_identity_20261024.md).
 
-
-**Latest completed experiment (24 October 2026):** the [partial-calibre coadaptation study](reports/calibre_coadapt_TRAIN_20261024/readout_zh.txt) retains all three matched seeds and all C0/A_only/AR arms, each with2000 successful updates.
+**Earlier completed experiment (24 October 2026):** the [partial-calibre coadaptation study](reports/calibre_coadapt_TRAIN_20261024/readout_zh.txt) retains all three matched seeds and all C0/A_only/AR arms, each with2000 successful updates.
 The candidate fails its complete prespecified screen; this exact candidate stops.
 These are privileged GT geometry conditions on fixed TRAIN patches, not CT-only GTA or independent native validation.
 [Recorded learning trajectories](reports/calibre_coadapt_learning_TRAIN_20261024/readout.txt) explain gradient/gate activity without changing the scientific criteria or claiming convergence.

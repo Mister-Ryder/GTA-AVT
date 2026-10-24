@@ -1,6 +1,14 @@
 # GTA-AVT
 
-**Latest completed diagnostic (24 October 2026):** the [local boundary-field TRAIN pilot](reports/boundary_field_TRAIN_pilot_20261024/readout_zh.txt)
+**Latest completed diagnostic (24 October 2026):** the [separable-field TRAIN follow-up](reports/boundary_separable_TRAIN_pilot_20261024/readout_zh.txt)
+adds an independently learned applicability term while preserving the prepared heads,
+frozen G0, normalization and250-update recipe. Only three new AB arms are trained;
+the completed same-seed controls are reused byte-for-byte. All three fail the original
+utility and correspondence criteria. Added conditional flexibility did not establish
+dynamic GTA efficacy. All case/source, tail and same-weight results are retained.
+
+
+**Earlier local-field diagnostic (24 October 2026):** the [local boundary-field TRAIN pilot](reports/boundary_field_TRAIN_pilot_20261024/readout_zh.txt)
 contains all three fixed seeds and all C0/A_only/AB arms, with vascular metrics,
 case variability, worst-case tails and two same-weight correspondence interventions.
 The [companion predicted-condition analysis](reports/predicted_boundary_error_TRAIN_posthoc_20261024/readout_zh.txt)

@@ -75,3 +75,12 @@ adds a frozen, prepared CT-only local condition and matched C0/A_only/AB screeni
 Only256 existing adapter parameters learn. [All three seed results](../reports/boundary_field_TRAIN_pilot_20261024/readout_zh.txt)
 retain vascular/tail protection and both whole-field and own-A/donor-B correspondence checks.
 This short reused-TRAIN experiment is distinct from native confirmation and the primary model.
+
+
+## Separable field follow-up
+
+The [complete TRAIN follow-up](../reports/boundary_separable_TRAIN_pilot_20261024/readout_zh.txt)
+relaxes only the product-consumer constraint to b+w*zAB+v*zA. New AB uses384
+adapter parameters, with the same frozen heads/G0/moments; old C0/A_only controls
+are reused. All three seeds fail. Exact deployed sources and runtime scope are
+in boundary_separable_source_identity_20261024.json. No trained assets are distributed.

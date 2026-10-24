@@ -1,0 +1,52 @@
+局部边界属性可分离消费：短程TRAIN容量筛查
+本报告保留三seed全部结果。本轮仅新增三组AB，每seed一组，各训练250个成功更新、更新384个适配参数；C0/A_only逐字复用同seed原250步控制，未重新训练。G0、分类器与属性头冻结。
+正常条件仅来自CT。病例来自已反复使用的TRAIN36，fit24用于更新、probe12用于读出，不是新盲病例，也不是native整病例验证。
+
+PRIMARY / seed 20261030：screen_not_passed。
+  C0：Dice=0.8603496520721027，clDice=0.855444487432692，CL召回=0.8415825459987779，细支召回=0.47388244800816287，病例Dice SD=0.09069404413607804，own-worst2=0.7037173159262962。
+  A_only：Dice=0.8594950593831472，clDice=0.8537317050300698，CL召回=0.8422907070475678，细支召回=0.48073501054689777，病例Dice SD=0.09234544914203893，own-worst2=0.7000574817999564。
+  AB：Dice=0.859471748395863，clDice=0.8508060424051287，CL召回=0.8409207431154161，细支召回=0.47638175149917833，病例Dice SD=0.09251891748747867，own-worst2=0.6997308763708645。
+  AB−C0：Dice -0.08779036762395684 pp，正/负/平=4/8/0；血管与尾部检查={"cldice_nonworse": false, "centerline_recall_nonworse": false, "fine_recall_nonworse": true, "own_worst2_Dice_nonworse": false}。
+  AB−A_only：Dice -0.0023310987284151192 pp，正/负/平=5/7/0；血管与尾部检查={"cldice_nonworse": false, "centerline_recall_nonworse": false, "fine_recall_nonworse": false, "own_worst2_Dice_nonworse": false}。
+  whole_field_donor：正确−换场Dice=-0.030380782270675855 pp，正病例=5，支持=12/12，机制检查=False。
+  own_A_donor_B：正确−换场Dice=0.0015254901214965238 pp，正病例=3，支持=12/12，机制检查=False。
+
+LOCKED_REPLICATION_1 / seed 20261031：screen_not_passed。
+  C0：Dice=0.8597173241261234，clDice=0.8535971665949171，CL召回=0.8382690481976128，细支召回=0.47254968551487536，病例Dice SD=0.092059404611404，own-worst2=0.7007364919095775。
+  A_only：Dice=0.8593121577815367，clDice=0.8532221338089511，CL召回=0.8470217106439305，细支召回=0.49903357563945216，病例Dice SD=0.09188130167278816，own-worst2=0.7000005565130472。
+  AB：Dice=0.8594368271280398，clDice=0.8516993833836896，CL召回=0.8454706084625885，细支召回=0.4946496119500577，病例Dice SD=0.0921896695667011，own-worst2=0.6997331620642175。
+  AB−C0：Dice -0.028049699808362544 pp，正/负/平=4/8/0；血管与尾部检查={"cldice_nonworse": false, "centerline_recall_nonworse": true, "fine_recall_nonworse": true, "own_worst2_Dice_nonworse": false}。
+  AB−A_only：Dice 0.012466934650313491 pp，正/负/平=10/2/0；血管与尾部检查={"cldice_nonworse": false, "centerline_recall_nonworse": false, "fine_recall_nonworse": false, "own_worst2_Dice_nonworse": false}。
+  whole_field_donor：正确−换场Dice=-0.0686235666101176 pp，正病例=3，支持=12/12，机制检查=False。
+  own_A_donor_B：正确−换场Dice=-0.0012715593717941298 pp，正病例=9，支持=12/12，机制检查=False。
+
+LOCKED_REPLICATION_2 / seed 20261032：screen_not_passed。
+  C0：Dice=0.8597968464626221，clDice=0.8547383282422865，CL召回=0.8385035041393141，细支召回=0.4726650959350956，病例Dice SD=0.09179025308866212，own-worst2=0.701423066169157。
+  A_only：Dice=0.8589662883821427，clDice=0.8539556660841291，CL召回=0.8462901991066647，细支召回=0.4974317934334826，病例Dice SD=0.0923483933098151，own-worst2=0.6990278407252563。
+  AB：Dice=0.8587834040652536，clDice=0.8518767593593303，CL召回=0.8404731464599485，细支召回=0.47858202454595705，病例Dice SD=0.09392695381331284，own-worst2=0.6965398271900172。
+  AB−C0：Dice -0.10134423973685673 pp，正/负/平=3/9/0；血管与尾部检查={"cldice_nonworse": false, "centerline_recall_nonworse": true, "fine_recall_nonworse": true, "own_worst2_Dice_nonworse": false}。
+  AB−A_only：Dice -0.018288431688918506 pp，正/负/平=9/3/0；血管与尾部检查={"cldice_nonworse": false, "centerline_recall_nonworse": false, "fine_recall_nonworse": false, "own_worst2_Dice_nonworse": false}。
+  whole_field_donor：正确−换场Dice=-0.041967639202347036 pp，正病例=3，支持=12/12，机制检查=False。
+  own_A_donor_B：正确−换场Dice=0.0014677105765323703 pp，正病例=5，支持=12/12，机制检查=False。
+
+口径：Dice等分数为0–1；明确标pp者为百分点。主层为每病例已知非空GT-jitter前8区块，先区块均值再病例等权；细支召回先在病例内累计节点覆盖再病例等权。
+重叠区块和重复预测不是独立病例；FP/FN为所采区块计数，不是native体积。缺失支持为null，不填0，也不把技术失败作为科学阴性。
+训练间AB需平均Dice高于两个对照且血管指标/自身最差两例不降；两种同权重机制各用既定0.1pp、8正病例、12支持门槛。
+own及matched尾部、SD均完整保留，不能据此直接宣称低方差收益。三seed不合池、不择优，主组不能由复现组救回。
+本报告不证明GTA有效，不完成native验证或总目标，不自动授权后续训练。
+
+新AB仅将消费式放松为b+w*zAB+v*zA，新增128个零初始化v；原256参数product AB保留为前一轮证据。这增加了消费自由度和参数容量，不能仅凭新旧差值归因为新增解剖信息或GTA成功。
+以下新AB−旧product AB仅为既定同seed描述，不引入新门槛，不替代对两控制和两同权重干预的原判断：
+seed 20261030：dice=-0.024432116665162873 pp，cldice=-0.3971170872530701 pp，centerline_recall=-0.08961844682934077 pp，fine_recall=-0.22516366318557313 pp；病例SD新−旧=0.06773594553708961 pp；own-worst2新−旧=-0.13017400127187662 pp。
+seed 20261031：dice=-0.009986744177273299 pp，cldice=-0.007769307289465233 pp，centerline_recall=0.5982024475683615 pp，fine_recall=2.031741939862654 pp；病例SD新−旧=-0.03690338403559701 pp；own-worst2新−旧=0.02562967287007556 pp。
+seed 20261032：dice=-0.045468606247419295 pp，cldice=-0.19839603042286677 pp，centerline_recall=0.08999674014926091 pp，fine_recall=0.44026710301161337 pp；病例SD新−旧=0.10156782449638191 pp；own-worst2新−旧=-0.22417796956848424 pp。
+
+
+结果分析
+三个seed新增AB相对C0的Dice均下降，最差两例也均更差；相对旧乘积AB的Dice和clDice三次均下降。
+额外128个适用域系数没有修复这条冻结G0的短程适配路线。不能因新模型能表达更多形式就预期它必定更优。
+Seed31较旧AB的中心线/细尺度召回改善，但Dice/clDice未改善；三个seed细尺度召回均低于A_only。
+两种干预都有真实消费场和logit响应，整场正确对应的平均效果却三次为负。这不是消费路径未连接的解释。
+Seed31的B-only虽9例微正，三例损失仍使平均值为负；另外两seed也远未达到既定有效对应门槛。
+本次停止继续增加此类适配参数或延长同一路线。后续应先检验属性能否标识有符号的特征修正需求，
+而不能仅凭它可预测、能定位高误差，就直接扩大训练。梯度诊断也不等于分割收益或native验证。

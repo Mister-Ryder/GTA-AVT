@@ -1,0 +1,43 @@
+{
+  "schema": "GTA-AVT-boundary-separable-field-public-report-manifest-v1",
+  "private_numeric_authority_sha256": "8100ad451399655e62eb249e675fcad2214fb9d9aa0e29fd186f4a39846fb2f8",
+  "files": {
+    "readout_zh.txt": {
+      "bytes": 7258,
+      "sha256": "e31024e66ec4f02b11786910954d2d04035a1ece729fd53c113c32826764668e"
+    },
+    "summary.json": {
+      "sha256": "890e435c37e2c20d97055d28619177ed6b019537fd2c6b41a2432d7f488bd3ca",
+      "bytes": 200004
+    },
+    "casewise.csv": {
+      "sha256": "727e5d599c4313d0865bc48ce64fb7a852fdfabbca06be2a133a82ee90608afe",
+      "bytes": 28802
+    },
+    "mechanisms.csv": {
+      "sha256": "f6d073b44535840d1ce89775dd5bcb320a18fc0115790375d62527eed3e9a1be",
+      "bytes": 14506
+    },
+    "oldnew.csv": {
+      "sha256": "8c539e8c4dfdcc71101edac5e68732cda8736cd22e66093aea06b685161ce9d1",
+      "bytes": 9545
+    }
+  },
+  "casewise_rows": 108,
+  "distinct_probe_cases": 12,
+  "seeds": 3,
+  "arms": 3,
+  "mechanism_rows": 72,
+  "no_raw_fields": true,
+  "no_arrays_or_weights": true,
+  "no_machine_or_private_path_metadata": true,
+  "publication_executed": false,
+  "native_validation": false,
+  "GTA_goal_completed": false,
+  "oldnew_rows": 36,
+  "actual_new_training_arms": 3,
+  "controls_reused_byte_exact": true,
+  "original_public_builder_sha256": "dfc1ef9c02fc960d21db785e9e3f65ad42ed3afd3f448a25a9fd4c46cec784b6",
+  "separable_wrapper_source_sha256": "12acbe1ca12623df17fa6fa227ed85aa023daf0dca5b8a9e40f2889b30753933",
+  "interpretation_added_from_completed_readout": true
+}

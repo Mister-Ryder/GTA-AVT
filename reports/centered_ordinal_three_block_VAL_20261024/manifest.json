@@ -1,0 +1,57 @@
+{
+  "schema": "GTA-AVT-centered-public-report-manifest-v1",
+  "scientific_success": false,
+  "source_bindings": {
+    "release_helper_sha256": "248ac36586a9c0e033aabb48bea3fe964ae57ed26df9527372f5de18455bcf37",
+    "primary_reader_sha256": "2ebb82f146a006a75c04558a6763a8d005d1b1600dacb9cdba682cb1802a2407",
+    "locked_reader_sha256": "0cb54114791de0b37f8b5be1591543d471b79c63da141d6138ef2831ea57a36c",
+    "locked_utility_reader_sha256": "bd78672b720da5e0783358561ad9c623ce3a33908b7e8f3987b05fb1f1211613",
+    "locked_collector_sha256": "34b42efaf27bbe7024763f9e372d683e8e77b46a3db7c8a95bef4c50d03ffe7e",
+    "locked_dispatcher_sha256": "074a307c32d5b45aba2ba084cf71f7bf558a0379d6b3c57d5a0cde259a570a1d",
+    "locked_mechanism_sha256": "8ea0bacae5c8967caedfa85db4b7b7a1f006b197e640ac212384bd38cbd2ead3",
+    "protocol_sha256": "4c22813f0c55d7da95db5267f0408426c1ae480bf7609979d13ebd4bb3ff6578",
+    "source_manifest_sha256": "f311c9fbe6ea55be70e72ed220ab0562da08b3ee267863fc0d78509a30c3654e",
+    "three_block_reader_sha256": "bf99d2eb4513964f4231d2a81cb3188c79f8c14e2274ddb116c39d314fff4f4d",
+    "report_builder_sha256": "4dfe9032021453852c6f6ef891acac5fe68f23c832d18bad69e156d135543632"
+  },
+  "files": {
+    "readout.txt": {
+      "sha256": "e06fe0feb78d8f3717f371648255dc38355f81a12ff3dbf1003d60ce72d2e0e9",
+      "bytes": 1947
+    },
+    "block_summary.csv": {
+      "sha256": "f5da196fd93e946c6fd53f1a7c931324ae088921c91d6553b43015e1b5889787",
+      "bytes": 7067
+    },
+    "casewise.csv": {
+      "sha256": "fe86ff96e0a2223436aa50a7440ace691ac8593d2dfa8d45b4fd05e464c77b8f",
+      "bytes": 16178
+    },
+    "mechanism_cases.csv": {
+      "sha256": "8646c354d4a0aa38b8a00bec1a00ccde1a3ff7619af85a606bf9e06308dc5d5e",
+      "bytes": 11708
+    },
+    "smallsummary.json": {
+      "sha256": "078fdf2d74a3d60addcd0430a97cf57988fe356ba19c4dae308fa4d9ecf616b4",
+      "bytes": 7573
+    }
+  },
+  "blocks": [
+    "A_PRIMARY",
+    "B_LOCKED_REPLICATION",
+    "C_LOCKED_CONFIRMATION"
+  ],
+  "seeds": [
+    20261024,
+    20261025,
+    20261026
+  ],
+  "casewise_paired_rows": 24,
+  "unique_VAL_case_IDs": 8,
+  "arm_predictions": 48,
+  "mechanism_case_rows": 72,
+  "raw_arrays_weights_private_receipts_or_machine_identities_included": false,
+  "publication_performed": false,
+  "blocks_pooled": false,
+  "new_training_authorized": false
+}

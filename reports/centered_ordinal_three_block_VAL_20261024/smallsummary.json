@@ -1,0 +1,181 @@
+{
+  "schema": "GTA-AVT-centered-public-scientific-summary-v1",
+  "scientific_success": false,
+  "primary_candidate_claim_eligible": false,
+  "release_mode": "terminal_descriptive_only",
+  "blocks": {
+    "A_PRIMARY": {
+      "seed": 20261024,
+      "utility_gate_parts": {
+        "all_required_case_equal_means_defined": true,
+        "mean_clDice_at_least_point5pp": false,
+        "mean_Dice_nonnegative": true,
+        "mean_centerline_recall_nonnegative": false,
+        "mean_radius_le2mm_recall_nonnegative": false,
+        "own_worst_two_Dice_nonnegative": true,
+        "no_case_Dice_decline_gt3pp": true
+      },
+      "utility_passed": false,
+      "mechanisms": {
+        "raw_consumed_score_permutation": {
+          "gate_parts": {
+            "all12_probe_cases_supported": true,
+            "mean_correct_minus_permuted_Dice_at_least_point1pp": false,
+            "at_least8_positive_probe_cases": true,
+            "all_required_metrics_finite": true
+          },
+          "passed": false,
+          "mean_correct_minus_permuted_Dice_pp": 0.005272462254927437,
+          "supported_cases": 12,
+          "positive_cases": 8,
+          "null_cases": 0
+        },
+        "own_presence_composition_permutation": {
+          "gate_parts": {
+            "all12_probe_cases_supported": true,
+            "mean_correct_minus_permuted_Dice_at_least_point1pp": false,
+            "at_least8_positive_probe_cases": true,
+            "all_required_metrics_finite": true
+          },
+          "passed": false,
+          "mean_correct_minus_permuted_Dice_pp": 0.006315713330137684,
+          "supported_cases": 12,
+          "positive_cases": 9,
+          "null_cases": 0
+        }
+      },
+      "both_mechanisms_passed": false,
+      "all_scientific_gates_passed": false,
+      "failed_gate_parts": [
+        "utility:mean_clDice_at_least_point5pp",
+        "utility:mean_centerline_recall_nonnegative",
+        "utility:mean_radius_le2mm_recall_nonnegative",
+        "raw_consumed_score_permutation:mean_correct_minus_permuted_Dice_at_least_point1pp",
+        "own_presence_composition_permutation:mean_correct_minus_permuted_Dice_at_least_point1pp"
+      ]
+    },
+    "B_LOCKED_REPLICATION": {
+      "seed": 20261025,
+      "utility_gate_parts": {
+        "all_required_case_equal_means_defined": true,
+        "mean_clDice_at_least_point5pp": true,
+        "mean_Dice_nonnegative": false,
+        "mean_centerline_recall_nonnegative": false,
+        "mean_radius_le2mm_recall_nonnegative": false,
+        "own_worst_two_Dice_nonnegative": false,
+        "no_case_Dice_decline_gt3pp": true
+      },
+      "utility_passed": false,
+      "mechanisms": {
+        "raw_consumed_score_permutation": {
+          "gate_parts": {
+            "all12_probe_cases_supported": true,
+            "mean_correct_minus_permuted_Dice_at_least_point1pp": false,
+            "at_least8_positive_probe_cases": true,
+            "all_required_metrics_finite": true
+          },
+          "passed": false,
+          "mean_correct_minus_permuted_Dice_pp": 0.0040823182779361105,
+          "supported_cases": 12,
+          "positive_cases": 10,
+          "null_cases": 0
+        },
+        "own_presence_composition_permutation": {
+          "gate_parts": {
+            "all12_probe_cases_supported": true,
+            "mean_correct_minus_permuted_Dice_at_least_point1pp": false,
+            "at_least8_positive_probe_cases": true,
+            "all_required_metrics_finite": true
+          },
+          "passed": false,
+          "mean_correct_minus_permuted_Dice_pp": 0.004195441392776157,
+          "supported_cases": 12,
+          "positive_cases": 9,
+          "null_cases": 0
+        }
+      },
+      "both_mechanisms_passed": false,
+      "all_scientific_gates_passed": false,
+      "failed_gate_parts": [
+        "utility:mean_Dice_nonnegative",
+        "utility:mean_centerline_recall_nonnegative",
+        "utility:mean_radius_le2mm_recall_nonnegative",
+        "utility:own_worst_two_Dice_nonnegative",
+        "raw_consumed_score_permutation:mean_correct_minus_permuted_Dice_at_least_point1pp",
+        "own_presence_composition_permutation:mean_correct_minus_permuted_Dice_at_least_point1pp"
+      ]
+    },
+    "C_LOCKED_CONFIRMATION": {
+      "seed": 20261026,
+      "utility_gate_parts": {
+        "all_required_case_equal_means_defined": true,
+        "mean_clDice_at_least_point5pp": false,
+        "mean_Dice_nonnegative": false,
+        "mean_centerline_recall_nonnegative": false,
+        "mean_radius_le2mm_recall_nonnegative": true,
+        "own_worst_two_Dice_nonnegative": false,
+        "no_case_Dice_decline_gt3pp": true
+      },
+      "utility_passed": false,
+      "mechanisms": {
+        "raw_consumed_score_permutation": {
+          "gate_parts": {
+            "all12_probe_cases_supported": true,
+            "mean_correct_minus_permuted_Dice_at_least_point1pp": false,
+            "at_least8_positive_probe_cases": true,
+            "all_required_metrics_finite": true
+          },
+          "passed": false,
+          "mean_correct_minus_permuted_Dice_pp": 0.001966311304456292,
+          "supported_cases": 12,
+          "positive_cases": 10,
+          "null_cases": 0
+        },
+        "own_presence_composition_permutation": {
+          "gate_parts": {
+            "all12_probe_cases_supported": true,
+            "mean_correct_minus_permuted_Dice_at_least_point1pp": false,
+            "at_least8_positive_probe_cases": true,
+            "all_required_metrics_finite": true
+          },
+          "passed": false,
+          "mean_correct_minus_permuted_Dice_pp": 0.002486671270292371,
+          "supported_cases": 12,
+          "positive_cases": 10,
+          "null_cases": 0
+        }
+      },
+      "both_mechanisms_passed": false,
+      "all_scientific_gates_passed": false,
+      "failed_gate_parts": [
+        "utility:mean_clDice_at_least_point5pp",
+        "utility:mean_Dice_nonnegative",
+        "utility:mean_centerline_recall_nonnegative",
+        "utility:own_worst_two_Dice_nonnegative",
+        "raw_consumed_score_permutation:mean_correct_minus_permuted_Dice_at_least_point1pp",
+        "own_presence_composition_permutation:mean_correct_minus_permuted_Dice_at_least_point1pp"
+      ]
+    }
+  },
+  "failed_blocks": [
+    "A_PRIMARY",
+    "B_LOCKED_REPLICATION",
+    "C_LOCKED_CONFIRMATION"
+  ],
+  "blocks_pooled": false,
+  "primary_failure_cannot_be_rescued": true,
+  "new_training_authorized": false,
+  "statistical_scope": "Three paired seed/device blocks reuse the same8 VAL cases, not24 independent cases or patients.",
+  "source_bindings": {
+    "release_helper_sha256": "248ac36586a9c0e033aabb48bea3fe964ae57ed26df9527372f5de18455bcf37",
+    "primary_reader_sha256": "2ebb82f146a006a75c04558a6763a8d005d1b1600dacb9cdba682cb1802a2407",
+    "locked_reader_sha256": "0cb54114791de0b37f8b5be1591543d471b79c63da141d6138ef2831ea57a36c",
+    "locked_utility_reader_sha256": "bd78672b720da5e0783358561ad9c623ce3a33908b7e8f3987b05fb1f1211613",
+    "locked_collector_sha256": "34b42efaf27bbe7024763f9e372d683e8e77b46a3db7c8a95bef4c50d03ffe7e",
+    "locked_dispatcher_sha256": "074a307c32d5b45aba2ba084cf71f7bf558a0379d6b3c57d5a0cde259a570a1d",
+    "locked_mechanism_sha256": "8ea0bacae5c8967caedfa85db4b7b7a1f006b197e640ac212384bd38cbd2ead3",
+    "protocol_sha256": "4c22813f0c55d7da95db5267f0408426c1ae480bf7609979d13ebd4bb3ff6578",
+    "source_manifest_sha256": "f311c9fbe6ea55be70e72ed220ab0562da08b3ee267863fc0d78509a30c3654e",
+    "three_block_reader_sha256": "bf99d2eb4513964f4231d2a81cb3188c79f8c14e2274ddb116c39d314fff4f4d"
+  }
+}

@@ -287,3 +287,14 @@ report records the later actual execution. Private42 and historical public39 QA 
 This release establishes executable engineering paths. Dynamic AVT efficacy remains
 unverified pending the complete prospective utility and same-weight correspondence readout.
 No scientific preflight, new training, unseen-source or zero-shot claim follows from QA.
+
+
+## Centered consumer: complete three-block result (24 October 2026)
+
+The [complete prespecified VAL and same-weight correspondence readout](reports/centered_ordinal_three_block_VAL_20261024/readout.txt)
+failed in all three blocks. The fixed-reference coordinate change did not establish effective dynamic conditioning.
+The report retains all casewise results and failed criteria; case dispersion is distinct from training or inference variance.
+The same eight developed VAL cases recur in three blocks, with no pooled or best-seed rescue and no new TEST use.
+
+A metadata-field precheck in the result reader was corrected before locked numerical reading;
+training, raw results, formulas and scientific gates were unchanged. Historical files remain unchanged.

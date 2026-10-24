@@ -120,3 +120,8 @@ Exact measured sources are bound in boundary_context_contrast_source_identity_20
 C0/A_only/AR oracle capability experiment. The formal study has completed. [All three-seed results](../reports/calibre_coadapt_TRAIN_20261024/readout_zh.txt) retain every locked utility and correspondence check. [Measurement results](../reports/calibre_measurement_TRAIN_20261024/readout_zh.txt)
 are complete and include strong proxy/support limitations. A positive oracle
 result would still require CT-only predictor transfer and native confirmation.
+
+
+## Original SAAM branch learning
+
+[Fixed single-factor protocol](../docs/calibre_basis_protocol_20261024.txt) and [model](calibre_basis_stage_model.py)/[worker](calibre_basis_pilot.py) describe the running matched candidate. Actual128/B2 QA passed on all three hosts; formal efficacy is pending. The previous projection-only candidate remains stopped; its [complete interpretation](../reports/calibre_coadapt_TRAIN_20261024/README.md) retains all negative criteria and sampling risks.

@@ -1,0 +1,163 @@
+{
+  "schema": "GTA-AVT-calibre-coadapt-public-source-whitelist-v1",
+  "new_source_files": [
+    {
+      "relative_path": "next_stage/calibre_coadapt_stage_model.py",
+      "sha256": "7741821580cf6fded92b2d5033aa4649bdbab51a8f218378525c28533763c942",
+      "bytes": 14213,
+      "actual_execution_scope": "Actual CUDA QA passed; formal training currently running"
+    },
+    {
+      "relative_path": "next_stage/calibre_coadapt_pilot.py",
+      "sha256": "231b99fefb5b17e9e71d7b24bf9a4ba74f8cb032fd05b6ab62b8fa11ecee63f8",
+      "bytes": 33287,
+      "actual_execution_scope": "Actual128/B2/AMP QA, all three arms each2updates passed; formal training currently running"
+    },
+    {
+      "relative_path": "next_stage/local_radius_oracle.py",
+      "sha256": "00dbec1b9230f2613a3fa90236eed9842228bcd6f6fb96f6c40f9d29eb4f86ed",
+      "bytes": 11952,
+      "actual_execution_scope": "Actual CPU oracle preparation used this helper"
+    },
+    {
+      "relative_path": "next_stage/calibre_oracle_bank_prepare.py",
+      "sha256": "1add775f6d3c6ca7b06b6ad507123b0d6aee7be18a774e74c0368819e0e04fa3",
+      "bytes": 12803,
+      "actual_execution_scope": "Actual CPU engineering and complete36-case preparation finished; no model training"
+    },
+    {
+      "relative_path": "next_stage/analytic_radius_calibration.py",
+      "sha256": "cc5e041956616895b62bbc92f59dea0f130a8f4d2d2156a528b3997bd295061a",
+      "bytes": 12435,
+      "actual_execution_scope": "Actual54-configuration synthetic CPU calibration finished; no real-case data or model"
+    },
+    {
+      "relative_path": "next_stage/calibre_coadapt_readout.py",
+      "sha256": "478a41fd87b5d4def485c2a010f0c76e69ee29f089ab7185b9a5a94cd573871d",
+      "bytes": 28960,
+      "actual_execution_scope": "Seven CPU synthetic/default checks passed; no completed formal coadaptation endpoint has yet been read"
+    }
+  ],
+  "existing_dependencies_checked": [
+    {
+      "relative_path": "next_stage/stage_model.py",
+      "sha256": "bba378a8d384ddbe6694491bbabd3ef384cf3796f2e3eb6db647ef02ac965d7b",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "next_stage/boundary_attribute_probe.py",
+      "sha256": "016157cf52f7e9d9b7593435d5557dc55166881e94c59ad70bc68857186c8604",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "next_stage/boundary_field_pilot.py",
+      "sha256": "88a764a24bba5db728abefe1142d11d7a7382a780c022e78dd443b6e25632467",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/faithful_model.py",
+      "sha256": "c02a222dc92b231cbaf5a3768217028ee74567d166e09d2df979c9ebdff72337",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/data.py",
+      "sha256": "9ad4c237e2b0e7e1fdde00391ebba8dc320b3001cc4ee68c04ca23e64e5f62cf",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/geometry.py",
+      "sha256": "456f72da13e17dc877ab0a8af8567c4710cd39aca7141066a4b22b68f65e8ac8",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/losses.py",
+      "sha256": "c3eafe2d492444d5b909d0597ca04459b2df812c9c8723597c75928298afc87d",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/train.py",
+      "sha256": "ec867cd4922a2a18ccf5cb7fbd23922c02a6ac8464f36f2f6bc61a843b35d461",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/common.py",
+      "sha256": "79edd4ce7623632c602b33124d4653a28d7cb41ee9ae7a0ee4e664a0efba5d5a",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/model.py",
+      "sha256": "59f4cdd9823e11bdd94d6c2d0ebd4c68fcd237c656040ad9fef365323af4d9ca",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/inference.py",
+      "sha256": "a30b7511b6272f627bd71c9a62c1b068fc3f1c2d3ff0f5e81bd45b15828f6805",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/metrics.py",
+      "sha256": "c729a6f4894758407ab3955889f6db60f8f92a724d883b83c9169a81f2fd96ec",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/historical/__init__.py",
+      "sha256": "275f71602236a43c1b6288874186ef8ec11077124051b2733d3b95b9dc315ecb",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/historical/func/__init__.py",
+      "sha256": "8b611c2073b7bec1691a687085deb8707402d6063f6625dc737f3b62599f24b3",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/historical/func/AnatomicalClassifier.py",
+      "sha256": "f5288c74ce71db97eca63f9665e29dfb0099aa010326ce7d6748377bc0156222",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/historical/func/AnatomicalFusionModules.py",
+      "sha256": "7309281bb296eb7d861050f5ead6b563823b8393addf6ff7c18a594225030b01",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    },
+    {
+      "relative_path": "code/historical/func/model_arch_model10.py",
+      "sha256": "55d51ea850efd2b31aa07acd68ad5e24f64fafe6a714d26dc357919f639f3003",
+      "present_in_public_checkout": true,
+      "byte_equal_to_current_executed_dependency": true
+    }
+  ],
+  "third_party_packages": [
+    "PyTorch with CUDA",
+    "NumPy",
+    "SciPy",
+    "scikit-image",
+    "SimpleITK"
+  ],
+  "import_dependency_closure_checked": true,
+  "full_public_checkout_execution_claimed": false,
+  "formal_candidate_status": "running",
+  "GTA_efficacy_established": false,
+  "constraints": [
+    "Copy only these5 new scientific source files plus the separate method/CLI documents; no private deployment scripts, requests, weights or oracle fields.",
+    "Actual model/worker CUDA QA used the original executed source42 identity; the published mapped42 has a separate identity.",
+    "Existing helper retains its original source-map/data/checkpoint byte constraints; import closure does not bypass these asset requirements.",
+    "No new public mapped-source runtime QA was performed for this candidate; final portable entry remains pending.",
+    "Analytic radius calibration is a54-configuration synthetic measurement check, not an AVT accuracy or conditional-adaptation result."
+  ]
+}

@@ -112,3 +112,12 @@ measures r=D*dL/dF0 for one fixed contrast of the existing receptive-field branc
 The predeclared joint direction criterion fails; this exact attribute-plus-context-basis route stops.
 No new convolutional parameters or segmentation updates were used.
 Exact measured sources are bound in boundary_context_contrast_source_identity_20261024.json.
+
+
+## Partial calibre and limited coadaptation
+
+[Method and CLI](calibre_coadapt_method_20261024/README.md) describe the matched
+C0/A_only/AR oracle capability experiment. Actual-size CUDA QA passed; formal
+training is running. [Measurement results](../reports/calibre_measurement_TRAIN_20261024/readout_zh.txt)
+are complete and include strong proxy/support limitations. A positive oracle
+result would still require CT-only predictor transfer and native confirmation.

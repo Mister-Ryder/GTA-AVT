@@ -1,0 +1,33 @@
+{
+  "schema": "GTA-AVT-calibre-measurement-report-manifest-v1",
+  "files": {
+    "readout_zh.txt": {
+      "sha256": "de65e496979ea54adba42870d3122e350b1e0bd021463d737321df8df96934c4",
+      "bytes": 5369
+    },
+    "summary.json": {
+      "sha256": "a093e29775a5095defe266cf95c01a5dd2caf68cf4d47a267c289999b9fe94a2",
+      "bytes": 94713
+    },
+    "calibration.csv": {
+      "sha256": "a61862a8c0d7a3e9d008c26ae0b76ca51d526cb449b0dfc97ac7c70914c37655",
+      "bytes": 51168
+    },
+    "oracle_patches.csv": {
+      "sha256": "fcab8b49f05e1c985220af46a53df39f79c789a11100eee01c630e42783262ff",
+      "bytes": 168517
+    },
+    "oracle_cases.csv": {
+      "sha256": "ce2f0eea4ef9b151ea2e0486a91473103fffde0240eb0745ba1cfd42c10ec7b5",
+      "bytes": 47248
+    }
+  },
+  "rows": {
+    "calibration": 108,
+    "oracle_patches": 576,
+    "oracle_case_strata": 108
+  },
+  "scalar_only": true,
+  "no_private_paths_or_machine_identifiers": true,
+  "no_arrays_or_weights": true
+}

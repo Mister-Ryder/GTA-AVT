@@ -1,3 +1,0 @@
-synthetic_mask_radius_mm,foreground_voxels,centreline_nodes,measured_radius_min_mm,measured_radius_max_mm,valid_voxels,known_background_voxels,kernel_evaluations,raw_sum_foreground_max,target_max,foreground_target_mean
-3.0,2755,93,2.0,3.1622776985168457,2097152,2094397,256215,7.926654691337372,0.7625421285629272,0.6742674112319946
-6.0,10735,89,4.0,6.082762718200684,2097152,2086417,955415,15.247225017229638,0.9711592197418213,0.8505966067314148

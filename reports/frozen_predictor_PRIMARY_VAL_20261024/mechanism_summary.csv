@@ -1,3 +1,0 @@
-intervention,supported_cases,positive_cases,correct_minus_permuted_Dice_pp,required_Dice_effect_pp,mean_absolute_logit_response,gate_passed
-raw_consumed_score_permutation,12,9,0.0034316380908447817,0.1,0.001337989618756789,False
-own_presence_composition_permutation,12,9,0.004440614897198855,0.1,0.0014305743328198635,False

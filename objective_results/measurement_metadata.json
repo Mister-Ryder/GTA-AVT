@@ -1,0 +1,22 @@
+{
+  "schema": "GTA-AVT-v0.1-objective-results-provenance-v1",
+  "training_analysis_sha256": "46463d29123028438cd5c5ecb1ff9c3a2644861213dd2528ed4c4c6b38bdb947",
+  "frozen_analysis_sha256": "22d5a623f22488863b57962c0cb6802de6f40bcf7bc6e3c005ac737f4f86febf",
+  "seeds": [
+    20261030,
+    20261031,
+    20261032
+  ],
+  "model_sha256": "9acd1c9d8b04fdef3e5a7e4cefe9d8f0d234978093eaf09d7d2a03a64288f58e",
+  "training_worker_sha256": "a9320edc72b1dcde9fe4486355566bf9c491b78d109bf5315f578e08db32c9ef",
+  "frozen_worker_sha256": "c08cb97ea9728689217aefe303fb62130e29c3dacddd6a1eafe968dd673fd9ad",
+  "training_updates_per_arm": 2000,
+  "training_arms": [
+    "C0",
+    "A_only",
+    "AR"
+  ],
+  "normal_evaluation_patches_per_arm": 192,
+  "frozen_rows_per_seed": 192,
+  "frozen_fifth_evaluated_patches_per_seed": 96
+}

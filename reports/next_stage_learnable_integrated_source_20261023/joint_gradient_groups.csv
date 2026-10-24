@@ -1,9 +1,0 @@
-group,parameter,finite,gradient_nonzero_elements,clipped_gradient_absmax,changed_elements,parameter_delta_absmax
-segmentation_head,anatomical_output_fusion.3.weight,True,64,0.005237579345703125,64,0.00010001659393310547
-scale_head,classifier.generation_head.0.weight,True,21350,0.0266876220703125,21350,0.00010000169277191162
-structure_head,classifier.structure_head.0.weight,True,21210,0.01934814453125,21210,0.00010000169277191162
-gdf_head,gdf_head.weight,True,32,0.1343994140625,32,0.00010000169277191162
-shared_segmentation_feature,anatomical_output_fusion.0.weight,True,16416,0.1265869140625,16416,0.00010000169277191162
-shared_attribute_encoder,classifier.encoder.0.conv.weight,True,864,1.1455078125,864,0.00010000169277191162
-interaction_weight,interaction_weight,True,128,0.000282412365777418,128,9.999646135838702e-05
-interaction_bias,interaction_bias,True,128,0.0024782009422779083,128,9.999960457207635e-05

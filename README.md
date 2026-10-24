@@ -1,6 +1,13 @@
 # GTA-AVT
 
-**Latest completed diagnostic (24 October 2026):** the [SAAM64 location test](reports/boundary_gradient_SAAM_TRAIN_20261024/readout.txt)
+**Latest completed diagnostic (24 October 2026):** the [fixed context-contrast test](reports/boundary_context_contrast_TRAIN_20261024/readout.txt)
+uses the original receptive-field branches at unchanged SAAM64 output.
+The predeclared joint direction criterion fails; this exact attribute-plus-context-basis route stops.
+No optimizer updates or dynamic GTA efficacy are established. All earlier
+output-gain failures, and every case/source/stratum result, remain retained.
+
+
+**Earlier completed diagnostic (24 October 2026):** the [SAAM64 location test](reports/boundary_gradient_SAAM_TRAIN_20261024/readout.txt)
 changes only the fixed feature measurement site. Both predeclared conditional
 direction checks fail; moving the same boundary conditions to this stage does
 not justify output-gain training. Additive demand is retained as descriptive

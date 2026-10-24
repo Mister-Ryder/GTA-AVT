@@ -103,3 +103,12 @@ retains the same conditions and fixed model, measuring the existing64-channel
 SAAM output. Both conditional direction checks fail. Additive moments cannot
 replace the primary multiplicative result or authorize unfreezing. Exact
 measured sources are bound in boundary_gradient_SAAM_source_identity_20261024.json.
+
+
+## Fixed context-contrast direction
+
+The [complete diagnostic](../reports/boundary_context_contrast_TRAIN_20261024/readout.txt)
+measures r=D*dL/dF0 for one fixed contrast of the existing receptive-field branches.
+The predeclared joint direction criterion fails; this exact attribute-plus-context-basis route stops.
+No new convolutional parameters or segmentation updates were used.
+Exact measured sources are bound in boundary_context_contrast_source_identity_20261024.json.

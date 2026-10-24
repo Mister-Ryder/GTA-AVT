@@ -1,0 +1,43 @@
+{
+  "schema": "GTA-AVT-boundary-context-contrast-public-manifest-v1",
+  "builder_sha256": "2d9bd7850bba9423b28526974079cf14c9510d310b95e596207d83fa8bbfdb19",
+  "source_hashes": {
+    "analysis_sha256": "5833f45a44bcc0e2e8f16f8399e71570ea43fa4df377a23978786c7288be6856",
+    "worker_sha256": "444997945c904dba5fef61c7d831a9ffe5775da81e8ce957b89ca3f10b0339f5",
+    "readout_sha256": "1d911360d6afa842423ad89fdcf2f67e62e38139167fd21fc96e5aac8a5b0b2d",
+    "bank_sha256": "9be42890017341e4cc32fb0f17688d859a13e84643f95cd21e347462043419d6",
+    "shard_summary_sha256": [
+      "3b2a2d28fb3bae3696ff1e0135c4f7a75858314cc12772ae7796c757b753a2f7",
+      "66e49b050b9b4431b0fbf327dc1883cadc85d614b24586163db12b0131cb670b",
+      "981464bde86ca5b24a629115f6dc1523f30f14cd7963c3ffd0f9674a1bf7b46a"
+    ]
+  },
+  "case_rows": 108,
+  "source_rows": 18,
+  "model_rows": 24,
+  "coefficient_tensors_exported": false,
+  "private_input_provenance_exported": false,
+  "raw_data_or_weights_exported": false,
+  "files": {
+    "readout.txt": {
+      "bytes": 3525,
+      "sha256": "5eb9755b0d8a7ded33bb31c872d4c65380ce5b6f23a79416599b627d8c576823"
+    },
+    "summary.json": {
+      "bytes": 104008,
+      "sha256": "2bfa838b29ada2855c89009c1fc49f903105c73c19482d4b40a7afe8c10dc68f"
+    },
+    "casewise.csv": {
+      "bytes": 122096,
+      "sha256": "7c2b9b26a8f48dffde983921fffdf4c4d44e84b80838716dcde88417e32f8b2f"
+    },
+    "sourcewise.csv": {
+      "bytes": 22063,
+      "sha256": "6001d2a57680f2e0394cfdc1e0b0a9f3ff20987338ca6aaa4176d5419c9798d9"
+    },
+    "models.csv": {
+      "bytes": 4947,
+      "sha256": "1e7054fbd37ab532d773faf12806f467c261ac3ed4c2a88d5c8236f5bc6776c9"
+    }
+  }
+}

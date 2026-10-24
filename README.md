@@ -7,7 +7,7 @@ same projections/gates; no layer, property, loss, step budget or primary
 criterion is added or relaxed. The same seeds and sampling plans reset from
 the common checkpoint. A prospectively tighter CT-uniform vascular guard
 addresses the previous sampling-stratum regression. No new efficacy result
-is available. The [completed previous interpretation](reports/calibre_coadapt_TRAIN_20261024/README.md)
+is available. The [operator identity](docs/calibre_basis_operator_identity_20261024.md) explains the conditional fusion and its precision limits. The [completed previous interpretation](reports/calibre_coadapt_TRAIN_20261024/README.md)
 explains its positive signals, failed0.1pp criterion and remaining risks.
 
 

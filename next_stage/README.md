@@ -125,3 +125,6 @@ result would still require CT-only predictor transfer and native confirmation.
 ## Original SAAM branch learning
 
 [Fixed single-factor protocol](../docs/calibre_basis_protocol_20261024.txt) and [model](calibre_basis_stage_model.py)/[worker](calibre_basis_pilot.py) describe the running matched candidate. Actual128/B2 QA passed on all three hosts; formal efficacy is pending. The previous projection-only candidate remains stopped; its [complete interpretation](../reports/calibre_coadapt_TRAIN_20261024/README.md) retains all negative criteria and sampling risks.
+
+
+[Operator identity](../docs/calibre_basis_operator_identity_20261024.md) explains how the same original branch responses are conditionally fused, with explicit AMP limitations. The fixed [final readout](calibre_basis_readout.py), [scalar report builder](build_calibre_basis_report.py) and [learning-log explanation](calibre_basis_learning_summary.py) have passed synthetic/default checks. No final formal basis endpoint has yet been read; these tools do not establish efficacy.

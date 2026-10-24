@@ -1,0 +1,12 @@
+{
+  "checkpoint": "runs/seed30/AR/best.pt",
+  "image": "/path/to/unseen_CT.nrrd",
+  "output_dir": "predictions",
+  "case_id": "case",
+  "output_probability": true,
+  "device": "cuda",
+  "patch_size": 128,
+  "batch_size": 2,
+  "overlap": 0.5,
+  "threshold": 0.5
+}

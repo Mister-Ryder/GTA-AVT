@@ -1,0 +1,153 @@
+{
+  "version": "1.0.0",
+  "files": {
+    ".gitignore": {
+      "sha256": "ef5f4c1ace11cc431986008078834e0f10c1b0e21e7721fe6473143c56ead5c4",
+      "bytes": 114
+    },
+    "configs/adapt.json": {
+      "sha256": "60b2639de2784dba9f0a7015737746ca130b6a9eb38d18417ad66dc4875ec4a2",
+      "bytes": 615
+    },
+    "configs/evaluate.json": {
+      "sha256": "895bd7997dfdd93c758ea5ea9127eca95a1bec1a36daf2267e639c3bcd8b3ec6",
+      "bytes": 168
+    },
+    "configs/infer.json": {
+      "sha256": "8c6f45dcae1ae875c085e392c2c3d4e847c002f17a8901754090743506516425",
+      "bytes": 263
+    },
+    "configs/pipeline.json": {
+      "sha256": "9542085fb7c54defe77e521d5622a4223f43f6a6cdbe1fe64d5c1919645fe3bf",
+      "bytes": 313
+    },
+    "configs/pretrain.json": {
+      "sha256": "e040f29c325dc9d3c3f27d820a11a3cca506d8fbd56fac0974cc9d2766938165",
+      "bytes": 417
+    },
+    "configs/split_avt_20261022.json": {
+      "sha256": "df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b",
+      "bytes": 984
+    },
+    "configs/warmup.json": {
+      "sha256": "b14ad2e3bdcb82725f099669929e6d16cd178229b65f39ce1d15bc2c21a1db78",
+      "bytes": 540
+    },
+    "docs/FORMAL_V1_PROTOCOL.md": {
+      "sha256": "1c9345c90a6ec494d165a8aab84e3256315492b998dd950aef32cc27bc81cd0a",
+      "bytes": 3581
+    },
+    "docs/METHOD.md": {
+      "sha256": "8c0994b3cf863fa1a3495d82e040207e7822add479e8c3af380880b625c6930f",
+      "bytes": 8191
+    },
+    "docs/UNIFIED_METHOD_ZH.md": {
+      "sha256": "d19da0e584de92116c4805c227a963cffcca2d5c2acbea123b8e44ffec56879b",
+      "bytes": 6262
+    },
+    "gta_avt/__init__.py": {
+      "sha256": "70d679e8005b5264cfe1c58e4bfa579af76a6da151d6aa539776908c4d0ef246",
+      "bytes": 88
+    },
+    "gta_avt/__main__.py": {
+      "sha256": "76051ead6a02365642a702835654b5b9f82544a7e2dd6110a5f0048222c9055d",
+      "bytes": 3233
+    },
+    "gta_avt/data.py": {
+      "sha256": "73872dd1ad8261385cfa882d9e4f536c8a6db5e9e5d5f46de9134f3ad14a36c8",
+      "bytes": 41639
+    },
+    "gta_avt/engine.py": {
+      "sha256": "d87d7ee0af221dd8cd950964893bbc6c813b852a2af29493854d94a9cbbc95a8",
+      "bytes": 20134
+    },
+    "gta_avt/geometry.py": {
+      "sha256": "0789753dab18ce8973a7f7494d8ecf4b15551e6e43f0b64a60f598443cf60630",
+      "bytes": 32328
+    },
+    "gta_avt/inference.py": {
+      "sha256": "adb756aa295934db442df0ebba2c7f3d2f4a38489c24410ea4b8d31d915ed3f1",
+      "bytes": 8882
+    },
+    "gta_avt/intensity.py": {
+      "sha256": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a",
+      "bytes": 4281
+    },
+    "gta_avt/losses.py": {
+      "sha256": "508757937475261342df8220fc0e668cfb90c2f0e790b25a6fd29870ad802759",
+      "bytes": 4310
+    },
+    "gta_avt/metrics.py": {
+      "sha256": "19262a8b0ae674999b255d74785405d0685c565e98fbe605131996b0562e7e98",
+      "bytes": 8873
+    },
+    "gta_avt/models.py": {
+      "sha256": "dd5b06045fcd4d9c586c117363e5388f514149c7dfda340baf5129de225b2b7c",
+      "bytes": 13821
+    },
+    "gta_avt/pipeline.py": {
+      "sha256": "d48d30e23b630e5745c6f613390b85dbab3ce4c24365d42785114f045d57d7d7",
+      "bytes": 5500
+    },
+    "gta_avt/vendor/__init__.py": {
+      "sha256": "b97aea9d1a99f9d2092ebc83375dcabe2f6c846baef7dda71e366d66a0e1556b",
+      "bytes": 72
+    },
+    "gta_avt/vendor/AnatomicalClassifier.py": {
+      "sha256": "f5288c74ce71db97eca63f9665e29dfb0099aa010326ce7d6748377bc0156222",
+      "bytes": 6864
+    },
+    "gta_avt/vendor/AnatomicalFusionModules.py": {
+      "sha256": "7309281bb296eb7d861050f5ead6b563823b8393addf6ff7c18a594225030b01",
+      "bytes": 14098
+    },
+    "gta_avt/vendor/model_arch_model10.py": {
+      "sha256": "55d51ea850efd2b31aa07acd68ad5e24f64fafe6a714d26dc357919f639f3003",
+      "bytes": 34321
+    },
+    "gta_avt/vendor/NaviAirway-MIT.txt": {
+      "sha256": "a8d637dcbcd086a0072c4394565c715f88d0327f3b927067c0e596579cfcfd1c",
+      "bytes": 1067
+    },
+    "gta_avt/vendor/THIRD_PARTY_NOTICES.md": {
+      "sha256": "deeecb01f0aa098236e9c8af02ee64ec874f00585a8fd9f0ba6494d057760d0b",
+      "bytes": 1004
+    },
+    "pyproject.toml": {
+      "sha256": "b1b01997304b22e80cf6c8ebfadff608e4f73d0784d5ec2f289bdb38c852aaf3",
+      "bytes": 594
+    },
+    "README.md": {
+      "sha256": "84608edd6d71121d29095e03afe10dacc4ccca9f969b130025d58ab744c6359b",
+      "bytes": 5960
+    },
+    "reports/engineering_validation.json": {
+      "sha256": "6492120a4256aa4fa5681e7c09f021cb655b47c3873bf598d2c278c17e1c278d",
+      "bytes": 1913
+    },
+    "scripts/smoke_cuda.py": {
+      "sha256": "f9093ab35256fa349ee7747bad1af65fc1c6441c2e9d01d3d5f376405f954b31",
+      "bytes": 3211
+    },
+    "tests/test_data.py": {
+      "sha256": "227b6aeda0e0788ae220798a5d4c7b00eb89bfa0e8491ba73b5f20a50dd52293",
+      "bytes": 5425
+    },
+    "tests/test_engine.py": {
+      "sha256": "47729dc3ce140bfa8ccaeafb839b15496f420c45175fa8750ce9d671d2067851",
+      "bytes": 10100
+    },
+    "tests/test_geometry.py": {
+      "sha256": "97fb988256132e36ef012088eda33cf053e10b1811c7921b46b8729336ff9e4d",
+      "bytes": 2863
+    },
+    "tests/test_models.py": {
+      "sha256": "8a8c067988d69124b972318de4ab78a02d2335c83972b00846a0dd4ce87ef12c",
+      "bytes": 4070
+    },
+    "tests/test_pipeline.py": {
+      "sha256": "b6fadbd6846d3dbac4e68848f0e912651669ab3246d3ce1be1b53d46543e83ff",
+      "bytes": 2488
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "manifest": "cache/manifest.json",
+  "output_dir": "runs/seed30/warmup",
+  "predictor_checkpoint": "runs/seed30/attribute/best_ready.pt",
+  "stage": "warmup",
+  "arm": "C0",
+  "seed": 20261030,
+  "device": "cuda",
+  "patch_size": 128,
+  "batch_size": 2,
+  "max_steps": 10000,
+  "lr": 0.0003,
+  "weight_decay": 0.0001,
+  "samples_per_epoch": 256,
+  "val_samples": 64,
+  "num_workers": 0,
+  "amp": true,
+  "require_attribute_readiness": true,
+  "use_gdf": true,
+  "lambda_gdf": 0.0,
+  "checkpoint_every": 1000,
+  "validate_every": 1000
+}

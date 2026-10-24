@@ -1,0 +1,67 @@
+{
+  "scope": "engineering only; no AVT efficacy result",
+  "cpu": {
+    "exit_code": 0,
+    "output": ".........................                                                [100%]\n25 passed in 10.98s"
+  },
+  "cuda": [
+    {
+      "status": "passed",
+      "scope": "synthetic engineering only",
+      "patch": 128,
+      "batch": 2,
+      "successful_updates": 2,
+      "attempts": 2,
+      "losses": [
+        0.5885100364685059,
+        0.5712353587150574
+      ],
+      "predictor_frozen": true,
+      "peak_allocated_bytes": 13901585408,
+      "elapsed_seconds": 1.2729689162224531,
+      "torch": "1.11.0+cu113",
+      "cuda": "11.3",
+      "device": "NVIDIA GeForce RTX 4080",
+      "platform_block": "RTX4080_seed30"
+    },
+    {
+      "status": "passed",
+      "scope": "synthetic engineering only",
+      "patch": 128,
+      "batch": 2,
+      "successful_updates": 2,
+      "attempts": 2,
+      "losses": [
+        0.5885100364685059,
+        0.5712360143661499
+      ],
+      "predictor_frozen": true,
+      "peak_allocated_bytes": 13901585408,
+      "elapsed_seconds": 1.2837996566668153,
+      "torch": "1.11.0+cu113",
+      "cuda": "11.3",
+      "device": "NVIDIA GeForce RTX 4080",
+      "platform_block": "RTX4080_seed31"
+    },
+    {
+      "status": "passed",
+      "scope": "synthetic engineering only",
+      "patch": 128,
+      "batch": 2,
+      "successful_updates": 2,
+      "attempts": 2,
+      "losses": [
+        0.5885100364685059,
+        0.5712336897850037
+      ],
+      "predictor_frozen": true,
+      "peak_allocated_bytes": 13901585408,
+      "elapsed_seconds": 1.284481056034565,
+      "torch": "1.11.0+cu113",
+      "cuda": "11.3",
+      "device": "NVIDIA vGPU-32GB",
+      "platform_block": "vGPU_seed32"
+    }
+  ],
+  "cuda_model_sha256": "dd5b06045fcd4d9c586c117363e5388f514149c7dfda340baf5129de225b2b7c"
+}

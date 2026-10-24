@@ -1,0 +1,7 @@
+{
+  "output_dir": "runs/evaluation",
+  "centerline": true,
+  "cases": [
+    {"id": "case", "prediction": "predictions/case.nrrd", "label": "/path/to/label.nrrd"}
+  ]
+}

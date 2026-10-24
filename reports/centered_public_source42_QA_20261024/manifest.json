@@ -1,0 +1,15 @@
+{
+  "schema": "GTA-AVT-public-centered42-engineering-QA-payload-v1",
+  "status": "verified_report_payload",
+  "files_sha256": {
+    "public_QA.json": "034321b4381245363122000571e27c3a25c93a4d671dd46d256219f5b85b5529",
+    "readout.txt": "1498c5fca3da2f4ea75755b4c06cab89860aa0b04fc2113f7c3c5db6c4ec00de"
+  },
+  "file_count": 3,
+  "source_manifest_sha256": "a891b8d488f2757485bfb8c17462f7f70c0be93472faa93d0e106487ce9aacec",
+  "source_identity_sha256": "164c4f8d7b17e014f3932f6a394d76661cdb05ec042f4a33940c4d3e1c7b2882",
+  "actual_public42_QA_sha256": "166c56e72412b12d15b6552e7932f220c9663bda8abe47e07b14770bd5cd868d",
+  "scientific_efficacy_established": false,
+  "scientific_preflight_authorized": false,
+  "new_training_authorized": false
+}

@@ -1,0 +1,75 @@
+Fixed-reference centered GTA source release: source identity and reproduction
+
+This source-only overlay extends the existing mapped strict-frozen39 to42.
+The operator is G0+alpha*G0*tanh(b+w*(raw_c-0.4)). Reference0.4 is fixed by the
+constant condition; it is not a fitted mean. Raw c=p1+(2*p2+p3)/3 and the raw
+condition override interface stay unchanged. C_centered supplies raw c=0.4;
+D_centered supplies the original predicted raw c. The subtraction occurs only
+inside the consumer. These arms require a NEW matched pair, including a new C.
+Whole-classifier freezing/eval,256 interaction parameters, patch128/batch2,
+losses, sampling, optimizer, alpha schedule, GDF0 and the2000-update native
+evaluation recipe remain the same. This is a parameterization hypothesis,
+not an additional network module or proof of a training bottleneck.
+
+Distinct identities:
+ private executed42 manifest: f311c9fbe6ea55be70e72ed220ab0562da08b3ee267863fc0d78509a30c3654e
+ parent public39 manifest:    21e35ab772ae791dd3fa30658b1d6a8f8178efb254332935847106523e2e9983
+ public mapped42 manifest:    a891b8d488f2757485bfb8c17462f7f70c0be93472faa93d0e106487ce9aacec
+All39 parent public files are retained exactly. Relative to private42,38 files
+are byte-identical. Four files carry the established output-origin alias and
+expected-source SHA/provenance mappings; the identity lists all differences.
+Centered model and QA are byte-identical to private42. Every top-level function
+and class in the new centered trainer retains its private AST. No scientific
+model, training, sampling, freezing, loss, optimization or evaluation mathematics
+changes in the mapping. Inherited comments saying original private sources
+describe ancestry; exact public expected hashes and the identity define the
+actual mapped source. Private administrative paths/receipts are not exported.
+
+The42 public bytes have NOT executed a CPU model, actual GPU QA or formal
+training as part of this preparation. Actual private42 QA and historical
+public39 QA do not certify public42. Source-only export is not model QA,
+scientific preflight, efficacy evidence or permission for a new experiment.
+
+Once the parent public39 and this overlay are integrated into a project, inspect
+the default source-only plan from that project root:
+ python -B tools/export_centered_ordinal_source.py
+For an isolated exact42 copy:
+ python -B tools/export_centered_ordinal_source.py --output SOURCE42 --execute
+The exporter also accepts explicit --project PARENT_PUBLIC39_ROOT --overlay
+CENTERED_OVERLAY --source-manifest PUBLIC42_MAP --identity PUBLIC42_IDENTITY.
+It imports no model/Torch, opens no arrays/checkpoints, queries no GPU, and its
+default writes nothing. --execute copies only42 scientific files into a fresh
+folder, with sibling SOURCE42_source_manifest.json, SOURCE42_source_identity.json
+and SOURCE42_export_receipt.json. Reference recipes remain in
+configs/centered_ordinal_C_centered.json and centered_ordinal_D_centered.json,
+outside the exact42 tree. No private queue, server manager or runtime receipt
+is required by the source exporter or bundled in this overlay.
+
+The default QA command is inert:
+ python -B SOURCE42/next_stage/centered_frozen_ordinal_stage_checks.py --source-root SOURCE42 --source-manifest SOURCE42_source_manifest.json --source-manifest-sha256 a891b8d488f2757485bfb8c17462f7f70c0be93472faa93d0e106487ce9aacec
+Before formal reproduction, acquire own actual CUDA128/B2 AMP two-update QA
+bound to precisely these public42 bytes and the chosen runtime. The actual
+QA must use the original warmstart SHA
+7406a3ba7e5bac1a7d8ee24898cb954ff8576f37fcf5fba0e26ef9a2cb5c43e6,
+--optimizer-update --device cuda --patch 128 --batch-size 2, plus
+--warmstart CHECKPOINT, a fresh --output and
+--execute. The QA checks zero-init and alpha0 parity, raw condition metadata,
+C reference slope gradient0/bias learning, D slope learning, unchanged unused
+GDF state, and whole-classifier parameters/buffers/eval/gradient protection.
+CPU64 or historical QA cannot replace this engineering evidence.
+
+Inspect the default-inert training plan with:
+ python -B SOURCE42/next_stage/centered_frozen_ordinal_stage_train.py --config configs/centered_ordinal_C_centered.json --manifest INPUT_MANIFEST --output FRESH_RUN
+The D configuration supplies the paired dynamic plan. Execution additionally
+requires own complete source/input-byte audit, actual public42 CUDA QA/preflight,
+the original warmstart, and a separately frozen prospective protocol/gates.
+Never transplant private protocol/preflight/runtime/execution receipts or bypass
+source/warmstart identity guards. The fixed warmstart hash identifies bytes,
+not a checkpoint step. Weights, CT, targets and predictions are not bundled;
+without that warmstart, another initialization is a different declared study.
+
+The real-arithmetic function class is unchanged under b_centered=b_raw+0.4*w
+and b_raw=b_centered-0.4*w. This statement does not assert identical adaptive
+optimization trajectories. No new result, selected candidate or dynamic
+efficacy is inferred from this source release. Utility and same-weight
+correspondence tests must be evaluated under their own prospective protocol.

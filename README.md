@@ -268,3 +268,22 @@ pretraining to convergence was not performed. A stable independently prepared
 predictor is a new training hypothesis, not an established explanation or result.
 
 The [ordinal implementation and isolated-source exporter](docs/reproduce_ordinal_source.txt) are now published with separate public/private identities. The [Chinese rationale](reports/ordinal_consumption_v1_prerequisites_20261023/rationale_zh.txt) explains the attribute choice, conditional consumption tests and limits. Public mapped-source GPU execution remains unclaimed.
+
+
+## Fixed-reference centered consumer: public source and own QA (24 October 2026)
+
+The [centered implementation and isolated-source exporter](docs/reproduce_centered_ordinal_source.txt)
+are available with explicit public/private source identities. The exact42 mapped scientific
+files retain all39 parent public files unchanged. The only scientific adjustment is the
+fixed-reference coordinate `c - 0.4`; labels and the original matched training recipe stay fixed.
+
+These exact public42 bytes passed their [own synthetic CUDA engineering QA](reports/centered_public_source42_QA_20261024/readout.txt)
+at patch128, batch2 and AMP, including one disposable C update and one D update. The whole
+classifier stayed frozen; the constant-reference slope remained zero while its bias and
+other selected groups learned, and the dynamic arm updated all selected groups.
+The source identity preserves the earlier source-only preparation flags; this separate
+report records the later actual execution. Private42 and historical public39 QA are distinct.
+
+This release establishes executable engineering paths. Dynamic AVT efficacy remains
+unverified pending the complete prospective utility and same-weight correspondence readout.
+No scientific preflight, new training, unseen-source or zero-shot claim follows from QA.

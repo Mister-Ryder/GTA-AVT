@@ -316,3 +316,12 @@ keeps both readouts at64 features plus an intercept. Local-grid features reduce 
 by12.035% versus the fixed constant (9/12 cases); the whole-patch mean-feature reference is worse.
 These results support testing a spatial attribute estimator. They do not establish GTA segmentation
 benefit, availability prediction, or a complete comparison of all possible global attribute heads.
+
+
+## Shared small attribute head: three-seed stop result (24 October 2026)
+
+The [independent small-head preparation](reports/boundary_attribute_shared_head_preparation_20261024/readout.txt)
+improved boundary-applicability prediction but remained weaker than the fixed linear reference
+for boundary rank ambiguity in all three seeds. This shared-MLP version is stopped before
+consumer deployment;2000 updates do not establish convergence. All fit/probe/source scores and
+training windows are retained, with no best-seed rescue or GTA efficacy claim.

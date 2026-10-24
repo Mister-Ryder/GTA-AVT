@@ -1,0 +1,21 @@
+局部边界属性：有符号适配需求扫描（TRAIN，阴性）
+
+问题不是CT能否预测边界难度，而是这些固定属性轴能否描述当前特征应向哪个方向调整。
+本次冻结既有G0、分类器和属性头，不更新任何网络参数；只在G0处建立临时梯度叶，计算原主分割Dice+BCE的逐patch导数。
+全部36个TRAIN病例、每例16个128³patch保留，包括空/属性未知patch和实际特征网格的padding。FIT24拟合，PROBE12检查，三来源各4例。没有读取VAL/TEST，没有新增分割训练。
+A是“边界测量适用性”，不是血管存在概率或分割否决器；B是边界秩歧义度。固定四组OLS轴为[1]、[1,zA]、[1,zAB]、[1,zA,zAB]，每通道分别拟合r=G0*dL/dG0。未搜索阈值、正则、支持域或特征。
+
+主要结果
+1. separable−A_only：单位FIT增量RMS下的负增量方向，PROBE12平均一阶下降信号为0.0753812263602，8/12例为正。Dongyang/KiTS/Rider来源均值分别为-0.00943403109009 / 0.0816257543649 / 0.153951955806。Dongyang为负，故“12例支持、均值正、至少8例正、三来源均值均正”的原定联合检查失败。正均值不能覆盖来源失败。
+2. separable−constant：同口径平均下降信号为-0.0200569262898，6/12例为正，也失败。它与上一项是不同对照；不能把相对A_only的局部正信号推广为优于常量方向。
+3. FIT24中separable拟合能量仅占需求能量约0.00086794336%；PROBE12四种模型的SSE/需求能量均略高于1，方向余弦接近0。设计矩阵均满秩，仍不能据此认为这些属性充分描述了有符号适配需求。casewise.csv与sourcewise.csv保留异质性，models.csv区分“总SSE/总需求能量”和“逐病例比值均值”。
+4. 精确零G0激活处占普通梯度能量的比例：FIT24 33.150623%、PROBE12 32.486952%。乘性增益在零激活处不能直接产生数值变化，但这只是当前操作空间的描述；不证明相应方向可改善分割，也不构成解冻、加法支路或扩大架构的依据。该分母与r的需求能量不同。
+
+结论与边界
+停止当前B→乘性gain路线的继续训练。信号单位是固定FIT增量RMS的一阶loss方向量，不是Dice百分点，不是已实现的loss下降，也不是有限步长保证。旧匹配GTA试验阴性结论保持；本次没有建立GTA动态条件有效性。
+既有特征来自已训练backbone，TRAIN与固定patch曾用于开发，不能称盲验证或zero-shot；重叠patch不等于独立病例，12病例也未核实为独立患者。仅公开派生标量和来源哈希，不公开拟合系数、模型权重、影像、坐标或梯度场。
+
+English
+This fixed-backbone TRAIN diagnostic asks whether CT-derived attribute axes predict signed local multiplicative feature demand, rather than merely segmentation difficulty. No network parameters were updated. All576 original patches and all actual G0 sites, including padding, were retained;24 cases supplied fixed unregularized channel-wise OLS fits and12 cases supplied the probe readout.
+The separable-minus-A-only direction has a positive mean unit-budget descent signal (0.0753812263602; 8/12 positive cases), but its Dongyang mean is negative, so the prespecified joint direction check fails. Separable-minus-constant has a negative mean (-0.0200569262898; 6/12 positive). FIT explained demand energy is tiny, and probe SSE ratios exceed1. The current B-to-gain route stops.
+Positive signal describes the first-order loss variation of a negative-delta step after one common FIT24 RMS normalization; it is not observed Dice, clDice or finite-step improvement. Roughly32% of probe ordinary gradient energy lies at exactly zero G0 activations; that is a descriptive operating-space limitation, not evidence for unfreezing or adding an operator. The trained backbone and reused TRAIN cases prevent claims of blind generalization. Earlier negative matched GTA results remain unchanged.

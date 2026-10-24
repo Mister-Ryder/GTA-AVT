@@ -84,3 +84,13 @@ relaxes only the product-consumer constraint to b+w*zAB+v*zA. New AB uses384
 adapter parameters, with the same frozen heads/G0/moments; old C0/A_only controls
 are reused. All three seeds fail. Exact deployed sources and runtime scope are
 in boundary_separable_source_identity_20261024.json. No trained assets are distributed.
+
+
+## Fixed-G0 gradient demand
+
+The [complete TRAIN diagnostic](../reports/boundary_gradient_demand_TRAIN_20261024/readout.txt)
+asks whether the fixed CT conditions identify signed multiplicative feature demand.
+All576 patches remain, with24-case OLS fitting and12-case probe readout. The fixed
+source-consistency criterion fails. No training, finite-step benefit, unfreezing or
+dynamic-GTA efficacy follows. Exact measured sources are bound by
+boundary_gradient_demand_source_identity_20261024.json; no trained assets are included.

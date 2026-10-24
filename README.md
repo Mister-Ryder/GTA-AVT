@@ -1,6 +1,14 @@
 # GTA-AVT
 
-**Latest completed diagnostic (24 October 2026):** the [separable-field TRAIN follow-up](reports/boundary_separable_TRAIN_pilot_20261024/readout_zh.txt)
+**Latest completed diagnostic (24 October 2026):** the [fixed-G0 gradient-demand scan](reports/boundary_gradient_demand_TRAIN_20261024/readout.txt)
+retains all576 TRAIN patches and fits only prespecified tiny conditional directions.
+The incremental boundary direction fails the source-consistency gate, and the
+full separable direction does not outperform the constant direction. This stops
+expansion of the current deep B-to-gain route. No network parameters were updated;
+local gradient signals do not establish segmentation benefit or dynamic GTA efficacy.
+
+
+**Earlier completed diagnostic (24 October 2026):** the [separable-field TRAIN follow-up](reports/boundary_separable_TRAIN_pilot_20261024/readout_zh.txt)
 adds an independently learned applicability term while preserving the prepared heads,
 frozen G0, normalization and250-update recipe. Only three new AB arms are trained;
 the completed same-seed controls are reused byte-for-byte. All three fail the original

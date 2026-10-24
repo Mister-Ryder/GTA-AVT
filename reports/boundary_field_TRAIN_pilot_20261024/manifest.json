@@ -1,0 +1,33 @@
+{
+  "schema": "GTA-AVT-boundary-field-public-report-manifest-v1",
+  "private_numeric_authority_sha256": "a2cab09340b7bebea123c8a1f1a426c7890ce726eae377259a46c2b192f07c7e",
+  "files": {
+    "readout_zh.txt": {
+      "sha256": "63b8e0a6f8f2739da08d7bd89ade6a294bee39b554712528e90c6bf0da1b96cb",
+      "bytes": 5098
+    },
+    "summary.json": {
+      "sha256": "42f95ec0d2ca29c8e7c38221a82445424585570011d0eac06eede4922dc2419d",
+      "bytes": 143084
+    },
+    "casewise.csv": {
+      "sha256": "3b83b8a7f13a80791f2cd4852092b8c4cc3d0a2a807355f8e25528be9c66729b",
+      "bytes": 28820
+    },
+    "mechanisms.csv": {
+      "sha256": "f85bf7f6abaeb9c099c623158ac8501170f5147cd2450ac3a90429f4fb5a10c5",
+      "bytes": 14488
+    }
+  },
+  "casewise_rows": 108,
+  "distinct_probe_cases": 12,
+  "seeds": 3,
+  "arms": 3,
+  "mechanism_rows": 72,
+  "no_raw_fields": true,
+  "no_arrays_or_weights": true,
+  "no_machine_or_private_path_metadata": true,
+  "publication_executed": false,
+  "native_validation": false,
+  "GTA_goal_completed": false
+}

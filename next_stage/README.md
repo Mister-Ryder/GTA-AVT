@@ -66,3 +66,12 @@ They were not part of the historical training inventory. The pinned original
 oracle plan and trained checkpoints are absent, so these sources alone do not
 provide an exact replay. Default metadata plans require NumPy and genuine input
 manifests; see the reproduction notes and the weight-free numerical report.
+
+
+## Local boundary field: short TRAIN pilot
+
+The [tested field implementation and scope](../docs/boundary_field_pilot_scope_20261024.txt)
+adds a frozen, prepared CT-only local condition and matched C0/A_only/AB screening.
+Only256 existing adapter parameters learn. [All three seed results](../reports/boundary_field_TRAIN_pilot_20261024/readout_zh.txt)
+retain vascular/tail protection and both whole-field and own-A/donor-B correspondence checks.
+This short reused-TRAIN experiment is distinct from native confirmation and the primary model.

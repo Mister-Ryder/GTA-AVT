@@ -1,0 +1,34 @@
+Boundary-field diagnostic implementation and scope
+
+This is the short frozen-G0 TRAIN pilot, not a new validated primary model.
+The previous42-file scientific source snapshot and common7406 state are unchanged.
+New files implement the local CT field, its matched three-arm short trainer,
+the compact fixed readout and the operational boundary-measurement helper.
+
+Field: A predicts applicability of a two-sided boundary measurement; B predicts
+rank-separability ambiguity. A is not vessel presence or a segmentation veto.
+C0 uses the fixed fit24 AB mean; A_only uses A times the fixed B prior; AB uses
+A times B. A single fit24 all-cell mean/SD normalizes all arms, including padding.
+Raw-field interpolation and normalization use FP64 before the FP32 adapter.
+Only the existing128 interaction slopes and128 biases learn from zero; G0,
+the classifier, independent prepared heads and normalization state remain fixed.
+The residual is G0 + G0*tanh(b+w*z). Alpha is1; no Gaussian loss or augmentation.
+
+The trainer is inert without --execute and takes --request, --heads,
+--heads-sha256, --shared-manifest, --shared-manifest-sha256, --field-model,
+--field-model-sha256, --helper, --seed, --mode qa|run and a fresh --output.
+QA uses128^3/B2 and two actual updates per arm. Run uses250 successful updates
+per arm and final-only original probe12x16 evaluation. No native VAL/TEST is used.
+
+Exact locked reruns require the matching non-public prepared heads, common
+weights, patch bank, full frozen-feature assets and CT caches. This repository
+does not distribute those assets or credentials. The published source exposes
+the actual operator and training/readout logic; it is not a turnkey exact rerun
+without those inputs. New training assets require their own declared protocol
+and identities rather than silently replacing the locked checks.
+
+The public source identity records byte equality with deployed sources and the
+actual runtime checks. It does not claim a separate public-checkout runtime run.
+Use reports/boundary_field_TRAIN_pilot_20261024 for efficacy interpretation.
+The companion predicted-condition/error analysis is posthoc on existing TRAIN
+measurements; it changes neither this pilot's gates nor its declared population.

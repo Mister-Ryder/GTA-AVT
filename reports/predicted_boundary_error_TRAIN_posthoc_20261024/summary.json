@@ -1,0 +1,1517 @@
+{
+  "schema": "GTA-AVT-predicted-boundary-error-public-posthoc-v1",
+  "population": {
+    "TRAIN_cases": 36,
+    "fit_cases": 24,
+    "probe_cases": 12,
+    "all_reliable_cells": 21479,
+    "known_nonempty_reliable_cells": 21426,
+    "all_strata_retained": true,
+    "physical_cell_mm": 16,
+    "boundary_shell_mm": 2
+  },
+  "fixed_models": {
+    "M0": [
+      "intercept",
+      "patch_GT_ordinal",
+      "cell_FG_fraction"
+    ],
+    "M0_GT_B": [
+      "intercept",
+      "patch_GT_ordinal",
+      "cell_FG_fraction",
+      "GT_B"
+    ],
+    "M0_pred_B": [
+      "intercept",
+      "patch_GT_ordinal",
+      "cell_FG_fraction",
+      "pred_B"
+    ],
+    "M0_pred_A": [
+      "intercept",
+      "patch_GT_ordinal",
+      "cell_FG_fraction",
+      "pred_A"
+    ],
+    "M0_pred_A_and_B": [
+      "intercept",
+      "patch_GT_ordinal",
+      "cell_FG_fraction",
+      "pred_A",
+      "pred_B"
+    ],
+    "M0_pred_AB_product": [
+      "intercept",
+      "patch_GT_ordinal",
+      "cell_FG_fraction",
+      "pred_AB"
+    ]
+  },
+  "fit_probe_disclosure": "All error-reference coefficients use FIT24 only; both attribute heads also use FIT24. PROBE12 is repeatedly studied TRAIN, not untouched validation.",
+  "weighting": "Equal cases, then supported patches, then reliable cells; no local-Lee-node exclusion.",
+  "timing": "Posthoc analysis after pilot launch and before its complete scientific readout; no pilot endpoint data read or gate changed.",
+  "populations": {
+    "fit24": {
+      "all_strata": {
+        "expected_cases": 24,
+        "supported_cases": 24,
+        "missing_cases": [],
+        "cells": 14530,
+        "models": {
+          "M0": {
+            "mean": 0.019892210336786013,
+            "defined_cases": 24,
+            "M0_minus_model_mean": 0.0,
+            "positive_cases": 0
+          },
+          "M0_GT_B": {
+            "mean": 0.01635885329276257,
+            "defined_cases": 24,
+            "M0_minus_model_mean": 0.0035333570440234424,
+            "positive_cases": 22
+          },
+          "M0_pred_B": {
+            "mean": 0.018719237809646152,
+            "defined_cases": 24,
+            "M0_minus_model_mean": 0.001172972527139861,
+            "positive_cases": 16
+          },
+          "M0_pred_A": {
+            "mean": 0.018752857934757287,
+            "defined_cases": 24,
+            "M0_minus_model_mean": 0.0011393524020287273,
+            "positive_cases": 19
+          },
+          "M0_pred_A_and_B": {
+            "mean": 0.018387990148285693,
+            "defined_cases": 24,
+            "M0_minus_model_mean": 0.0015042201885003199,
+            "positive_cases": 17
+          },
+          "M0_pred_AB_product": {
+            "mean": 0.019638181630098544,
+            "defined_cases": 24,
+            "M0_minus_model_mean": 0.00025402870668746934,
+            "positive_cases": 13
+          }
+        },
+        "associations": {
+          "GT_B": {
+            "weighted_raw_error_Pearson": 0.403822923734722,
+            "within_patch_error_Pearson": 0.40035432251497194,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": 0.4041674236561058,
+            "within_patch_inside_FNR_Pearson": 0.2501344427541226,
+            "within_patch_outside_FPR_Pearson": 0.24158710240739062
+          },
+          "pred_B": {
+            "weighted_raw_error_Pearson": 0.2575858090232068,
+            "within_patch_error_Pearson": 0.2255082123880979,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": 0.22624637799317274,
+            "within_patch_inside_FNR_Pearson": 0.17680313822904117,
+            "within_patch_outside_FPR_Pearson": 0.05400895268388545
+          },
+          "pred_A": {
+            "weighted_raw_error_Pearson": -0.3184932650062327,
+            "within_patch_error_Pearson": -0.20137105282828646,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": -0.14360852786837197,
+            "within_patch_inside_FNR_Pearson": -0.23314704374916684,
+            "within_patch_outside_FPR_Pearson": 0.12379465299260936
+          },
+          "pred_AB": {
+            "weighted_raw_error_Pearson": -0.18855554253002985,
+            "within_patch_error_Pearson": -0.07058942771897354,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": -0.0074494639462024635,
+            "within_patch_inside_FNR_Pearson": -0.12148290571387943,
+            "within_patch_outside_FPR_Pearson": 0.1342534959247297
+          }
+        },
+        "predicted_B_added_after_A": {
+          "mean_MSE_reduction": 0.0003648677864715924,
+          "positive_cases": 14,
+          "defined_cases": 24
+        }
+      },
+      "sources": {
+        "Dongyang": {
+          "expected_cases": 8,
+          "supported_cases": 8,
+          "missing_cases": [],
+          "cells": 5098,
+          "models": {
+            "M0": {
+              "mean": 0.015049732938227046,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.01317596532870813,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0018737676095189164,
+              "positive_cases": 7
+            },
+            "M0_pred_B": {
+              "mean": 0.01434886385394301,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0007008690842840361,
+              "positive_cases": 6
+            },
+            "M0_pred_A": {
+              "mean": 0.013917085399530302,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.001132647538696744,
+              "positive_cases": 8
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.01390817022964695,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0011415627085800961,
+              "positive_cases": 8
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.015027825972776226,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 2.190696545081904e-05,
+              "positive_cases": 4
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.31706886540439094,
+              "within_patch_error_Pearson": 0.4169980056894952,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.4158407476208156,
+              "within_patch_inside_FNR_Pearson": 0.3072494477187423,
+              "within_patch_outside_FPR_Pearson": 0.13973533257958465
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.27929417976256515,
+              "within_patch_error_Pearson": 0.3085763480491628,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.25494888763071344,
+              "within_patch_inside_FNR_Pearson": 0.30770932426301256,
+              "within_patch_outside_FPR_Pearson": -0.08716234691824223
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.335059424438137,
+              "within_patch_error_Pearson": -0.269377212555794,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.21872339625753404,
+              "within_patch_inside_FNR_Pearson": -0.33293368159202097,
+              "within_patch_outside_FPR_Pearson": 0.22862859039021743
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.12762532446143882,
+              "within_patch_error_Pearson": -0.04318554813522072,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.01193686458296745,
+              "within_patch_inside_FNR_Pearson": -0.11798695583779659,
+              "within_patch_outside_FPR_Pearson": 0.18990052810740804
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 8.915169883351925e-06,
+            "positive_cases": 4,
+            "defined_cases": 8
+          }
+        },
+        "KiTS": {
+          "expected_cases": 8,
+          "supported_cases": 8,
+          "missing_cases": [],
+          "cells": 4131,
+          "models": {
+            "M0": {
+              "mean": 0.021466496004690697,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.019515461371517412,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0019510346331732841,
+              "positive_cases": 7
+            },
+            "M0_pred_B": {
+              "mean": 0.02127956446160537,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.00018693154308532692,
+              "positive_cases": 5
+            },
+            "M0_pred_A": {
+              "mean": 0.021059812480605386,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.00040668352408531304,
+              "positive_cases": 5
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.02102175751807759,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0004447384866131073,
+              "positive_cases": 4
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.02134617387151661,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.00012032213317408999,
+              "positive_cases": 4
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.3121613507138216,
+              "within_patch_error_Pearson": 0.36371893572878056,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.3670270866826863,
+              "within_patch_inside_FNR_Pearson": 0.24189168948582285,
+              "within_patch_outside_FPR_Pearson": 0.19501607952013458
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.12841604730322403,
+              "within_patch_error_Pearson": 0.17051375913789,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.18413745224830858,
+              "within_patch_inside_FNR_Pearson": 0.10965833452115042,
+              "within_patch_outside_FPR_Pearson": 0.09993391373136563
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.24135280174302898,
+              "within_patch_error_Pearson": -0.16823475473251914,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.10597423322775605,
+              "within_patch_inside_FNR_Pearson": -0.1802179659463284,
+              "within_patch_outside_FPR_Pearson": 0.06518232873517721
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.180047206221229,
+              "within_patch_error_Pearson": -0.07087526990234844,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.0058012080679868735,
+              "within_patch_inside_FNR_Pearson": -0.11510102782569563,
+              "within_patch_outside_FPR_Pearson": 0.11654721840864754
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 3.805496252779427e-05,
+            "positive_cases": 4,
+            "defined_cases": 8
+          }
+        },
+        "Rider": {
+          "expected_cases": 8,
+          "supported_cases": 8,
+          "missing_cases": [],
+          "cells": 5301,
+          "models": {
+            "M0": {
+              "mean": 0.023160402067440293,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.01638513317806217,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.006775268889378127,
+              "positive_cases": 8
+            },
+            "M0_pred_B": {
+              "mean": 0.020529285113390073,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.00263111695405022,
+              "positive_cases": 5
+            },
+            "M0_pred_A": {
+              "mean": 0.02128167592413617,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.001878726143304125,
+              "positive_cases": 6
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.02023404269713254,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.0029263593703077557,
+              "positive_cases": 5
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.022540545046002794,
+              "defined_cases": 8,
+              "M0_minus_model_mean": 0.000619857021437499,
+              "positive_cases": 5
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.5221423497466716,
+              "within_patch_error_Pearson": 0.43700526564590947,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.4444267749489742,
+              "within_patch_inside_FNR_Pearson": 0.2301867561049387,
+              "within_patch_outside_FPR_Pearson": 0.35003195856734765
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.32560964302993095,
+              "within_patch_error_Pearson": 0.2145013561266346,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.24510871312118712,
+              "within_patch_inside_FNR_Pearson": 0.1368452762420108,
+              "within_patch_outside_FPR_Pearson": 0.11830690069075657
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.337600481630487,
+              "within_patch_error_Pearson": -0.17830327399055407,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.11485453093169647,
+              "within_patch_inside_FNR_Pearson": -0.19541380743603085,
+              "within_patch_outside_FPR_Pearson": 0.08478167088435239
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.23167637309713696,
+              "within_patch_error_Pearson": -0.08985947639613281,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.014636218618481543,
+              "within_patch_inside_FNR_Pearson": -0.1308508289313493,
+              "within_patch_outside_FPR_Pearson": 0.11531188090847222
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.001047633227003631,
+            "positive_cases": 6,
+            "defined_cases": 8
+          }
+        }
+      },
+      "strata": {
+        "GT_centerline_plus_jitter": {
+          "expected_cases": 24,
+          "supported_cases": 24,
+          "missing_cases": [],
+          "cells": 10655,
+          "models": {
+            "M0": {
+              "mean": 0.01685694222981736,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.013337948852323651,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0035189933774937066,
+              "positive_cases": 23
+            },
+            "M0_pred_B": {
+              "mean": 0.015799995015490776,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0010569472143265835,
+              "positive_cases": 19
+            },
+            "M0_pred_A": {
+              "mean": 0.016075038429646093,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0007819038001712668,
+              "positive_cases": 16
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.01568289303742786,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0011740491923894977,
+              "positive_cases": 18
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.01671512632628326,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.00014181590353409782,
+              "positive_cases": 9
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.4450755622397199,
+              "within_patch_error_Pearson": 0.40338593965548153,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.40707798594711964,
+              "within_patch_inside_FNR_Pearson": 0.2315143052045343,
+              "within_patch_outside_FPR_Pearson": 0.28648466978598786
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.2614689084814741,
+              "within_patch_error_Pearson": 0.20205639161614758,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.20606644166031,
+              "within_patch_inside_FNR_Pearson": 0.14047963633037108,
+              "within_patch_outside_FPR_Pearson": 0.08873641080770917
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.2905108178818855,
+              "within_patch_error_Pearson": -0.21593267258597892,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.1479870802270363,
+              "within_patch_inside_FNR_Pearson": -0.23937579406437573,
+              "within_patch_outside_FPR_Pearson": 0.10455099322064099
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.16205707375044182,
+              "within_patch_error_Pearson": -0.09538068791811193,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.024722436702878298,
+              "within_patch_inside_FNR_Pearson": -0.1444878516671195,
+              "within_patch_outside_FPR_Pearson": 0.1327536114777451
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.000392145392218231,
+            "positive_cases": 16,
+            "defined_cases": 24
+          }
+        },
+        "CT_uniform": {
+          "expected_cases": 24,
+          "supported_cases": 24,
+          "missing_cases": [],
+          "cells": 3875,
+          "models": {
+            "M0": {
+              "mean": 0.02685998173817543,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.02291341944230638,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.003946562295869047,
+              "positive_cases": 17
+            },
+            "M0_pred_B": {
+              "mean": 0.025467291186552953,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0013926905516224786,
+              "positive_cases": 15
+            },
+            "M0_pred_A": {
+              "mean": 0.024922272541072103,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.001937709197103326,
+              "positive_cases": 16
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.02464016853619251,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0022198132019829197,
+              "positive_cases": 19
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.026290880869279443,
+              "defined_cases": 24,
+              "M0_minus_model_mean": 0.0005691008688959885,
+              "positive_cases": 15
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.36657817662207104,
+              "within_patch_error_Pearson": 0.38328281855373086,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.38476704990067784,
+              "within_patch_inside_FNR_Pearson": 0.29029427425927756,
+              "within_patch_outside_FPR_Pearson": 0.13327969553258243
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.2735931953153326,
+              "within_patch_error_Pearson": 0.26419279169650123,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.2548026226880396,
+              "within_patch_inside_FNR_Pearson": 0.24507099767409676,
+              "within_patch_outside_FPR_Pearson": -0.02560123451456962
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.3747757604557914,
+              "within_patch_error_Pearson": -0.18248440748178113,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.1387037054140739,
+              "within_patch_inside_FNR_Pearson": -0.2295372308682017,
+              "within_patch_outside_FPR_Pearson": 0.1750801470795157
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.24827033386498207,
+              "within_patch_error_Pearson": -0.029996265309913252,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.025484601351407142,
+              "within_patch_inside_FNR_Pearson": -0.08776941079133112,
+              "within_patch_outside_FPR_Pearson": 0.1594768400038986
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.0002821040048795941,
+            "positive_cases": 13,
+            "defined_cases": 24
+          }
+        }
+      }
+    },
+    "probe12": {
+      "all_strata": {
+        "expected_cases": 12,
+        "supported_cases": 12,
+        "missing_cases": [],
+        "cells": 6896,
+        "models": {
+          "M0": {
+            "mean": 0.023293798384343395,
+            "defined_cases": 12,
+            "M0_minus_model_mean": 0.0,
+            "positive_cases": 0
+          },
+          "M0_GT_B": {
+            "mean": 0.017522576938993475,
+            "defined_cases": 12,
+            "M0_minus_model_mean": 0.005771221445349919,
+            "positive_cases": 11
+          },
+          "M0_pred_B": {
+            "mean": 0.02120155872082743,
+            "defined_cases": 12,
+            "M0_minus_model_mean": 0.0020922396635159658,
+            "positive_cases": 12
+          },
+          "M0_pred_A": {
+            "mean": 0.02041112576786534,
+            "defined_cases": 12,
+            "M0_minus_model_mean": 0.0028826726164780554,
+            "positive_cases": 11
+          },
+          "M0_pred_A_and_B": {
+            "mean": 0.020086086096567157,
+            "defined_cases": 12,
+            "M0_minus_model_mean": 0.0032077122877762383,
+            "positive_cases": 12
+          },
+          "M0_pred_AB_product": {
+            "mean": 0.02237576617165511,
+            "defined_cases": 12,
+            "M0_minus_model_mean": 0.0009180322126882877,
+            "positive_cases": 9
+          }
+        },
+        "associations": {
+          "GT_B": {
+            "weighted_raw_error_Pearson": 0.5154250188443075,
+            "within_patch_error_Pearson": 0.3700846627539902,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": 0.3737369010069007,
+            "within_patch_inside_FNR_Pearson": 0.2287543061484952,
+            "within_patch_outside_FPR_Pearson": 0.24257310756292938
+          },
+          "pred_B": {
+            "weighted_raw_error_Pearson": 0.3592313275655033,
+            "within_patch_error_Pearson": 0.230565139078148,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": 0.21332894290732213,
+            "within_patch_inside_FNR_Pearson": 0.19150924859185164,
+            "within_patch_outside_FPR_Pearson": 0.025394775230361117
+          },
+          "pred_A": {
+            "weighted_raw_error_Pearson": -0.40854765284026895,
+            "within_patch_error_Pearson": -0.2630422702031718,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": -0.20079018525119674,
+            "within_patch_inside_FNR_Pearson": -0.272699507421011,
+            "within_patch_outside_FPR_Pearson": 0.11015543750730734
+          },
+          "pred_AB": {
+            "weighted_raw_error_Pearson": -0.27676689644063135,
+            "within_patch_error_Pearson": -0.14665245117321096,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": -0.08202208191808706,
+            "within_patch_inside_FNR_Pearson": -0.18371884769804384,
+            "within_patch_outside_FPR_Pearson": 0.14271852805259358
+          }
+        },
+        "predicted_B_added_after_A": {
+          "mean_MSE_reduction": 0.00032503967129818246,
+          "positive_cases": 7,
+          "defined_cases": 12
+        }
+      },
+      "sources": {
+        "Dongyang": {
+          "expected_cases": 4,
+          "supported_cases": 4,
+          "missing_cases": [],
+          "cells": 3071,
+          "models": {
+            "M0": {
+              "mean": 0.015032495806549962,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.012363824256654037,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.002668671549895924,
+              "positive_cases": 3
+            },
+            "M0_pred_B": {
+              "mean": 0.013597444904356765,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.001435050902193197,
+              "positive_cases": 4
+            },
+            "M0_pred_A": {
+              "mean": 0.013337740682267082,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0016947551242828796,
+              "positive_cases": 4
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.013124391463151305,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0019081043433986566,
+              "positive_cases": 4
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.015077815570263175,
+              "defined_cases": 4,
+              "M0_minus_model_mean": -4.5319763713214025e-05,
+              "positive_cases": 2
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.3831351553045428,
+              "within_patch_error_Pearson": 0.30003014811194595,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.3050521704410896,
+              "within_patch_inside_FNR_Pearson": 0.17192322629385126,
+              "within_patch_outside_FPR_Pearson": 0.25313492322350734
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.3634630075798899,
+              "within_patch_error_Pearson": 0.28669212621932477,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.22274819844031377,
+              "within_patch_inside_FNR_Pearson": 0.27283528604377744,
+              "within_patch_outside_FPR_Pearson": -0.0337411683599482
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.388399375726877,
+              "within_patch_error_Pearson": -0.318452908561311,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.2655171739780786,
+              "within_patch_inside_FNR_Pearson": -0.3578190756452327,
+              "within_patch_outside_FPR_Pearson": 0.17651083063720055
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.15971013247914306,
+              "within_patch_error_Pearson": -0.13445975911890062,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.08626496364978763,
+              "within_patch_inside_FNR_Pearson": -0.21035739074685805,
+              "within_patch_outside_FPR_Pearson": 0.22503082662537896
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.000213349219115777,
+            "positive_cases": 2,
+            "defined_cases": 4
+          }
+        },
+        "KiTS": {
+          "expected_cases": 4,
+          "supported_cases": 4,
+          "missing_cases": [],
+          "cells": 2121,
+          "models": {
+            "M0": {
+              "mean": 0.024432798806123417,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.020827350519905394,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0036054482862180196,
+              "positive_cases": 4
+            },
+            "M0_pred_B": {
+              "mean": 0.022657083275303618,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0017757155308197985,
+              "positive_cases": 4
+            },
+            "M0_pred_A": {
+              "mean": 0.02162595714348866,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.002806841662634756,
+              "positive_cases": 3
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.021386248457009725,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0030465503491136905,
+              "positive_cases": 4
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.02323695943368401,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.001195839372439405,
+              "positive_cases": 3
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.4014055931594597,
+              "within_patch_error_Pearson": 0.46120154432716426,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.46065630871338326,
+              "within_patch_inside_FNR_Pearson": 0.32100424900764185,
+              "within_patch_outside_FPR_Pearson": 0.26731310690114396
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.2983104329033195,
+              "within_patch_error_Pearson": 0.250633196388092,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.27300174772814223,
+              "within_patch_inside_FNR_Pearson": 0.18224848397184368,
+              "within_patch_outside_FPR_Pearson": 0.12164851829979295
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.37502702653777237,
+              "within_patch_error_Pearson": -0.2676264506152373,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.16932065359904214,
+              "within_patch_inside_FNR_Pearson": -0.2396256597114726,
+              "within_patch_outside_FPR_Pearson": 0.006368055628643239
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.3093859801871875,
+              "within_patch_error_Pearson": -0.17787876077245424,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.07625349966962816,
+              "within_patch_inside_FNR_Pearson": -0.1770224090179766,
+              "within_patch_outside_FPR_Pearson": 0.05797036173605286
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.0002397086864789344,
+            "positive_cases": 2,
+            "defined_cases": 4
+          }
+        },
+        "Rider": {
+          "expected_cases": 4,
+          "supported_cases": 4,
+          "missing_cases": [],
+          "cells": 1704,
+          "models": {
+            "M0": {
+              "mean": 0.03041610054035681,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.019376556040420996,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.011039544499935813,
+              "positive_cases": 4
+            },
+            "M0_pred_B": {
+              "mean": 0.027350147982821905,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0030659525575349013,
+              "positive_cases": 4
+            },
+            "M0_pred_A": {
+              "mean": 0.02626967947784028,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.004146421062516531,
+              "positive_cases": 4
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.02574761836954044,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.004668482170816367,
+              "positive_cases": 4
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.028812523511018137,
+              "defined_cases": 4,
+              "M0_minus_model_mean": 0.0016035770293386722,
+              "positive_cases": 4
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.6435965611901349,
+              "within_patch_error_Pearson": 0.3287704750283955,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.3376471775479337,
+              "within_patch_inside_FNR_Pearson": 0.1733077790734768,
+              "within_patch_outside_FPR_Pearson": 0.21891776579754013
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.3587760705151311,
+              "within_patch_error_Pearson": 0.13907948509122545,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.1400139397501509,
+              "within_patch_inside_FNR_Pearson": 0.10740867326812788,
+              "within_patch_outside_FPR_Pearson": 0.01592889701955163
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.3619175033371306,
+              "within_patch_error_Pearson": -0.2065259994136329,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.16101560785757685,
+              "within_patch_inside_FNR_Pearson": -0.2163209290053673,
+              "within_patch_outside_FPR_Pearson": 0.10414683408250729
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.2990258883281736,
+              "within_patch_error_Pearson": -0.14913969850390202,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.08756925580662804,
+              "within_patch_inside_FNR_Pearson": -0.17794387330317202,
+              "within_patch_outside_FPR_Pearson": 0.12408174932687212
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.000522061108299836,
+            "positive_cases": 3,
+            "defined_cases": 4
+          }
+        }
+      },
+      "strata": {
+        "GT_centerline_plus_jitter": {
+          "expected_cases": 12,
+          "supported_cases": 12,
+          "missing_cases": [],
+          "cells": 4915,
+          "models": {
+            "M0": {
+              "mean": 0.019532198867667338,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.014326487788452058,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.005205711079215281,
+              "positive_cases": 12
+            },
+            "M0_pred_B": {
+              "mean": 0.0177439749504825,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.001788223917184837,
+              "positive_cases": 12
+            },
+            "M0_pred_A": {
+              "mean": 0.01759888974041287,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0019333091272544683,
+              "positive_cases": 11
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.017130722005851213,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0024014768618161233,
+              "positive_cases": 11
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.01896604096621927,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0005661579014480679,
+              "positive_cases": 9
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.5262626244897173,
+              "within_patch_error_Pearson": 0.3813387758777376,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.38512617896875906,
+              "within_patch_inside_FNR_Pearson": 0.23737856673186386,
+              "within_patch_outside_FPR_Pearson": 0.2459245304787946
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.35841019552454306,
+              "within_patch_error_Pearson": 0.22105585018327362,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.2008193213122534,
+              "within_patch_inside_FNR_Pearson": 0.19359855954473165,
+              "within_patch_outside_FPR_Pearson": -0.002239220195558687
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.371597953982189,
+              "within_patch_error_Pearson": -0.24523455696450758,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.17753742254449092,
+              "within_patch_inside_FNR_Pearson": -0.2567515981045309,
+              "within_patch_outside_FPR_Pearson": 0.11103582325411926
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.2372594841571114,
+              "within_patch_error_Pearson": -0.15134112530824181,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.08557152919806477,
+              "within_patch_inside_FNR_Pearson": -0.18472543812073125,
+              "within_patch_outside_FPR_Pearson": 0.13647375014082533
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.00046816773456165496,
+            "positive_cases": 11,
+            "defined_cases": 12
+          }
+        },
+        "CT_uniform": {
+          "expected_cases": 12,
+          "supported_cases": 12,
+          "missing_cases": [],
+          "cells": 1981,
+          "models": {
+            "M0": {
+              "mean": 0.032919294335564335,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.024088445289648843,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.008830849045915492,
+              "positive_cases": 9
+            },
+            "M0_pred_B": {
+              "mean": 0.029465904415481723,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0034533899200826106,
+              "positive_cases": 11
+            },
+            "M0_pred_A": {
+              "mean": 0.026990814260689246,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0059284800748750895,
+              "positive_cases": 12
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.026882326679319713,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.006036967656244622,
+              "positive_cases": 12
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.030895799287722254,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0020234950478420777,
+              "positive_cases": 10
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.5487839432274791,
+              "within_patch_error_Pearson": 0.2996351593853613,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.2920590067653041,
+              "within_patch_inside_FNR_Pearson": 0.16577658298499967,
+              "within_patch_outside_FPR_Pearson": 0.2451240829161616
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.4209923914283006,
+              "within_patch_error_Pearson": 0.20894202079252083,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.19448692314456892,
+              "within_patch_inside_FNR_Pearson": 0.13404233656938944,
+              "within_patch_outside_FPR_Pearson": 0.12198808159238098
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.5147475487984066,
+              "within_patch_error_Pearson": -0.3125313438004086,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.2723145666657333,
+              "within_patch_inside_FNR_Pearson": -0.31401116666777473,
+              "within_patch_outside_FPR_Pearson": 0.11876664407285688
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.36650225299964345,
+              "within_patch_error_Pearson": -0.16356041672270977,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.11904647799434578,
+              "within_patch_inside_FNR_Pearson": -0.21116022511779953,
+              "within_patch_outside_FPR_Pearson": 0.186417447003205
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.00010848758136953172,
+            "positive_cases": 7,
+            "defined_cases": 12
+          }
+        }
+      }
+    },
+    "all36_descriptive": {
+      "all_strata": {
+        "expected_cases": 36,
+        "supported_cases": 36,
+        "missing_cases": [],
+        "cells": 21426,
+        "models": {
+          "M0": {
+            "mean": 0.02102607301930514,
+            "defined_cases": 36,
+            "M0_minus_model_mean": 0.0,
+            "positive_cases": 0
+          },
+          "M0_GT_B": {
+            "mean": 0.01674676117483954,
+            "defined_cases": 36,
+            "M0_minus_model_mean": 0.004279311844465602,
+            "positive_cases": 33
+          },
+          "M0_pred_B": {
+            "mean": 0.019546678113373246,
+            "defined_cases": 36,
+            "M0_minus_model_mean": 0.0014793949059318959,
+            "positive_cases": 28
+          },
+          "M0_pred_A": {
+            "mean": 0.01930561387912664,
+            "defined_cases": 36,
+            "M0_minus_model_mean": 0.0017204591401785035,
+            "positive_cases": 30
+          },
+          "M0_pred_A_and_B": {
+            "mean": 0.01895402213104618,
+            "defined_cases": 36,
+            "M0_minus_model_mean": 0.002072050888258959,
+            "positive_cases": 29
+          },
+          "M0_pred_AB_product": {
+            "mean": 0.020550709810617396,
+            "defined_cases": 36,
+            "M0_minus_model_mean": 0.00047536320868774213,
+            "positive_cases": 22
+          }
+        },
+        "associations": {
+          "GT_B": {
+            "weighted_raw_error_Pearson": 0.44218867878269064,
+            "within_patch_error_Pearson": 0.39099730073440114,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": 0.39478996560518215,
+            "within_patch_inside_FNR_Pearson": 0.24343708204764003,
+            "within_patch_outside_FPR_Pearson": 0.24163584476692337
+          },
+          "pred_B": {
+            "weighted_raw_error_Pearson": 0.2887370340260025,
+            "within_patch_error_Pearson": 0.22703330797074037,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": 0.22232237249464332,
+            "within_patch_inside_FNR_Pearson": 0.1812993688239073,
+            "within_patch_outside_FPR_Pearson": 0.04586124788962275
+          },
+          "pred_A": {
+            "weighted_raw_error_Pearson": -0.35027650219261763,
+            "within_patch_error_Pearson": -0.2210585049018852,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": -0.16178521430540777,
+            "within_patch_inside_FNR_Pearson": -0.24593305265156898,
+            "within_patch_outside_FPR_Pearson": 0.11943614478354962
+          },
+          "pred_AB": {
+            "weighted_raw_error_Pearson": -0.21648834993782207,
+            "within_patch_error_Pearson": -0.0925964540364119,
+            "within_patch_error_after_FIT24_FG_projection_Pearson": -0.02925869332207619,
+            "within_patch_inside_FNR_Pearson": -0.13960807080926896,
+            "within_patch_outside_FPR_Pearson": 0.1365422437688285
+          }
+        },
+        "predicted_B_added_after_A": {
+          "mean_MSE_reduction": 0.00035159174808045576,
+          "positive_cases": 21,
+          "defined_cases": 36
+        }
+      },
+      "sources": {
+        "Dongyang": {
+          "expected_cases": 12,
+          "supported_cases": 12,
+          "missing_cases": [],
+          "cells": 8169,
+          "models": {
+            "M0": {
+              "mean": 0.015043987227668018,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.012905251638023432,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0021387355896445854,
+              "positive_cases": 10
+            },
+            "M0_pred_B": {
+              "mean": 0.014098390870747594,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0009455963569204232,
+              "positive_cases": 10
+            },
+            "M0_pred_A": {
+              "mean": 0.013723970493775895,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0013200167338921227,
+              "positive_cases": 12
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.013646910640815068,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0013970765868529496,
+              "positive_cases": 12
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.015044489171938543,
+              "defined_cases": 12,
+              "M0_minus_model_mean": -5.019442705253158e-07,
+              "positive_cases": 6
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.3411562892915442,
+              "within_patch_error_Pearson": 0.37029550730284627,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.3716910632680033,
+              "within_patch_inside_FNR_Pearson": 0.2541449564663518,
+              "within_patch_outside_FPR_Pearson": 0.18159661737397548
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.3073178168653976,
+              "within_patch_error_Pearson": 0.3003907640040762,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.24302595268489519,
+              "within_patch_inside_FNR_Pearson": 0.29504557535398557,
+              "within_patch_outside_FPR_Pearson": -0.06860277855048409
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.3525437635123313,
+              "within_patch_error_Pearson": -0.2869526882419678,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.23471299530494094,
+              "within_patch_inside_FNR_Pearson": -0.34168020412183897,
+              "within_patch_outside_FPR_Pearson": 0.210891067731831
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.13398248224183354,
+              "within_patch_error_Pearson": -0.07423408976689337,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.037071359220534665,
+              "within_patch_inside_FNR_Pearson": -0.14869939122771547,
+              "within_patch_outside_FPR_Pearson": 0.20106542538487066
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 7.705985296082695e-05,
+            "positive_cases": 6,
+            "defined_cases": 12
+          }
+        },
+        "KiTS": {
+          "expected_cases": 12,
+          "supported_cases": 12,
+          "missing_cases": [],
+          "cells": 6252,
+          "models": {
+            "M0": {
+              "mean": 0.02245526360516827,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.01995275775431341,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0025025058508548626,
+              "positive_cases": 11
+            },
+            "M0_pred_B": {
+              "mean": 0.021738737399504784,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0007165262056634841,
+              "positive_cases": 9
+            },
+            "M0_pred_A": {
+              "mean": 0.02124852736823314,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0012067362369351275,
+              "positive_cases": 8
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.02114325449772163,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.001312009107446635,
+              "positive_cases": 8
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.02197643572557241,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.00047882787959586167,
+              "positive_cases": 7
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.3342145253883349,
+              "within_patch_error_Pearson": 0.39212243408753006,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.39412214459185635,
+              "within_patch_inside_FNR_Pearson": 0.2651515655446357,
+              "within_patch_outside_FPR_Pearson": 0.2114919504649803
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.179555257502208,
+              "within_patch_error_Pearson": 0.194475806816992,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.21052973393004687,
+              "within_patch_inside_FNR_Pearson": 0.1315851571100158,
+              "within_patch_outside_FPR_Pearson": 0.10469173407322539
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.28719512322799745,
+              "within_patch_error_Pearson": -0.1967173575618497,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.12531046846946728,
+              "within_patch_inside_FNR_Pearson": -0.1973141457269484,
+              "within_patch_outside_FPR_Pearson": 0.051155962242510206
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.22089353169963646,
+              "within_patch_error_Pearson": -0.09683061141935517,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.015822945451349654,
+              "within_patch_inside_FNR_Pearson": -0.12964232555621805,
+              "within_patch_outside_FPR_Pearson": 0.10471499457790692
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.00010527287051150765,
+            "positive_cases": 6,
+            "defined_cases": 12
+          }
+        },
+        "Rider": {
+          "expected_cases": 12,
+          "supported_cases": 12,
+          "missing_cases": [],
+          "cells": 7005,
+          "models": {
+            "M0": {
+              "mean": 0.025578968225079133,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.017382274132181776,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.008196694092897356,
+              "positive_cases": 12
+            },
+            "M0_pred_B": {
+              "mean": 0.02280290606986735,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.00277606215521178,
+              "positive_cases": 9
+            },
+            "M0_pred_A": {
+              "mean": 0.02294434377537087,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.00263462444970826,
+              "positive_cases": 10
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.02207190125460184,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0035070669704772932,
+              "positive_cases": 9
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.02463120453434124,
+              "defined_cases": 12,
+              "M0_minus_model_mean": 0.0009477636907378901,
+              "positive_cases": 9
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.5663322778035229,
+              "within_patch_error_Pearson": 0.4077902087096505,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.4155326244199242,
+              "within_patch_inside_FNR_Pearson": 0.2141239196494836,
+              "within_patch_outside_FPR_Pearson": 0.31308298799852896
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.3277992828421985,
+              "within_patch_error_Pearson": 0.1956227412154655,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.21876802663157835,
+              "within_patch_inside_FNR_Pearson": 0.1289639506030418,
+              "within_patch_outside_FPR_Pearson": 0.09128666668952651
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.34707309802537806,
+              "within_patch_error_Pearson": -0.18573813440576542,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.1281244782940649,
+              "within_patch_inside_FNR_Pearson": -0.20145548891835235,
+              "within_patch_outside_FPR_Pearson": 0.09064504267912828
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.2548392343985782,
+              "within_patch_error_Pearson": -0.10584075325246843,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.034327192916439396,
+              "within_patch_inside_FNR_Pearson": -0.14427208371426742,
+              "within_patch_outside_FPR_Pearson": 0.11780430929710518
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.0008724425207690327,
+            "positive_cases": 9,
+            "defined_cases": 12
+          }
+        }
+      },
+      "strata": {
+        "GT_centerline_plus_jitter": {
+          "expected_cases": 36,
+          "supported_cases": 36,
+          "missing_cases": [],
+          "cells": 15570,
+          "models": {
+            "M0": {
+              "mean": 0.01774869444243402,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.01366746183103312,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.004081232611400898,
+              "positive_cases": 35
+            },
+            "M0_pred_B": {
+              "mean": 0.016447988327154682,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0013007061152793347,
+              "positive_cases": 31
+            },
+            "M0_pred_A": {
+              "mean": 0.01658298886656835,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0011657055758656674,
+              "positive_cases": 27
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.01616550269356898,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0015831917488650397,
+              "positive_cases": 29
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.01746543120626193,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0002832632361720878,
+              "positive_cases": 18
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.47334832760649753,
+              "within_patch_error_Pearson": 0.3963533605114527,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.40008365612993985,
+              "within_patch_inside_FNR_Pearson": 0.23328264217340372,
+              "within_patch_outside_FPR_Pearson": 0.2745676729898191
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.2898895364421372,
+              "within_patch_error_Pearson": 0.2075999549824079,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.20425911049136622,
+              "within_patch_inside_FNR_Pearson": 0.15659395959546796,
+              "within_patch_outside_FPR_Pearson": 0.06346050266381273
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.3202033265916915,
+              "within_patch_error_Pearson": -0.2253715616240713,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.1574404224189509,
+              "within_patch_inside_FNR_Pearson": -0.24502972614554802,
+              "within_patch_outside_FPR_Pearson": 0.10633009901523395
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.18784858503387447,
+              "within_patch_error_Pearson": -0.11165634774475972,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.04278928314772532,
+              "within_patch_inside_FNR_Pearson": -0.15611182467146306,
+              "within_patch_outside_FPR_Pearson": 0.13375408587491033
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.00041748617299937227,
+            "positive_cases": 27,
+            "defined_cases": 36
+          }
+        },
+        "CT_uniform": {
+          "expected_cases": 36,
+          "supported_cases": 36,
+          "missing_cases": [],
+          "cells": 5856,
+          "models": {
+            "M0": {
+              "mean": 0.02887975260397173,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0,
+              "positive_cases": 0
+            },
+            "M0_GT_B": {
+              "mean": 0.02330509472475387,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.005574657879217862,
+              "positive_cases": 26
+            },
+            "M0_pred_B": {
+              "mean": 0.02680016226286254,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0020795903411091896,
+              "positive_cases": 26
+            },
+            "M0_pred_A": {
+              "mean": 0.025611786447611154,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0032679661563605805,
+              "positive_cases": 28
+            },
+            "M0_pred_A_and_B": {
+              "mean": 0.02538755458390158,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0034921980200701536,
+              "positive_cases": 31
+            },
+            "M0_pred_AB_product": {
+              "mean": 0.027825853675427045,
+              "defined_cases": 36,
+              "M0_minus_model_mean": 0.0010538989285446849,
+              "positive_cases": 25
+            }
+          },
+          "associations": {
+            "GT_B": {
+              "weighted_raw_error_Pearson": 0.43115786822939667,
+              "within_patch_error_Pearson": 0.35709351810284823,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.3558839785329188,
+              "within_patch_inside_FNR_Pearson": 0.2511326256054965,
+              "within_patch_outside_FPR_Pearson": 0.16761661755728363
+            },
+            "pred_B": {
+              "weighted_raw_error_Pearson": 0.3232032465029323,
+              "within_patch_error_Pearson": 0.2468732779734775,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": 0.23599921885994088,
+              "within_patch_inside_FNR_Pearson": 0.21016397010557616,
+              "within_patch_outside_FPR_Pearson": 0.01998666205525964
+            },
+            "pred_A": {
+              "weighted_raw_error_Pearson": -0.42365676461588087,
+              "within_patch_error_Pearson": -0.22204745433514847,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.1803158959648618,
+              "within_patch_inside_FNR_Pearson": -0.2558177835489144,
+              "within_patch_outside_FPR_Pearson": 0.15727052570902528
+            },
+            "pred_AB": {
+              "weighted_raw_error_Pearson": -0.2829470276168199,
+              "within_patch_error_Pearson": -0.06637449227435353,
+              "within_patch_error_after_FIT24_FG_projection_Pearson": -0.015433072896459399,
+              "within_patch_inside_FNR_Pearson": -0.12214833260218635,
+              "within_patch_outside_FPR_Pearson": 0.1668703695499659
+            }
+          },
+          "predicted_B_added_after_A": {
+            "mean_MSE_reduction": 0.00022423186370957332,
+            "positive_cases": 20,
+            "defined_cases": 36
+          }
+        }
+      }
+    }
+  },
+  "provenance_sha256": {
+    "readout_source_sha256": "aa414337d1969ff23a5796bba59c9463ce2e82c94650529b18d724dc103b431f",
+    "bank_sha256": "9be42890017341e4cc32fb0f17688d859a13e84643f95cd21e347462043419d6",
+    "heads_numeric_sha256": "24a41d7c83d879b456c04846dd90bcb66a4e562846a730510df798c181bb1f82",
+    "numeric_heads_extracted_by_ROOT_from_checkpoint_sha256": "b61885b06fd6413efc0cf86bb664f69aa1a4e9f7fb2a26a32c373a71ce5e11bb",
+    "boundary_reader_sha256": "e23fe5b67c639e2b002e22c392dd2c8e2f3b598fee1d40202fd5395a22b7c28c",
+    "feature_reader_sha256": "55665f534d79b8678a8c1137ffc6e0b730b1cca381321d6d5cadf510d2a3aa2e"
+  },
+  "no_coefficients_or_feature_arrays": true,
+  "no_new_GPU_experiment": true,
+  "success_gate": null,
+  "GTA_efficacy_established": false,
+  "pilot_gates_changed": false,
+  "causal_claim": false,
+  "limitations": [
+    "Both attributes and G0 error were developed on oldTRAIN; probe12 is not pristine or zero-shot.",
+    "PredictedB/error association can arise from shared CT features, not anatomical causality or useful conditional adaptation.",
+    "Balanced boundary error is local annotation-shell error, not Dice or fine-vessel benefit.",
+    "A and B error-reference fits are descriptive, distinct from the frozen nonlinear consumer and its correspondence tests.",
+    "NumPy FP64 head evaluation is not claimed bit-identical to CUDA; original head parameters remain fixed."
+  ]
+}

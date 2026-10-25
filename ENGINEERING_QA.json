@@ -1,0 +1,35 @@
+{
+  "schema": "GTA-AVT-v1.1-engineering-QA-1",
+  "scope": "Synthetic CPU implementation checks; no AVT dataset training or efficacy evaluation",
+  "platform": "Windows",
+  "python": "3.13.14",
+  "torch": "2.8.0+cpu",
+  "pytest": "8.4.2",
+  "cuda_available": false,
+  "tests": 50,
+  "passed": 49,
+  "failures": 0,
+  "skipped": 1,
+  "skipped_reason": "Windows symbolic-link privilege unavailable",
+  "complete_model_test_input_shape": [
+    1,
+    1,
+    32,
+    32,
+    32
+  ],
+  "checked": [
+    "attribute supervision masks and unknown regions",
+    "continuous support and reliable scale consumption",
+    "bounded branch coefficients and neutral initialization",
+    "Gaussian gradients into active routing through frozen layers",
+    "exact local parameter scope and frozen buffers",
+    "stage lineage, resume and shared ablation initialization",
+    "CT-only inference and native-grid certification"
+  ],
+  "not_run": [
+    "AVT dataset training",
+    "CUDA",
+    "128-cubed full-model memory test"
+  ]
+}

@@ -243,20 +243,43 @@ def _load_geometry(directory):
         return {key: stream[key] for key in stream.files}
 
 
+def support_occupancy(mask, real, factor=2):
+    """Lumen occupancy of real voxels in aligned cells, independent of M_R.
+
+    A partially observed cell is normalized by its observed voxels. Padding
+    never becomes a background label; entirely padded cells are unknown.
+    """
+    mask, real = np.asarray(mask, bool), np.asarray(real, bool)
+    if mask.ndim != 3 or mask.shape != real.shape or type(factor) is not int or factor < 1:
+        raise ValueError('Matching 3D lumen/real arrays and positive integer factor required')
+    padding = [(0, (-n) % factor) for n in mask.shape]
+    observed = np.pad(real, padding)
+    foreground = np.pad(mask & real, padding)
+    shape = tuple(value for n in observed.shape for value in (n // factor, factor))
+    counts = observed.reshape(shape).sum(axis=(1, 3, 5))
+    positives = foreground.reshape(shape).sum(axis=(1, 3, 5))
+    occupancy = np.divide(positives, counts, out=np.zeros(counts.shape, np.float32), where=counts > 0)
+    return occupancy.astype(np.float32), counts > 0
+
+
 def train_statistics(rows, output_dir, *, sample_per_case=4096, gdf_sample_per_case=256, seed=20261024):
     """Case-equal population moments of fixed TRAIN-only samples.
 
-    Radius nodes must satisfy the same partial oracle as supervision. Availability
-    is sampled uniformly on the nominal half-resolution grid, including A=0.
+    Radius nodes must satisfy the same partial oracle as supervision. Legacy
+    measurement availability is sampled on the nominal half-resolution grid;
+    the distinct support prior uses real-cell lumen occupancy.
     Gaussian RMS uses fixed foreground samples, not a per-volume maximum.
     """
     from .geometry import radius_at_queries, CumulativeRadiusGeometry, background_stencil_certificate
-    radius_means, radius_squares, availability, gdf_squares = [], [], [], []
+    radius_means, radius_squares, availability, support_priors, gdf_squares = [], [], [], [], []
     used = []
     for row_index, row in enumerate(sorted((r for r in rows if r['split'] == 'TRAIN'), key=lambda r: r['id'])):
         directory = Path(output_dir) / row['cache_dir']
         mask = np.load(directory / 'mask.npy', mmap_mode='r', allow_pickle=False).astype(bool)
         real = np.load(directory / 'valid.npy', mmap_mode='r', allow_pickle=False).astype(bool)
+        support, support_valid = support_occupancy(mask, real)
+        if support_valid.any():
+            support_priors.append(float(support[support_valid].mean()))
         geometry = _load_geometry(directory)
         spacing = np.repeat(float(row['spacing_mm']), 3)
         rng = np.random.default_rng(np.random.SeedSequence([seed, row_index]))
@@ -294,8 +317,9 @@ def train_statistics(rows, output_dir, *, sample_per_case=4096, gdf_sample_per_c
     # Degenerate synthetic/constant-radius data have an explicit safe scale.
     sigma = max(sigma, 1e-6)
     return dict(mu=mu, sigma=sigma, pi=float(np.clip(np.mean(availability), 1e-6, 1. - 1e-6)),
+        pi_support=float(np.clip(np.mean(support_priors), 1e-6, 1. - 1e-6)),
         gdf_scale=float(np.sqrt(np.mean(gdf_squares))), training_case_ids=used,
-        definition='TRAIN-only case-equal moments; reliable node logR; uniform nominal half-grid A; foreground logG RMS',
+        definition='TRAIN-only case-equal moments; reliable node logR; pi=measurement prior; pi_support=real-cell lumen occupancy; foreground logG RMS',
         seed=int(seed), sample_per_case=int(sample_per_case), gdf_sample_per_case=int(gdf_sample_per_case))
 
 
@@ -339,9 +363,11 @@ def prepare_dataset(cases_json, output_dir, spacing=1.0, geometry_options=None):
     if float(spacing) != 1.0:
         raise ValueError('This v1 architecture/attribute definition requires 1mm spacing')
     options = {} if geometry_options is None else dict(geometry_options)
-    allowed = {'sample_per_case', 'gdf_sample_per_case', 'seed', 'gdf_query_chunk', 'gdf_center_chunk', 'gdf_backend'}
+    allowed = {'sample_per_case', 'gdf_sample_per_case', 'seed', 'gdf_query_chunk', 'gdf_center_chunk', 'gdf_backend', 'prepare_heldout_gdf'}
     if set(options) - allowed:
         raise ValueError(f'Unknown geometry options: {set(options) - allowed}')
+    if options.get('prepare_heldout_gdf', True) is not True:
+        raise ValueError('Raw v1.1 preparation always includes held-out foreground GDF')
     cases = _source_cases(cases_json)
     output = Path(output_dir).resolve()
     if output.exists():
@@ -391,11 +417,12 @@ def prepare_dataset(cases_json, output_dir, spacing=1.0, geometry_options=None):
         np.save(directory / 'gdf.npy', gdf, allow_pickle=False)
         np.save(directory / 'gdf_valid.npy', gdf_valid.astype(np.uint8), allow_pickle=False)
         _json(directory / 'gdf_audit.json', audit)
-    manifest = dict(schema='gta-avt-prepared-v1', spacing_mm=float(spacing), cases=rows, statistics=statistics,
+    manifest = dict(schema='gta-avt-prepared-v1.1', spacing_mm=float(spacing), cases=rows, statistics=statistics,
         target_definition='native physical EDT sampled on 1mm Lee skeleton; partial pointwise logR; operational measurement availability',
-        a_definition='1 iff partial radius pipeline emits a measurement; 0 elsewhere on real grid; padding excluded',
+        support_definition='lumen occupancy per aligned half-resolution cell, normalized by real voxel count; wholly padded cells unknown',
+        radius_valid_definition='geometry measurement validity is used for radius supervision only, never a model condition',
         gdf_definition='mask*log1p(sum_all_case_centerline_Gaussians_sigma_native_radius)/fixed_TRAIN_RMS',
-        statistics_use_heldout=False, source_cases_sha256=_sha(cases_json))
+        statistics_use_heldout=False, heldout_gdf_foreground_prepared=True, source_cases_sha256=_sha(cases_json))
     _json(output / 'manifest.json', manifest)
     return manifest
 
@@ -417,7 +444,7 @@ def _transfer_array(source, target, link_mode='hardlink_or_copy'):
 
 def import_prepared_cache(cache_manifest, output_dir, *, cache_root=None, raw_root=None,
                           gdf_manifest=None, geometry_options=None, include_test=False,
-                          link_mode='hardlink_or_copy'):
+                          link_mode='hardlink_or_copy', prepare_heldout_gdf=True):
     """Reuse verified original 1mm arrays without a private checkpoint/bank.
 
     Original TRAIN geometry and masks must match their manifest hashes. CT
@@ -427,8 +454,9 @@ def import_prepared_cache(cache_manifest, output_dir, *, cache_root=None, raw_ro
     after checking case identity, target bytes and geometry/mask hashes.
     ``link_mode='symlink'`` avoids cross-filesystem copies; its verified source
     arrays must remain available and immutable for the lifetime of this cache.
-    Held-out Gaussian foreground is explicitly unknown in this efficient path;
-    ``prepare_dataset`` remains the complete raw-data path for all targets.
+    Held-out Gaussian foreground is computed by default with frozen TRAIN
+    normalization. An explicitly disabled preparation remains marked incomplete
+    and cannot be used as evidence for held-out foreground GDF quality.
     """
     import SimpleITK as sitk
     from scipy import ndimage as ndi
@@ -455,6 +483,9 @@ def import_prepared_cache(cache_manifest, output_dir, *, cache_root=None, raw_ro
         raise FileExistsError('Use a fresh imported-cache directory')
     output.mkdir(parents=True)
     options = dict(geometry_options or {})
+    prepare_heldout_gdf = options.get('prepare_heldout_gdf', prepare_heldout_gdf)
+    if not isinstance(prepare_heldout_gdf, bool):
+        raise ValueError('prepare_heldout_gdf must be an explicit boolean')
     rows, input_hashes = [], {}
 
     def transfer(source, target):
@@ -568,7 +599,7 @@ def import_prepared_cache(cache_manifest, output_dir, *, cache_root=None, raw_ro
             transfer(source, directory / 'gdf.npy')
             gvalid = real & (~mask | (bool(geometry['geometry_valid']) and len(geometry['points']) > 0))
             np.save(directory / 'gdf_valid.npy', gvalid.astype(np.uint8), allow_pickle=False)
-        elif row['split'] == 'TRAIN':
+        elif row['split'] == 'TRAIN' or prepare_heldout_gdf:
             target, gvalid, audit = _gaussian_target(geometry, mask, real, statistics['gdf_scale'], options)
             np.save(directory / 'gdf.npy', target, allow_pickle=False)
             np.save(directory / 'gdf_valid.npy', gvalid.astype(np.uint8), allow_pickle=False)
@@ -581,11 +612,12 @@ def import_prepared_cache(cache_manifest, output_dir, *, cache_root=None, raw_ro
             del zero
             np.save(directory / 'gdf_valid.npy', (real & ~mask).astype(np.uint8), allow_pickle=False)
             _json(directory / 'gdf_audit.json', dict(status='foreground_not_prepared', foreground_unknown=True))
-    manifest = dict(schema='gta-avt-prepared-v1', spacing_mm=1., cases=rows, statistics=statistics,
+    manifest = dict(schema='gta-avt-prepared-v1.1', spacing_mm=1., cases=rows, statistics=statistics,
         imported_array_link_mode=link_mode,
         original_cache_manifest_sha256=_sha(legacy_path), original_array_hashes=input_hashes,
-        statistics_use_heldout=False, heldout_gdf_foreground_prepared=False,
-        a_definition='1 iff partial radius pipeline emits a measurement; 0 elsewhere on real grid; padding excluded',
+        statistics_use_heldout=False, heldout_gdf_foreground_prepared=prepare_heldout_gdf,
+        support_definition='lumen occupancy per aligned half-resolution real cell; unrelated to geometry emission',
+        radius_valid_definition='geometry measurement validity is radius supervision only',
         gdf_definition='mask*log1p(sum_all_case_centerline_Gaussians_sigma_native_radius)/fixed_TRAIN_RMS')
     _json(output / 'manifest.json', manifest)
     return manifest
@@ -594,8 +626,8 @@ def import_prepared_cache(cache_manifest, output_dir, *, cache_root=None, raw_ro
 def load_manifest(path):
     path = Path(path).resolve()
     value = json.loads(path.read_text(encoding='utf-8'))
-    if value.get('schema') != 'gta-avt-prepared-v1':
-        raise ValueError('Prepared v1 manifest required')
+    if value.get('schema') not in ('gta-avt-prepared-v1', 'gta-avt-prepared-v1.1'):
+        raise ValueError('Prepared v1/v1.1 manifest required')
     for case in value['cases']:
         directory = Path(case['cache_dir'])
         case['cache_dir'] = str(directory.resolve() if directory.is_absolute() else (path.parent / directory).resolve())
@@ -662,10 +694,14 @@ class PreparedDataset:
                                    observed_bounds_mm=observed_bounds)
         local_queries = query_grid((0, 0, 0), (patch // 2,) * 3, (patch,) * 3)
         real = background_stencil_certificate(~arrays['valid'].astype(bool), local_queries)
-        measured = oracle['R_valid'] & real
+        support, support_valid = support_occupancy(arrays['label'], arrays['valid'])
+        # A resampled native-radius ball can touch a wholly background cell.
+        # Retain fractional lumen cells, but do not supervise radius on certain background.
+        measured = oracle['R_valid'] & real & support_valid & (support > 0)
         r = np.zeros(measured.shape, np.float32)
         r[measured] = ((oracle['rawR'][measured] - self.statistics['mu']) / self.statistics['sigma']).astype(np.float32)
-        arrays.update(a=measured.astype(np.float32), r=r, r_valid=measured.astype(np.float32), a_valid=real.astype(np.float32))
+        arrays.update(support=support, support_valid=support_valid.astype(np.float32),
+                      r=r, r_valid=measured.astype(np.float32))
         arrays['image'] = normalize(arrays['image'])
         if self.augment:
             for axis in range(3):

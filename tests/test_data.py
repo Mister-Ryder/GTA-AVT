@@ -46,17 +46,18 @@ def test_train_only_statistics_and_padded_dataset(tmp_path):
     manifest.write_text(json.dumps(dict(schema='gta-avt-prepared-v1', cases=rows, statistics=stats)), encoding='utf-8')
     dataset = PreparedDataset(manifest, patch_size=16, samples_per_epoch=2, seed=4)
     first, second = dataset[0], dataset[0]
-    for key in ('image', 'label', 'valid', 'a', 'r', 'r_valid', 'a_valid', 'gdf', 'gdf_valid'):
+    for key in ('image', 'label', 'valid', 'support', 'r', 'r_valid', 'support_valid', 'gdf', 'gdf_valid'):
         assert torch.equal(first[key], second[key])
         assert torch.isfinite(first[key]).all()
     assert first['image'].shape == (1, 16, 16, 16)
-    assert first['a'].shape == (1, 8, 8, 8)
+    assert first['support'].shape == (1, 8, 8, 8)
     assert first['valid'].sum() == np.prod(shape)
     assert first['valid'][0, 12, 12, 12] == 0
-    assert (first['r_valid'] <= first['a_valid']).all()
-    assert torch.equal(first['a'], first['r_valid'])
+    assert (first['r_valid'] <= first['support_valid']).all()
+    assert 'a' not in first and 'a_valid' not in first, 'Geometry validity is no longer a model attribute'
     assert (first['r'][first['r_valid'] == 0] == 0).all()
-    assert first['a_valid'].sum() > first['a'].sum(), 'A=0 is supervised operational absence on real grid'
+    assert first['support_valid'].sum() > first['r_valid'].sum()
+    assert first['support'].sum() > 0 and first['support'].max() < 1, 'Thin lumen has fractional occupancy'
 
 
 def test_ct_only_native_header_and_padding(tmp_path):

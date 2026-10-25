@@ -518,9 +518,9 @@ def gaussian_target(mask, points_zyx, radius_mm, spacing_mm=(1., 1., 1.),
 def gdf_mse(prediction, target, valid, foreground=None, normalization="voxel"):
     """FP32 MSE of an already-softplus prediction, per valid case.
 
-    Inputs have identical [B,1,D,H,W] shapes. "voxel" is the first candidate,
-    closest to historical whole-volume MSE. "balanced" explicitly averages
-    foreground/background means when each exists and must be predeclared.
+    Inputs have identical [B,1,D,H,W] shapes. v1.1 segmentation uses the
+    "balanced" foreground/background average. "voxel" remains available as
+    an explicit historical diagnostic, never an implicit v1.1 comparison.
     Unknown samples are excluded from the case mean; an all-unknown batch has
     graph-connected zero loss. Positive predictions and targets may exceed one.
     """
@@ -538,7 +538,9 @@ def gdf_mse(prediction, target, valid, foreground=None, normalization="voxel"):
     weights = valid.float()
     safe_target = torch.where(weights > 0, target.float(),
                               torch.zeros_like(target, dtype=torch.float32))
-    squared = (prediction.float() - safe_target).square()
+    safe_prediction = torch.where(weights > 0, prediction.float(),
+                                   torch.zeros_like(prediction, dtype=torch.float32))
+    squared = (safe_prediction - safe_target).square()
     axes = (1, 2, 3, 4)
     counts = weights.sum(axes)
     per_case = (squared * weights).sum(axes) / counts.clamp_min(1.)
@@ -560,12 +562,14 @@ def gdf_mse(prediction, target, valid, foreground=None, normalization="voxel"):
         details.update(
             gdf_foreground_mse=float(
                 ((fg_mean * fg_present).sum() /
-                 fg_present.sum().clamp_min(1.)).detach()),
+                 fg_present.sum().clamp_min(1.)).detach()) if bool(fg_present.any()) else None,
             gdf_background_mse=float(
                 ((bg_mean * bg_present).sum() /
-                 bg_present.sum().clamp_min(1.)).detach()),
+                 bg_present.sum().clamp_min(1.)).detach()) if bool(bg_present.any()) else None,
             gdf_foreground_cases=int(fg_present.sum().detach()),
             gdf_background_cases=int(bg_present.sum().detach()),
+            gdf_foreground_voxels=int(fg_count.sum().detach()),
+            gdf_background_voxels=int(bg_count.sum().detach()),
         )
         if normalization == "balanced":
             per_case = ((fg_mean * fg_present + bg_mean * bg_present) /

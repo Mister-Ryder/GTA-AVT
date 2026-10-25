@@ -1,5 +1,5 @@
 {
-  "checkpoint": "runs/seed30/AR/best.pt",
+  "checkpoint": "runs/seed30/AR_GDF/best.pt",
   "image": "/path/to/unseen_CT.nrrd",
   "output_dir": "predictions",
   "case_id": "case",

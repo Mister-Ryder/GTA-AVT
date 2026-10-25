@@ -5,7 +5,7 @@ from pathlib import Path
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="GTA-AVT v1")
+    parser = argparse.ArgumentParser(description="GTA-AVT v1.1 algorithm candidate")
     sub = parser.add_subparsers(dest="command", required=True)
     index = sub.add_parser("index", help="Index downloaded AVT NRRDs; no automatic new split")
     index.add_argument("--root", required=True)

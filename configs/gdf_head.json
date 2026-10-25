@@ -1,0 +1,21 @@
+{
+  "manifest": "cache/manifest.json",
+  "seed": 20261030,
+  "validation_seed": 0,
+  "device": "cuda",
+  "patch_size": 128,
+  "batch_size": 2,
+  "num_workers": 0,
+  "amp": true,
+  "checkpoint_every": 500,
+  "validate_every": 500,
+  "output_dir": "runs/seed30/gdf_head",
+  "stage": "gdf_head",
+  "arm": "C0",
+  "max_steps": 1000,
+  "gdf_head_lr": 0.001,
+  "predictor_checkpoint": "runs/seed30/attribute/best_ready.pt",
+  "base_checkpoint": "runs/seed30/base/best.pt",
+  "use_gdf": true,
+  "lambda_gdf": 1.0
+}

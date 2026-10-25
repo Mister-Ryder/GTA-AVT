@@ -11,7 +11,7 @@ import torch
 from .data import prepare_ct, restore_native, sliding_probability, load_manifest
 from .engine import load_checkpoint, file_digest, _json, _device
 from .metrics import binary_metrics, summarize_cases
-from .models import AttributePredictor, GTAAVT
+from .models import AttributePredictor, GTAAVT, MODEL_CONFIG
 
 
 def model_from_checkpoint(path,device='cpu'):
@@ -19,6 +19,8 @@ def model_from_checkpoint(path,device='cpu'):
     if checkpoint['kind']!='train':
         raise ValueError('Whole-volume segmentation requires a segmentation checkpoint')
     config=checkpoint['model_config']
+    if config.get('name') != MODEL_CONFIG['name']:
+        raise ValueError('Checkpoint belongs to a different method version; no silent v1/v1.1 weight conversion')
     model=GTAAVT(AttributePredictor(checkpoint['statistics']),arm=config['arm'],use_gdf=config['use_gdf'])
     model.load_state_dict(checkpoint['model'],strict=True)
     return model.to(device).eval(),checkpoint
@@ -36,18 +38,23 @@ def predict_volume(model,image,metadata,*,device,patch_size=128,batch_size=2,ove
             override=None
             if condition_mode!='predicted':
                 attributes=model.predictor(x)
-                a=(attributes['a_logits'].sigmoid()>=.5).float()
-                z=attributes['z_radius'].float().clone()
+                support=attributes['support_logits'].sigmoid().float().clone()
+                mean=attributes['radius_mean'].float().clone()
+                logvar=attributes['radius_log_variance'].float().clone()
                 if condition_mode=='radius_constant':
-                    z.zero_()
+                    mean.zero_();logvar.zero_()
                 elif condition_mode=='neutral':
-                    a.zero_();z.zero_()
+                    support.zero_();mean.zero_();logvar.zero_()
                 else:
-                    for index in range(len(z)):
-                        supported=a[index].bool()
-                        values=z[index][supported]
-                        z[index][supported]=torch.roll(values,len(values)//2)
-                override={'a':a,'z_radius':z}
+                    # The threshold selects diagnostic permutation sites only.
+                    # Normal model consumption always uses continuous support.
+                    for index in range(len(mean)):
+                        selected=support[index]>=.5
+                        values=mean[index][selected]
+                        mean[index][selected]=torch.roll(values,len(values)//2)
+                        values=logvar[index][selected]
+                        logvar[index][selected]=torch.roll(values,len(values)//2)
+                override={'support':support,'radius_mean':mean,'radius_log_variance':logvar}
             output=model(x,alpha=1.,condition_override=override)
         return output['logits'].float().sigmoid().cpu().numpy()
     return sliding_probability(callback,image,metadata,patch=patch_size,batch_size=batch_size,overlap=overlap)
@@ -108,10 +115,38 @@ def _evaluation_cases(config):
             label=case.get('label') or case.get('label_path')
             if not label:
                 raise ValueError('Evaluation manifest needs explicit native label paths; use cases_json')
-            cases.append({'id':case['id'],'label':label,'source':case.get('source'),
+            cases.append({'id':case['id'],'label':label,'image':case.get('image'), 'source':case.get('source'),
                 'prediction':str(Path(config['prediction_dir'])/case['id']/'prediction.nii.gz')})
         return cases
     raise ValueError('Provide cases/cases_json or manifest + prediction_dir for explicit evaluation')
+
+
+def certify_native_grid(prediction, label, image=None):
+    """Require one physical grid; certify only exact CT float32 serialization.
+
+    This handles NIfTI header quantization without resampling predictions or
+    increasing the original tolerance for arbitrary grid differences. A native
+    CT reference is required when direct header equality fails.
+    """
+    for value in (prediction, label) + ((image,) if image is not None else ()):
+        if value.GetDimension()!=3 or value.GetNumberOfComponentsPerPixel()!=1:
+            raise ValueError('Scalar 3D images required')
+    fields=('GetSpacing','GetOrigin','GetDirection')
+    if prediction.GetSize()!=label.GetSize():
+        raise ValueError('Native grid sizes differ')
+    if all(np.allclose(getattr(prediction,k)(),getattr(label,k)(),rtol=0,atol=1e-5) for k in fields):
+        return 'direct_grid_match'
+    if image is None or image.GetSize()!=label.GetSize():
+        raise ValueError('Native grid mismatch requires an explicit CT reference')
+    if not all(np.allclose(getattr(image,k)(),getattr(label,k)(),rtol=0,atol=1e-10) for k in fields):
+        raise ValueError('Original CT and label grids differ')
+    for key in fields:
+        reference=np.asarray(getattr(image,key)(),dtype=np.float64)
+        actual=np.asarray(getattr(prediction,key)(),dtype=np.float64)
+        rounded=reference.astype(np.float32).astype(np.float64)
+        if not (np.array_equal(actual,reference) or np.array_equal(actual,rounded)):
+            raise ValueError('Prediction grid differs beyond exact CT float32 serialization')
+    return 'certified_CT_float32_header'
 
 
 def evaluate(config):
@@ -127,13 +162,8 @@ def evaluate(config):
         seen.add(case_id)
         prediction=sitk.ReadImage(str(case['prediction']))
         label=sitk.ReadImage(str(case['label']))
-        if (prediction.GetDimension()!=3 or label.GetDimension()!=3 or
-            prediction.GetNumberOfComponentsPerPixel()!=1 or label.GetNumberOfComponentsPerPixel()!=1):
-            raise ValueError('Scalar 3D prediction/label required for '+case_id)
-        if (prediction.GetSize()!=label.GetSize() or
-            any(not np.allclose(getattr(prediction,key)(),getattr(label,key)(),rtol=0,atol=1e-5)
-                for key in ('GetSpacing','GetOrigin','GetDirection'))):
-            raise ValueError('Native prediction/label physical grids differ for '+case_id)
+        image=sitk.ReadImage(str(case['image'])) if case.get('image') else None
+        grid_status=certify_native_grid(prediction,label,image)
         label_values=sitk.GetArrayFromImage(label)
         if not np.isfinite(label_values).all():
             raise ValueError('Nonfinite label for '+case_id)
@@ -142,7 +172,7 @@ def evaluate(config):
         if not np.isfinite(value).all():
             raise ValueError('Nonfinite prediction for '+case_id)
         pred=value>=.5
-        row={'case_id':case_id,'source':case.get('source'),
+        row={'case_id':case_id,'source':case.get('source'),'grid_certification':grid_status,
              **binary_metrics(pred,target,centerline=config.get('centerline',True),
                               spacing_zyx=label.GetSpacing()[::-1])}
         voxel_ml=float(np.prod(label.GetSpacing())/1000.)

@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gta-avt"
-version = "1.0.0"
-description = "Geometry-conditioned feature adaptation for aortic vessel tree segmentation"
+version = "1.1.0"
+description = "Reliability-aware local conditional fusion with Gaussian supervision for vessel trees"
 requires-python = ">=3.8"
 dependencies = ["numpy>=1.22", "scipy>=1.9", "scikit-image>=0.19", "SimpleITK>=2.2", "torch>=1.11"]
 

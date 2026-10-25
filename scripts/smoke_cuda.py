@@ -16,17 +16,20 @@ def main():
     torch.set_num_threads(4)
     torch.manual_seed(20261024)
     device=torch.device('cuda')
-    predictor=AttributePredictor(dict(mu=1.,sigma=.5,pi=.2))
+    predictor=AttributePredictor(dict(mu=1.,sigma=.5,pi_support=.2))
     # Synthetic noncollapsed conditions exercise all three routing paths.
     with torch.no_grad():
         predictor.local_head.weight.normal_(0,.01)
         predictor.local_head.bias[0]=2.
         predictor.local_head.bias[1]=.3
-    model=GTAAVT(predictor,arm='AR',use_gdf=True).to(device).train()
+        predictor.local_head.bias[2]=-2.
+    model=GTAAVT(predictor,arm='AR',use_gdf=True).to(device).set_stage('local_adapt').train()
     frozen={k:v.detach().clone() for k,v in model.predictor.state_dict().items()}
     x=torch.randn(args.batch,1,args.patch,args.patch,args.patch,device=device)
     target=(torch.rand_like(x)>.9).float()
-    optimizer=torch.optim.AdamW([p for p in model.parameters() if p.requires_grad],lr=1e-4)
+    groups=model.parameter_groups()
+    optimizer=torch.optim.AdamW([{'params':groups['shared'],'lr':1e-4},
+        {'params':groups['gates'],'lr':1e-3},{'params':groups['gdf'],'lr':1e-4}],weight_decay=1e-5)
     scaler=torch.cuda.amp.GradScaler()
     before=model.output_head.weight.detach().clone()
     start=time.monotonic(); torch.cuda.reset_peak_memory_stats()
@@ -50,7 +53,9 @@ def main():
     assert successful==2
     assert all(torch.equal(value,model.predictor.state_dict()[key]) for key,value in frozen.items())
     assert all(p.grad is None for p in model.predictor.parameters())
-    assert any(p.grad is not None for p in model.guidance_adapter.parameters())
+    assert all(p.grad is None for p in model.guidance_adapter.parameters())
+    assert all(not module.training for module in model.modules())
+    assert sum(p.numel() for p in model.parameters() if p.requires_grad)==115491
     assert model.gdf_head[0].weight.grad is not None
     assert model.routing.radius_weight.grad is not None
     assert not torch.equal(before,model.output_head.weight.detach())

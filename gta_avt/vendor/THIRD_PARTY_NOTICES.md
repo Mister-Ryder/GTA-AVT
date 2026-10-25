@@ -1,7 +1,7 @@
 # Historical source provenance
 
 The three Python operator sources in this directory are copied byte for byte
-from the earlier GTAirway implementation. The v1 wrapper assembles only their
+from the earlier GTAirway implementation. The v1.1 wrapper assembles only their
 active encoder, decoder, fusion and attention primitives. It does not instantiate
 the obsolete global attribute heads or the unused historical segmentation heads.
 

@@ -1,0 +1,93 @@
+{
+  "method": "GTA-AVT-v1.1: reliability-aware local conditional fusion with Gaussian supervision",
+  "status": "algorithm development only; no dataset training authorized",
+  "cores": [
+    "image-predicted geometric attributes",
+    "conditional computation and feature fusion",
+    "Gaussian field supervision"
+  ],
+  "attribute": {
+    "support_target": "GT lumen occupancy per half-resolution cell, separate from geometry measurability",
+    "radius_target": "same TRAIN-standardized physical log-radius on original r_valid only",
+    "output_keys": [
+      "support_logits",
+      "radius_mean",
+      "radius_log_variance",
+      "features",
+      "fused"
+    ],
+    "logvar_bounds": [
+      -6.0,
+      4.0
+    ],
+    "unknown_radius": "weak KL N(mu,var)||N(0,1) on unknown real cells; normalize unknown foreground/background separately; no fake measured radius-zero labels",
+    "confidence": "relu((1-var)/(1+var)); relative information score, not claimed calibrated uncertainty",
+    "radius_axis": "support_score * confidence * clamp(radius_mean,-4,4)",
+    "support_loss": "case-equal soft-target Dice+BCE; a support score, not calibrated confidence"
+  },
+  "batch_keys": {
+    "support": "B1(input/2)^3 soft occupancy",
+    "support_valid": "same-grid real support mask",
+    "r": "standardized log radius",
+    "r_valid": "geometry measurement validity, loss-only",
+    "image": "normalized CT",
+    "label": "full resolution binary lumen",
+    "valid": "real voxel mask",
+    "gdf": "physical Gaussian target",
+    "gdf_valid": "full target validity incl real foreground when prepared"
+  },
+  "model_output_keys": [
+    "logits",
+    "aux_logits",
+    "support_logits",
+    "radius_mean",
+    "radius_log_variance",
+    "routing",
+    "gdf"
+  ],
+  "model_arms": [
+    "C0",
+    "V_only",
+    "AR"
+  ],
+  "routing": "v0.1 four branches+576 coefficients, no hard applicability threshold; g=tanh(b+u*v+w*cR); static C0 reference b retained; branch coefficients bounded",
+  "stages": [
+    "pretrain",
+    "base",
+    "gdf_head",
+    "local_adapt"
+  ],
+  "local_parameters": [
+    "routing.morphology_convs.*",
+    "routing.morph_fusion.*",
+    "routing.bias",
+    "routing.support_weight",
+    "routing.radius_weight",
+    "output_head.*",
+    "gdf_head.*"
+  ],
+  "local_parameter_count_with_gdf": 115491,
+  "local_modes": "all BN/dropout eval, P+remaining S frozen; GDF gradients reach active routing through frozen layers",
+  "pipeline_arms": [
+    "C0",
+    "AR",
+    "C0_GDF",
+    "AR_GDF"
+  ],
+  "proposed_defaults": {
+    "pretrain_steps": 20000,
+    "base_steps": 10000,
+    "gdf_head_steps": 1000,
+    "local_steps": 2000,
+    "local_shared_lr": 0.0001,
+    "local_gate_lr": 0.001,
+    "gdf_head_lr": 0.001,
+    "alpha_ramp_steps": 250,
+    "gdf_delay_steps": 500,
+    "gdf_ramp_steps": 500,
+    "lambda_gdf": 0.1,
+    "lambda_unknown_prior": 0.01
+  },
+  "validation": "primary Dice selection, record BCE ties/GDF separately; real VAL foreground GDF prepared; readiness checks direct support overlap+R vs prior and usable reliability, not nonconstant prediction alone",
+  "no_old_scores": "v0.1/v1 results are design evidence only, never relabelled as v1.1 outcomes"
+}

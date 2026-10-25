@@ -16,23 +16,48 @@ from gta_avt.metrics import AttributeMetrics, binary_metrics
 
 
 class TinyPredictor(nn.Module):
-    def __init__(self,statistics):
-        super().__init__();self.conv=nn.Conv3d(1,2,1);self.register_buffer('constant',torch.tensor(1.))
-    def forward(self,x):
-        fields=self.conv(F.avg_pool3d(x,2))
-        return {'a_logits':fields[:,:1],'z_radius':fields[:,1:]}
+    def __init__(self, statistics):
+        super().__init__(); self.conv = nn.Conv3d(1, 3, 1)
+        self.register_buffer('constant', torch.tensor(1.))
+    def forward(self, x):
+        fields = self.conv(F.avg_pool3d(x, 2))
+        return dict(support_logits=fields[:, :1], radius_mean=fields[:, 1:2],
+                    radius_log_variance=fields[:, 2:3].clamp(-6., 4.))
 
 
 class TinySegmentor(nn.Module):
-    def __init__(self,predictor,arm='AR',use_gdf=False):
-        super().__init__();self.predictor=predictor;self.predictor.requires_grad_(False)
-        self.predictor.eval();self.conv=nn.Conv3d(1,1,1);self.arm=arm
-    def train(self,mode=True):
-        super().train(mode);self.predictor.eval();return self
-    def forward(self,x,alpha=1.,condition_override=None):
-        with torch.no_grad():
-            attr=self.predictor(x)
-        return dict(attr,logits=self.conv(x))
+    def __init__(self, predictor, arm='AR', use_gdf=True):
+        super().__init__(); self.predictor = predictor; self.predictor.requires_grad_(False)
+        self.backbone = nn.Sequential(nn.Conv3d(1, 2, 1), nn.BatchNorm3d(2), nn.ReLU())
+        self.local = nn.Conv3d(2, 2, 1); self.output = nn.Conv3d(2, 1, 1)
+        self.gate = nn.Parameter(torch.zeros(1)); self.gdf_head = nn.Conv3d(2, 1, 1)
+        self.arm = arm; self.set_stage('base')
+    def set_stage(self, stage):
+        self.stage = stage
+        for name, parameter in self.named_parameters():
+            active = (not name.startswith('predictor.'))
+            if stage == 'base': active = active and name != 'gate' and not name.startswith('gdf_head.')
+            elif stage == 'gdf_head': active = name.startswith('gdf_head.')
+            elif stage == 'local_adapt': active = active and not name.startswith('backbone.')
+            else: raise ValueError(stage)
+            parameter.requires_grad_(active)
+        return self.train(True)
+    def train(self, mode=True):
+        super().train(mode if self.stage == 'base' else False)
+        self.predictor.eval(); return self
+    def parameter_groups(self):
+        groups = dict(shared=[], gates=[], gdf=[])
+        for name, parameter in self.named_parameters():
+            if parameter.requires_grad:
+                groups['gdf' if name.startswith('gdf_head.') else 'gates' if name == 'gate' else 'shared'].append(parameter)
+        return groups
+    def forward(self, x, alpha=1., condition_override=None):
+        with torch.no_grad(): attributes = self.predictor(x)
+        feature = self.local(self.backbone(x))
+        radius = F.interpolate(attributes['radius_mean'], size=x.shape[2:], mode='nearest')
+        feature = feature + float(alpha) * self.gate * (radius if self.arm == 'AR' else 1.)
+        return dict(attributes, logits=self.output(feature), gdf=F.softplus(self.gdf_head(feature)),
+                    routing=dict(gain_absmean=self.gate.detach().abs()))
 
 
 class TinyDataset(torch.utils.data.Dataset):
@@ -49,7 +74,7 @@ class TinyDataset(torch.utils.data.Dataset):
         image=torch.randn(1,8,8,8,generator=generator)
         a=(F.avg_pool3d(image,2)>0).float();r=F.avg_pool3d(image,2)
         return dict(image=image,label=(image>0).float(),valid=torch.ones_like(image),
-            a=a,r=r,a_valid=torch.ones_like(a),r_valid=a,
+            support=a,support_valid=torch.ones_like(a),r=r,r_valid=a,
             gdf=torch.zeros_like(image),gdf_valid=torch.ones_like(image),case_id='ab'[index%2])
 
 
@@ -93,9 +118,9 @@ class TestScientificLosses(unittest.TestCase):
     def test_unknown_radius_is_not_zero_supervision(self):
         a=torch.tensor([[[[[1.,0.]]]]]);r=torch.tensor([[[[[2.,float('nan')]]]]])
         z=torch.tensor([[[[[1.,400.]]]]],requires_grad=True)
-        output={'a_logits':torch.zeros_like(a,requires_grad=True),'z_radius':z}
-        batch={'a':a,'r':r,'a_valid':torch.ones_like(a),'r_valid':a}
-        loss=attribute_loss(output,batch);loss['loss'].backward()
+        output={'support_logits':torch.zeros_like(a,requires_grad=True),'radius_mean':z,'radius_log_variance':torch.zeros_like(z,requires_grad=True)}
+        batch={'support':a,'r':r,'support_valid':torch.ones_like(a),'r_valid':a}
+        loss=attribute_loss(output,batch,unknown_prior_weight=0.);loss['loss'].backward()
         self.assertEqual(float(loss['radius_mse']),1.)
         self.assertEqual(float(z.grad.flatten()[1]),0.)
 
@@ -110,8 +135,8 @@ class TestScientificLosses(unittest.TestCase):
     def test_metric_constant_condition_cannot_pass_spatial_test(self):
         metrics=AttributeMetrics(.5)
         a=torch.ones(1,1,2,2,2);radius=torch.arange(8.).reshape_as(a)-3.5
-        metrics.update({'a_logits':a*20,'z_radius':torch.zeros_like(a)},
-            {'a':a,'r':radius,'a_valid':a,'r_valid':a,'case_id':['x']})
+        metrics.update({'support_logits':a*20,'radius_mean':torch.zeros_like(a),'radius_log_variance':torch.zeros_like(a)},
+            {'support':a,'r':radius,'support_valid':a,'r_valid':a,'case_id':['x']})
         report=metrics.report()
         self.assertAlmostEqual(report['per_case'][0]['case_centered_radius_ratio'],1.)
         self.assertFalse(report['readiness']['passed'])
@@ -133,19 +158,24 @@ class TestEngineLifecycle(unittest.TestCase):
             amp=False,**changes)
     def test_complete_stages_and_matched_clone(self):
         p=self.config('p');engine.pretrain(p)
+        history=[json.loads(line) for line in (self.root/'p'/'history.jsonl').read_text().splitlines()]
+        self.assertTrue(all('validation' in row for row in history))
+        self.assertTrue(all('attributes' in row['validation'] for row in history))
         predictor=str(self.root/'p'/'best.pt')
-        w=self.config('warm',stage='warmup',arm='C0',predictor_checkpoint=predictor,
+        w=self.config('warm',stage='base',arm='C0',predictor_checkpoint=predictor,
                       require_attribute_readiness=False)
         engine.train(w)
-        warmup=str(self.root/'warm'/'last.pt')
+        base=str(self.root/'warm'/'last.pt')
+        engine.train(self.config('head',stage='gdf_head',arm='C0',predictor_checkpoint=predictor,base_checkpoint=base,require_attribute_readiness=False))
+        common=str(self.root/'head'/'last.pt')
         digests=[]
-        for arm in ('C0','A_only','AR'):
-            c=self.config(arm,stage='adapt',arm=arm,predictor_checkpoint=predictor,
-                warmup_checkpoint=warmup,require_attribute_readiness=False)
+        for arm in ('C0','V_only','AR'):
+            c=self.config(arm,stage='local_adapt',arm=arm,predictor_checkpoint=predictor,
+                gdf_head_checkpoint=common,require_attribute_readiness=False)
             engine.train(c)
             checkpoint=engine.load_checkpoint(self.root/arm/'last.pt')
             self.assertEqual(checkpoint['step'],2)
-            digests.append(checkpoint['lineage']['segmentation_init']['warmup_state_sha256'])
+            digests.append(checkpoint['lineage']['segmentation_init']['common_state_sha256'])
         self.assertEqual(len(set(digests)),1)
         with self.assertRaises(FileExistsError):engine.pretrain(p)
     def test_exact_resume_matches_uninterrupted(self):

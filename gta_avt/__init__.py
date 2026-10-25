@@ -1,2 +1,2 @@
-"""GTA-AVT v1. Importing this package does not start training."""
-__version__ = "1.0.0"
+"""GTA-AVT v1.1 algorithm candidate. Importing never starts training."""
+__version__ = "1.1.0"

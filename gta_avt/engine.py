@@ -111,7 +111,7 @@ def _parameters(config):
     defaults = dict(seed=31, validation_seed=0, patch_size=128, batch_size=2, max_steps=10000,
         lr=.0003, weight_decay=.0001 if stage in ('base', 'pretrain') else .00001, num_workers=0, samples_per_epoch=256,
         checkpoint_every=500, validate_every=500, amp=True, availability_weight=1.,
-        radius_weight=1., dice_weight=1., bce_weight=1.,
+        radius_weight=1., dice_weight=1., bce_weight=1., bce_class_balance='none',
         lambda_gdf=0., deep_supervision_weight=1. if stage == 'base' else 0.,
         deep_supervision_weights=[.5, .25], base_attribute_weight=.1,
         max_grad_norm=12. if stage in ('base', 'pretrain') else 0., alpha_ramp_steps=250,
@@ -142,6 +142,8 @@ def _parameters(config):
             raise ValueError(key + ' must be in[0,1]')
     if len(c['deep_supervision_weights']) != 2 or any(not math.isfinite(v) or v < 0 for v in c['deep_supervision_weights']):
         raise ValueError('Two nonnegative finite deep-supervision weights required')
+    if c['bce_class_balance'] not in ('none', 'airway_ratio', 'region_equal'):
+        raise ValueError('bce_class_balance must be none, airway_ratio or region_equal')
     if any(key in c for key in ('unknown_prior_weight', 'lambda_unknown_prior')):
         raise ValueError('The deterministic v1.2 does not use a radius prior/NLL branch')
     return c
@@ -303,16 +305,19 @@ def _validate(model, dataset, config, device, kind, alpha, gdf_weight=None):
 def _loss(output, batch, config, kind, gdf_weight=None):
     if kind == 'pretrain':
         return attribute_loss(output, batch, availability_weight=config['availability_weight'],
-                              radius_weight=config['radius_weight'])
+                              radius_weight=config['radius_weight'],
+                              bce_class_balance=config.get('bce_class_balance', 'none'))
     weight = config['lambda_gdf'] if gdf_weight is None else gdf_weight
     head = config['stage'] == 'gdf_head'
     losses = segmentation_loss(output, batch, dice_weight=0. if head else config['dice_weight'],
         bce_weight=0. if head else config['bce_weight'], gdf_weight=1. if head else weight,
         deep_supervision_weight=0. if head else config['deep_supervision_weight'],
-        deep_supervision_weights=config['deep_supervision_weights'])
+        deep_supervision_weights=config['deep_supervision_weights'],
+        bce_class_balance=config.get('bce_class_balance', 'none'))
     if config['stage'] == 'base':
         attributes = attribute_loss(output, batch, availability_weight=config['availability_weight'],
-                                    radius_weight=config['radius_weight'])
+                                    radius_weight=config['radius_weight'],
+                              bce_class_balance=config.get('bce_class_balance', 'none'))
         losses['loss'] = losses['loss'] + config['base_attribute_weight'] * attributes['loss']
         losses.update({'attribute_' + key: value for key, value in attributes.items()})
     losses['weighted_gdf_loss'] = (1. if head else weight) * losses['gdf_mse']

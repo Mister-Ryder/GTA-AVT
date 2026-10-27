@@ -48,5 +48,6 @@
   },
   "arm": "C0",
   "lambda_gdf": 0.0,
-  "predictor_checkpoint": "runs/v1.2_seed30_AR_GDF/attribute/best_ready.pt"
+  "predictor_checkpoint": "runs/v1.2_seed30_AR_GDF/attribute/best_ready.pt",
+  "bce_class_balance": "airway_ratio"
 }

@@ -1,6 +1,6 @@
 {
-  "schema": "GTA-AVT-v1.2-source-1",
-  "created_utc": "2026-10-27T06:21:01.680032+00:00",
+  "schema": "GTA-AVT-v1.2-ratio-r2-source-1",
+  "created_utc": "2026-10-27T09:30:40.221467+00:00",
   "status": "Method implementation and proposed training recipe; no efficacy results",
   "files": {
     ".gitignore": {
@@ -8,84 +8,84 @@
       "sha256": "9742caea5306737622274ff6e4bd76181a98b1da41c09d66c3bef397c4cc4c04"
     },
     "configs/adapt.json": {
-      "bytes": 1249,
-      "sha256": "c6918d74c8fcf3f7a95092ff606ef0db02551c0ea55b0d6ed96527bdbbffff54"
+      "bytes": 1289,
+      "sha256": "f44027ed8129481f3e6c8dcce18501fcdba16cb1d94cc647bc0fadf0f1d69c8e"
     },
     "configs/attribute.json": {
-      "bytes": 1179,
-      "sha256": "128a9a61f928d4f51e4583857a7e274e3d8215fd43184ae6eb0549c942d4923f"
+      "bytes": 1219,
+      "sha256": "563cfa755c1bcc12a3043ce615a8430fdebdf301a4ee42b164abdd718114f47e"
     },
     "configs/base.json": {
-      "bytes": 1232,
-      "sha256": "e91a0030860b45a92f560b69fd7ac453500c607bad90d8a219dfd16c1c0ea02f"
+      "bytes": 1272,
+      "sha256": "e1298eb286c4c8381fd773dd351c59892ea939c470dbf42238e44c3e5a6c825c"
     },
     "configs/base_warm.json": {
-      "bytes": 1251,
-      "sha256": "9fa6c96f5ff9e3ab9c993dc88039e4d82f9b241ccd001bfcf4346f34315d89a6"
+      "bytes": 1291,
+      "sha256": "c8efc95db4c79f9c74989ebcdee73e2610145fae5486982c8fd7c26c2abcc8da"
     },
     "configs/condition.json": {
-      "bytes": 1249,
-      "sha256": "c6918d74c8fcf3f7a95092ff606ef0db02551c0ea55b0d6ed96527bdbbffff54"
+      "bytes": 1289,
+      "sha256": "f44027ed8129481f3e6c8dcce18501fcdba16cb1d94cc647bc0fadf0f1d69c8e"
     },
     "configs/evaluate.json": {
       "bytes": 276,
       "sha256": "a4aaf1c516a7f1608bb246fd31cc705463f6cde4308faf436c96967f1a4e79e5"
     },
     "configs/gdf_head.json": {
-      "bytes": 1244,
-      "sha256": "60b30b272d986e4d1c96f0caa3c174d7fa6c3574746654fbd2e4557967f75f28"
+      "bytes": 1284,
+      "sha256": "64244792917027d9370a1a82cf2121f3176c1cba1eb735addee394faf57eb6ea"
     },
     "configs/geometry.json": {
-      "bytes": 1245,
-      "sha256": "858aa15905ad74417e6457cb840414246ae6e3ece417c4a6a70bd9a85f6c6169"
+      "bytes": 1285,
+      "sha256": "9cddab6460715cf26e24f0b4b0711812f4b50b2037b0caf8e7b38fb252ff4fe3"
     },
     "configs/infer.json": {
       "bytes": 303,
       "sha256": "62f3d0bfc88c75caa4c77c66d67fd45da8059884eaa60f65be8c1e00b6ffa473"
     },
     "configs/local_adapt.json": {
-      "bytes": 1249,
-      "sha256": "c6918d74c8fcf3f7a95092ff606ef0db02551c0ea55b0d6ed96527bdbbffff54"
+      "bytes": 1289,
+      "sha256": "f44027ed8129481f3e6c8dcce18501fcdba16cb1d94cc647bc0fadf0f1d69c8e"
     },
     "configs/phases.json": {
-      "bytes": 6198,
-      "sha256": "f04b86ba9f98ebe9a80a1f6da48e8d680f0a9de323f163155cdf1abbfd0815a6"
+      "bytes": 6492,
+      "sha256": "461c3335a7db3f57e518ea0c4feb2702aad654a2c36a939f5cd90bf9317baa34"
     },
     "configs/pipeline.json": {
       "bytes": 402,
       "sha256": "4cadfcb614e45883ec93f4fbe105ba933bd97499acb1a50caaf85cfe8ffe5a11"
     },
     "configs/pretrain.json": {
-      "bytes": 1179,
-      "sha256": "128a9a61f928d4f51e4583857a7e274e3d8215fd43184ae6eb0549c942d4923f"
+      "bytes": 1219,
+      "sha256": "563cfa755c1bcc12a3043ce615a8430fdebdf301a4ee42b164abdd718114f47e"
     },
     "configs/refine.json": {
-      "bytes": 1242,
-      "sha256": "528f8eeecf46d2672916fda8fc253f135055cfee4976cd4169fd1a4c8ba0b97d"
+      "bytes": 1282,
+      "sha256": "e2c60f1c38dc09fca81168b0b58fe3483bf454fd4cf0cbf84ed947eb55608594"
     },
     "configs/split_avt_20261022.json": {
       "bytes": 984,
       "sha256": "df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b"
     },
     "configs/warmup.json": {
-      "bytes": 1251,
-      "sha256": "9fa6c96f5ff9e3ab9c993dc88039e4d82f9b241ccd001bfcf4346f34315d89a6"
+      "bytes": 1291,
+      "sha256": "c8efc95db4c79f9c74989ebcdee73e2610145fae5486982c8fd7c26c2abcc8da"
     },
     "docs/DEVELOPMENT_CONTRACT.json": {
-      "bytes": 2230,
-      "sha256": "4f46fdaafbdac76171abdbd8c57295a37cf32b0bf8f7d1b7233d743e0722c4f1"
+      "bytes": 3023,
+      "sha256": "5b2aeb0614a756556fe4a70b1933d95ee0d340f95ed0e3168c2e5a9bd6d8545e"
     },
     "docs/METHOD.md": {
-      "bytes": 2817,
-      "sha256": "b75802fba75efdcf104a25d96f6e9b54f9705efae35b4e2892c660edc4d047b3"
+      "bytes": 4321,
+      "sha256": "240f17313acff6dee628ca28a7cf57ff4a8c3be1b8d1bb4940179f80b6fd71d7"
     },
     "docs/METHOD_ZH.md": {
-      "bytes": 7211,
-      "sha256": "daca657d87fa3bd39c83b96a9ea0da36c840e28f28cefec0d09253429a47b8a8"
+      "bytes": 9096,
+      "sha256": "1ed8c1a7dff827b67c2e3504ad7828c38f5de167cf6bf97bc23f76bdfc80bdd9"
     },
     "ENGINEERING_QA.json": {
-      "bytes": 1190,
-      "sha256": "9b177223141fe19826b8629b2e603a569086d33bf03c2557e39bf0271e5e380d"
+      "bytes": 1418,
+      "sha256": "cc00893e790a1f1a44557b607058514da20a0cbd263a046098c6b456bcc82853"
     },
     "gta_avt/__init__.py": {
       "bytes": 98,
@@ -100,8 +100,8 @@
       "sha256": "3bebbd80a1f257c9b520395bdad8f6a29e09dd252d6c6acb5e121f734362d6a6"
     },
     "gta_avt/engine.py": {
-      "bytes": 33883,
-      "sha256": "9ac0664c6151f7935d32aae2caac902a9a176fb5b737b4e147f984de8dc099d1"
+      "bytes": 34327,
+      "sha256": "ea4e90f59eb7bbcece881346f70f29c7f6b68cf772041287b83f72b2e70d44dd"
     },
     "gta_avt/geometry.py": {
       "bytes": 32673,
@@ -116,16 +116,16 @@
       "sha256": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a"
     },
     "gta_avt/losses.py": {
-      "bytes": 8523,
-      "sha256": "9a775d814725bfd71f06c4f24eab5acb978331470352b6dbf90ccf8f504cea98"
+      "bytes": 12965,
+      "sha256": "1b1d7504f7f360db7503373f133698698c974d1176e76e907d02f39587efb4da"
     },
     "gta_avt/metrics.py": {
       "bytes": 13373,
       "sha256": "459f061fcf34705d7b83fd14d30de07fe9a38ee69ee3112422b40b25512f3a93"
     },
     "gta_avt/models.py": {
-      "bytes": 17649,
-      "sha256": "74fa50f91ade4970629c9a8998da5f539c0a4854f61934b2ba8fcfa5fe590e51"
+      "bytes": 17964,
+      "sha256": "8f2329b23524cd979b7b6724178105f8af38c5e640aa5a1be78cab1467fd68e5"
     },
     "gta_avt/pipeline.py": {
       "bytes": 9937,
@@ -164,8 +164,8 @@
       "sha256": "c75ae944a09d9c4d71754f9fcfe0e067224375dfbc768d41b08a0e85a0ae3ff7"
     },
     "README.md": {
-      "bytes": 4023,
-      "sha256": "c57502863ffdaccb84fb512c38d7b8649b047199f7f2ed347aa43f542a9ae69a"
+      "bytes": 5491,
+      "sha256": "cec8011c82278b7158810425c1087533ace0a4d2c8bbffc50728b2a94054306e"
     },
     "scripts/smoke_cuda.py": {
       "bytes": 3503,
@@ -194,6 +194,10 @@
     "tests/test_pipeline.py": {
       "bytes": 7158,
       "sha256": "6ab11d8dba59bb66864df179ef830c7ae093994462dc1c990b85725d21dc1e1d"
+    },
+    "tests/test_ratio_balanced_bce.py": {
+      "bytes": 10118,
+      "sha256": "73ce79e73fa826a81f3328a7ca623d39cad589c8b0d93ee480f53a55f50723dd"
     },
     "tests/test_revision_model_losses.py": {
       "bytes": 2806,

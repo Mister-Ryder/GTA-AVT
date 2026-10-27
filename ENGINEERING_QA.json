@@ -1,12 +1,12 @@
 {
-  "schema": "GTA-AVT-v1.2-engineering-QA-1",
+  "schema": "GTA-AVT-v1.2-ratio-r2-engineering-QA-1",
   "scope": "Synthetic CPU implementation checks; no AVT dataset training or server execution",
   "platform": "Windows",
   "python": "3.13.14",
   "torch": "2.8.0+cpu",
   "pytest": "8.4.2",
-  "tests": 65,
-  "passed": 64,
+  "tests": 80,
+  "passed": 79,
   "failures": 0,
   "skipped": 1,
   "skipped_reasons": [
@@ -20,6 +20,9 @@
     32
   ],
   "checks": [
+    "historic airway ratio weighting and mean-weight normalization",
+    "soft occupancy, finite sparse/empty-class and padding-safe weighted BCE",
+    "P/main/DS objective wiring and unchanged ordinary Dice/R/GDF",
     "joint-base predictor/segmentation gradients and normalization",
     "local parameter scope and immutable later-stage predictor",
     "Gaussian gradients reach active local routing",

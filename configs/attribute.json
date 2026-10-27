@@ -47,5 +47,6 @@
     "max_candidates": 50000
   },
   "arm": "C0",
-  "lambda_gdf": 0.0
+  "lambda_gdf": 0.0,
+  "bce_class_balance": "airway_ratio"
 }

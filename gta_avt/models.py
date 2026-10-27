@@ -20,7 +20,7 @@ ARMS = ("C0", "V_only", "AR")
 STAGES = ("base", "gdf_head", "local_adapt")
 RADIUS_AXIS_CLIP = 4.
 MODEL_CONFIG = {
-    "name": "GTA-AVT-v1.2", "revision": "20261027", "input_channels": 1, "input_multiple": 16,
+    "name": "GTA-AVT-v1.2", "revision": "20261027-ratio-r2", "input_channels": 1, "input_multiple": 16,
     "attribute_encoder_channels": [32, 64, 128, 256], "attribute_field_stride": 2,
     "seg_encoder_channels": [32, 64, 128, 256], "seg_decoder_channels": [128, 64, 32],
     "routing_site_channels": 64, "routing_coefficients": 576,

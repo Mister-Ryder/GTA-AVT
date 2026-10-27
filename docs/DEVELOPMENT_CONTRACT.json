@@ -1,15 +1,15 @@
 {
   "method": "GTA-AVT-v1.2",
-  "revision": "20261027",
+  "revision": "20261027-ratio-r2",
   "package_version": "1.2.0",
-  "scope": "method/code only; no AVT dataset training, remote execution or automated follow-up",
+  "scope": "method implementation and authorized fresh-P seven-phase run; no efficacy claim",
   "cores": [
     "image-predicted anatomical attributes",
     "conditional feature fusion",
     "Gaussian geometry supervision"
   ],
   "architecture": "deterministic support/log-radius predictor; original four bounded branches; shared segmentation/Gaussian heads",
-  "attribute_loss": "case-equal occupancy Dice+BCE and measured log-radius MSE; no fabricated unknown-radius labels",
+  "attribute_loss": "case-equal soft occupancy Dice plus airway-derived ratio-weighted BCE and masked measured log-radius MSE",
   "phase_order": [
     "attribute",
     "base_warm",
@@ -41,5 +41,23 @@
   "validation": "fixed common VAL patch sampling; native Dice first, connectivity metrics separate; no label-driven inference",
   "execution": "default stop_after=base; complete explicit; one variant only, no automatic factorial sweep",
   "configuration_source": "configs/phases.json; all resolved phase recipes included in resume identity",
-  "evidence": "no new efficacy claim; long defaults and higher Gaussian weight are not validated optimum"
+  "evidence": "no new efficacy claim; long defaults and higher Gaussian weight are not validated optimum",
+  "bce_class_balance": "airway_ratio",
+  "ratio_revision": {
+    "main_change": "historical actual-pFG/pBG exponential ratio weighting with mean-weight normalization in support/main/DS BCE",
+    "unchanged": [
+      "model architecture",
+      "attributes",
+      "ordinary Dice",
+      "radius MSE",
+      "Gaussian objective",
+      "sampling policies",
+      "phase budgets",
+      "seed"
+    ],
+    "control": "finish original P; fresh random P for revision; no weight import",
+    "diagnostics": "unweighted BCE remains separate; class coefficients are not gradient norm equality",
+    "historical_ratio": "wFG/wBG = exp(1-2*pFG), bounded by e",
+    "not_used": "region_equal research option not in formal recipes; no extra sampler or loss modules"
+  }
 }

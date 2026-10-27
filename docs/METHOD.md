@@ -1,4 +1,13 @@
-# GTA-AVT v1.2
+# GTA-AVT v1.2 ratio-r2
+
+
+## Airway-derived foreground/background ratio revision
+
+For each case patch, pF=sum(y)/Nreal and pB=1-pF. Follow the historic airway weighting law wF=exp(pB)/(exp(pF)+exp(pB)), wB=exp(pF)/(exp(pF)+exp(pB)). BCE is the weighted soft-target logistic sum divided by wF*sum(y)+wB*sum(1-y). Thus wF/wB=exp(1-2*pF), at most e for sparse foreground. Mean-weight normalization preserves the loss scale; total class contributions are not forced equal. Padding is excluded, soft occupancy retained, and single-class patches reduce to ordinary BCE. Historical entries compute ratios per batch; AVT retains per-case outer weighting.
+
+All formal phase configs explicitly select airway_ratio for P support, main segmentation and both DS BCE terms. Ordinary Dice, measured-radius MSE, existing region-balanced Gaussian MSE, architecture, attributes, sampler, seeds and phase budgets are unchanged. region_equal remains an explicit unused research option, not the current recipe. No power-Dice or new sampling hierarchy was added.
+
+Historical airway code applies ratio weights in weighted/power Dice. AVT keeps its Dice+BCE objective and transfers that ratio law to BCE, rather than copying the historical numerator-only weighted Dice asymmetry. The completed original P is kept separately; the revised P starts randomly, never initialized from that control. Common VAL metrics, rather than differently defined total losses, support comparison. No efficacy improvement is claimed before AVT results.
 
 This implementation keeps image-predicted anatomical attributes, conditional feature fusion and Gaussian geometry supervision. Its primary revision is the training system, rather than additional network modules.
 

@@ -48,5 +48,6 @@
   },
   "arm": "C0",
   "lambda_gdf": 0.0,
-  "parent_checkpoint": "runs/v1.2_seed30_AR_GDF/base_warm/last.pt"
+  "parent_checkpoint": "runs/v1.2_seed30_AR_GDF/base_warm/last.pt",
+  "bce_class_balance": "airway_ratio"
 }

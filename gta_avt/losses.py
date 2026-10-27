@@ -39,8 +39,69 @@ def _region_case_mean(value, foreground, background):
     return per_case[good].mean() if good.any() else torch.where(foreground | background, value, 0.).sum() * 0
 
 
+
+def _masked_bce(logits, target, valid, class_balance='none'):
+    """Valid-cell BCE with optional explicit class-mass weighting.
+
+    Soft occupancy contributes y and (1-y) mass to the two classes. Every
+    supported case has equal outer weight; a missing class is not fabricated.
+    Target masses are label-only constants. Padding is removed before softplus.
+    ``airway_ratio`` transfers the historical bounded exponential ratio,
+    normalized by its actual weighted target mass so the BCE scale is retained.
+    ``region_equal`` is a separate, stronger explicit research option. Diagnostic
+    ordinary BCE remains available even when weighting is selected.
+    """
+    if class_balance not in ('none', 'airway_ratio', 'region_equal'):
+        raise ValueError('bce_class_balance must be none, airway_ratio or region_equal')
+    if logits.shape != target.shape or target.shape != valid.shape:
+        raise ValueError('BCE logits, targets and validity must align')
+    valid = valid.bool()
+    z = torch.where(valid, logits.float(), torch.zeros_like(logits, dtype=torch.float32))
+    y = torch.where(valid, target.float(), torch.zeros_like(target, dtype=torch.float32))
+    if not bool(torch.isfinite(y[valid]).all()) or bool(((y[valid] < 0) | (y[valid] > 1)).any()):
+        raise ValueError('Valid BCE targets must be finite in [0,1]')
+    positive = y
+    negative = torch.where(valid, 1. - y, torch.zeros_like(y))
+    foreground_mass = positive.flatten(1).sum(1)
+    background_mass = negative.flatten(1).sum(1)
+    counts = valid.flatten(1).sum(1)
+    supported = counts > 0
+    fg_present, bg_present = foreground_mass > 0, background_mass > 0
+    # clamp avoids zero division only; it does not replace a small real mass.
+    tiny = torch.finfo(torch.float32).tiny
+    foreground_sum = (positive * F.softplus(-z)).flatten(1).sum(1)
+    background_sum = (negative * F.softplus(z)).flatten(1).sum(1)
+    fg_mean = foreground_sum / foreground_mass.clamp_min(tiny)
+    bg_mean = background_sum / background_mass.clamp_min(tiny)
+    present = fg_present.float() + bg_present.float()
+    per_case = (fg_mean * fg_present + bg_mean * bg_present) / present.clamp_min(1.)
+    zero = z.sum() * 0.
+    balanced = per_case[supported].mean() if bool(supported.any()) else zero
+    ordinary = masked_case_mean(F.binary_cross_entropy_with_logits(z, y, reduction='none'), valid)
+    fraction = foreground_mass / counts.clamp_min(1)
+    exp_foreground, exp_background = fraction.exp(), (1. - fraction).exp()
+    weight_foreground = exp_background / (exp_foreground + exp_background)
+    weight_background = exp_foreground / (exp_foreground + exp_background)
+    weighted_mass = weight_foreground * foreground_mass + weight_background * background_mass
+    airway_cases = (weight_foreground * foreground_sum + weight_background * background_sum) / weighted_mass.clamp_min(tiny)
+    airway = airway_cases[supported].mean() if bool(supported.any()) else zero
+    both = fg_present & bg_present
+    diagnostics = dict(
+        bce_unweighted=ordinary,
+        bce_foreground=fg_mean[fg_present].mean().detach() if bool(fg_present.any()) else None,
+        bce_background=bg_mean[bg_present].mean().detach() if bool(bg_present.any()) else None,
+        foreground_fraction=fraction[supported].mean().detach() if bool(supported.any()) else None,
+        bce_fg_to_bg_weight_ratio=(background_mass[both] / foreground_mass[both]).mean().detach()
+            if class_balance == 'region_equal' and bool(both.any()) else
+            (weight_foreground[both] / weight_background[both]).mean().detach()
+            if class_balance == 'airway_ratio' and bool(both.any()) else
+            z.new_tensor(1.) if class_balance == 'none' and bool(both.any()) else None)
+    selected = balanced if class_balance == 'region_equal' else airway if class_balance == 'airway_ratio' else ordinary
+    return selected, diagnostics
+
+
 def attribute_loss(output, batch, *, availability_weight=1.0, radius_weight=1.0,
-                   support_weight=None):
+                   support_weight=None, bce_class_balance='none'):
     """Support Dice+BCE and measured-radius MSE, case equal.
 
     The deterministic revision changes only what is measured and consumed.
@@ -58,8 +119,7 @@ def attribute_loss(output, batch, *, availability_weight=1.0, radius_weight=1.0,
         raise ValueError('Support target must be a real-cell occupancy in [0,1]')
     safe_support = torch.where(valid, support, torch.zeros_like(support))
     safe_logits = torch.where(valid, logits, torch.zeros_like(logits))
-    support_bce = masked_case_mean(F.binary_cross_entropy_with_logits(safe_logits, safe_support,
-                                  reduction='none'), valid)
+    support_bce, bce_details = _masked_bce(safe_logits, safe_support, valid, bce_class_balance)
     support_dice = _case_dice(safe_logits.sigmoid(), safe_support, valid)
     mu = torch.where(valid, predicted, torch.zeros_like(predicted))
     # Eliminate unknown target values BEFORE subtracting, including NaNs.
@@ -73,12 +133,14 @@ def attribute_loss(output, batch, *, availability_weight=1.0, radius_weight=1.0,
     if not torch.isfinite(loss):
         raise FloatingPointError('Nonfinite attribute loss')
     return dict(loss=loss, support_bce=support_bce, support_dice_loss=support_dice,
-                radius_mse=radius_mse)
+                radius_mse=radius_mse,
+                **{'support_' + key: value for key, value in bce_details.items()})
 
 
 def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
                       gdf_weight=0.0, deep_supervision_weight=0.0,
-                      deep_supervision_weights=(.5, .25), dice_smooth=1.0):
+                      deep_supervision_weights=(.5, .25), dice_smooth=1.0,
+                      bce_class_balance='none'):
     if not isinstance(dice_smooth, (int, float)) or not 0 < dice_smooth < float('inf'):
         raise ValueError('Dice smoothing must be finite and positive')
     logits = output['logits'].float()
@@ -87,8 +149,7 @@ def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
         raise ValueError('Segmentation output and full-resolution label shapes differ')
     safe_label = torch.where(valid, label, torch.zeros_like(label))
     safe_logits = torch.where(valid, logits, torch.zeros_like(logits))
-    bce = masked_case_mean(F.binary_cross_entropy_with_logits(safe_logits, safe_label,
-                           reduction='none'), valid)
+    bce, bce_details = _masked_bce(safe_logits, safe_label, valid, bce_class_balance)
     prob = torch.where(valid, safe_logits.sigmoid(), torch.zeros_like(logits))
     truth = safe_label
     numerator = 2 * (prob * truth).flatten(1).sum(1)
@@ -119,6 +180,7 @@ def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
             gdf = gdf.detach()  # A lambda-zero diagnostic must not update the unused head.
     auxiliary_bce = safe_logits.sum() * 0
     auxiliary_dice = safe_logits.sum() * 0
+    auxiliary_bce_unweighted = safe_logits.sum() * 0
     if deep_supervision_weight:
         heads = output.get('aux_logits', [])
         if not heads:
@@ -133,8 +195,9 @@ def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
             if head.shape[2:] != label.shape[2:]:
                 head = F.interpolate(head, size=label.shape[2:], mode='trilinear', align_corners=False)
             head = torch.where(valid, head, torch.zeros_like(head))
-            auxiliary_bce = auxiliary_bce + weight * masked_case_mean(
-                F.binary_cross_entropy_with_logits(head, safe_label, reduction='none'), valid)
+            head_bce, head_details = _masked_bce(head, safe_label, valid, bce_class_balance)
+            auxiliary_bce = auxiliary_bce + weight * head_bce
+            auxiliary_bce_unweighted = auxiliary_bce_unweighted + weight * head_details['bce_unweighted']
             auxiliary_dice = auxiliary_dice + weight * _case_dice(head.sigmoid(), safe_label, valid,
                                                                 smooth=dice_smooth)
     auxiliary = auxiliary_bce + auxiliary_dice
@@ -143,4 +206,5 @@ def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
         raise FloatingPointError('Nonfinite segmentation loss')
     return {'loss': total, 'dice_loss': dice, 'segmentation_bce': bce,
             'gdf_mse': gdf, 'auxiliary_bce': auxiliary_bce, 'auxiliary_dice': auxiliary_dice,
-            'auxiliary_loss': auxiliary, **gdf_details}
+            'auxiliary_loss': auxiliary, 'auxiliary_bce_unweighted': auxiliary_bce_unweighted,
+            **{'segmentation_' + key: value for key, value in bce_details.items()}, **gdf_details}

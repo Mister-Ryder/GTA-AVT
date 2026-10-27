@@ -17,12 +17,11 @@ from gta_avt.metrics import AttributeMetrics, binary_metrics
 
 class TinyPredictor(nn.Module):
     def __init__(self, statistics):
-        super().__init__(); self.conv = nn.Conv3d(1, 3, 1)
+        super().__init__(); self.conv = nn.Conv3d(1, 2, 1)
         self.register_buffer('constant', torch.tensor(1.))
     def forward(self, x):
         fields = self.conv(F.avg_pool3d(x, 2))
-        return dict(support_logits=fields[:, :1], radius_mean=fields[:, 1:2],
-                    radius_log_variance=fields[:, 2:3].clamp(-6., 4.))
+        return dict(support_logits=fields[:, :1], radius_mean=fields[:, 1:2])
 
 
 class TinySegmentor(nn.Module):
@@ -35,16 +34,17 @@ class TinySegmentor(nn.Module):
     def set_stage(self, stage):
         self.stage = stage
         for name, parameter in self.named_parameters():
-            active = (not name.startswith('predictor.'))
+            active = True
             if stage == 'base': active = active and name != 'gate' and not name.startswith('gdf_head.')
             elif stage == 'gdf_head': active = name.startswith('gdf_head.')
-            elif stage == 'local_adapt': active = active and not name.startswith('backbone.')
+            elif stage == 'local_adapt': active = active and not name.startswith(('backbone.', 'predictor.'))
             else: raise ValueError(stage)
             parameter.requires_grad_(active)
         return self.train(True)
     def train(self, mode=True):
         super().train(mode if self.stage == 'base' else False)
-        self.predictor.eval(); return self
+        if self.stage != 'base': self.predictor.eval()
+        return self
     def parameter_groups(self):
         groups = dict(shared=[], gates=[], gdf=[])
         for name, parameter in self.named_parameters():
@@ -52,16 +52,18 @@ class TinySegmentor(nn.Module):
                 groups['gdf' if name.startswith('gdf_head.') else 'gates' if name == 'gate' else 'shared'].append(parameter)
         return groups
     def forward(self, x, alpha=1., condition_override=None):
-        with torch.no_grad(): attributes = self.predictor(x)
+        if self.stage == 'base': attributes = self.predictor(x)
+        else:
+            with torch.no_grad(): attributes = self.predictor(x)
         feature = self.local(self.backbone(x))
         radius = F.interpolate(attributes['radius_mean'], size=x.shape[2:], mode='nearest')
         feature = feature + float(alpha) * self.gate * (radius if self.arm == 'AR' else 1.)
-        return dict(attributes, logits=self.output(feature), gdf=F.softplus(self.gdf_head(feature)),
+        return dict(attributes, logits=self.output(feature), aux_logits=[self.output(feature), self.output(feature)], gdf=F.softplus(self.gdf_head(feature)),
                     routing=dict(gain_absmean=self.gate.detach().abs()))
 
 
 class TinyDataset(torch.utils.data.Dataset):
-    statistics={'mu':0.,'sigma':1.,'pi':.5,'gdf_scale':1.}
+    statistics={'mu':0.,'sigma':1.,'pi':.5,'pi_support':.5,'gdf_scale':1.}
     cases=[{'id':'a'},{'id':'b'}]
     def __init__(self):
         self.epoch=0
@@ -75,7 +77,8 @@ class TinyDataset(torch.utils.data.Dataset):
         a=(F.avg_pool3d(image,2)>0).float();r=F.avg_pool3d(image,2)
         return dict(image=image,label=(image>0).float(),valid=torch.ones_like(image),
             support=a,support_valid=torch.ones_like(a),r=r,r_valid=a,
-            gdf=torch.zeros_like(image),gdf_valid=torch.ones_like(image),case_id='ab'[index%2])
+            gdf=torch.zeros_like(image),gdf_valid=torch.ones_like(image),case_id='ab'[index%2],
+            sampling_requested='uniform',sampling_actual='uniform',sampling_fallback='none')
 
 
 class TestScientificLosses(unittest.TestCase):
@@ -118,9 +121,9 @@ class TestScientificLosses(unittest.TestCase):
     def test_unknown_radius_is_not_zero_supervision(self):
         a=torch.tensor([[[[[1.,0.]]]]]);r=torch.tensor([[[[[2.,float('nan')]]]]])
         z=torch.tensor([[[[[1.,400.]]]]],requires_grad=True)
-        output={'support_logits':torch.zeros_like(a,requires_grad=True),'radius_mean':z,'radius_log_variance':torch.zeros_like(z,requires_grad=True)}
+        output={'support_logits':torch.zeros_like(a,requires_grad=True),'radius_mean':z}
         batch={'support':a,'r':r,'support_valid':torch.ones_like(a),'r_valid':a}
-        loss=attribute_loss(output,batch,unknown_prior_weight=0.);loss['loss'].backward()
+        loss=attribute_loss(output,batch);loss['loss'].backward()
         self.assertEqual(float(loss['radius_mse']),1.)
         self.assertEqual(float(z.grad.flatten()[1]),0.)
 
@@ -135,7 +138,7 @@ class TestScientificLosses(unittest.TestCase):
     def test_metric_constant_condition_cannot_pass_spatial_test(self):
         metrics=AttributeMetrics(.5)
         a=torch.ones(1,1,2,2,2);radius=torch.arange(8.).reshape_as(a)-3.5
-        metrics.update({'support_logits':a*20,'radius_mean':torch.zeros_like(a),'radius_log_variance':torch.zeros_like(a)},
+        metrics.update({'support_logits':a*20,'radius_mean':torch.zeros_like(a)},
             {'support':a,'r':radius,'support_valid':a,'r_valid':a,'case_id':['x']})
         report=metrics.report()
         self.assertAlmostEqual(report['per_case'][0]['case_centered_radius_ratio'],1.)
@@ -156,28 +159,50 @@ class TestEngineLifecycle(unittest.TestCase):
         return dict(manifest='unused.json',output_dir=str(self.root/name),seed=31,device='cpu',
             patch_size=32,batch_size=2,max_steps=2,checkpoint_every=1,validate_every=1,
             amp=False,**changes)
-    def test_complete_stages_and_matched_clone(self):
-        p=self.config('p');engine.pretrain(p)
+    def test_complete_phase_chain_and_immutable_pair(self):
+        engine.pretrain(self.config('p'))
         history=[json.loads(line) for line in (self.root/'p'/'history.jsonl').read_text().splitlines()]
-        self.assertTrue(all('validation' in row for row in history))
         self.assertTrue(all('attributes' in row['validation'] for row in history))
+        self.assertEqual(history[0]['sampling']['actual_counts'],{'uniform':2})
+        self.assertEqual(len(history[0]['sampling']['foreground_fraction']),2)
         predictor=str(self.root/'p'/'best.pt')
-        w=self.config('warm',stage='base',arm='C0',predictor_checkpoint=predictor,
-                      require_attribute_readiness=False)
-        engine.train(w)
-        base=str(self.root/'warm'/'last.pt')
-        engine.train(self.config('head',stage='gdf_head',arm='C0',predictor_checkpoint=predictor,base_checkpoint=base,require_attribute_readiness=False))
-        common=str(self.root/'head'/'last.pt')
+        engine.train(self.config('warm',phase='base_warm',stage='base',arm='C0',
+            predictor_checkpoint=predictor,require_attribute_readiness=False))
+        warm=str(self.root/'warm'/'last.pt')
+        engine.train(self.config('base',phase='base',stage='base',arm='C0',
+            parent_checkpoint=warm,require_attribute_readiness=False))
+        base=str(self.root/'base'/'last.pt')
+        base_state=engine.load_checkpoint(base);initial=engine.load_checkpoint(predictor)
+        self.assertTrue(any(not torch.equal(value,base_state['model']['predictor.'+name]) for name,value in initial['model'].items()))
+        self.assertEqual(base_state['model_config'],dict(engine.MODEL_CONFIG,arm='C0',use_gdf=True))
+        self.assertTrue('attributes' in base_state['validation'])
         digests=[]
         for arm in ('C0','V_only','AR'):
-            c=self.config(arm,stage='local_adapt',arm=arm,predictor_checkpoint=predictor,
-                gdf_head_checkpoint=common,require_attribute_readiness=False)
-            engine.train(c)
+            engine.train(self.config(arm,phase='condition',stage='local_adapt',arm=arm,
+                parent_checkpoint=base,require_attribute_readiness=False))
             checkpoint=engine.load_checkpoint(self.root/arm/'last.pt')
-            self.assertEqual(checkpoint['step'],2)
+            self.assertEqual(checkpoint['pair']['predictor_state_sha256'],base_state['pair']['predictor_state_sha256'])
             digests.append(checkpoint['lineage']['segmentation_init']['common_state_sha256'])
         self.assertEqual(len(set(digests)),1)
-        with self.assertRaises(FileExistsError):engine.pretrain(p)
+        condition=str(self.root/'AR'/'last.pt')
+        engine.train(self.config('head',phase='gdf_head',stage='gdf_head',arm='AR',
+            parent_checkpoint=condition,require_attribute_readiness=False))
+        parent=str(self.root/'head'/'last.pt')
+        for phase in ('geometry','refine'):
+            engine.train(self.config(phase,phase=phase,stage='local_adapt',arm='AR',
+                parent_checkpoint=parent,require_attribute_readiness=False,gdf_weight_start=.1,gdf_weight_end=.2))
+            parent=str(self.root/phase/'last.pt')
+            current=engine.load_checkpoint(parent)
+            self.assertEqual(current['pair']['predictor_state_sha256'],base_state['pair']['predictor_state_sha256'])
+            self.assertEqual(current['pair']['selected_base_sha256'],engine.file_digest(base))
+        with self.assertRaisesRegex(ValueError,'separate predictor_checkpoint'):
+            engine.train(self.config('bad_head',phase='gdf_head',stage='gdf_head',arm='AR',
+                predictor_checkpoint=predictor,parent_checkpoint=condition,require_attribute_readiness=False))
+        with self.assertRaisesRegex(ValueError,'Parent phase'):
+            engine.train(self.config('bad_parent',phase='geometry',stage='local_adapt',arm='AR',
+                parent_checkpoint=base,require_attribute_readiness=False))
+        with self.assertRaises(FileExistsError): engine.pretrain(self.config('p'))
+
     def test_exact_resume_matches_uninterrupted(self):
         baseline=self.config('baseline');engine.pretrain(baseline)
         interrupted=self.config('interrupted');save=engine._save

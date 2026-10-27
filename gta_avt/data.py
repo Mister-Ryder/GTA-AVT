@@ -636,7 +636,12 @@ def load_manifest(path):
 
 class PreparedDataset:
     """Stateless case/patch sampling; all controls receive identical batches."""
-    def __init__(self, manifest, split='TRAIN', patch_size=128, samples_per_epoch=1000, seed=0, augment=False):
+    def __init__(self, manifest, split='TRAIN', patch_size=128, samples_per_epoch=1000, seed=0, augment=False,
+                 sampling=None):
+        from .sampling import validate_sampling
+        self.sampling = validate_sampling(sampling)
+        if self.sampling is not None and split.upper() != 'TRAIN':
+            raise ValueError('Explicit curriculum sampling is TRAIN-only; VAL/TEST keep the fixed legacy sampler')
         self.manifest = load_manifest(manifest)
         self.split = split.upper()
         self.statistics = self.manifest['statistics']
@@ -663,6 +668,10 @@ class PreparedDataset:
             result = {key: np.load(directory / f'{key}.npy', mmap_mode='r', allow_pickle=False)
                       for key in ('image', 'mask', 'valid', 'gdf', 'gdf_valid')}
             result['geometry'] = _load_geometry(directory)
+            if self.sampling is not None:
+                from .sampling import build_candidates
+                result['sampling_candidates'] = build_candidates(result['geometry'], result['mask'],
+                    result['image'], result['valid'], self.sampling)
             self._opened[row['id']] = result
         return self._opened[row['id']]
 
@@ -677,11 +686,16 @@ class PreparedDataset:
         patch = self.patch_size
         shape = np.asarray(item['image'].shape)
         points = item['geometry']['points']
-        if len(points) and rng.random() < .5:
+        if self.sampling is not None:
+            from .sampling import sample_patch_start
+            start, sampling_record = sample_patch_start(rng, item['sampling_candidates'], shape, patch, self.sampling)
+        elif len(points) and rng.random() < .5:
             centre = points[rng.integers(len(points))] + rng.integers(-patch // 4, patch // 4 + 1, size=3)
             start = np.clip(centre - patch // 2, 0, np.maximum(shape - patch, 0))
+            sampling_record = dict(requested_category='vessel', actual_category='vessel', fallback_reason='')
         else:
             start = np.asarray([rng.integers(max(1, int(n) - patch + 1)) for n in shape])
+            sampling_record = dict(requested_category='uniform', actual_category='uniform', fallback_reason='')
         slices = tuple(slice(int(s), min(int(s) + patch, int(n))) for s, n in zip(start, shape))
         arrays = {}
         for key, source in (('image', 'image'), ('label', 'mask'), ('valid', 'valid'), ('gdf', 'gdf'), ('gdf_valid', 'gdf_valid')):
@@ -715,6 +729,9 @@ class PreparedDataset:
                 arrays['image'] += rng.normal(0., .03, arrays['image'].shape).astype(np.float32)
         result = {key: torch.from_numpy(np.ascontiguousarray(value[None], dtype=np.float32)) for key, value in arrays.items()}
         result['case_id'] = row['id']
+        result['sampling_requested'] = sampling_record['requested_category']
+        result['sampling_actual'] = sampling_record['actual_category']
+        result['sampling_fallback'] = sampling_record['fallback_reason']
         return result
 
 

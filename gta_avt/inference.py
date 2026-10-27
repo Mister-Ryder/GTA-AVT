@@ -19,8 +19,8 @@ def model_from_checkpoint(path,device='cpu'):
     if checkpoint['kind']!='train':
         raise ValueError('Whole-volume segmentation requires a segmentation checkpoint')
     config=checkpoint['model_config']
-    if config.get('name') != MODEL_CONFIG['name']:
-        raise ValueError('Checkpoint belongs to a different method version; no silent v1/v1.1 weight conversion')
+    if config.get('name') != MODEL_CONFIG['name'] or config.get('revision') != MODEL_CONFIG['revision']:
+        raise ValueError('Checkpoint belongs to a different method revision; no silent weight conversion')
     model=GTAAVT(AttributePredictor(checkpoint['statistics']),arm=config['arm'],use_gdf=config['use_gdf'])
     model.load_state_dict(checkpoint['model'],strict=True)
     return model.to(device).eval(),checkpoint
@@ -40,11 +40,10 @@ def predict_volume(model,image,metadata,*,device,patch_size=128,batch_size=2,ove
                 attributes=model.predictor(x)
                 support=attributes['support_logits'].sigmoid().float().clone()
                 mean=attributes['radius_mean'].float().clone()
-                logvar=attributes['radius_log_variance'].float().clone()
                 if condition_mode=='radius_constant':
-                    mean.zero_();logvar.zero_()
+                    mean.zero_()
                 elif condition_mode=='neutral':
-                    support.zero_();mean.zero_();logvar.zero_()
+                    support.zero_();mean.zero_()
                 else:
                     # The threshold selects diagnostic permutation sites only.
                     # Normal model consumption always uses continuous support.
@@ -52,9 +51,7 @@ def predict_volume(model,image,metadata,*,device,patch_size=128,batch_size=2,ove
                         selected=support[index]>=.5
                         values=mean[index][selected]
                         mean[index][selected]=torch.roll(values,len(values)//2)
-                        values=logvar[index][selected]
-                        logvar[index][selected]=torch.roll(values,len(values)//2)
-                override={'support':support,'radius_mean':mean,'radius_log_variance':logvar}
+                override={'support':support,'radius_mean':mean}
             output=model(x,alpha=1.,condition_override=override)
         return output['logits'].float().sigmoid().cpu().numpy()
     return sliding_probability(callback,image,metadata,patch=patch_size,batch_size=batch_size,overlap=overlap)

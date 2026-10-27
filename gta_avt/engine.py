@@ -1,4 +1,4 @@
-"""v1.1 staged optimization with an explicit stable-base/local-adaptation boundary.
+"""v1.2 declared long-training phases with an indivisible joint P/S lineage.
 
 Importing this module never starts training. Checkpoints have a new schema; old
 v1 weights cannot silently enter this algorithm. Updates count successful AMP
@@ -21,11 +21,14 @@ from torch.utils.data import DataLoader
 from .data import PreparedDataset, load_manifest
 from .losses import attribute_loss, segmentation_loss
 from .metrics import AttributeMetrics, binary_metrics, summarize_cases
-from .models import AttributePredictor, GTAAVT
+from .models import AttributePredictor, GTAAVT, MODEL_CONFIG
 
-SCHEMA = 'GTA-AVT-v1.1-checkpoint-1'
+SCHEMA = 'GTA-AVT-v1.2-checkpoint-1'
 STAGES = ('base', 'gdf_head', 'local_adapt')
 ARMS = ('C0', 'V_only', 'AR')
+PHASE_STAGES = dict(attribute='pretrain', base_warm='base', base='base', condition='local_adapt',
+                    gdf_head='gdf_head', geometry='local_adapt', refine='local_adapt')
+PARENT_PHASES = dict(base='base_warm', condition='base', gdf_head='condition', geometry='gdf_head', refine='geometry')
 
 
 def _json(path, value):
@@ -66,7 +69,7 @@ def load_checkpoint(path, device='cpu'):
     except TypeError:
         value = torch.load(str(path), map_location=device)
     if value.get('schema') != SCHEMA:
-        raise ValueError('Expected a v1.1 checkpoint; old v1/oracle weights are not compatible')
+        raise ValueError('Expected a v1.2 checkpoint; older method checkpoints are not compatible')
     return value
 
 
@@ -98,12 +101,21 @@ def _parameters(config):
     c = dict(config)
     if any(not c.get(key) for key in ('manifest', 'output_dir')):
         raise ValueError('manifest and output_dir are required')
+    stage = c.get('stage', 'base')
+    phase = c.get('phase', 'attribute' if stage == 'pretrain' else
+                  ('base' if c.get('parent_checkpoint') else 'base_warm') if stage == 'base' else
+                  'gdf_head' if stage == 'gdf_head' else 'condition')
+    if phase not in PHASE_STAGES or PHASE_STAGES[phase] != stage:
+        raise ValueError('Declared phase and optimization stage disagree')
+    c['phase'] = phase
     defaults = dict(seed=31, validation_seed=0, patch_size=128, batch_size=2, max_steps=10000,
-        lr=.0003, weight_decay=.00001, num_workers=0, samples_per_epoch=256,
+        lr=.0003, weight_decay=.0001 if stage in ('base', 'pretrain') else .00001, num_workers=0, samples_per_epoch=256,
         checkpoint_every=500, validate_every=500, amp=True, availability_weight=1.,
-        radius_weight=1., unknown_prior_weight=.01, dice_weight=1., bce_weight=1.,
-        lambda_gdf=0., deep_supervision_weight=0., alpha_ramp_steps=250,
-        gdf_delay_steps=500, gdf_ramp_steps=500, local_shared_lr=.0001,
+        radius_weight=1., dice_weight=1., bce_weight=1.,
+        lambda_gdf=0., deep_supervision_weight=1. if stage == 'base' else 0.,
+        deep_supervision_weights=[.5, .25], base_attribute_weight=.1,
+        max_grad_norm=12. if stage in ('base', 'pretrain') else 0., alpha_ramp_steps=250,
+        gdf_delay_steps=0, gdf_ramp_steps=5000, gdf_weight_start=0., gdf_weight_end=0., local_shared_lr=.0001,
         local_gate_lr=.001, local_gdf_lr=.0001, gdf_head_lr=.001,
         arm='AR', stage='base', require_attribute_readiness=True,
         min_support_dice=.5, min_support_recall=.5, use_gdf=True)
@@ -121,13 +133,17 @@ def _parameters(config):
     for key in ('lr', 'local_shared_lr', 'local_gate_lr', 'local_gdf_lr', 'gdf_head_lr'):
         if not math.isfinite(c[key]) or c[key] <= 0:
             raise ValueError(key + ' must be finite and positive')
-    for key in ('weight_decay', 'availability_weight', 'radius_weight', 'unknown_prior_weight',
-                'dice_weight', 'bce_weight', 'lambda_gdf', 'deep_supervision_weight'):
+    for key in ('weight_decay', 'availability_weight', 'radius_weight', 'base_attribute_weight', 'max_grad_norm',
+                'dice_weight', 'bce_weight', 'lambda_gdf', 'gdf_weight_start', 'gdf_weight_end', 'deep_supervision_weight'):
         if not math.isfinite(c[key]) or c[key] < 0:
             raise ValueError(key + ' must be finite and nonnegative')
     for key in ('min_support_dice', 'min_support_recall'):
         if not math.isfinite(c[key]) or not 0 <= c[key] <= 1:
             raise ValueError(key + ' must be in[0,1]')
+    if len(c['deep_supervision_weights']) != 2 or any(not math.isfinite(v) or v < 0 for v in c['deep_supervision_weights']):
+        raise ValueError('Two nonnegative finite deep-supervision weights required')
+    if any(key in c for key in ('unknown_prior_weight', 'lambda_unknown_prior')):
+        raise ValueError('The deterministic v1.2 does not use a radius prior/NLL branch')
     return c
 
 
@@ -150,17 +166,18 @@ def _to_device(batch, device):
 def _datasets(config):
     common = dict(manifest=config['manifest'], patch_size=config['patch_size'])
     train = PreparedDataset(split='TRAIN', seed=config['seed'],
-        samples_per_epoch=config['samples_per_epoch'], augment=config.get('augment', True), **common)
+        samples_per_epoch=config['samples_per_epoch'], augment=config.get('augment', True),
+        sampling=config.get('sampling'), **common)
     val_cases = [case for case in load_manifest(config['manifest'])['cases'] if case['split'].upper() == 'VAL']
     if not val_cases:
         raise ValueError('An explicit VAL split is required; TEST is never used for selection')
     # The validation bank is common across independent model seeds.
     val = PreparedDataset(split='VAL', seed=config['validation_seed'],
         samples_per_epoch=config.get('val_samples', len(val_cases) * 8), augment=False, **common)
-    if (config['stage'] == 'gdf_head' or config['lambda_gdf'] > 0) and config['use_gdf']:
+    if (config['stage'] == 'gdf_head' or max(config['lambda_gdf'], config['gdf_weight_start'], config['gdf_weight_end']) > 0) and config['use_gdf']:
         manifest = load_manifest(config['manifest'])
         if manifest.get('heldout_gdf_foreground_prepared') is not True:
-            raise ValueError('v1.1 GDF validation requires real held-out foreground targets; prepare data again')
+            raise ValueError('v1.2 GDF validation requires real held-out foreground targets; prepare data again')
     return train, val
 
 
@@ -194,6 +211,21 @@ def _scalar(value):
 
 def _loss_record(losses):
     return {key: _scalar(value) for key, value in losses.items()}
+
+
+def _sampling_record(batch):
+    def counts(key):
+        values = batch.get(key, [])
+        if isinstance(values, str): values = [values]
+        return {str(name): list(values).count(name) for name in sorted(set(values))}
+    foreground = batch.get('foreground_fraction')
+    if foreground is None and 'label' in batch and 'valid' in batch:
+        real = batch['valid'].bool()
+        count = real.flatten(1).sum(1)
+        foreground = ((batch['label'] > 0) & real).flatten(1).sum(1).float() / count.clamp_min(1)
+    values = foreground.detach().float().cpu().tolist() if isinstance(foreground, torch.Tensor) else foreground
+    return dict(requested_counts=counts('sampling_requested'), actual_counts=counts('sampling_actual'),
+                fallback_counts=counts('sampling_fallback'), foreground_fraction=values)
 
 
 def _routing_record(value):
@@ -231,14 +263,14 @@ def _validate(model, dataset, config, device, kind, alpha, gdf_weight=None):
     values = []; rows = []; route_rows = []
     prior = dataset.statistics.get('pi_support', dataset.statistics.get('pi', .01))
     attrs = AttributeMetrics(prior, min_support_dice=config['min_support_dice'],
-                             min_support_recall=config['min_support_recall']) if kind == 'pretrain' else None
+                             min_support_recall=config['min_support_recall']) if kind == 'pretrain' or config['stage'] == 'base' else None
     for batch in _loader(dataset, config):
         batch = _to_device(batch, device)
         output = model(batch['image']) if kind == 'pretrain' else model(batch['image'], alpha=alpha)
         values.append(_loss_record(_loss(output, batch, config, kind, gdf_weight)))
         if attrs is not None:
             attrs.update(output, batch)
-        else:
+        if kind != 'pretrain':
             route_rows.append(_routing_record(output.get('routing')))
             pred = output['logits'].sigmoid() >= .5
             for i, case_id in enumerate(batch['case_id']):
@@ -248,9 +280,9 @@ def _validate(model, dataset, config, device, kind, alpha, gdf_weight=None):
     losses, defined = _mean_records(values)
     report = dict(losses=losses, loss_defined_batches=defined,
         scope='fixed sampled VAL patches, common across model seeds; not native whole-case evaluation')
-    if attrs is not None:
+    if kind == 'pretrain':
         report.update(selection_score=float(losses['loss']), selection_key=[float(losses['loss'])],
-                      selection_definition='declared support/radius/prior pretraining objective', attributes=attrs.report())
+                      selection_definition='declared support Dice/BCE and masked radius MSE objective', attributes=attrs.report())
     else:
         pooled = []
         for case in sorted({row['case_id'] for row in rows}):
@@ -263,18 +295,29 @@ def _validate(model, dataset, config, device, kind, alpha, gdf_weight=None):
             selection_key=[1. - dice, float(losses['segmentation_bce'])],
             selection_definition='maximum case-equal sampled VAL Dice, then lower BCE; GDF excluded',
             routing=route_rows)
+        if attrs is not None:
+            report['attributes'] = attrs.report()
     return report
 
 
 def _loss(output, batch, config, kind, gdf_weight=None):
     if kind == 'pretrain':
         return attribute_loss(output, batch, availability_weight=config['availability_weight'],
-            radius_weight=config['radius_weight'], unknown_prior_weight=config['unknown_prior_weight'])
+                              radius_weight=config['radius_weight'])
     weight = config['lambda_gdf'] if gdf_weight is None else gdf_weight
     head = config['stage'] == 'gdf_head'
-    return segmentation_loss(output, batch, dice_weight=0. if head else config['dice_weight'],
+    losses = segmentation_loss(output, batch, dice_weight=0. if head else config['dice_weight'],
         bce_weight=0. if head else config['bce_weight'], gdf_weight=1. if head else weight,
-        deep_supervision_weight=0. if head else config['deep_supervision_weight'])
+        deep_supervision_weight=0. if head else config['deep_supervision_weight'],
+        deep_supervision_weights=config['deep_supervision_weights'])
+    if config['stage'] == 'base':
+        attributes = attribute_loss(output, batch, availability_weight=config['availability_weight'],
+                                    radius_weight=config['radius_weight'])
+        losses['loss'] = losses['loss'] + config['base_attribute_weight'] * attributes['loss']
+        losses.update({'attribute_' + key: value for key, value in attributes.items()})
+    losses['weighted_gdf_loss'] = (1. if head else weight) * losses['gdf_mse']
+    losses['primary_segmentation_loss'] = (0. if head else config['dice_weight']) * losses['dice_loss'] + (0. if head else config['bce_weight']) * losses['segmentation_bce']
+    return losses
 
 
 def _selection_score(losses, config, kind):
@@ -283,20 +326,22 @@ def _selection_score(losses, config, kind):
 
 
 def _alpha(config, step, kind):
-    if kind == 'pretrain' or config['stage'] != 'local_adapt':
+    if kind == 'pretrain' or config['stage'] == 'base':
         return 0.
+    if config['phase'] != 'condition':
+        return 1.  # Preserve the already adapted conditional features.
     return min(1., step / max(1, config['alpha_ramp_steps'])) if config['alpha_ramp_steps'] else 1.
 
 
 def _gdf_weight(config, step, kind):
-    if kind == 'pretrain' or config['stage'] == 'base':
+    if kind == 'pretrain' or config['stage'] == 'base' or config['phase'] == 'condition':
         return 0.
     if config['stage'] == 'gdf_head':
-        return 1.
-    weight = float(config['lambda_gdf'])
-    elapsed = max(0, step - config['gdf_delay_steps'])
-    fraction = min(1., elapsed / max(1, config['gdf_ramp_steps'])) if config['gdf_ramp_steps'] else float(elapsed > 0)
-    return weight * fraction
+        return 1.  # Same head-only budget for all variants.
+    start, end = float(config['gdf_weight_start']), float(config['gdf_weight_end'])
+    ramp = config['gdf_ramp_steps']
+    fraction = min(1., max(0., (step - 1) / max(1, ramp - 1))) if ramp else 1.
+    return start + fraction * (end - start)
 
 
 def _optimizer(model, config):
@@ -324,26 +369,48 @@ def _save(path, state):
     torch.save(state, temporary); os.replace(temporary, path)
 
 
-def _load_common(model, predictor, config, stage, expected_predictor_digest, stats):
-    if stage == 'base':
-        return 'random'
-    field, expected_stage = ('base_checkpoint', 'base') if stage == 'gdf_head' else ('gdf_head_checkpoint', 'gdf_head')
-    if not config.get(field):
-        raise ValueError(stage + ' requires ' + field)
-    checkpoint = load_checkpoint(config[field])
+def _load_parent(model, predictor, config, stats):
+    """Load the declared preceding phase as one indivisible P/S state."""
+    phase = config['phase']
+    expected_phase = PARENT_PHASES[phase]
+    if not config.get('parent_checkpoint'):
+        raise ValueError(phase + ' requires parent_checkpoint from ' + expected_phase)
+    if any(config.get(key) for key in ('predictor_checkpoint', 'base_checkpoint', 'gdf_head_checkpoint')):
+        raise ValueError('Post-warmup phases inherit a P/S pair; separate predictor_checkpoint is forbidden')
+    checkpoint = load_checkpoint(config['parent_checkpoint'])
     old = checkpoint['config']
-    if (checkpoint.get('kind') != 'train' or old.get('stage') != expected_stage or old.get('arm') != 'C0'
+    parent_arm = 'C0' if expected_phase in ('base_warm', 'base') else config['arm']
+    expected_config = dict(MODEL_CONFIG, arm=parent_arm, use_gdf=bool(config['use_gdf']))
+    if (checkpoint.get('kind') != 'train' or old.get('phase') != expected_phase
+            or old.get('stage') != PHASE_STAGES[expected_phase] or old.get('arm') != parent_arm
             or _digest(checkpoint['statistics']) != _digest(stats)
-            or checkpoint['lineage']['predictor_init']['predictor_state_sha256'] != expected_predictor_digest
             or old['seed'] != config['seed'] or old['patch_size'] != config['patch_size']
-            or bool(old.get('use_gdf')) != bool(config['use_gdf'])):
-        raise ValueError('Common checkpoint stage/predictor/seed/grid/architecture mismatch')
+            or old.get('validation_seed', 0) != config['validation_seed']
+            or checkpoint.get('model_config') != expected_config):
+        raise ValueError('Parent phase/stage/seed/grid/architecture/statistics mismatch')
+    if expected_phase != 'base' and checkpoint.get('step') != old.get('max_steps'):
+        raise ValueError('Parent phase must finish its declared successful-update budget')
+    pair = checkpoint.get('pair', {})
+    if not all(pair.get(key) for key in ('predictor_state_sha256', 'selected_base_sha256', 'model_state_sha256')):
+        raise ValueError('Parent checkpoint lacks indivisible P/S pair provenance')
+    if phase == 'condition':
+        ready = checkpoint.get('validation', {}).get('attributes', {}).get('readiness', {})
+        if config['require_attribute_readiness'] and not ready.get('passed', False):
+            raise ValueError('Selected mature base failed attribute-consumer prerequisites')
+    elif phase != 'base' and not pair.get('attribute_readiness_passed') and config['require_attribute_readiness']:
+        raise ValueError('Selected mature base pair did not pass consumer prerequisites')
     model.load_state_dict(checkpoint['model'], strict=True)
-    if state_digest(predictor) != expected_predictor_digest:
-        raise RuntimeError('Common state replaced the declared frozen predictor')
-    return dict(common_checkpoint_sha256=file_digest(config[field]), common_stage=expected_stage,
-                common_successful_updates=checkpoint['step'], common_state_sha256=state_digest(model),
-                optimizer_reset=True)
+    if state_digest(model) != pair['model_state_sha256']:
+        raise RuntimeError('Parent pair model state digest mismatch')
+    expected_digest = pair['predictor_state_sha256']
+    if state_digest(predictor) != expected_digest:
+        raise RuntimeError('Parent pair predictor digest mismatch')
+    lineage = dict(parent_checkpoint_sha256=file_digest(config['parent_checkpoint']), parent_phase=expected_phase,
+        common_checkpoint_sha256=file_digest(config['parent_checkpoint']), common_stage=old['stage'],
+        common_successful_updates=checkpoint['step'], common_state_sha256=state_digest(model),
+        selected_base_sha256=(file_digest(config['parent_checkpoint']) if phase == 'condition' else pair['selected_base_sha256']),
+        predictor_state_sha256=expected_digest, optimizer_reset=True)
+    return lineage, expected_digest, pair
 
 
 def _run(config, kind):
@@ -355,12 +422,12 @@ def _run(config, kind):
         raise ValueError('Independent attribute pretraining requires stage=pretrain')
     if kind == 'train' and (config['stage'] not in STAGES or config['arm'] not in ARMS):
         raise ValueError('Expected base/gdf_head/local_adapt and C0/V_only/AR')
-    if kind == 'train' and config['stage'] != 'local_adapt' and config['arm'] != 'C0':
-        raise ValueError('The common base and GDF-head stages use neutral C0 conditions')
-    if config['stage'] == 'base' and any(config.get(key) for key in ('base_checkpoint', 'gdf_head_checkpoint')):
+    if kind == 'train' and config['stage'] == 'base' and config['arm'] != 'C0':
+        raise ValueError('Joint base phases use neutral C0 conditions')
+    if config['phase'] == 'base_warm' and any(config.get(key) for key in ('parent_checkpoint', 'base_checkpoint', 'gdf_head_checkpoint')):
         raise ValueError('The common segmentation base starts from random S initialization')
     if kind == 'train' and config['stage'] in ('gdf_head', 'local_adapt') and not config['use_gdf']:
-        raise ValueError('The complete v1.1 local pipeline requires its shared GDF head')
+        raise ValueError('The complete v1.2 local pipeline requires its shared GDF head')
     if config['stage'] == 'base' and config['lambda_gdf']:
         raise ValueError('Base training uses segmentation only; GDF enters later')
     device = _device(config); _seed(config['seed'])
@@ -375,26 +442,33 @@ def _run(config, kind):
     predictor = AttributePredictor(stats)
     lineage = dict(predictor_init='random', segmentation_init=None)
     expected_predictor_digest = None
+    inherited_pair = None
     if kind == 'pretrain':
         model = predictor
-        model_config = dict(type='AttributePredictor', version='1.1')
+        model_config = dict(type='AttributePredictor', version='1.2', revision=MODEL_CONFIG['revision'])
     else:
-        if not config.get('predictor_checkpoint'):
-            raise ValueError('Independent predictor_checkpoint is required')
-        checkpoint = load_checkpoint(config['predictor_checkpoint'])
-        if checkpoint.get('kind') != 'pretrain' or _digest(checkpoint['statistics']) != _digest(stats):
-            raise ValueError('Attribute stage/TRAIN statistics mismatch')
-        ready = checkpoint.get('validation', {}).get('attributes', {}).get('readiness', {})
-        if config['require_attribute_readiness'] and not ready.get('passed', False):
-            raise ValueError('Attribute consumer prerequisites failed; inspect support overlap/radius/reliability diagnostics')
-        predictor.load_state_dict(checkpoint['model'], strict=True)
-        expected_predictor_digest = state_digest(predictor)
         model = GTAAVT(predictor, arm=config['arm'], use_gdf=config['use_gdf'])
-        model_config = dict(type='GTAAVT', version='1.1', arm=config['arm'], use_gdf=config['use_gdf'])
-        lineage['predictor_init'] = dict(checkpoint_sha256=file_digest(config['predictor_checkpoint']),
-            successful_updates=checkpoint['step'], predictor_state_sha256=expected_predictor_digest,
-            readiness_passed=ready.get('passed', False))
-        lineage['segmentation_init'] = _load_common(model, predictor, config, config['stage'], expected_predictor_digest, stats)
+        model_config = dict(MODEL_CONFIG, arm=config['arm'], use_gdf=bool(config['use_gdf']))
+        if config['phase'] == 'base_warm':
+            if not config.get('predictor_checkpoint'):
+                raise ValueError('Joint base requires an independently pretrained predictor_checkpoint')
+            checkpoint = load_checkpoint(config['predictor_checkpoint'])
+            if (checkpoint.get('kind') != 'pretrain' or _digest(checkpoint['statistics']) != _digest(stats)
+                    or checkpoint.get('model_config', {}).get('revision') != MODEL_CONFIG['revision']):
+                raise ValueError('Attribute stage/TRAIN statistics/revision mismatch')
+            ready = checkpoint.get('validation', {}).get('attributes', {}).get('readiness', {})
+            if config['require_attribute_readiness'] and not ready.get('passed', False):
+                raise ValueError('Attribute consumer prerequisites failed before joint base')
+            predictor.load_state_dict(checkpoint['model'], strict=True)
+            lineage['predictor_init'] = dict(checkpoint_sha256=file_digest(config['predictor_checkpoint']),
+                successful_updates=checkpoint['step'], predictor_state_sha256=state_digest(predictor),
+                readiness_passed=ready.get('passed', False))
+            lineage['segmentation_init'] = 'random'
+        else:
+            common, expected_predictor_digest, inherited_pair = _load_parent(model, predictor, config, stats)
+            lineage['segmentation_init'] = common
+            lineage['predictor_init'] = dict(source='selected joint P/S pair',
+                predictor_state_sha256=expected_predictor_digest)
         model.set_stage(config['stage'])
     model.to(device)
     frozen_digest = _frozen_digest(model) if kind == 'train' and config['stage'] != 'base' else None
@@ -409,13 +483,13 @@ def _run(config, kind):
         scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
     output = _output_directory(config)
     state = dict(step=0, attempts=0, epoch=0, batch_index=0, best_score=math.inf,
-                 best_key=[math.inf, math.inf], best_ready_score=math.inf)
+                 best_key=[math.inf, math.inf], best_ready_score=math.inf, best_ready_key=[math.inf, math.inf])
     validation = None
     signature = _digest({key: value for key, value in config.items() if key not in ('resume', 'output_dir')})
     if config.get('resume'):
         checkpoint = load_checkpoint(config['resume'])
         if checkpoint['kind'] != kind or checkpoint['config_signature'] != signature:
-            raise ValueError('Resume requires identical v1.1 stage/training configuration')
+            raise ValueError('Resume requires identical v1.2 stage/training configuration')
         model.load_state_dict(checkpoint['model'], strict=True)
         optimizer.load_state_dict(checkpoint['optimizer']); scheduler.load_state_dict(checkpoint['scheduler'])
         scaler.load_state_dict(checkpoint['scaler']); state.update(checkpoint['progress'])
@@ -423,14 +497,20 @@ def _run(config, kind):
     started = time.monotonic()
 
     def snapshot():
-        if kind == 'train' and state_digest(predictor) != expected_predictor_digest:
+        if kind == 'train' and config['stage'] != 'base' and state_digest(predictor) != expected_predictor_digest:
             raise RuntimeError('Frozen predictor weights or BN buffers changed')
         if frozen_digest is not None and _frozen_digest(model) != frozen_digest:
             raise RuntimeError('A frozen base parameter or normalization buffer changed')
+        pair = None
+        if kind == 'train':
+            pair = dict(predictor_state_sha256=state_digest(predictor), model_state_sha256=state_digest(model),
+                selected_base_sha256='self' if config['phase'] == 'base' else 'unselected' if config['phase'] == 'base_warm' else lineage['segmentation_init']['selected_base_sha256'],
+                attribute_readiness_passed=bool(validation and validation.get('attributes', {}).get('readiness', {}).get('passed'))
+                    if config['stage'] == 'base' else bool(inherited_pair.get('attribute_readiness_passed')))
         return dict(schema=SCHEMA, kind=kind, config=config, config_signature=signature,
             statistics=stats, model_config=model_config, model=model.state_dict(), optimizer=optimizer.state_dict(),
             scheduler=scheduler.state_dict(), scaler=scaler.state_dict(), rng=_rng(), progress=dict(state),
-            step=state['step'], lineage=lineage, validation=validation,
+            step=state['step'], lineage=lineage, validation=validation, pair=pair,
             trainable_parameters=sum(value.numel() for value in model.parameters() if value.requires_grad))
 
     while state['step'] < config['max_steps']:
@@ -463,10 +543,10 @@ def _run(config, kind):
                     raise RuntimeError('Too many AMP-overflow skips')
                 continue
             state['step'] += 1; scheduler.step()
-            record = dict(successful_update=state['step'], attempt=state['attempts'], epoch=state['epoch'],
+            record = dict(phase=config['phase'], successful_update=state['step'], attempt=state['attempts'], epoch=state['epoch'],
                 alpha=alpha, gdf_weight=gdf_weight, lr=optimizer.param_groups[0]['lr'],
                 learning_rates={group.get('name', 'attribute'): group['lr'] for group in optimizer.param_groups},
-                losses=_loss_record(losses))
+                losses=_loss_record(losses), sampling=_sampling_record(batch))
             if kind == 'train':
                 record['routing'] = _routing_record(result.get('routing'))
             is_best = False; is_ready = False
@@ -477,8 +557,10 @@ def _run(config, kind):
                 key = list(validation['selection_key'])
                 if tuple(key) < tuple(state['best_key']):
                     state['best_key'] = key; state['best_score'] = validation['selection_score']; is_best = True
-                if kind == 'pretrain' and validation['attributes']['readiness']['passed'] and validation['selection_score'] < state['best_ready_score']:
-                    state['best_ready_score'] = validation['selection_score']; is_ready = True
+                if ((kind == 'pretrain' or config['stage'] == 'base')
+                        and validation['attributes']['readiness']['passed']
+                        and tuple(key) < tuple(state['best_ready_key'])):
+                    state['best_ready_score'] = validation['selection_score']; state['best_ready_key'] = key; is_ready = True
                 model.train()
             with (output / 'history.jsonl').open('a', encoding='utf-8') as stream:
                 stream.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + '\n')
@@ -492,7 +574,7 @@ def _run(config, kind):
                 break
         if state['batch_index'] >= len(loader):
             state['epoch'] += 1; state['batch_index'] = 0
-    summary = dict(kind=kind, stage=config['stage'], successful_updates=state['step'], attempts=state['attempts'],
+    summary = dict(kind=kind, stage=config['stage'], phase=config['phase'], successful_updates=state['step'], attempts=state['attempts'],
         elapsed_seconds=time.monotonic() - started, best_validation_score=state['best_score'],
         selection_definition='pretraining objective' if kind == 'pretrain' else 'case-equal sampled VAL Dice then BCE',
         last_checkpoint=str(output / 'last.pt'), best_checkpoint=str(output / 'best.pt'), lineage=lineage,

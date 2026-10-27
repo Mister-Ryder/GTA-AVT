@@ -13,16 +13,22 @@ class StageContractTests(unittest.TestCase):
         value=engine._parameters(dict(manifest='unused',output_dir='unused',stage=stage))
         value.update(changes);return value
 
-    def test_delayed_shape_schedule_keeps_early_conditional_learning_separate(self):
-        c=self.config(lambda_gdf=.1,gdf_delay_steps=500,gdf_ramp_steps=500)
-        self.assertEqual(engine._gdf_weight(c,500,'train'),0.)
-        self.assertAlmostEqual(engine._gdf_weight(c,750,'train'),.05)
-        self.assertAlmostEqual(engine._gdf_weight(c,1000,'train'),.1)
-        self.assertAlmostEqual(engine._gdf_weight(c,2000,'train'),.1)
-        self.assertEqual(engine._gdf_weight(self.config('base',lambda_gdf=9.),2000,'train'),0.)
-        self.assertEqual(engine._gdf_weight(self.config('gdf_head'),1,'train'),1.)
-        self.assertEqual(engine._alpha(c,250,'train'),1.)
-        self.assertEqual(engine._alpha(self.config('gdf_head'),250,'train'),0.)
+    def test_phase_schedules_preserve_conditioning_then_strengthen_and_refine_geometry(self):
+        condition=self.config(phase='condition')
+        self.assertEqual(engine._alpha(condition,250,'train'),1.)
+        self.assertEqual(engine._gdf_weight(condition,10000,'train'),0.)
+        head=self.config('gdf_head',phase='gdf_head')
+        self.assertEqual(engine._alpha(head,1,'train'),1.)
+        self.assertEqual(engine._gdf_weight(head,1,'train'),1.)
+        geometry=self.config(phase='geometry',gdf_weight_start=.1,gdf_weight_end=1.,gdf_ramp_steps=5000)
+        self.assertEqual(engine._alpha(geometry,1,'train'),1.)
+        self.assertAlmostEqual(engine._gdf_weight(geometry,1,'train'),.1)
+        self.assertAlmostEqual(engine._gdf_weight(geometry,5000,'train'),1.)
+        refine=self.config(phase='refine',gdf_weight_start=1.,gdf_weight_end=.2,gdf_ramp_steps=5000)
+        self.assertEqual(engine._alpha(refine,1,'train'),1.)
+        self.assertAlmostEqual(engine._gdf_weight(refine,1,'train'),1.)
+        self.assertAlmostEqual(engine._gdf_weight(refine,5000,'train'),.2)
+        self.assertEqual(engine._gdf_weight(self.config('base',phase='base'),99,'train'),0.)
 
     def test_local_optimizer_groups_restore_distinct_constant_learning_rates(self):
         model=TinySegmentor(TinyPredictor({}));model.set_stage('local_adapt')
@@ -47,7 +53,7 @@ class StageContractTests(unittest.TestCase):
     def test_checkpoint_schema_rejects_old_v1_even_if_weights_have_similar_names(self):
         with tempfile.TemporaryDirectory() as temporary:
             path=Path(temporary)/'old.pt';torch.save({'schema':'GTA-AVT-v1-checkpoint-1'},path)
-            with self.assertRaisesRegex(ValueError,'v1.1 checkpoint'):engine.load_checkpoint(path)
+            with self.assertRaisesRegex(ValueError,'v1.2 checkpoint'):engine.load_checkpoint(path)
 
     def test_optional_diagnostics_nulls_survive_loss_record(self):
         record=engine._loss_record({'loss':torch.tensor(1.),'gdf_fg_mse':None,'gdf_fg_voxels':0})

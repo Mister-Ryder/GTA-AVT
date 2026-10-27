@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gta-avt"
-version = "1.1.0"
-description = "Reliability-aware local conditional fusion with Gaussian supervision for vessel trees"
+version = "1.2.0"
+description = "Staged anatomical segmentation with class-aware sampling, conditional fusion and Gaussian geometry supervision"
 requires-python = ">=3.8"
 dependencies = ["numpy>=1.22", "scipy>=1.9", "scikit-image>=0.19", "SimpleITK>=2.2", "torch>=1.11"]
 

@@ -1,35 +1,37 @@
 {
-  "schema": "GTA-AVT-v1.1-engineering-QA-1",
-  "scope": "Synthetic CPU implementation checks; no AVT dataset training or efficacy evaluation",
+  "schema": "GTA-AVT-v1.2-engineering-QA-1",
+  "scope": "Synthetic CPU implementation checks; no AVT dataset training or server execution",
   "platform": "Windows",
   "python": "3.13.14",
   "torch": "2.8.0+cpu",
   "pytest": "8.4.2",
-  "cuda_available": false,
-  "tests": 50,
-  "passed": 49,
+  "tests": 65,
+  "passed": 64,
   "failures": 0,
   "skipped": 1,
-  "skipped_reason": "Windows symbolic-link privilege unavailable",
-  "complete_model_test_input_shape": [
+  "skipped_reasons": [
+    "Windows symbolic-link privilege unavailable"
+  ],
+  "complete_model_test_shape": [
     1,
     1,
     32,
     32,
     32
   ],
-  "checked": [
-    "attribute supervision masks and unknown regions",
-    "continuous support and reliable scale consumption",
-    "bounded branch coefficients and neutral initialization",
-    "Gaussian gradients into active routing through frozen layers",
-    "exact local parameter scope and frozen buffers",
-    "stage lineage, resume and shared ablation initialization",
-    "CT-only inference and native-grid certification"
+  "checks": [
+    "joint-base predictor/segmentation gradients and normalization",
+    "local parameter scope and immutable later-stage predictor",
+    "Gaussian gradients reach active local routing",
+    "phase order, alpha continuity, Gaussian weight schedules and parent lineage",
+    "six-source deterministic TRAIN sampling and explicit missing-source fallbacks",
+    "fixed validation sampling, unknown masks and foreground accounting",
+    "stage resume, scientific plan identity and quality-check stops",
+    "real-model checkpoint inference roundtrip and physical-grid certification"
   ],
   "not_run": [
-    "AVT dataset training",
+    "AVT dataset training or validation",
     "CUDA",
-    "128-cubed full-model memory test"
+    "128-cubed memory test"
   ]
 }

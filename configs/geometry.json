@@ -1,0 +1,52 @@
+{
+  "manifest": "cache/manifest.json",
+  "output_dir": "runs/v1.2_seed30_AR_GDF/geometry",
+  "seed": 20261030,
+  "validation_seed": 0,
+  "device": "cuda",
+  "patch_size": 128,
+  "batch_size": 2,
+  "num_workers": 4,
+  "amp": true,
+  "checkpoint_every": 1000,
+  "validate_every": 1000,
+  "phase": "geometry",
+  "use_gdf": true,
+  "stage": "local_adapt",
+  "max_steps": 20000,
+  "lr": 0.0003,
+  "weight_decay": 1e-05,
+  "max_grad_norm": 0.0,
+  "deep_supervision_weight": 0.0,
+  "deep_supervision_weights": [
+    0.5,
+    0.25
+  ],
+  "base_attribute_weight": 0.1,
+  "augment": false,
+  "alpha_ramp_steps": 250,
+  "local_shared_lr": 0.0001,
+  "local_gate_lr": 0.001,
+  "local_gdf_lr": 0.0001,
+  "gdf_head_lr": 0.001,
+  "gdf_weight_start": 0.1,
+  "gdf_weight_end": 1.0,
+  "gdf_ramp_steps": 5000,
+  "sampling": {
+    "weights": {
+      "vessel": 0.2,
+      "fine": 0.25,
+      "junction": 0.2,
+      "boundary": 0.15,
+      "hard_background": 0.1,
+      "uniform": 0.1
+    },
+    "fine_radius_mm": 2.0,
+    "hard_background_hu": 150.0,
+    "candidate_stride": 4,
+    "max_candidates": 50000
+  },
+  "arm": "AR",
+  "lambda_gdf": 1.0,
+  "parent_checkpoint": "runs/v1.2_seed30_AR_GDF/gdf_head/last.pt"
+}

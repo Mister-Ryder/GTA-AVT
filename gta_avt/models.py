@@ -1,8 +1,8 @@
-"""CT attributes, bounded local fusion and Gaussian supervision for GTA-AVT v1.1.
+"""CT attributes, bounded local fusion and Gaussian supervision for GTA-AVT v1.2.
 
 Lumen support is distinct from radius measurement validity. Production forwards
-accept CT alone; validity is a loss-only mask. Local adaptation fixes BN and
-restores the small v0.1 update scope, with an additional Gaussian output head.
+accept CT alone; validity is a loss-only mask. Neutral-base training jointly
+forms P/S features; local adaptation then freezes their common state and BN.
 """
 from __future__ import annotations
 
@@ -18,17 +18,18 @@ from .vendor.model_arch_model10 import Encoder, Decoder, FusionModule
 
 ARMS = ("C0", "V_only", "AR")
 STAGES = ("base", "gdf_head", "local_adapt")
-LOG_VARIANCE_BOUNDS = (-6., 4.)
 RADIUS_AXIS_CLIP = 4.
 MODEL_CONFIG = {
-    "name": "GTA-AVT-v1.1", "input_channels": 1, "input_multiple": 16,
+    "name": "GTA-AVT-v1.2", "revision": "20261027", "input_channels": 1, "input_multiple": 16,
     "attribute_encoder_channels": [32, 64, 128, 256], "attribute_field_stride": 2,
     "seg_encoder_channels": [32, 64, 128, 256], "seg_decoder_channels": [128, 64, 32],
     "routing_site_channels": 64, "routing_coefficients": 576,
-    "routing_dilations": [1, 1, 2, 3], "radius_log_variance_bounds": list(LOG_VARIANCE_BOUNDS),
+    "routing_dilations": [1, 1, 2, 3], "attribute_heads": ["support_logits", "radius_mean"],
     "radius_axis_clip": RADIUS_AXIS_CLIP,
     "support_semantics": "continuous lumen occupancy score; not calibrated confidence",
-    "predictor_frozen_during_segmentation": True, "statistics_keys": ["mu", "sigma", "pi_support"],
+    "predictor_training": "joint with S in neutral base; frozen during Gaussian-head and local stages",
+    "radius_consumption": "support * clipped deterministic standardized radius",
+    "statistics_keys": ["mu", "sigma", "pi_support"],
 }
 
 
@@ -39,14 +40,8 @@ def _check_image(x):
         raise ValueError("Expected floating Bx1xDxHxW CT; dimensions >=32 and divisible by16")
 
 
-def radius_confidence(radius_log_variance):
-    """Relative information versus unit standardized prior, not calibration."""
-    variance = radius_log_variance.float().clamp(*LOG_VARIANCE_BOUNDS).exp()
-    return torch.relu((1. - variance) / (1. + variance))
-
-
 class AttributePredictor(nn.Module):
-    """CT -> soft lumen support and standardized log-radius mean/log variance."""
+    """CT -> soft lumen support and deterministic standardized log radius."""
     def __init__(self, statistics: Mapping):
         super().__init__()
         mean = float(statistics["mu"] if "mu" in statistics else statistics["log_radius_mean"])
@@ -62,7 +57,7 @@ class AttributePredictor(nn.Module):
             ConvBlock(64, 128), ConvBlock(128, 128, stride=2), ConvBlock(128, 256), ConvBlock(256, 256, stride=2)])
         self.attention_blocks = nn.ModuleList([SEBlock(c, reduction=8) for c in (64, 128, 256)])
         self.multi_scale_fusion = nn.Sequential(nn.Conv3d(448, 256, 1), nn.BatchNorm3d(256), nn.ReLU(inplace=True))
-        self.local_head = nn.Conv3d(320, 3, 1)
+        self.local_head = nn.Conv3d(320, 2, 1)
         nn.init.zeros_(self.local_head.weight); nn.init.zeros_(self.local_head.bias)
         with torch.no_grad():
             self.local_head.bias[0] = math.log(prior) - math.log1p(-prior)
@@ -86,8 +81,8 @@ class AttributePredictor(nn.Module):
             size=features[0].shape[2:], mode="trilinear", align_corners=False)), 1))
         with torch.autocast(device_type=x.device.type, enabled=False):
             field = F.interpolate(head.float(), size=output_size, mode="trilinear", align_corners=False)
-            support_logits, radius_mean, logvar = field[:, :1], field[:, 1:2], field[:, 2:3].clamp(*LOG_VARIANCE_BOUNDS)
-        return {"support_logits": support_logits, "radius_mean": radius_mean, "radius_log_variance": logvar,
+            support_logits, radius_mean = field[:, :1], field[:, 1:2]
+        return {"support_logits": support_logits, "radius_mean": radius_mean,
                 "support_score": support_logits.sigmoid(), "features": features, "fused": fused}
 
 
@@ -123,7 +118,7 @@ class BoundedCalibreRouting(AnatomicalGuidanceModule):
                             1 + a * (g1 + remaining * g3), 1 + a * (g1 - remaining * g3)), 1)
 
     @staticmethod
-    def _summary(gains, static_gains, directions, alpha, fused, support, confidence, radius_axis):
+    def _summary(gains, static_gains, directions, alpha, fused, support, radius_axis):
         # Diagnose actual conditional versus same-weight static routing without
         # retaining four large coefficient maps or a second autograd graph.
         with torch.no_grad():
@@ -157,17 +152,17 @@ class BoundedCalibreRouting(AnatomicalGuidanceModule):
                 "fused_feature_rms": fused.detach().float().square().mean().sqrt(),
                 "coefficient_min": minimum, "coefficient_max": maximum,
                 "coefficient_sum_residual": (total - 4.).abs().amax(),
-                "support_mean": support.detach().mean(), "radius_confidence_mean": confidence.detach().mean(),
+                "support_mean": support.detach().mean(),
                 "radius_axis_absmean": radius_axis.detach().abs().mean(),
                 "radius_axis_maxabs": radius_axis.detach().abs().amax(),
                 "nonzero_radius_fraction": (radius_axis.detach() != 0).float().mean(),
             }
 
-    def forward(self, feature, attribute, support, radius_mean, radius_log_variance, arm, alpha):
+    def forward(self, feature, attribute, support, radius_mean, arm, alpha):
         if arm not in ARMS or not math.isfinite(float(alpha)) or not 0 <= float(alpha) <= 1:
             raise ValueError("Invalid routing arm or alpha")
         expected = (feature.shape[0], 1) + tuple(feature.shape[2:])
-        if any(tuple(value.shape) != expected for value in (support, radius_mean, radius_log_variance)):
+        if any(tuple(value.shape) != expected for value in (support, radius_mean)):
             raise ValueError("Dense conditions must match the actual SAAM grid")
         fused = super().forward(feature, attribute)
         h = torch.cat([conv(fused) for conv in self.morphology_convs], 1)
@@ -175,8 +170,7 @@ class BoundedCalibreRouting(AnatomicalGuidanceModule):
         F0 = fused + factor * self.morph_fusion(h)
         with torch.autocast(device_type=h.device.type, enabled=False):
             v = support.float() if arm != "C0" else torch.zeros_like(support, dtype=torch.float32)
-            confidence = radius_confidence(radius_log_variance)
-            c_r = v * confidence * radius_mean.float().clamp(-RADIUS_AXIS_CLIP, RADIUS_AXIS_CLIP)
+            c_r = v * radius_mean.float().clamp(-RADIUS_AXIS_CLIP, RADIUS_AXIS_CLIP)
             if arm != "AR": c_r = torch.zeros_like(v)
             shape = (1, 3, 64, 1, 1, 1)
             static_gains = torch.tanh(self.bias.float().view(shape))
@@ -190,11 +184,11 @@ class BoundedCalibreRouting(AnatomicalGuidanceModule):
             d3 = factor * F.conv3d(torch.cat((h2, -h3), 1), weight[:, 32:], bias=None)
             routed = F0 + float(alpha) * g1 * d1
             routed = routed + float(alpha) * (1. - g1.abs()) * (g2 * d2 + g3 * d3)
-        return routed, self._summary(gains, static_gains, (d1, d2, d3), alpha, fused, v, confidence, c_r)
+        return routed, self._summary(gains, static_gains, (d1, d2, d3), alpha, fused, v, c_r)
 
 
 class GTAAVT(nn.Module):
-    """Segmentation with a frozen predictor and explicit parameter/mode stages."""
+    """Joint P/S base, then frozen-pair local adaptation with explicit stages."""
     def __init__(self, predictor: AttributePredictor, arm="AR", use_gdf=True):
         super().__init__()
         if arm not in ARMS: raise ValueError("Expected C0, V_only or AR")
@@ -224,7 +218,7 @@ class GTAAVT(nn.Module):
         if stage == "gdf_head" and self.gdf_head is None: raise ValueError("Gaussian head stage requires use_gdf=True")
         self.stage = stage
         for name, parameter in self.named_parameters():
-            if stage == "base": active = not name.startswith(("predictor.", "gdf_head.")) and not self._gate_name(name)
+            if stage == "base": active = not name.startswith("gdf_head.") and not self._gate_name(name)
             elif stage == "gdf_head": active = name.startswith("gdf_head.")
             else: active = self._local_name(name)
             parameter.requires_grad_(active)
@@ -240,7 +234,7 @@ class GTAAVT(nn.Module):
     def train(self, mode=True):
         if not isinstance(mode, bool): raise ValueError("Training mode must be boolean")
         super().train(mode if self.stage == "base" else False)
-        self.predictor.eval()
+        if self.stage != "base": self.predictor.eval()
         return self
 
     def active_parameter_names(self):
@@ -262,27 +256,28 @@ class GTAAVT(nn.Module):
         return logits[:, 1:2] - logits[:, :1]
 
     def _conditions(self, prediction, override, size):
-        support, mean, logvar = prediction["support_logits"].float().sigmoid(), prediction["radius_mean"].float(), prediction["radius_log_variance"].float()
+        support, mean = prediction["support_logits"].float().sigmoid(), prediction["radius_mean"].float()
         if override is not None:
-            keys = {"support", "radius_mean", "radius_log_variance"}
+            keys = {"support", "radius_mean"}
             if not isinstance(override, dict) or set(override) != keys:
-                raise ValueError("Diagnostic override requires support/radius_mean/radius_log_variance")
+                raise ValueError("Diagnostic override requires support/radius_mean")
             fields = [torch.as_tensor(override[key], device=support.device, dtype=torch.float32).detach()
-                      for key in ("support", "radius_mean", "radius_log_variance")]
+                      for key in ("support", "radius_mean")]
             if any(tuple(value.shape) != tuple(support.shape) for value in fields):
                 raise ValueError("Override must match Bx1xinput/2 attribute grid")
             if not all(bool(torch.isfinite(value).all()) for value in fields): raise ValueError("Diagnostic conditions must be finite")
-            support, mean, logvar = fields
+            support, mean = fields
             if bool(((support < 0.) | (support > 1.)).any()): raise ValueError("Support score must be in[0,1]")
-            if bool(((logvar < LOG_VARIANCE_BOUNDS[0]) | (logvar > LOG_VARIANCE_BOUNDS[1])).any()):
-                raise ValueError("Diagnostic log variance outside declared bounds")
         if support.shape[2:] != size: raise RuntimeError("Dense attribute and SAAM decoder grids differ")
-        return support, mean, logvar
+        return support, mean
 
     def forward(self, x, alpha=1.0, condition_override=None):
         _check_image(x)
         if not math.isfinite(float(alpha)) or not 0 <= float(alpha) <= 1: raise ValueError("Routing alpha must be finite and in[0,1]")
-        with torch.no_grad(): prediction = self.predictor(x)
+        if self.stage == "base":
+            prediction = self.predictor(x)
+        else:
+            with torch.no_grad(): prediction = self.predictor(x)
         features, decoded = [], []
         value = x
         for encoder in self.backbone.encoders:
@@ -297,8 +292,8 @@ class GTAAVT(nn.Module):
                 gate = op.uncertainty_gate(fused) * .2
                 value = enhanced * (1. - gate) + fused * gate
             elif i == 1:
-                support, mean, logvar = self._conditions(prediction, condition_override, value.shape[2:])
-                value, routing = self.routing(value, prediction["features"][1], support, mean, logvar, self.arm, alpha)
+                support, mean = self._conditions(prediction, condition_override, value.shape[2:])
+                value, routing = self.routing(value, prediction["features"][1], support, mean, self.arm, alpha)
             decoded.append(value)
         fused = self.backbone.fusion_module_decoder(decoded)
         guidance = F.interpolate(self.guidance_adapter(prediction["fused"]), size=fused.shape[2:], mode="trilinear", align_corners=False)
@@ -306,6 +301,6 @@ class GTAAVT(nn.Module):
         output = {"logits": self._foreground(self.output_head(output_feature)),
             "aux_logits": [self._foreground(self.ds_heads[0](decoded[1])), self._foreground(self.ds_heads[1](decoded[0]))],
             "support_logits": prediction["support_logits"], "radius_mean": prediction["radius_mean"],
-            "radius_log_variance": prediction["radius_log_variance"], "routing": routing}
+            "routing": routing}
         if self.gdf_head is not None: output["gdf"] = self.gdf_head(output_feature)
         return output

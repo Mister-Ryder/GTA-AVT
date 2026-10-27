@@ -22,7 +22,6 @@ def main():
         predictor.local_head.weight.normal_(0,.01)
         predictor.local_head.bias[0]=2.
         predictor.local_head.bias[1]=.3
-        predictor.local_head.bias[2]=-2.
     model=GTAAVT(predictor,arm='AR',use_gdf=True).to(device).set_stage('local_adapt').train()
     frozen={k:v.detach().clone() for k,v in model.predictor.state_dict().items()}
     x=torch.randn(args.batch,1,args.patch,args.patch,args.patch,device=device)

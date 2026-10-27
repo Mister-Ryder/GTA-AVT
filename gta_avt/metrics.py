@@ -63,11 +63,11 @@ def summarize_cases(rows):
 
 
 class AttributeMetrics:
-    """Case-equal support and radius-quality diagnostics on sampled patches.
+    """Case-equal prediction and consumption-domain prerequisite diagnostics.
 
-    Radius errors use measured targets only. Consumer overlap additionally
-    requires predicted anatomical support and positive relative information.
-    No radius truth is invented at unmeasured consumer locations.
+    Deployment consumes continuous V, not a threshold mask. Threshold .5 below
+    defines a readable high-support diagnostic only. Unknown radius sites have
+    no radius-error score; their consumed mass is reported explicitly.
     """
     def __init__(self, prior, *, min_support_dice=.5, min_support_recall=.5):
         self.prior = float(prior)
@@ -82,10 +82,9 @@ class AttributeMetrics:
         def array(x):
             return x.detach().float().cpu().numpy()
         logits, predicted = array(output['support_logits']), array(output['radius_mean'])
-        logvar = np.clip(array(output['radius_log_variance']), -6., 4.)
         support, radius = array(batch['support']), array(batch['r'])
         valid, measured = array(batch['support_valid']).astype(bool), array(batch['r_valid']).astype(bool)
-        if any(value.shape != logits.shape for value in (predicted, logvar, support, radius, valid, measured)):
+        if any(value.shape != logits.shape for value in (predicted, support, radius, valid, measured)):
             raise ValueError('Metric attribute/target shapes differ')
         if (measured & ~valid).any():
             raise ValueError('Measured radius cannot include unobserved cells')
@@ -93,19 +92,18 @@ class AttributeMetrics:
         for i, case in enumerate(ids):
             s = self.cases.setdefault(str(case), dict(n=0, bce=0., prior_bce=0., p_sum=0., t_sum=0., pt_sum=0.,
                 tp=0, pred_n=0, truth_n=0, r_n=0, r_sse=0., r_prior_sse=0., r_sum_p=0., r_sum_t=0.,
-                r_sum_p2=0., r_sum_t2=0., r_sum_pt=0., r_var_sum=0., r_nll_sum=0., q_sum=0.,
-                q_error_sum=0., q_square_sum=0., error_square_sum=0., effective_weight_sum=0.,
-                consumer_n=0, overlap_n=0, overlap_sse=0., overlap_prior_sse=0.,
-                overlap_sum=0., overlap_sum2=0., r_q_sum=0.))
+                r_sum_t2=0., consumer_n=0, overlap_n=0, overlap_sse=0., overlap_prior_sse=0.,
+                overlap_sum=0., overlap_sum2=0., consumer_background_n=0, consumer_unmeasured_fg_n=0,
+                measured_soft_mass=0., background_soft_mass=0., soft_radius_sse=0., soft_radius_prior_sse=0.,
+                radius_axis_sum=0., unknown_radius_axis_sum=0., fractional_target_n=0, fractional_pred_sum=0.))
             real = valid[i]
             ll, tt = logits[i][real].astype(np.float64), support[i][real].astype(np.float64)
-            pp, vv = predicted[i][real].astype(np.float64), np.exp(logvar[i][real].astype(np.float64))
-            if not all(np.isfinite(value).all() for value in (ll, tt, pp, vv)):
+            pp = predicted[i][real].astype(np.float64)
+            if not all(np.isfinite(value).all() for value in (ll, tt, pp)):
                 raise ValueError('Nonfinite attribute prediction on real cells')
             prob = np.exp(-np.logaddexp(0., -ll))
-            q = np.maximum((1. - vv) / (1. + vv), 0.)
-            hard, truth = prob >= .5, tt >= .5
-            consumer = hard & (q > 0.)
+            clipped = np.clip(pp, -4., 4.)  # Matches the production consumer.
+            consumer, truth = prob >= .5, tt >= .5
             mr = measured[i][real]
             target = radius[i][real][mr].astype(np.float64)
             if not np.isfinite(target).all():
@@ -113,24 +111,28 @@ class AttributeMetrics:
             s['n'] += len(tt); s['bce'] += float((np.logaddexp(0., ll) - tt * ll).sum())
             s['prior_bce'] += float((-tt*np.log(self.prior) - (1.-tt)*np.log1p(-self.prior)).sum())
             s['p_sum'] += float(prob.sum()); s['t_sum'] += float(tt.sum()); s['pt_sum'] += float((prob*tt).sum())
-            s['tp'] += int((hard & truth).sum()); s['pred_n'] += int(hard.sum()); s['truth_n'] += int(truth.sum())
-            rp, rv, rq = pp[mr], vv[mr], q[mr]
+            s['tp'] += int((consumer & truth).sum()); s['pred_n'] += int(consumer.sum()); s['truth_n'] += int(truth.sum())
+            rp = pp[mr]
             error = (rp-target)**2
             s['r_n'] += len(target); s['r_sse'] += float(error.sum()); s['r_prior_sse'] += float((target**2).sum())
-            s['r_var_sum'] += float(rv.sum()); s['r_nll_sum'] += float((.5*(error/rv+np.log(rv))).sum())
-            s['r_q_sum'] += float(rq.sum())
-            for key, value in (('r_sum_p', rp.sum()), ('r_sum_t', target.sum()), ('r_sum_p2', (rp**2).sum()),
-                               ('r_sum_t2', (target**2).sum()), ('r_sum_pt', (rp*target).sum()),
-                               ('q_sum', rq.sum()), ('q_error_sum', (rq*error).sum()),
-                               ('q_square_sum', (rq**2).sum()), ('error_square_sum', (error**2).sum())):
-                s[key] += float(value)
-            s['effective_weight_sum'] += float((prob*q).sum())
+            s['r_sum_p'] += float(rp.sum()); s['r_sum_t'] += float(target.sum()); s['r_sum_t2'] += float((target**2).sum())
             s['consumer_n'] += int(consumer.sum())
             overlap = consumer & mr
-            ovp = pp[overlap]; ovt = radius[i][real][overlap].astype(np.float64)
+            ovp = clipped[overlap]; ovt = radius[i][real][overlap].astype(np.float64)
             s['overlap_n'] += int(overlap.sum()); s['overlap_sse'] += float(((ovp-ovt)**2).sum())
             s['overlap_prior_sse'] += float((ovt**2).sum())
             s['overlap_sum'] += float(ovp.sum()); s['overlap_sum2'] += float((ovp**2).sum())
+            background = tt == 0.
+            s['consumer_background_n'] += int((consumer & background).sum())
+            s['consumer_unmeasured_fg_n'] += int((consumer & ~mr & ~background).sum())
+            s['measured_soft_mass'] += float(prob[mr].sum())
+            s['background_soft_mass'] += float(prob[background].sum())
+            s['soft_radius_sse'] += float((prob[mr] * (clipped[mr]-target)**2).sum())
+            s['soft_radius_prior_sse'] += float((prob[mr] * target**2).sum())
+            axis = np.abs(prob*clipped)
+            s['radius_axis_sum'] += float(axis.sum()); s['unknown_radius_axis_sum'] += float(axis[~mr].sum())
+            fractional = (tt > 0.) & (tt < .5)
+            s['fractional_target_n'] += int(fractional.sum()); s['fractional_pred_sum'] += float(prob[fractional].sum())
 
     def report(self):
         rows=[]
@@ -138,10 +140,8 @@ class AttributeMetrics:
             n, on = s['r_n'], s['overlap_n']
             energy = max(0., s['r_sum_t2'] - s['r_sum_t']**2/n) if n else 0.
             centered = max(0., s['r_sse'] - (s['r_sum_p']-s['r_sum_t'])**2/n) if n else 0.
-            qvar = max(0., s['q_square_sum'] - s['q_sum']**2/n) if n else 0.
-            evar = max(0., s['error_square_sum'] - s['r_sse']**2/n) if n else 0.
-            cov = s['q_error_sum'] - s['q_sum']*s['r_sse']/n if n else 0.
             ovvar = max(0., s['overlap_sum2']/on-(s['overlap_sum']/on)**2) if on else None
+            mass = s['p_sum']; measured_mass = s['measured_soft_mass']
             rows.append(dict(case_id=case,
                 support_bce=s['bce']/s['n'] if s['n'] else None,
                 constant_support_bce=s['prior_bce']/s['n'] if s['n'] else None,
@@ -151,15 +151,21 @@ class AttributeMetrics:
                 support_target_sites=s['truth_n'], support_true_positive_sites=s['tp'], predicted_support_sites=s['pred_n'],
                 radius_mse=s['r_sse']/n if n else None, constant_radius_mse=s['r_prior_sse']/n if n else None,
                 case_centered_radius_ratio=centered/energy if energy > 0 else None,
-                radius_nll=s['r_nll_sum']/n if n else None, predicted_radius_variance=s['r_var_sum']/n if n else None,
-                measured_reliability_mean=s['r_q_sum']/n if n else None,
-                reliability_error_correlation=cov/np.sqrt(qvar*evar) if qvar*evar > 0 else None,
                 measured_radius_sites=n, consumer_sites=s['consumer_n'], consumer_overlap_sites=on,
                 consumer_unmeasured_fraction=1-on/s['consumer_n'] if s['consumer_n'] else None,
+                consumer_known_background_fraction=s['consumer_background_n']/s['consumer_n'] if s['consumer_n'] else None,
+                consumer_unmeasured_foreground_sites=s['consumer_unmeasured_fg_n'],
                 consumer_radius_mse=s['overlap_sse']/on if on else None,
                 consumer_constant_radius_mse=s['overlap_prior_sse']/on if on else None,
                 consumer_radius_variance=ovvar,
-                effective_radius_weight_mean=s['effective_weight_sum']/s['n'] if s['n'] else None))
+                soft_support_mass_on_unmeasured_fraction=1-measured_mass/mass if mass else None,
+                soft_support_mass_on_background_fraction=s['background_soft_mass']/mass if mass else None,
+                soft_consumed_radius_mse=s['soft_radius_sse']/measured_mass if measured_mass else None,
+                soft_consumed_constant_radius_mse=s['soft_radius_prior_sse']/measured_mass if measured_mass else None,
+                effective_radius_axis_absmean=s['radius_axis_sum']/s['n'] if s['n'] else None,
+                unmeasured_radius_axis_fraction=s['unknown_radius_axis_sum']/s['radius_axis_sum'] if s['radius_axis_sum'] else None,
+                fractional_lumen_target_sites=s['fractional_target_n'],
+                fractional_lumen_predicted_support_mean=s['fractional_pred_sum']/s['fractional_target_n'] if s['fractional_target_n'] else None))
         summary = summarize_cases(rows)
         def mean(key):
             return summary.get(key, {}).get('mean')
@@ -175,10 +181,11 @@ class AttributeMetrics:
             radius_beats_train_mean=below('radius_mse', 'constant_radius_mse'),
             case_centered_radius_beats_constant=mean('case_centered_radius_ratio') is not None and mean('case_centered_radius_ratio') < 1.,
             every_case_has_measured_consumer_overlap=bool(rows) and all(r['consumer_overlap_sites'] > 0 for r in rows),
-            consumed_radius_beats_train_mean=below('consumer_radius_mse', 'consumer_constant_radius_mse'))
+            consumed_radius_beats_train_mean=below('consumer_radius_mse', 'consumer_constant_radius_mse'),
+            soft_consumed_radius_beats_train_mean=below('soft_consumed_radius_mse', 'soft_consumed_constant_radius_mse'))
         return dict(scope='deterministic sampled VAL patches; case-equal; support threshold .5 is diagnostic only',
             per_case=rows, summary=summary,
             readiness=dict(passed=all(tests.values()), tests=tests,
                 min_support_dice=self.min_support_dice, min_support_recall=self.min_support_recall,
-                meaning='Prerequisites only; no segmentation efficacy or calibrated uncertainty claim.',
-                consumer_definition='Predicted support>=.5 and relative information q>0; error evaluated only on measured overlap.'))
+                meaning='Necessary prediction/consumer-overlap prerequisites only; not convergence or dynamic Dice efficacy.',
+                consumer_definition='Production V and V*clip(radius,-4,4); high-support diagnostic V>=.5. Errors only where radius is measured.'))

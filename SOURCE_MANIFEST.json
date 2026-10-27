@@ -1,111 +1,139 @@
 {
-  "schema": "GTA-AVT-v1.1-source-1",
-  "created_utc": "2026-10-25T06:37:02.254238+00:00",
-  "status": "Algorithm implementation candidate; not a trained efficacy release",
+  "schema": "GTA-AVT-v1.2-source-1",
+  "created_utc": "2026-10-27T06:21:01.680032+00:00",
+  "status": "Method implementation and proposed training recipe; no efficacy results",
   "files": {
     ".gitignore": {
       "bytes": 129,
       "sha256": "9742caea5306737622274ff6e4bd76181a98b1da41c09d66c3bef397c4cc4c04"
     },
     "configs/adapt.json": {
-      "bytes": 699,
-      "sha256": "6a6f389ae1fe364c6452db6e7479887ec0a4332f23be29dd35d44b4babd5f8d9"
+      "bytes": 1249,
+      "sha256": "c6918d74c8fcf3f7a95092ff606ef0db02551c0ea55b0d6ed96527bdbbffff54"
+    },
+    "configs/attribute.json": {
+      "bytes": 1179,
+      "sha256": "128a9a61f928d4f51e4583857a7e274e3d8215fd43184ae6eb0549c942d4923f"
     },
     "configs/base.json": {
-      "bytes": 464,
-      "sha256": "0f9a6f6a483737ee5d9a4cf862b9ccd8540cf5d895b4c59d132308e77c4ebed3"
+      "bytes": 1232,
+      "sha256": "e91a0030860b45a92f560b69fd7ac453500c607bad90d8a219dfd16c1c0ea02f"
+    },
+    "configs/base_warm.json": {
+      "bytes": 1251,
+      "sha256": "9fa6c96f5ff9e3ab9c993dc88039e4d82f9b241ccd001bfcf4346f34315d89a6"
+    },
+    "configs/condition.json": {
+      "bytes": 1249,
+      "sha256": "c6918d74c8fcf3f7a95092ff606ef0db02551c0ea55b0d6ed96527bdbbffff54"
     },
     "configs/evaluate.json": {
-      "bytes": 168,
-      "sha256": "895bd7997dfdd93c758ea5ea9127eca95a1bec1a36daf2267e639c3bcd8b3ec6"
+      "bytes": 276,
+      "sha256": "a4aaf1c516a7f1608bb246fd31cc705463f6cde4308faf436c96967f1a4e79e5"
     },
     "configs/gdf_head.json": {
-      "bytes": 529,
-      "sha256": "61f6777c34550e96486a075cb04535306212940ec2f02ada6161e7efdad197e3"
+      "bytes": 1244,
+      "sha256": "60b30b272d986e4d1c96f0caa3c174d7fa6c3574746654fbd2e4557967f75f28"
+    },
+    "configs/geometry.json": {
+      "bytes": 1245,
+      "sha256": "858aa15905ad74417e6457cb840414246ae6e3ece417c4a6a70bd9a85f6c6169"
     },
     "configs/infer.json": {
-      "bytes": 279,
-      "sha256": "73005ad5600fa64df214cea7a923eaf368b7d4168e2afb0ab758d74bb16713ca"
+      "bytes": 303,
+      "sha256": "62f3d0bfc88c75caa4c77c66d67fd45da8059884eaa60f65be8c1e00b6ffa473"
     },
     "configs/local_adapt.json": {
-      "bytes": 699,
-      "sha256": "6a6f389ae1fe364c6452db6e7479887ec0a4332f23be29dd35d44b4babd5f8d9"
+      "bytes": 1249,
+      "sha256": "c6918d74c8fcf3f7a95092ff606ef0db02551c0ea55b0d6ed96527bdbbffff54"
+    },
+    "configs/phases.json": {
+      "bytes": 6198,
+      "sha256": "f04b86ba9f98ebe9a80a1f6da48e8d680f0a9de323f163155cdf1abbfd0815a6"
     },
     "configs/pipeline.json": {
-      "bytes": 584,
-      "sha256": "2f8929e6e69f654a9b25b32ea5d2aff14f9d6d34c394b5cec272533a99d10673"
+      "bytes": 402,
+      "sha256": "4cadfcb614e45883ec93f4fbe105ba933bd97499acb1a50caaf85cfe8ffe5a11"
     },
     "configs/pretrain.json": {
-      "bytes": 496,
-      "sha256": "2d13194171fe416287a8bb618f070a6fc8c06680a759fd43573f865c50a4fb88"
+      "bytes": 1179,
+      "sha256": "128a9a61f928d4f51e4583857a7e274e3d8215fd43184ae6eb0549c942d4923f"
+    },
+    "configs/refine.json": {
+      "bytes": 1242,
+      "sha256": "528f8eeecf46d2672916fda8fc253f135055cfee4976cd4169fd1a4c8ba0b97d"
     },
     "configs/split_avt_20261022.json": {
       "bytes": 984,
       "sha256": "df9647da8b331260fb9f66b294eced01180c1eaf812de27b5148b6800a344a3b"
     },
     "configs/warmup.json": {
-      "bytes": 464,
-      "sha256": "0f9a6f6a483737ee5d9a4cf862b9ccd8540cf5d895b4c59d132308e77c4ebed3"
+      "bytes": 1251,
+      "sha256": "9fa6c96f5ff9e3ab9c993dc88039e4d82f9b241ccd001bfcf4346f34315d89a6"
     },
     "docs/DEVELOPMENT_CONTRACT.json": {
-      "bytes": 3281,
-      "sha256": "e2c13e80be5194a9310d48e0e6fc4639d1fa5f813a071ca43867ad49c557baf6"
+      "bytes": 2230,
+      "sha256": "4f46fdaafbdac76171abdbd8c57295a37cf32b0bf8f7d1b7233d743e0722c4f1"
     },
     "docs/METHOD.md": {
-      "bytes": 3744,
-      "sha256": "170d70757b6a126d4a9f8412f07562e9f00ee1e4866753f596bbb56ae40b5493"
+      "bytes": 2817,
+      "sha256": "b75802fba75efdcf104a25d96f6e9b54f9705efae35b4e2892c660edc4d047b3"
     },
     "docs/METHOD_ZH.md": {
-      "bytes": 7877,
-      "sha256": "ea83103409b4c10b4def0949f4b72a6e6f5e1a1a4a16b2e6a339ebdb6bbb92fe"
+      "bytes": 7211,
+      "sha256": "daca657d87fa3bd39c83b96a9ea0da36c840e28f28cefec0d09253429a47b8a8"
     },
     "ENGINEERING_QA.json": {
-      "bytes": 1046,
-      "sha256": "c377ab3a9c7ccf19d35cf70dba03150aeb46bbe4d36e504935f6e59e824f825d"
+      "bytes": 1190,
+      "sha256": "9b177223141fe19826b8629b2e603a569086d33bf03c2557e39bf0271e5e380d"
     },
     "gta_avt/__init__.py": {
-      "bytes": 96,
-      "sha256": "51300275afeab11a41805124070af20a50578767658fe4efa1884e52f973e8ff"
+      "bytes": 98,
+      "sha256": "af50dce2121ce43a416c7928a0639f058cd7b92d4db100161c45ca9715e84f3d"
     },
     "gta_avt/__main__.py": {
-      "bytes": 3321,
-      "sha256": "dc351a3661e6eff3f268740fe5faf003d177e134fbca5d45380e38208cbccaef"
+      "bytes": 3343,
+      "sha256": "12434c4e3b549fb171e4e649d652d939665e771b60f89661a22d79f0d21712ce"
     },
     "gta_avt/data.py": {
-      "bytes": 44159,
-      "sha256": "5923fe4152bd9def3cf299134f85ae318ff4ea726de92f691006f137501f88cb"
+      "bytes": 45395,
+      "sha256": "3bebbd80a1f257c9b520395bdad8f6a29e09dd252d6c6acb5e121f734362d6a6"
     },
     "gta_avt/engine.py": {
-      "bytes": 27380,
-      "sha256": "7390997df669f17a75851e010abb50216506d1e168d1daa8b16f17ca3eb932b0"
+      "bytes": 33883,
+      "sha256": "9ac0664c6151f7935d32aae2caac902a9a176fb5b737b4e147f984de8dc099d1"
     },
     "gta_avt/geometry.py": {
       "bytes": 32673,
       "sha256": "a0e940e957877e2aa9aabf752ea5e4498910f7a0c90b0123e60b5ccc3aa8116e"
     },
     "gta_avt/inference.py": {
-      "bytes": 10806,
-      "sha256": "269d43de5788af2d60047d795431c424985d98435c932cd3b3b9cf69a39ad5ee"
+      "bytes": 10584,
+      "sha256": "9c1a7f829ada8fcf63d43ab846c45d1d796358178a8aedb2b6a1d5a8a40269f1"
     },
     "gta_avt/intensity.py": {
       "bytes": 4281,
       "sha256": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a"
     },
     "gta_avt/losses.py": {
-      "bytes": 8329,
-      "sha256": "fb5fc8e8320ed6669de57c61490ebcedcd5c4b10adfb9621f76df04eae2dbb3a"
+      "bytes": 8523,
+      "sha256": "9a775d814725bfd71f06c4f24eab5acb978331470352b6dbf90ccf8f504cea98"
     },
     "gta_avt/metrics.py": {
-      "bytes": 12261,
-      "sha256": "7994822e47f05a77432b4f488af209f436a25233653bdc62edd05b8da603987a"
+      "bytes": 13373,
+      "sha256": "459f061fcf34705d7b83fd14d30de07fe9a38ee69ee3112422b40b25512f3a93"
     },
     "gta_avt/models.py": {
-      "bytes": 18355,
-      "sha256": "bfcff0d754e9a3b8154db09003d57504413e64c968b84a2e6bc829a30fa47f78"
+      "bytes": 17649,
+      "sha256": "74fa50f91ade4970629c9a8998da5f539c0a4854f61934b2ba8fcfa5fe590e51"
     },
     "gta_avt/pipeline.py": {
-      "bytes": 7348,
-      "sha256": "0ea56dc9cb68ad82d00a7a61af9ddf13490e6a254e6514b078dda3a27459d9f0"
+      "bytes": 9937,
+      "sha256": "e71491cd80ddf71ec0d0a38b666a96430f92b48c053381b2a209be9733a80628"
+    },
+    "gta_avt/sampling.py": {
+      "bytes": 8175,
+      "sha256": "0e06ea9f8d73a5b807bc48e5354f61bc3a871e1b26ad05b07b7b561f05a073e1"
     },
     "gta_avt/vendor/__init__.py": {
       "bytes": 72,
@@ -129,51 +157,59 @@
     },
     "gta_avt/vendor/THIRD_PARTY_NOTICES.md": {
       "bytes": 1006,
-      "sha256": "041f9a128a42b3d0d82cb14e6a3ea172d8d2ef5c292dd9c9ca64e9013259f713"
+      "sha256": "9a5f043eefcd27a3041c2facd06f4cbfcf208a91838761b70784993ba5cdbe6d"
     },
     "pyproject.toml": {
-      "bytes": 604,
-      "sha256": "4239b45f20f17c6e60b29c8319f78223d5c32a142e120868a4f3a84b7c2abc15"
+      "bytes": 629,
+      "sha256": "c75ae944a09d9c4d71754f9fcfe0e067224375dfbc768d41b08a0e85a0ae3ff7"
     },
     "README.md": {
-      "bytes": 4958,
-      "sha256": "8a99012bda7ab4f6109ed2dfb166d783532235b8911dec6167d341cb2dbe0a84"
+      "bytes": 4023,
+      "sha256": "c57502863ffdaccb84fb512c38d7b8649b047199f7f2ed347aa43f542a9ae69a"
     },
     "scripts/smoke_cuda.py": {
-      "bytes": 3544,
-      "sha256": "67cde05c5d7dd719787d5b4d169b03ae916861b646dc51b5bbcf957c7dcc9efa"
+      "bytes": 3503,
+      "sha256": "e550e4b68784ff312301d7a3d06cf856be483542ead77e8bd2048d9115ecc1a9"
+    },
+    "tests/test_curriculum_sampling.py": {
+      "bytes": 8901,
+      "sha256": "44827febbde157c047aec80b8932e2c5e88404be0fcba39c59aa9567e5869527"
     },
     "tests/test_data.py": {
       "bytes": 5569,
       "sha256": "1c5d52c64cb100bdfc224ff5cbde42525873dbc73810d138c43878d44505da4e"
     },
     "tests/test_engine.py": {
-      "bytes": 12595,
-      "sha256": "4cf1ad30a54546a33df75dcceec240de0197f306239a3273d38ee70688a5b76b"
+      "bytes": 14543,
+      "sha256": "44b351878a400158345c0f37945a3f529e4516e389d91bf13458d5e900f613b8"
     },
     "tests/test_geometry.py": {
       "bytes": 2863,
       "sha256": "97fb988256132e36ef012088eda33cf053e10b1811c7921b46b8729336ff9e4d"
     },
     "tests/test_models.py": {
-      "bytes": 9655,
-      "sha256": "1860c21deec951b8eb921337fa4581c727596ee288558259ff8308ea61864995"
+      "bytes": 9927,
+      "sha256": "b941332944007530a26c2a8ccdb848dd793b1ccfcfe84b8c2f1112b8784b5637"
     },
     "tests/test_pipeline.py": {
-      "bytes": 4464,
-      "sha256": "b4b2d6011901203d4f276b304867f02389b080c219a65c6da6f36451c32cd598"
+      "bytes": 7158,
+      "sha256": "6ab11d8dba59bb66864df179ef830c7ae093994462dc1c990b85725d21dc1e1d"
+    },
+    "tests/test_revision_model_losses.py": {
+      "bytes": 2806,
+      "sha256": "19eb2080550ad2eb59a3e6404fdc08944dc2ee2fe6c79d299bcd428417f4a8aa"
     },
     "tests/test_v11_attributes.py": {
-      "bytes": 11057,
-      "sha256": "bdc2ceb5df4a0db01119fc6c56659eb3b54dc9a3c70d02b4fa779c8fb9df846e"
+      "bytes": 11431,
+      "sha256": "6cf45307e8c9a670ced471f60539834f1d3781f7fc4dddfccd3aae5ddb7fe5e9"
     },
     "tests/test_v11_inference.py": {
-      "bytes": 2142,
-      "sha256": "a56cb6e19cb33ea1a300f74acb54465b80115e5e75413a233263f4416547e2b0"
+      "bytes": 3375,
+      "sha256": "67adbc4703853fc00422661f88571b94f8c1e79edb0e3bd5ff0970ff41a3292e"
     },
     "tests/test_v11_stages.py": {
-      "bytes": 3194,
-      "sha256": "dbec1185caa2112c6bb292b9c975d2b0cdf397479babb0cfb4708e91d7f38a94"
+      "bytes": 3687,
+      "sha256": "ec3ae2467115492f287f39fa06cb8d305d151e239019662424bc63bb53936e39"
     }
   }
 }

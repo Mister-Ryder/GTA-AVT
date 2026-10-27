@@ -15,13 +15,13 @@ def masked_case_mean(value, valid):
     return means[supported].mean() if supported.any() else safe.sum() * 0
 
 
-def _case_dice(probability, target, valid):
+def _case_dice(probability, target, valid, smooth=1e-5):
     probability = torch.where(valid, probability, torch.zeros_like(probability))
     target = torch.where(valid, target, torch.zeros_like(target))
     numerator = 2 * (probability * target).flatten(1).sum(1)
     denominator = probability.flatten(1).sum(1) + target.flatten(1).sum(1)
     supported = valid.flatten(1).any(1)
-    values = 1 - (numerator + 1e-5) / (denominator + 1e-5)
+    values = 1 - (numerator + smooth) / (denominator + smooth)
     return values[supported].mean() if supported.any() else probability.sum() * 0
 
 
@@ -40,19 +40,17 @@ def _region_case_mean(value, foreground, background):
 
 
 def attribute_loss(output, batch, *, availability_weight=1.0, radius_weight=1.0,
-                   support_weight=None, unknown_prior_weight=.01, lambda_unknown_prior=None):
-    """Learn anatomical support and a partial radius distribution separately.
+                   support_weight=None):
+    """Support Dice+BCE and measured-radius MSE, case equal.
 
-    Unknown radius targets are never substituted with measured zeros. Their
-    weak distribution prior is a separate KL term, normalized by unknown
-    foreground/background regions before case averaging.
+    The deterministic revision changes only what is measured and consumed.
+    Unknown radii are excluded before arithmetic, never labelled as zero.
     """
     logits = output['support_logits'].float()
     predicted = output['radius_mean'].float()
-    logvar = output['radius_log_variance'].float().clamp(-6., 4.)
     support = batch['support'].float()
     valid, rv = batch['support_valid'].bool(), batch['r_valid'].bool()
-    if any(value.shape != logits.shape for value in (predicted, logvar, support, valid, rv, batch['r'])):
+    if any(value.shape != logits.shape for value in (predicted, support, valid, rv, batch['r'])):
         raise ValueError('Attribute outputs and half-resolution targets must match')
     if bool((rv & ~valid).any()):
         raise ValueError('Radius supervision cannot include unobserved cells')
@@ -64,30 +62,25 @@ def attribute_loss(output, batch, *, availability_weight=1.0, radius_weight=1.0,
                                   reduction='none'), valid)
     support_dice = _case_dice(safe_logits.sigmoid(), safe_support, valid)
     mu = torch.where(valid, predicted, torch.zeros_like(predicted))
-    lv = torch.where(valid, logvar, torch.zeros_like(logvar))
     # Eliminate unknown target values BEFORE subtracting, including NaNs.
     target = torch.where(rv, batch['r'].float(), torch.zeros_like(predicted))
     residual = torch.where(rv, mu - target, torch.zeros_like(mu))
     radius_mse = masked_case_mean(residual.square(), rv)
-    nll = .5 * (torch.exp(-lv) * residual.square() + lv)
-    radius_nll = masked_case_mean(nll, rv)
-    prior = .5 * (mu.square() + torch.exp(lv) - 1. - lv)
-    unknown = valid & ~rv
-    prior_kl = _region_case_mean(prior.clamp_min(0.), unknown & (safe_support > 0),
-                                unknown & (safe_support == 0))
     sw = availability_weight if support_weight is None else support_weight
-    uw = unknown_prior_weight if lambda_unknown_prior is None else lambda_unknown_prior
-    if min(sw, radius_weight, uw) < 0:
+    if min(sw, radius_weight) < 0:
         raise ValueError('Attribute loss weights must be nonnegative')
-    loss = sw * (support_bce + support_dice) + radius_weight * radius_nll + uw * prior_kl
+    loss = sw * (support_bce + support_dice) + radius_weight * radius_mse
     if not torch.isfinite(loss):
         raise FloatingPointError('Nonfinite attribute loss')
     return dict(loss=loss, support_bce=support_bce, support_dice_loss=support_dice,
-                radius_nll=radius_nll, radius_mse=radius_mse, unknown_prior_kl=prior_kl)
+                radius_mse=radius_mse)
 
 
 def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
-                      gdf_weight=0.0, deep_supervision_weight=0.0):
+                      gdf_weight=0.0, deep_supervision_weight=0.0,
+                      deep_supervision_weights=(.5, .25), dice_smooth=1.0):
+    if not isinstance(dice_smooth, (int, float)) or not 0 < dice_smooth < float('inf'):
+        raise ValueError('Dice smoothing must be finite and positive')
     logits = output['logits'].float()
     label, valid = batch['label'].float(), batch['valid'].bool()
     if logits.shape != label.shape:
@@ -101,7 +94,7 @@ def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
     numerator = 2 * (prob * truth).flatten(1).sum(1)
     denominator = prob.flatten(1).sum(1) + truth.flatten(1).sum(1)
     case_valid = valid.flatten(1).any(1)
-    dice_per_case = 1 - (numerator + 1e-5) / (denominator + 1e-5)
+    dice_per_case = 1 - (numerator + dice_smooth) / (denominator + dice_smooth)
     dice = dice_per_case[case_valid].mean() if case_valid.any() else safe_logits.sum() * 0
     gdf = safe_logits.sum() * 0
     gdf_details = dict(gdf_fg_mse=None, gdf_bg_mse=None, gdf_fg_voxels=0,
@@ -124,22 +117,30 @@ def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
                 gdf_details[name] = float(masked_case_mean(error.detach().square(), region))
         if not gdf_weight:
             gdf = gdf.detach()  # A lambda-zero diagnostic must not update the unused head.
-    auxiliary = safe_logits.sum() * 0
+    auxiliary_bce = safe_logits.sum() * 0
+    auxiliary_dice = safe_logits.sum() * 0
     if deep_supervision_weight:
         heads = output.get('aux_logits', [])
         if not heads:
             raise ValueError('Nonzero deep supervision needs auxiliary logits')
-        for head in heads:
+        if len(deep_supervision_weights) < len(heads) or any(
+                not isinstance(weight, (int, float)) or not 0 <= weight < float('inf')
+                for weight in deep_supervision_weights):
+            raise ValueError('Each deep-supervision head needs an explicit finite nonnegative weight')
+        for weight, head in zip(deep_supervision_weights, heads):
             source_valid = F.adaptive_max_pool3d(valid.float(), head.shape[2:]) > 0
             head = torch.where(source_valid, head.float(), torch.zeros_like(head, dtype=torch.float32))
             if head.shape[2:] != label.shape[2:]:
                 head = F.interpolate(head, size=label.shape[2:], mode='trilinear', align_corners=False)
             head = torch.where(valid, head, torch.zeros_like(head))
-            auxiliary = auxiliary + masked_case_mean(
+            auxiliary_bce = auxiliary_bce + weight * masked_case_mean(
                 F.binary_cross_entropy_with_logits(head, safe_label, reduction='none'), valid)
-        auxiliary = auxiliary / len(heads)
+            auxiliary_dice = auxiliary_dice + weight * _case_dice(head.sigmoid(), safe_label, valid,
+                                                                smooth=dice_smooth)
+    auxiliary = auxiliary_bce + auxiliary_dice
     total = dice_weight*dice + bce_weight*bce + gdf_weight*gdf + deep_supervision_weight*auxiliary
     if not torch.isfinite(total):
         raise FloatingPointError('Nonfinite segmentation loss')
     return {'loss': total, 'dice_loss': dice, 'segmentation_bce': bce,
-            'gdf_mse': gdf, 'auxiliary_bce': auxiliary, **gdf_details}
+            'gdf_mse': gdf, 'auxiliary_bce': auxiliary_bce, 'auxiliary_dice': auxiliary_dice,
+            'auxiliary_loss': auxiliary, **gdf_details}

@@ -44,7 +44,7 @@ def test_radius_valid_excludes_all_background_cells_but_retains_fractional_lumen
     # Deliberately oversized resampled measurement ball tests the background intersection.
     np.savez(cache/'geometry.npz',points=np.asarray([[8,8,8]],np.int32),radius=np.asarray([3.],np.float32),
              structure=np.ones(1,np.uint8),geometry_valid=np.uint8(1))
-    manifest=tmp_path/'manifest.json';manifest.write_text(json.dumps(dict(schema='gta-avt-prepared-v1.1',
+    manifest=tmp_path/'manifest.json';manifest.write_text(json.dumps(dict(schema='gta-avt-prepared-v1',
         cases=[dict(id='T',split='TRAIN',cache_dir='T',spacing_mm=1.)],
         statistics=dict(mu=0.,sigma=1.,pi_support=.01,gdf_scale=1.))))
     sample=PreparedDataset(manifest,patch_size=16,samples_per_epoch=1,seed=7)[0]
@@ -103,26 +103,21 @@ def _torch_fixture():
     batch=dict(support=support,support_valid=valid,r=radius,r_valid=measured,case_id=['one'])
     logits=torch.where(support.bool(),torch.tensor(10.),torch.tensor(-10.)).requires_grad_()
     mu=torch.zeros(shape); mu.flatten()[:4]=torch.tensor([-1.,0.,1.,2.]); mu=mu.requires_grad_()
-    lv=torch.zeros(shape); lv.flatten()[:4]=np.log(.1); lv=lv.requires_grad_()
-    return torch,batch,dict(support_logits=logits,radius_mean=mu,radius_log_variance=lv)
+    return torch,batch,dict(support_logits=logits,radius_mean=mu)
 
 
 def test_radius_unknown_targets_never_become_zero_measurements():
     torch,batch,out=_torch_fixture()
     from gta_avt.losses import attribute_loss
     with torch.no_grad(): out['radius_mean'].flatten()[4:]=2.
-    result=attribute_loss(out,batch,unknown_prior_weight=0.)
+    result=attribute_loss(out,batch)
     assert torch.isfinite(result['loss']) and float(result['radius_mse']) == 0.
     result['loss'].backward()
     assert torch.equal(out['radius_mean'].grad.flatten()[4:],torch.zeros(4))
-    for value in out.values(): value.grad=None
-    result=attribute_loss(out,batch,unknown_prior_weight=.01)
-    assert float(result['unknown_prior_kl']) == pytest.approx(2.)
-    result['loss'].backward()
-    assert (out['radius_mean'].grad.flatten()[4:] > 0).all(), 'Separate prior shrinks uncertainty distribution, not a radius target'
+    assert 'radius_nll' not in result and 'unknown_prior_kl' not in result
 
 
-def test_unknown_prior_region_balance_not_background_count():
+def test_unknown_radius_has_no_loss_or_gradient_regardless_of_background_count():
     torch=pytest.importorskip('torch')
     from gta_avt.losses import attribute_loss
     for background_count in (2,100):
@@ -130,12 +125,13 @@ def test_unknown_prior_region_balance_not_background_count():
         support=torch.zeros(shape); support.flatten()[0]=1.
         mu=torch.zeros(shape,requires_grad=True)
         with torch.no_grad():mu.flatten()[0]=2.
-        out=dict(support_logits=torch.zeros(shape),radius_mean=mu,radius_log_variance=torch.zeros(shape))
+        out=dict(support_logits=torch.zeros(shape),radius_mean=mu)
         batch=dict(support=support,support_valid=torch.ones(shape,dtype=torch.bool),
                    r=torch.full(shape,float('nan')),r_valid=torch.zeros(shape,dtype=torch.bool))
         result=attribute_loss(out,batch)
-        assert float(result['radius_nll']) == 0.
-        assert float(result['unknown_prior_kl']) == pytest.approx(1.)
+        assert float(result['radius_mse']) == 0.
+        result['loss'].backward()
+        assert torch.equal(mu.grad,torch.zeros_like(mu))
 
 
 def test_gdf_foreground_background_balancing_and_unknown_nulls():
@@ -194,11 +190,27 @@ def test_readiness_rejects_accurate_radius_with_no_anatomical_overlap():
     assert not report['readiness']['tests']['every_case_has_measured_consumer_overlap']
 
 
-def test_readiness_requires_usable_correct_radius_not_just_variance():
+def test_readiness_requires_usable_correct_radius_and_reports_soft_unknown_mass():
     _,batch,out=_torch_fixture()
     from gta_avt.metrics import AttributeMetrics
     meter=AttributeMetrics(.5);meter.update(out,batch);report=meter.report()
     assert report['readiness']['passed']
     row=report['per_case'][0]
     assert row['consumer_overlap_sites']==4 and row['consumer_unmeasured_fraction']==0.
-    assert row['measured_reliability_mean']==pytest.approx(.9/1.1,rel=1e-6)
+    assert row['soft_consumed_radius_mse']==0.
+    assert row['soft_support_mass_on_unmeasured_fraction'] > 0.
+    assert 'reliability_error_correlation' not in row
+
+
+def test_consumption_metrics_do_not_invent_radius_error_on_unknown_foreground():
+    torch,batch,out=_torch_fixture()
+    from gta_avt.metrics import AttributeMetrics
+    with torch.no_grad():
+        batch['support'].flatten()[4]=1.
+        out['support_logits'].flatten()[4]=10.
+        out['radius_mean'].flatten()[4]=3.
+    meter=AttributeMetrics(.5);meter.update(out,batch);row=meter.report()['per_case'][0]
+    assert row['radius_mse']==0. and row['consumer_radius_mse']==0.
+    assert row['consumer_unmeasured_foreground_sites']==1
+    assert row['consumer_unmeasured_fraction']==pytest.approx(.2)
+    assert row['unmeasured_radius_axis_fraction'] > 0.

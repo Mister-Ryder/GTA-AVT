@@ -1,0 +1,26 @@
+{
+  "schema": "GTA-AVT-snapshot-timing-1",
+  "times": {
+    "AR_GDF": {
+      "started_utc": "2026-10-28T10:22:13.080023+00:00",
+      "finished_utc": "2026-10-28T10:22:26.410684+00:00"
+    },
+    "original_P_control": {
+      "started_utc": "2026-10-28T10:24:10.194483+00:00",
+      "finished_utc": "2026-10-28T10:24:11.706923+00:00"
+    },
+    "C0": {
+      "started_utc": "2026-10-28T14:04:12.078109+00:00",
+      "finished_utc": "2026-10-28T14:04:15.299097+00:00"
+    },
+    "AR": {
+      "started_utc": "2026-10-28T14:04:15.299123+00:00",
+      "finished_utc": "2026-10-28T14:04:18.746455+00:00"
+    },
+    "C0_GDF": {
+      "started_utc": "2026-10-28T14:04:18.746487+00:00",
+      "finished_utc": "2026-10-28T14:04:21.494542+00:00"
+    }
+  },
+  "meaning": "UTC acquisition timestamps, not training-step timestamps; completed cached main/P and current three controls are independent snapshots"
+}

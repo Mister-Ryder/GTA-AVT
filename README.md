@@ -11,6 +11,7 @@ GTA面向主动脉血管树分割的实现：**预测局部解剖属性，以条
 | 从零开始的完整阶段说明 | [训练阶段、属性、冻结与损失](docs/v12_gdf_joint_20261028/TRAINING_STAGES_ZH.md) |
 | 本轮具体对照 | [旧四支与新两支分别检验什么](docs/v12_gdf_joint_20261028/EXPERIMENT_MATRIX.md) |
 | 自v1.2发布后的同步更新 | [方法、范围及源码身份更新记录](docs/v12_gdf_joint_20261028/CHANGELOG_20261028.md) |
+| 关键训练过程记录 | [loss、验证、学习率、采样、AMP及客观曲线](reports/v12_training_metrics_20261028/README.md)，含完整主线与进行中消融的明确快照 |
 | 既往开发记录 | [此前的仓库说明](docs/archive/README_before_gdf_joint_20261028.md)及原有 `reports/`，保留历史结果与限制 |
 
 更新日期：2026-10-28。高斯联合监督修订是当前方法代码，性能需由其匹配实验确认；不把代码核验写成解剖分割效果。

@@ -1,0 +1,3 @@
+run_label,phase,successful_update,kind,checkpoint_sha256
+AR_GDF,attribute,29000,selected_for_base_warm,575383d27e58359a8b1768dff41f38e4307eefe7158ebc0f7d758ca9f003e963
+AR_GDF,base,27000,selected_for_condition,0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630

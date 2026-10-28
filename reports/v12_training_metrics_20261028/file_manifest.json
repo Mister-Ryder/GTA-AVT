@@ -1,0 +1,87 @@
+{
+  "schema": "GTA-AVT-training-export-file-manifest-1",
+  "text_encoding": "UTF-8 LF",
+  "files": {
+    "amp_skips.csv": {
+      "bytes": 16481,
+      "sha256": "8aef9866410d570852f2b989bea14ab70b8f84812ee356c2b97de9534353cb16"
+    },
+    "checkpoint_markers.csv": {
+      "bytes": 274,
+      "sha256": "ad8d89b568dc8685c06e9f1cf53f559cea9a3abc5539d6bd85480504ca16dcca"
+    },
+    "figures/01_main_training_patch_validation.png": {
+      "bytes": 574473,
+      "sha256": "691f7ccf84bcc4ccde855bef9c57cf06fced03f7f822950e889a82ae55cbad6d"
+    },
+    "figures/01_main_training_patch_validation.svg": {
+      "bytes": 267732,
+      "sha256": "f144387cd8bf0800a9c77134f80b15d177a0acc0f4f4b616827354c98225441f"
+    },
+    "figures/02_attribute_pretraining.png": {
+      "bytes": 294780,
+      "sha256": "05f8281eb1d21976311cf452b6c86912b6b33bc0e693b17c381aaa6450c6ad47"
+    },
+    "figures/02_attribute_pretraining.svg": {
+      "bytes": 65395,
+      "sha256": "f86bf6adb36539ae9e17e19b247e58137852ca88279cc4f45e0e85edd7492a01"
+    },
+    "figures/03_local_controls_patch_validation.png": {
+      "bytes": 215272,
+      "sha256": "18ab8b60b1b13d52282e08ef771ce8889b09ee6f47e2bc10495e9debcb2b35ed"
+    },
+    "figures/03_local_controls_patch_validation.svg": {
+      "bytes": 50676,
+      "sha256": "66ef0ef857a50cf07726e1fc06f595c11bbb282b0223b592dd2d249211b5b15c"
+    },
+    "figures/04_native_available_endpoints.png": {
+      "bytes": 147444,
+      "sha256": "e6d046477066adbc10f74d5a7a4ab9746c363d3e1760aba002d7351a748c320c"
+    },
+    "figures/04_native_available_endpoints.svg": {
+      "bytes": 21979,
+      "sha256": "96df6de1d58763a5ab11d40f67386ea13f0160031167ceb196ba389b6a7a27c7"
+    },
+    "figures/plot_manifest.json": {
+      "bytes": 1755,
+      "sha256": "ae8df4e75e1ec4864d9266c837f8c3a3a6aa28b372f2b55aca9c7aa368dafb29"
+    },
+    "measurement_definitions.json": {
+      "bytes": 3593,
+      "sha256": "6c4b7abac7f4bf9eaae59a776e97f1cb116988a5f2f5bccfd00a8b82e1f93693"
+    },
+    "phase_endpoints.csv": {
+      "bytes": 1591,
+      "sha256": "1f8bc711c7fe3e66d354511df94ad837dbb86d58bc44d3a783b42438b6cb124b"
+    },
+    "README.md": {
+      "bytes": 8681,
+      "sha256": "939f0d75f06223dc4f4585cda3cd77e8368af5c2be2456ca4e0a4850f8d7addf"
+    },
+    "scientific_configuration.json": {
+      "bytes": 27730,
+      "sha256": "29b3850755fa129cb38fe90c3552e5345cb11af81de511b62ff9f7c932d11a58"
+    },
+    "training_scalars.csv": {
+      "bytes": 1441729,
+      "sha256": "bf43cfd579f7e9114e80f55b5a17f1292c1ea9fdfc0ea0f2a155852cd7a936b3"
+    },
+    "training_windows.csv": {
+      "bytes": 3335487,
+      "sha256": "d45b399af49a2fce144c5763698dd4550680621806fdeb3df9ed23761842fa31"
+    },
+    "trajectory_manifest.json": {
+      "bytes": 34353,
+      "sha256": "c147e3020bda22922dbdf33da33c5be419992e747ed464a245e95f9e7301dbc0"
+    },
+    "validation_case_metrics.csv": {
+      "bytes": 563472,
+      "sha256": "ceb5cad67ae310ae9a5234a08c771f7856191fc071abdcb45d63a7dc56d07c4f"
+    },
+    "validation_summary.csv": {
+      "bytes": 330159,
+      "sha256": "860b7e74cc3db2178e4ba0eff1f266c5c2d658c398a032fe6bbbfb6e324281fd"
+    }
+  },
+  "training_or_inference_run_for_export": false
+}

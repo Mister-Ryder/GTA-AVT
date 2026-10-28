@@ -1,0 +1,30 @@
+{
+  "schema": "GTA-AVT-training-figures-1",
+  "main_run": "AR_GDF",
+  "smoothing": false,
+  "phase_resets_joined": false,
+  "training_render": "exported raw scalar samples",
+  "validation_render": "all exported original validation observations",
+  "input_csv_sha256": {
+    "training_scalars.csv": "bf43cfd579f7e9114e80f55b5a17f1292c1ea9fdfc0ea0f2a155852cd7a936b3",
+    "validation_summary.csv": "860b7e74cc3db2178e4ba0eff1f266c5c2d658c398a032fe6bbbfb6e324281fd"
+  },
+  "native_csv_sha256": {
+    "endpoint_summary.csv": "197d7a8edc8dee2c58f530740f0e7af8b3cb8e7c360212ba4f89d8300e05b198",
+    "endpoint_per_case.csv": "f3dfe7705436aa2d52630b90591561e6333af76c23b7e7465d473d499eedcdd3"
+  },
+  "figure_sha256": {
+    "01_main_training_patch_validation.png": "691f7ccf84bcc4ccde855bef9c57cf06fced03f7f822950e889a82ae55cbad6d",
+    "01_main_training_patch_validation.svg": "f144387cd8bf0800a9c77134f80b15d177a0acc0f4f4b616827354c98225441f",
+    "02_attribute_pretraining.png": "05f8281eb1d21976311cf452b6c86912b6b33bc0e693b17c381aaa6450c6ad47",
+    "02_attribute_pretraining.svg": "f86bf6adb36539ae9e17e19b247e58137852ca88279cc4f45e0e85edd7492a01",
+    "03_local_controls_patch_validation.png": "18ab8b60b1b13d52282e08ef771ce8889b09ee6f47e2bc10495e9debcb2b35ed",
+    "03_local_controls_patch_validation.svg": "66ef0ef857a50cf07726e1fc06f595c11bbb282b0223b592dd2d249211b5b15c",
+    "04_native_available_endpoints.png": "e6d046477066adbc10f74d5a7a4ab9746c363d3e1760aba002d7351a748c320c",
+    "04_native_available_endpoints.svg": "96df6de1d58763a5ab11d40f67386ea13f0160031167ceb196ba389b6a7a27c7"
+  },
+  "matplotlib_version": "3.5.2",
+  "train_rows": 2063,
+  "validation_rows": 194,
+  "text_encoding": "UTF-8 LF; canonical CSV bytes; numeric values unchanged"
+}

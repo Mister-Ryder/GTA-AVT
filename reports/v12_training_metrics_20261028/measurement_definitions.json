@@ -1,0 +1,69 @@
+{
+  "schema": "GTA-AVT-training-metric-definitions-1",
+  "versions": {
+    "ratio_r2": {
+      "source_commit": "beab40c2b63345336c2eda8556d0caf99abad7f7",
+      "run_labels": [
+        "AR_GDF",
+        "C0",
+        "AR",
+        "C0_GDF"
+      ]
+    },
+    "original_P_control": {
+      "source_commit": "1106e7e52ad0114cc0c4bcbcfaf824b9c2236fe0",
+      "scope": "completed attribute-only control; next segmentation stage intentionally blocked"
+    }
+  },
+  "scalar_units": {
+    "dice": "fraction; plot percent equals100*value",
+    "precision": "fraction",
+    "recall": "fraction",
+    "loss": "recorded objective units; components and weights must be considered",
+    "radius_mse": "standardized log-radius squared error on reliable measurement domain",
+    "phase_elapsed_seconds": "measured total phase wall time including validation/checkpoint overhead",
+    "successful_update": "successful optimizer update; failed AMP attempts are excluded"
+  },
+  "attributes": {
+    "support": "CT-predicted continuous lumen occupancy at stride2; not calibrated confidence",
+    "radius": "CT-predicted standardized log physical EDT radius, supervised only on reliable geometry",
+    "train_statistics": {
+      "mu": 1.366666007637428,
+      "sigma": 0.7268629347959835,
+      "pi": 0.001352006831275305,
+      "pi_support": 0.004302116418128005
+    },
+    "statistics_fit_scope": "TRAIN only, case equal"
+  },
+  "gaussian": {
+    "target": "mask*log1p(raw cumulative Gaussian sum)/fixed TRAIN foreground RMS",
+    "train_field_scale": 2.8707158419291448,
+    "bounded_at_one": false,
+    "prediction": "Softplus of parallel F32 feature head",
+    "loss_reduction": "case equal; equal existing foreground/background region MSE",
+    "inactive_loss_note": "A reported diagnostic GDF MSE with zero applied weight does not imply GDF updates to S",
+    "new_gdf_joint_r3": "Not represented by these curves; later bounded target and Sigmoid/full-S runs must be published separately"
+  },
+  "validation": {
+    "fixed_patch_bank": "64 fixed sampled VAL128-cubed patches; eight percase, eight VAL cases",
+    "averaging": "mean of patch scores within each case, then case-equal mean; not pooled voxel Dice",
+    "empty_patch": "both empty masks: Dice1; empty GT with any predicted foreground: Dice0",
+    "native": "separate native whole-case VAL8 endpoint evaluation; no direct subtraction against patch Dice"
+  },
+  "training_windows": {
+    "width_successful_updates": 200,
+    "source": "all complete raw successful-update history rows",
+    "mean": "arithmetic mean of recorded batch scalars",
+    "p10_p90": "sorted observed window values at integer floor((n-1)*q)",
+    "partial_last_window": "allowed and explicitly counted; never filled to200"
+  },
+  "selection": {
+    "attribute": "actual downstream-loaded best_ready at29k",
+    "base": "actual downstream-loaded best_ready at27k after20k warm; selected S lineage47k",
+    "condition": "last10k; S lineage57k from selectedbase",
+    "postcondition": "last endpoints, not retrospective best curve points"
+  },
+  "sampling_note": "TRAIN case equal then anatomical anchor curriculum. Anchor-category weights differ from actual foreground voxel fractions. Requested/fallback category counts and observed B2 fractions are retained where logged.",
+  "amp_note": "Skip indices inferred from consecutive successful-row attempt-counter gaps. Failed-batch losses or exact failed input identities were not logged.",
+  "current_scope": "Single-seed recorded trajectories and native partial endpoints; no new optimization or TEST use in this export"
+}

@@ -623,14 +623,126 @@ def import_prepared_cache(cache_manifest, output_dir, *, cache_root=None, raw_ro
     return manifest
 
 
+def prepare_bounded_gdf_overlay(cache_manifest, output_dir, *, chunk_depth=16, resume=False):
+    """Write only new bounded GDF arrays; reuse all immutable CT/P/S inputs.
+
+    Source cases retain their absolute ``cache_dir``. Only ``gdf_file`` points
+    into this overlay. TRAIN/VAL labels are used to prepare loss targets;
+    TEST rows are excluded without opening their files. P's TRAIN statistics,
+    masks, validity, geometry, CT intensity treatment and sampling are unchanged.
+    """
+    from .geometry import bounded_gaussian_target, BOUNDED_GDF_SCHEMA
+    import copy
+    import os
+
+    source_path, output = Path(cache_manifest).resolve(), Path(output_dir).resolve()
+    source_hash = _sha(source_path)
+    source = load_manifest(source_path)
+    if source.get('gdf_target'):
+        raise ValueError('Overlay source must be the original unbounded v1.2 cache')
+    scale = float(source['statistics']['gdf_scale'])
+    if not np.isfinite(scale) or scale <= 0:
+        raise ValueError('Source cache must declare its finite positive TRAIN GDF scale')
+    selected = [case for case in source['cases'] if case['split'].upper() in ('TRAIN', 'VAL')]
+    if not selected or len({case['id'] for case in selected}) != len(selected):
+        raise ValueError('Unique TRAIN/VAL cases required')
+    contract = dict(schema='gdf-joint-overlay-preparation-v1', source_manifest_sha256=source_hash,
+                    target_schema=BOUNDED_GDF_SCHEMA, source_field_scale=scale,
+                    test_files_opened=False)
+    marker = output / 'preparation_contract.json'
+    if output.exists():
+        if not resume or not marker.is_file() or json.loads(marker.read_text(encoding='utf-8')) != contract:
+            raise FileExistsError('Existing overlay requires --resume and the identical source/target contract')
+    else:
+        output.mkdir(parents=True)
+        _json(marker, contract)
+    rows, audits = [], []
+    for case in selected:
+        case_id = case['id']
+        if not isinstance(case_id, str) or not case_id or any(c in case_id for c in '/\\') or case_id in ('.', '..'):
+            raise ValueError('Case ID must be a safe directory name')
+        directory = Path(case['cache_dir'])
+        inputs = {key: directory / (key + '.npy') for key in ('gdf', 'gdf_valid', 'valid', 'mask')}
+        input_hashes = {key: _sha(path) for key, path in inputs.items()}
+        case_output = output / case_id
+        case_output.mkdir(exist_ok=True)
+        target_path, audit_path = case_output / 'gdf.npy', case_output / 'gdf_audit.json'
+        audit = json.loads(audit_path.read_text(encoding='utf-8')) if resume and audit_path.is_file() else None
+        if audit is not None:
+            if (audit.get('source_array_sha256') != input_hashes or not target_path.is_file() or
+                    audit.get('target_sha256') != _sha(target_path) or audit.get('schema') != BOUNDED_GDF_SCHEMA):
+                raise ValueError('Existing overlay case does not match immutable source/target bytes: ' + case_id)
+        else:
+            arrays = {key: np.load(path, mmap_mode='r', allow_pickle=False) for key, path in inputs.items()}
+            shape = arrays['gdf'].shape
+            if any(array.shape != shape for array in arrays.values()):
+                raise ValueError('Gaussian/mask/valid shapes differ: ' + case_id)
+            real = np.asarray(arrays['valid'], bool)
+            gvalid = np.asarray(arrays['gdf_valid'], bool)
+            mask = np.asarray(arrays['mask'], bool)
+            if (gvalid & ~real).any() or (mask & ~real).any():
+                raise ValueError('Source validity or foreground includes padding: ' + case_id)
+            valid_background = gvalid & real & ~mask
+            if np.any(np.asarray(arrays['gdf'])[valid_background] != 0.):
+                raise ValueError('Source target is not the declared masked log-Gaussian: ' + case_id)
+            temporary = case_output / 'gdf.incomplete.npy'
+            target = np.lib.format.open_memmap(temporary, mode='w+', dtype=np.float32, shape=shape)
+            audit = bounded_gaussian_target(arrays['gdf'], scale, gvalid & real,
+                                            output=target, chunk_depth=chunk_depth)[1]
+            target.flush()
+            del target
+            os.replace(str(temporary), str(target_path))
+            audit.update(id=case_id, split=case['split'].upper(), source_array_sha256=input_hashes,
+                         target_sha256=_sha(target_path), target_dtype='float32', target_shape=list(shape),
+                         valid_background_voxels=int(valid_background.sum()),
+                         unknown_or_padding_voxels=int((~(gvalid & real)).sum()))
+            _json(audit_path, audit)
+        row = dict(case)
+        row['gdf_file'] = str(target_path.relative_to(output))
+        row['bounded_gdf_sha256'] = audit['target_sha256']
+        rows.append(row)
+        audits.append(audit)
+        print(json.dumps(dict(event='bounded_gdf_overlay_case', id=case_id, split=row['split'],
+                              target_sha256=audit['target_sha256'], degenerate=audit['degenerate'])), flush=True)
+    manifest = copy.deepcopy(source)
+    manifest.update(schema='gta-avt-prepared-gdf-joint-v1', cases=rows,
+                    source_manifest_sha256=source_hash,
+                    gdf_target=dict(schema=BOUNDED_GDF_SCHEMA,
+                        definition='0.5+0.5*whole_case_minmax(raw_cumulative_Gaussian)',
+                        normalization_scope='per full case on loss-valid real voxels before crops',
+                        background_value=.5, invalid_fill_value=.5, degenerate_value=.5,
+                        target_bounds=[.5, 1.],
+                        source_field_scale=scale, source_reconstruction='expm1(cached_gdf*TRAIN_RMS)',
+                        stable_ratio_used=True, statistics_fitted_on_val=False,
+                        loss_validity_unchanged=True, ct_inputs_unchanged=True,
+                        labels_required_at_inference=False),
+                    gdf_definition='0.5+0.5*whole_case_minmax(raw_cumulative_Gaussian)',
+                    overlay_only=True, test_opened=False,
+                    excluded_test_case_count=sum(case['split'].upper() == 'TEST' for case in source['cases']))
+    _json(output / 'case_audits.json', audits)
+    _json(output / 'manifest.json', manifest)
+    _json(output / 'completion.json', dict(schema='gdf-joint-overlay-completion-v1', complete=True,
+          manifest_sha256=_sha(output / 'manifest.json'), source_manifest_sha256=source_hash,
+          cases=len(rows), train_cases=sum(row['split'] == 'TRAIN' for row in rows),
+          val_cases=sum(row['split'] == 'VAL' for row in rows), test_files_opened=False,
+          allocated_target_bytes=sum((output / row['gdf_file']).stat().st_size for row in rows)))
+    return manifest
+
+
 def load_manifest(path):
     path = Path(path).resolve()
     value = json.loads(path.read_text(encoding='utf-8'))
-    if value.get('schema') not in ('gta-avt-prepared-v1', 'gta-avt-prepared-v1.1'):
-        raise ValueError('Prepared v1/v1.1 manifest required')
+    if value.get('schema') not in ('gta-avt-prepared-v1', 'gta-avt-prepared-v1.1', 'gta-avt-prepared-gdf-joint-v1'):
+        raise ValueError('Prepared v1/v1.1 or bounded GDF-joint manifest required')
+    if value.get('schema') == 'gta-avt-prepared-gdf-joint-v1':
+        if value.get('gdf_target', {}).get('schema') != 'gdf-joint-bounded-v1':
+            raise ValueError('Bounded overlay is missing its explicit target identity')
     for case in value['cases']:
         directory = Path(case['cache_dir'])
         case['cache_dir'] = str(directory.resolve() if directory.is_absolute() else (path.parent / directory).resolve())
+        if 'gdf_file' in case:
+            target = Path(case['gdf_file'])
+            case['gdf_file'] = str(target.resolve() if target.is_absolute() else (path.parent / target).resolve())
     return value
 
 
@@ -665,7 +777,7 @@ class PreparedDataset:
     def _case(self, row):
         if row['id'] not in self._opened:
             directory = Path(row['cache_dir'])
-            result = {key: np.load(directory / f'{key}.npy', mmap_mode='r', allow_pickle=False)
+            result = {key: np.load(row.get('gdf_file', directory / 'gdf.npy') if key == 'gdf' else directory / f'{key}.npy', mmap_mode='r', allow_pickle=False)
                       for key in ('image', 'mask', 'valid', 'gdf', 'gdf_valid')}
             result['geometry'] = _load_geometry(directory)
             if self.sampling is not None:
@@ -700,7 +812,8 @@ class PreparedDataset:
         arrays = {}
         for key, source in (('image', 'image'), ('label', 'mask'), ('valid', 'valid'), ('gdf', 'gdf'), ('gdf_valid', 'gdf_valid')):
             array = np.asarray(item[source][slices], np.float32)
-            arrays[key] = np.pad(array, [(0, patch - n) for n in array.shape], constant_values=-1024. if key == 'image' else 0.)
+            fill = -1024. if key == 'image' else (.5 if key == 'gdf' and self.manifest.get('gdf_target', {}).get('schema') == 'gdf-joint-bounded-v1' else 0.)
+            arrays[key] = np.pad(array, [(0, patch - n) for n in array.shape], constant_values=fill)
         queries = query_grid(start, (patch // 2,) * 3, (patch,) * 3)
         spacing = np.repeat(row['spacing_mm'], 3)
         observed_bounds = np.stack((start - .5, np.minimum(start + patch, shape) - .5)) * spacing

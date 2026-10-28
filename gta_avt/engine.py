@@ -23,11 +23,11 @@ from .losses import attribute_loss, segmentation_loss
 from .metrics import AttributeMetrics, binary_metrics, summarize_cases
 from .models import AttributePredictor, GTAAVT, MODEL_CONFIG
 
-SCHEMA = 'GTA-AVT-v1.2-checkpoint-1'
-STAGES = ('base', 'gdf_head', 'local_adapt')
+SCHEMA = 'GTA-AVT-v1.2-gdf-joint-checkpoint-1'
+STAGES = ('base', 'gdf_head', 'local_adapt', 'full_joint')
 ARMS = ('C0', 'V_only', 'AR')
 PHASE_STAGES = dict(attribute='pretrain', base_warm='base', base='base', condition='local_adapt',
-                    gdf_head='gdf_head', geometry='local_adapt', refine='local_adapt')
+                    gdf_head='gdf_head', geometry='full_joint', refine='full_joint')
 PARENT_PHASES = dict(base='base_warm', condition='base', gdf_head='condition', geometry='gdf_head', refine='geometry')
 
 
@@ -69,7 +69,7 @@ def load_checkpoint(path, device='cpu'):
     except TypeError:
         value = torch.load(str(path), map_location=device)
     if value.get('schema') != SCHEMA:
-        raise ValueError('Expected a v1.2 checkpoint; older method checkpoints are not compatible')
+        raise ValueError('Expected the explicit GDF-joint checkpoint schema; legacy conversion must use migrate_condition')
     return value
 
 
@@ -178,6 +178,8 @@ def _datasets(config):
         samples_per_epoch=config.get('val_samples', len(val_cases) * 8), augment=False, **common)
     if (config['stage'] == 'gdf_head' or max(config['lambda_gdf'], config['gdf_weight_start'], config['gdf_weight_end']) > 0) and config['use_gdf']:
         manifest = load_manifest(config['manifest'])
+        if manifest.get('gdf_target', {}).get('schema') != 'gdf-joint-bounded-v1':
+            raise ValueError('Sigmoid Gaussian supervision requires the separately prepared bounded-target overlay')
         if manifest.get('heldout_gdf_foreground_prepared') is not True:
             raise ValueError('v1.2 GDF validation requires real held-out foreground targets; prepare data again')
     return train, val
@@ -357,7 +359,7 @@ def _optimizer(model, config):
     actual = [id(value) for group in supplied.values() for value in group]
     if len(actual) != len(set(actual)) or set(actual) != expected:
         raise RuntimeError('Optimizer groups must contain every active parameter exactly once')
-    if config['stage'] == 'local_adapt':
+    if config['stage'] in ('local_adapt', 'full_joint'):
         rates = dict(shared=config['local_shared_lr'], gates=config['local_gate_lr'], gdf=config['local_gdf_lr'])
     elif config['stage'] == 'gdf_head':
         rates = dict(shared=config['lr'], gates=config['lr'], gdf=config['gdf_head_lr'])
@@ -478,7 +480,7 @@ def _run(config, kind):
     model.to(device)
     frozen_digest = _frozen_digest(model) if kind == 'train' and config['stage'] != 'base' else None
     optimizer = _optimizer(model, config)
-    local = config['stage'] in ('gdf_head', 'local_adapt')
+    local = config['stage'] in ('gdf_head', 'local_adapt', 'full_joint')
     scheduler = torch.optim.lr_scheduler.LambdaLR(optimizer,
         lr_lambda=(lambda step: 1.) if local else (lambda step: max(0., 1 - step / config['max_steps']) ** .9))
     use_amp = bool(config['amp'] and device.type == 'cuda')
@@ -487,6 +489,10 @@ def _run(config, kind):
     else:
         scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
     output = _output_directory(config)
+    writer = None
+    if config.get('tensorboard_logdir'):
+        from torch.utils.tensorboard import SummaryWriter
+        writer = SummaryWriter(config['tensorboard_logdir'], flush_secs=20)
     state = dict(step=0, attempts=0, epoch=0, batch_index=0, best_score=math.inf,
                  best_key=[math.inf, math.inf], best_ready_score=math.inf, best_ready_key=[math.inf, math.inf])
     validation = None
@@ -567,6 +573,23 @@ def _run(config, kind):
                         and tuple(key) < tuple(state['best_ready_key'])):
                     state['best_ready_score'] = validation['selection_score']; state['best_ready_key'] = key; is_ready = True
                 model.train()
+            if writer is not None and (state['step'] % 50 == 0 or do_val):
+                for key in ('loss', 'primary_segmentation_loss', 'gdf_mse', 'weighted_gdf_loss'):
+                    value = record['losses'].get(key)
+                    if value is not None:
+                        writer.add_scalar('train/' + key, value, state['step'])
+                writer.add_scalar('train/gdf_weight', gdf_weight, state['step'])
+                if do_val:
+                    for key in ('dice', 'precision', 'recall'):
+                        value = validation.get('summary', {}).get(key, {}).get('mean')
+                        if value is not None:
+                            writer.add_scalar('val_patch/' + key + '_percent', 100. * value, state['step'])
+                writer.flush()
+            if state['step'] % 50 == 0 or do_val:
+                _json(output / 'progress.json', dict(phase=config['phase'], successful_updates=state['step'],
+                    planned_updates=config['max_steps'], attempts=state['attempts'],
+                    elapsed_seconds=time.monotonic() - started,
+                    last_validation=validation, updated_unix=time.time()))
             with (output / 'history.jsonl').open('a', encoding='utf-8') as stream:
                 stream.write(json.dumps(record, ensure_ascii=False, allow_nan=False) + '\n')
             if state['step'] % config['checkpoint_every'] == 0 or do_val:
@@ -587,6 +610,8 @@ def _run(config, kind):
         validation=validation, weights_are_newly_trained=True,
         convergence_claim='A fixed update budget is not convergence or a performance claim.')
     _json(output / 'summary.json', summary)
+    if writer is not None:
+        writer.close()
     return summary
 
 

@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "synthetic_schema_fixtures_only": true,
+  "torch_or_gpu_tested": false,
+  "python38_syntax_checked": [
+    "reference_weights_support.py",
+    "export_reference_weights.py",
+    "evaluate_reference_weights.py",
+    "reference_input_bank.py",
+    "reference_interventions.py",
+    "verify_reference_schema.py"
+  ],
+  "canonical_rebase_identity": true,
+  "all56_fixture_file_checks": 260,
+  "cache_corruption_rejected": true,
+  "raw_source_corruption_rejected": true,
+  "spatial_metadata_change_rejected": true,
+  "split_change_rejected": true,
+  "pilot_test_rejected_even_with_flag": true,
+  "formal_test_needs_explicit_flag": true,
+  "intervention_test_rejected": true,
+  "reference_runtime_guard_checked_with_synthetic_identifiers": true,
+  "availability_formula_numpy_adapter_checked": true,
+  "frozen_code_unchanged": true
+}

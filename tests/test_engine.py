@@ -38,6 +38,7 @@ class TinySegmentor(nn.Module):
             if stage == 'base': active = active and name != 'gate' and not name.startswith('gdf_head.')
             elif stage == 'gdf_head': active = name.startswith('gdf_head.')
             elif stage == 'local_adapt': active = active and not name.startswith(('backbone.', 'predictor.'))
+            elif stage == 'full_joint': active = not name.startswith('predictor.')
             else: raise ValueError(stage)
             parameter.requires_grad_(active)
         return self.train(True)
@@ -58,7 +59,7 @@ class TinySegmentor(nn.Module):
         feature = self.local(self.backbone(x))
         radius = F.interpolate(attributes['radius_mean'], size=x.shape[2:], mode='nearest')
         feature = feature + float(alpha) * self.gate * (radius if self.arm == 'AR' else 1.)
-        return dict(attributes, logits=self.output(feature), aux_logits=[self.output(feature), self.output(feature)], gdf=F.softplus(self.gdf_head(feature)),
+        return dict(attributes, logits=self.output(feature), aux_logits=[self.output(feature), self.output(feature)], gdf=self.gdf_head(feature).sigmoid(),
                     routing=dict(gain_absmean=self.gate.detach().abs()))
 
 
@@ -77,7 +78,7 @@ class TinyDataset(torch.utils.data.Dataset):
         a=(F.avg_pool3d(image,2)>0).float();r=F.avg_pool3d(image,2)
         return dict(image=image,label=(image>0).float(),valid=torch.ones_like(image),
             support=a,support_valid=torch.ones_like(a),r=r,r_valid=a,
-            gdf=torch.zeros_like(image),gdf_valid=torch.ones_like(image),case_id='ab'[index%2],
+            gdf=torch.full_like(image,.5),gdf_valid=torch.ones_like(image),case_id='ab'[index%2],
             sampling_requested='uniform',sampling_actual='uniform',sampling_fallback='none')
 
 
@@ -131,7 +132,7 @@ class TestScientificLosses(unittest.TestCase):
         logits=torch.zeros(1,1,1,1,2,requires_grad=True)
         gdf=torch.tensor([[[[[1.,5.]]]]],requires_grad=True)
         batch={'label':torch.zeros_like(logits),'valid':torch.ones_like(logits),
-            'gdf':torch.tensor([[[[[0.,float('nan')]]]]]),'gdf_valid':torch.tensor([[[[[1.,0.]]]]])}
+            'gdf':torch.tensor([[[[[.5,float('nan')]]]]]),'gdf_valid':torch.tensor([[[[[1.,0.]]]]])}
         loss=segmentation_loss({'logits':logits,'gdf':gdf},batch,gdf_weight=1.)
         loss['loss'].backward();self.assertEqual(float(gdf.grad.flatten()[1]),0.)
 
@@ -189,7 +190,7 @@ class TestEngineLifecycle(unittest.TestCase):
             parent_checkpoint=condition,require_attribute_readiness=False))
         parent=str(self.root/'head'/'last.pt')
         for phase in ('geometry','refine'):
-            engine.train(self.config(phase,phase=phase,stage='local_adapt',arm='AR',
+            engine.train(self.config(phase,phase=phase,stage='full_joint',arm='AR',
                 parent_checkpoint=parent,require_attribute_readiness=False,gdf_weight_start=.1,gdf_weight_end=.2))
             parent=str(self.root/phase/'last.pt')
             current=engine.load_checkpoint(parent)
@@ -199,7 +200,7 @@ class TestEngineLifecycle(unittest.TestCase):
             engine.train(self.config('bad_head',phase='gdf_head',stage='gdf_head',arm='AR',
                 predictor_checkpoint=predictor,parent_checkpoint=condition,require_attribute_readiness=False))
         with self.assertRaisesRegex(ValueError,'Parent phase'):
-            engine.train(self.config('bad_parent',phase='geometry',stage='local_adapt',arm='AR',
+            engine.train(self.config('bad_parent',phase='geometry',stage='full_joint',arm='AR',
                 parent_checkpoint=base,require_attribute_readiness=False))
         with self.assertRaises(FileExistsError): engine.pretrain(self.config('p'))
 

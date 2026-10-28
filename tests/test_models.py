@@ -117,11 +117,11 @@ class ModelTests(unittest.TestCase):
         self.assertTrue(all(not module.training for module in model.modules()))
         self.assertTrue(all(not p.requires_grad for p in model.predictor.parameters()))
         self.assertEqual(set(model.active_parameter_names()), {"gdf_head.0.weight", "gdf_head.0.bias"})
-        self.assertEqual(sum(p.numel() for p in model.parameters() if p.requires_grad), 33)
+        self.assertEqual(sum(p.numel() for p in model.parameters() if p.requires_grad), 55)
         model.set_stage("local_adapt").train()
         groups = model.parameter_groups()
         self.assertEqual({key: sum(p.numel() for p in values) for key, values in groups.items()},
-                         {"shared": 114882, "gates": 576, "gdf": 33})
+                         {"shared": 114882, "gates": 576, "gdf": 55})
         self.assertEqual(len(model.active_parameter_names()), 17)
         self.assertTrue(all(not module.training for module in model.modules()))
         parameters = [p for group in groups.values() for p in group]

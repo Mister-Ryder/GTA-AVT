@@ -36,7 +36,8 @@ def _region_case_mean(value, foreground, background):
     denominator = present[0].float() + present[1].float()
     per_case = (terms[0] * present[0] + terms[1] * present[1]) / denominator.clamp_min(1)
     good = denominator > 0
-    return per_case[good].mean() if good.any() else torch.where(foreground | background, value, 0.).sum() * 0
+    return per_case[good].mean() if good.any() else torch.where(
+        foreground | background, value, torch.zeros_like(value)).sum() * 0
 
 
 
@@ -167,6 +168,8 @@ def segmentation_loss(output, batch, *, dice_weight=1.0, bce_weight=1.0,
         if output['gdf'].shape != label.shape or batch['gdf'].shape != label.shape:
             raise ValueError('GDF prediction and native training-grid targets must match')
         target = torch.where(mask, batch['gdf'].float(), torch.zeros_like(logits))
+        if not bool(torch.isfinite(target[mask]).all()) or bool(((target[mask] < .5 - 1e-6) | (target[mask] > 1. + 1e-6)).any()):
+            raise ValueError('The GDF-joint Sigmoid target must be finite within [0.5,1] on valid voxels')
         prediction = torch.where(mask, output['gdf'].float(), torch.zeros_like(logits))
         error = prediction - target
         fg, bg = mask & (safe_label > 0), mask & (safe_label == 0)

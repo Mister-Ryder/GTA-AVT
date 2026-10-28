@@ -1,40 +1,7 @@
 {
-  "schema": "GTA-AVT-v1.2-ratio-r2-engineering-QA-1",
-  "scope": "Synthetic CPU implementation checks; no AVT dataset training or server execution",
-  "platform": "Windows",
-  "python": "3.13.14",
-  "torch": "2.8.0+cpu",
-  "pytest": "8.4.2",
-  "tests": 80,
-  "passed": 79,
-  "failures": 0,
-  "skipped": 1,
-  "skipped_reasons": [
-    "Windows symbolic-link privilege unavailable"
-  ],
-  "complete_model_test_shape": [
-    1,
-    1,
-    32,
-    32,
-    32
-  ],
-  "checks": [
-    "historic airway ratio weighting and mean-weight normalization",
-    "soft occupancy, finite sparse/empty-class and padding-safe weighted BCE",
-    "P/main/DS objective wiring and unchanged ordinary Dice/R/GDF",
-    "joint-base predictor/segmentation gradients and normalization",
-    "local parameter scope and immutable later-stage predictor",
-    "Gaussian gradients reach active local routing",
-    "phase order, alpha continuity, Gaussian weight schedules and parent lineage",
-    "six-source deterministic TRAIN sampling and explicit missing-source fallbacks",
-    "fixed validation sampling, unknown masks and foreground accounting",
-    "stage resume, scientific plan identity and quality-check stops",
-    "real-model checkpoint inference roundtrip and physical-grid certification"
-  ],
-  "not_run": [
-    "AVT dataset training or validation",
-    "CUDA",
-    "128-cubed memory test"
-  ]
+  "schema": "GTA-AVT-gdf-joint-engineering-status-1",
+  "status": "CPU tests recorded separately; actual CUDA QA deferred until old experiments complete",
+  "cuda_qa_completed": false,
+  "efficacy_measured": false,
+  "deferred_cuda_command": "python scripts/smoke_gdf_joint_cuda.py --output cuda_qa.json"
 }

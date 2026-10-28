@@ -140,13 +140,13 @@ def test_gdf_foreground_background_balancing_and_unknown_nulls():
     from gta_avt.geometry import gdf_mse
     shape=(1,1,1,1,10)
     label=torch.zeros(shape); label.flatten()[0]=1
-    pred=torch.full(shape,3.); pred.flatten()[0]=1.; pred.requires_grad_()
+    pred=torch.full(shape,1.); pred.flatten()[0]=.75; pred.requires_grad_()
     valid=torch.ones(shape,dtype=torch.bool)
     out=dict(logits=torch.zeros(shape),gdf=pred)
-    batch=dict(label=label,valid=valid,gdf=torch.zeros(shape),gdf_valid=valid)
+    batch=dict(label=label,valid=valid,gdf=torch.full(shape,.5),gdf_valid=valid)
     result=segmentation_loss(out,batch,dice_weight=0,bce_weight=0,gdf_weight=1)
-    assert float(result['gdf_mse']) == pytest.approx(5.)
-    assert result['gdf_fg_mse']==1. and result['gdf_bg_mse']==9.
+    assert float(result['gdf_mse']) == pytest.approx(.15625)
+    assert result['gdf_fg_mse']==.0625 and result['gdf_bg_mse']==.25
     reference,details=gdf_mse(pred,batch['gdf'],valid,label,normalization='balanced')
     assert float(reference)==float(result['gdf_mse'])
     result['loss'].backward();assert pred.grad.flatten()[0]>pred.grad.flatten()[1]
@@ -167,7 +167,7 @@ def test_nan_padding_is_removed_before_segmentation_auxiliary_and_gdf_arithmetic
             return out.requires_grad_()
         logits,aux,gdf=leaf(.4),leaf(-.1),leaf(.5)
         label=torch.full(shape,float('nan'));label[valid]=1.
-        target=torch.full(shape,float('nan'));target[valid]=.25
+        target=torch.full(shape,float('nan'));target[valid]=.75
         out=dict(logits=logits,aux_logits=[aux],gdf=gdf)
         batch=dict(label=label,valid=valid,gdf=target,gdf_valid=valid)
         result=segmentation_loss(out,batch,gdf_weight=.1,deep_supervision_weight=.1)

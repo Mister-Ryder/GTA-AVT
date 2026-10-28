@@ -25,6 +25,71 @@ JUNCTION_OUTER_MM = 12.
 JUNCTION_NEIGHBOURHOOD_MM = 5.
 
 
+BOUNDED_GDF_SCHEMA = 'gdf-joint-bounded-v1'
+
+
+def bounded_gaussian_target(scaled_log_field, field_scale, valid, *, output=None, chunk_depth=16):
+    """Recover the cached raw Gaussian shape and normalize one *whole case*.
+
+    The immutable v1.2 cache stores ``log1p(raw_sum) / field_scale`` (zero
+    outside the lumen).  For eligible real voxels this function computes
+    ``0.5 + 0.5 * (raw_sum - raw_min) / (raw_max - raw_min)``.  Exponentials
+    are evaluated as a stable ratio; even very large log-fields cannot
+    overflow.  This preserves the stored raw-field shape, up to the original
+    cache's quantization, rather than normalizing its log compression.
+
+    Invalid/padded/unknown voxels are filled with 0.5 and must remain excluded
+    by ``gdf_valid`` in the loss. A constant or wholly unknown case also maps
+    to 0.5. Extrema are established before any crops are taken. ``output`` can
+    be a writable float32 memory map to avoid a second whole-case allocation.
+    """
+    source, observed = np.asarray(scaled_log_field), np.asarray(valid, dtype=bool)
+    scale = float(field_scale)
+    if (source.ndim != 3 or source.shape != observed.shape or
+            not np.isfinite(scale) or scale <= 0 or
+            not isinstance(chunk_depth, int) or chunk_depth < 1):
+        raise ValueError('Matching 3D field/valid mask and positive finite scale/chunk required')
+    if output is None:
+        output = np.empty(source.shape, dtype=np.float32)
+    if output.shape != source.shape or output.dtype != np.float32 or not output.flags.writeable:
+        raise ValueError('Output must be a writable float32 array with the field shape')
+    lower, upper, count = np.inf, -np.inf, 0
+    for start in range(0, source.shape[0], chunk_depth):
+        sl = slice(start, start + chunk_depth)
+        block = np.asarray(source[sl], dtype=np.float64)
+        if not np.isfinite(block).all() or (block < 0).any():
+            raise ValueError('Cached log Gaussian must be finite and nonnegative')
+        selected = block[observed[sl]]
+        if selected.size:
+            lower, upper = min(lower, float(selected.min())), max(upper, float(selected.max()))
+            count += int(selected.size)
+    if not count:
+        lower = upper = 0.
+    lower, upper = lower * scale, upper * scale
+    if not np.isfinite(lower) or not np.isfinite(upper):
+        raise ValueError('Cached log Gaussian times its scale exceeds finite float64 range')
+    degenerate = not count or upper <= lower
+    denominator = -np.expm1(lower - upper) if not degenerate else 1.
+    for start in range(0, source.shape[0], chunk_depth):
+        sl = slice(start, start + chunk_depth)
+        target = np.full(source[sl].shape, .5, dtype=np.float32)
+        selected = observed[sl]
+        if not degenerate and selected.any():
+            values = np.asarray(source[sl], dtype=np.float64)[selected] * scale
+            # (exp(x)-exp(lo))/(exp(hi)-exp(lo)), avoiding exp(hi).
+            unit = np.exp(values - upper) * (-np.expm1(lower - values)) / denominator
+            target[selected] = (.5 + .5 * np.clip(unit, 0., 1.)).astype(np.float32)
+        output[sl] = target
+    audit = dict(schema=BOUNDED_GDF_SCHEMA, definition='0.5+0.5*whole_case_minmax(raw_cumulative_Gaussian)',
+                 source_definition='mask*log1p(raw_cumulative_Gaussian)/fixed_TRAIN_RMS',
+                 source_field_scale=scale, raw_log_min=float(lower), raw_log_max=float(upper),
+                 supervised_voxels=count, degenerate=bool(degenerate),
+                 background_value=.5, invalid_fill_value=.5, target_lower_bound=.5, target_upper_bound=1.,
+                 normalization_scope='one full case, eligible real voxels, before sampling',
+                 precision_note='raw shape recovered from stored log field up to existing cache quantization')
+    return output, audit
+
+
 def _supported_junctions(skeleton, points, spacing):
     """Audit local incident graph arms after contracting a connected core.
 

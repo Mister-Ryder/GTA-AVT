@@ -53,7 +53,7 @@ class StageContractTests(unittest.TestCase):
     def test_checkpoint_schema_rejects_old_v1_even_if_weights_have_similar_names(self):
         with tempfile.TemporaryDirectory() as temporary:
             path=Path(temporary)/'old.pt';torch.save({'schema':'GTA-AVT-v1-checkpoint-1'},path)
-            with self.assertRaisesRegex(ValueError,'v1.2 checkpoint'):engine.load_checkpoint(path)
+            with self.assertRaisesRegex(ValueError,'GDF-joint checkpoint'):engine.load_checkpoint(path)
 
     def test_optional_diagnostics_nulls_survive_loss_record(self):
         record=engine._loss_record({'loss':torch.tensor(1.),'gdf_fg_mse':None,'gdf_fg_voxels':0})

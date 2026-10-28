@@ -12,7 +12,7 @@
   "validate_every": 1000,
   "phase": "geometry",
   "use_gdf": true,
-  "stage": "local_adapt",
+  "stage": "full_joint",
   "max_steps": 20000,
   "lr": 0.0003,
   "weight_decay": 1e-05,

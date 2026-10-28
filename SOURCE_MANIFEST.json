@@ -1,7 +1,8 @@
 {
-  "schema": "GTA-AVT-v1.2-ratio-r2-source-1",
-  "created_utc": "2026-10-27T09:30:40.221467+00:00",
-  "status": "Method implementation and proposed training recipe; no efficacy results",
+  "schema": "GTA-AVT-v1.2-gdf-joint-source-1",
+  "revision": "20261028-gdf-joint-r3",
+  "legacy_source_commit": "beab40c2b63345336c2eda8556d0caf99abad7f7",
+  "status": "Isolated implemented revision; no new efficacy result",
   "files": {
     ".gitignore": {
       "bytes": 129,
@@ -35,9 +36,13 @@
       "bytes": 1284,
       "sha256": "64244792917027d9370a1a82cf2121f3176c1cba1eb735addee394faf57eb6ea"
     },
+    "configs/gdf_joint_plan.json": {
+      "bytes": 702,
+      "sha256": "7ec9f9fe05723dd34f58682bb825f5bb90ad6635501895385a5847645bd3ceeb"
+    },
     "configs/geometry.json": {
-      "bytes": 1285,
-      "sha256": "9cddab6460715cf26e24f0b4b0711812f4b50b2037b0caf8e7b38fb252ff4fe3"
+      "bytes": 1284,
+      "sha256": "889284b992d711421b0e922036dc4d2edc4749a33f723bbd372360a42d18a8b3"
     },
     "configs/infer.json": {
       "bytes": 303,
@@ -48,8 +53,8 @@
       "sha256": "f44027ed8129481f3e6c8dcce18501fcdba16cb1d94cc647bc0fadf0f1d69c8e"
     },
     "configs/phases.json": {
-      "bytes": 6492,
-      "sha256": "461c3335a7db3f57e518ea0c4feb2702aad654a2c36a939f5cd90bf9317baa34"
+      "bytes": 6490,
+      "sha256": "8ef63a27511da5b0426f6cf122b8a2c1362ede207aa4237207cecc354f93291f"
     },
     "configs/pipeline.json": {
       "bytes": 402,
@@ -60,8 +65,8 @@
       "sha256": "563cfa755c1bcc12a3043ce615a8430fdebdf301a4ee42b164abdd718114f47e"
     },
     "configs/refine.json": {
-      "bytes": 1282,
-      "sha256": "e2c60f1c38dc09fca81168b0b58fe3483bf454fd4cf0cbf84ed947eb55608594"
+      "bytes": 1281,
+      "sha256": "38be056587b84676f9e8104f3facf8c21e32bbea9b8fee48ec3e4285ce37831b"
     },
     "configs/split_avt_20261022.json": {
       "bytes": 984,
@@ -83,9 +88,21 @@
       "bytes": 9096,
       "sha256": "1ed8c1a7dff827b67c2e3504ad7828c38f5de167cf6bf97bc23f76bdfc80bdd9"
     },
+    "docs/v12_gdf_joint_20261028/CHANGELOG_20261028.md": {
+      "bytes": 2240,
+      "sha256": "e12e3b75491d670b487d9df8f15083f61b5cc35f785928bbf5c1ef77788cb9af"
+    },
+    "docs/v12_gdf_joint_20261028/EXPERIMENT_MATRIX.md": {
+      "bytes": 5648,
+      "sha256": "3957c39b68c027feba1898ca8bf7b01455da81bea1280f9ce60d6a6106998673"
+    },
+    "docs/v12_gdf_joint_20261028/TRAINING_STAGES_ZH.md": {
+      "bytes": 12996,
+      "sha256": "6a568620f96dd54599d4dc0fa0597a056e7e9d153c2a787c21e6a06f0b7bcec0"
+    },
     "ENGINEERING_QA.json": {
-      "bytes": 1418,
-      "sha256": "cc00893e790a1f1a44557b607058514da20a0cbd263a046098c6b456bcc82853"
+      "bytes": 316,
+      "sha256": "a1fabe5f899fb66896624f44a62d6b0a656385e84abab7661eb81a10f2f6ee22"
     },
     "gta_avt/__init__.py": {
       "bytes": 98,
@@ -96,16 +113,20 @@
       "sha256": "12434c4e3b549fb171e4e649d652d939665e771b60f89661a22d79f0d21712ce"
     },
     "gta_avt/data.py": {
-      "bytes": 45395,
-      "sha256": "3bebbd80a1f257c9b520395bdad8f6a29e09dd252d6c6acb5e121f734362d6a6"
+      "bytes": 52916,
+      "sha256": "5a81ab1401e40db552d30d05ac971864bb18e8e41856e6f40e55250478397eb0"
     },
     "gta_avt/engine.py": {
-      "bytes": 34327,
-      "sha256": "ea4e90f59eb7bbcece881346f70f29c7f6b68cf772041287b83f72b2e70d44dd"
+      "bytes": 36048,
+      "sha256": "b01b54e4468dc84307263965ae0ad9b6d4b097985aeb11063e3a5c547754ad96"
+    },
+    "gta_avt/gdf_joint.py": {
+      "bytes": 22040,
+      "sha256": "dc3530fccbb2dc538d0b99c41c27e215daf7b16f03e3539459c7d8d31bb53beb"
     },
     "gta_avt/geometry.py": {
-      "bytes": 32673,
-      "sha256": "a0e940e957877e2aa9aabf752ea5e4498910f7a0c90b0123e60b5ccc3aa8116e"
+      "bytes": 36527,
+      "sha256": "05d8297c9081729e6208f54d7c659c290eff132bacc2372308a53798b6f5dc07"
     },
     "gta_avt/inference.py": {
       "bytes": 10584,
@@ -116,20 +137,20 @@
       "sha256": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a"
     },
     "gta_avt/losses.py": {
-      "bytes": 12965,
-      "sha256": "1b1d7504f7f360db7503373f133698698c974d1176e76e907d02f39587efb4da"
+      "bytes": 13235,
+      "sha256": "cdd26cd78074673f6adfcab8b141488b18efaf591e43cc762a33759b478195dc"
     },
     "gta_avt/metrics.py": {
       "bytes": 13373,
       "sha256": "459f061fcf34705d7b83fd14d30de07fe9a38ee69ee3112422b40b25512f3a93"
     },
     "gta_avt/models.py": {
-      "bytes": 17964,
-      "sha256": "8f2329b23524cd979b7b6724178105f8af38c5e640aa5a1be78cab1467fd68e5"
+      "bytes": 18493,
+      "sha256": "3cd8620e755ad40200b195545917b8867e54eef0494ae042104252242be0b365"
     },
     "gta_avt/pipeline.py": {
-      "bytes": 9937,
-      "sha256": "e71491cd80ddf71ec0d0a38b666a96430f92b48c053381b2a209be9733a80628"
+      "bytes": 10221,
+      "sha256": "64fa445c6341e171a14324c1c44737b8d095edffe7ae2f6c290a313088d9237b"
     },
     "gta_avt/sampling.py": {
       "bytes": 8175,
@@ -160,16 +181,24 @@
       "sha256": "9a5f043eefcd27a3041c2facd06f4cbfcf208a91838761b70784993ba5cdbe6d"
     },
     "pyproject.toml": {
-      "bytes": 629,
-      "sha256": "c75ae944a09d9c4d71754f9fcfe0e067224375dfbc768d41b08a0e85a0ae3ff7"
+      "bytes": 651,
+      "sha256": "e27541745ae8e6b209918bd86da3f6ae034ed5284b7c47633872a8a58026f144"
     },
     "README.md": {
-      "bytes": 5491,
-      "sha256": "cec8011c82278b7158810425c1087533ace0a4d2c8bbffc50728b2a94054306e"
+      "bytes": 2340,
+      "sha256": "5fd8779d18a70340459812168235592b163c97d86ce341ed45745acb695e2d11"
+    },
+    "scripts/prepare_gdf_overlay.py": {
+      "bytes": 1003,
+      "sha256": "daac544b9edd4d5703293e7e1374cc6db93bb4092745458fdfc43bc7775d8523"
     },
     "scripts/smoke_cuda.py": {
       "bytes": 3503,
       "sha256": "e550e4b68784ff312301d7a3d06cf856be483542ead77e8bd2048d9115ecc1a9"
+    },
+    "scripts/smoke_gdf_joint_cuda.py": {
+      "bytes": 3573,
+      "sha256": "6d2fae52c073bfc380dcf719deeeff45bbf54992758cff15b3f88ec2abe92139"
     },
     "tests/test_curriculum_sampling.py": {
       "bytes": 8901,
@@ -180,20 +209,28 @@
       "sha256": "1c5d52c64cb100bdfc224ff5cbde42525873dbc73810d138c43878d44505da4e"
     },
     "tests/test_engine.py": {
-      "bytes": 14543,
-      "sha256": "44b351878a400158345c0f37945a3f529e4516e389d91bf13458d5e900f613b8"
+      "bytes": 14625,
+      "sha256": "f7a186573cce2a3450ad97047db462af58675522ee4c87d9cebc495a22838e5d"
+    },
+    "tests/test_gdf_joint.py": {
+      "bytes": 7922,
+      "sha256": "8f7f1fa7206423b6e560d0234f73fce9edb5e3364cb08b8714c19aebb2af253b"
+    },
+    "tests/test_gdf_overlay.py": {
+      "bytes": 6755,
+      "sha256": "c4ba36160fa21eea796cd6db0943a3fa7f5657b7122364ac0ad3903696589d61"
     },
     "tests/test_geometry.py": {
       "bytes": 2863,
       "sha256": "97fb988256132e36ef012088eda33cf053e10b1811c7921b46b8729336ff9e4d"
     },
     "tests/test_models.py": {
-      "bytes": 9927,
-      "sha256": "b941332944007530a26c2a8ccdb848dd793b1ccfcfe84b8c2f1112b8784b5637"
+      "bytes": 10102,
+      "sha256": "36c890d3941283020d1bca48aa172501ba9ab470e321e48c44afa25c25a36279"
     },
     "tests/test_pipeline.py": {
-      "bytes": 7158,
-      "sha256": "6ab11d8dba59bb66864df179ef830c7ae093994462dc1c990b85725d21dc1e1d"
+      "bytes": 5151,
+      "sha256": "4ab01ce0075ec6a1253e82518bd69b015526ea211a1b491eedeacba13678e7df"
     },
     "tests/test_ratio_balanced_bce.py": {
       "bytes": 10118,
@@ -204,16 +241,16 @@
       "sha256": "19eb2080550ad2eb59a3e6404fdc08944dc2ee2fe6c79d299bcd428417f4a8aa"
     },
     "tests/test_v11_attributes.py": {
-      "bytes": 11431,
-      "sha256": "6cf45307e8c9a670ced471f60539834f1d3781f7fc4dddfccd3aae5ddb7fe5e9"
+      "bytes": 11658,
+      "sha256": "cc5e1e5f561b9948c15de454096e39ec432bba17fe3d2b9788ba23f164aa0d89"
     },
     "tests/test_v11_inference.py": {
       "bytes": 3375,
       "sha256": "67adbc4703853fc00422661f88571b94f8c1e79edb0e3bd5ff0970ff41a3292e"
     },
     "tests/test_v11_stages.py": {
-      "bytes": 3687,
-      "sha256": "ec3ae2467115492f287f39fa06cb8d305d151e239019662424bc63bb53936e39"
+      "bytes": 3692,
+      "sha256": "3bd08a7e0b87b91a91fc63d104ba13c9628d8a55e26def123170bf8125ad2bc3"
     }
   }
 }

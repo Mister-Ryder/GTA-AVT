@@ -42,6 +42,9 @@ def run_pipeline(config):
     plan = copy.deepcopy(config)
     resume = bool(plan.pop('resume_pipeline', False))
     stop_after = plan.pop('stop_after', 'base')
+    if stop_after not in ('attribute', 'base_warm', 'base', 'condition'):
+        raise ValueError('The GDF-joint suffix requires its calibrated prepare/run entry point; '
+                         'reproduce the prefix with the frozen ratio-r2 source, then use gta_avt.gdf_joint')
     if stop_after not in PHASE_ORDER + ('complete',):
         raise ValueError('stop_after must name one declared phase or complete')
     variant = plan.setdefault('variant', 'AR_GDF')

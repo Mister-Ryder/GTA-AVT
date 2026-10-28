@@ -17,17 +17,20 @@ from .vendor.model_arch_model10 import Encoder, Decoder, FusionModule
 
 
 ARMS = ("C0", "V_only", "AR")
-STAGES = ("base", "gdf_head", "local_adapt")
+STAGES = ("base", "gdf_head", "local_adapt", "full_joint")
 RADIUS_AXIS_CLIP = 4.
 MODEL_CONFIG = {
-    "name": "GTA-AVT-v1.2", "revision": "20261027-ratio-r2", "input_channels": 1, "input_multiple": 16,
+    "name": "GTA-AVT-v1.2", "revision": "20261028-gdf-joint-r3", "input_channels": 1, "input_multiple": 16,
     "attribute_encoder_channels": [32, 64, 128, 256], "attribute_field_stride": 2,
     "seg_encoder_channels": [32, 64, 128, 256], "seg_decoder_channels": [128, 64, 32],
     "routing_site_channels": 64, "routing_coefficients": 576,
     "routing_dilations": [1, 1, 2, 3], "attribute_heads": ["support_logits", "radius_mean"],
     "radius_axis_clip": RADIUS_AXIS_CLIP,
     "support_semantics": "continuous lumen occupancy score; not calibrated confidence",
-    "predictor_training": "joint with S in neutral base; frozen during Gaussian-head and local stages",
+    "predictor_training": "joint with S in neutral base; frozen throughout post-condition Gaussian revision",
+    "gaussian_head": "Conv3d(2,1,kernel_size=3,padding=1)+Sigmoid on final two segmentation logits; no detach",
+    "gaussian_target": "gdf-joint-bounded-v1: casewise raw field minmax, then 0.5+0.5*u",
+    "full_joint_scope": "all non-P parameters; BN running statistics remain fixed after base",
     "radius_consumption": "support * clipped deterministic standardized radius",
     "statistics_keys": ["mu", "sigma", "pi_support"],
 }
@@ -202,7 +205,7 @@ class GTAAVT(nn.Module):
         self.ds_heads = nn.ModuleList([nn.Conv3d(64, 2, 1), nn.Conv3d(128, 2, 1)])
         self.output_feature = nn.Sequential(nn.Conv3d(22, 32, 3, padding=1), nn.BatchNorm3d(32), nn.ReLU(inplace=True))
         self.output_head = nn.Conv3d(32, 2, 1)
-        self.gdf_head = nn.Sequential(nn.Conv3d(32, 1, 1), nn.Softplus()) if self.use_gdf else None
+        self.gdf_head = nn.Sequential(nn.Conv3d(2, 1, 3, padding=1), nn.Sigmoid()) if self.use_gdf else None
         self.set_stage("base")
 
     @staticmethod
@@ -214,17 +217,18 @@ class GTAAVT(nn.Module):
         return name.startswith(("routing.morphology_convs.", "routing.morph_fusion.", "output_head.", "gdf_head.")) or cls._gate_name(name)
 
     def set_stage(self, stage):
-        if stage not in STAGES: raise ValueError("Expected base, gdf_head or local_adapt")
+        if stage not in STAGES: raise ValueError("Expected base, gdf_head, local_adapt or full_joint")
         if stage == "gdf_head" and self.gdf_head is None: raise ValueError("Gaussian head stage requires use_gdf=True")
         self.stage = stage
         for name, parameter in self.named_parameters():
             if stage == "base": active = not name.startswith("gdf_head.") and not self._gate_name(name)
             elif stage == "gdf_head": active = name.startswith("gdf_head.")
+            elif stage == "full_joint": active = not name.startswith("predictor.")
             else: active = self._local_name(name)
             parameter.requires_grad_(active)
             parameter.grad = None
         if stage == "local_adapt":
-            count, tensors = (115491, 17) if self.use_gdf else (115458, 15)
+            count, tensors = (115513, 17) if self.use_gdf else (115458, 15)
             active = [parameter for parameter in self.parameters() if parameter.requires_grad]
             if len(active) != tensors or sum(p.numel() for p in active) != count:
                 raise RuntimeError("Local parameter scope differs from v0.1 plus Gaussian head")
@@ -298,9 +302,10 @@ class GTAAVT(nn.Module):
         fused = self.backbone.fusion_module_decoder(decoded)
         guidance = F.interpolate(self.guidance_adapter(prediction["fused"]), size=fused.shape[2:], mode="trilinear", align_corners=False)
         output_feature = self.output_feature(torch.cat((fused, guidance), 1))
-        output = {"logits": self._foreground(self.output_head(output_feature)),
+        segmentation_logits = self.output_head(output_feature)
+        output = {"logits": self._foreground(segmentation_logits), "segmentation_logits": segmentation_logits,
             "aux_logits": [self._foreground(self.ds_heads[0](decoded[1])), self._foreground(self.ds_heads[1](decoded[0]))],
             "support_logits": prediction["support_logits"], "radius_mean": prediction["radius_mean"],
             "routing": routing}
-        if self.gdf_head is not None: output["gdf"] = self.gdf_head(output_feature)
+        if self.gdf_head is not None: output["gdf"] = self.gdf_head(segmentation_logits)
         return output

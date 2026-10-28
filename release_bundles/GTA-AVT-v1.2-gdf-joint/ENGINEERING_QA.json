@@ -1,0 +1,7 @@
+{
+  "schema": "GTA-AVT-gdf-joint-engineering-status-1",
+  "status": "CPU tests recorded separately; actual CUDA QA deferred until old experiments complete",
+  "cuda_qa_completed": false,
+  "efficacy_measured": false,
+  "deferred_cuda_command": "python scripts/smoke_gdf_joint_cuda.py --output cuda_qa.json"
+}

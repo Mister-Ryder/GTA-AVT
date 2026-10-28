@@ -1,0 +1,12 @@
+{
+  "checkpoint": "runs/v1.2_seed30_AR_GDF/refine/last.pt",
+  "image": "/path/to/unseen_CT.nrrd",
+  "output_dir": "predictions/v1.2_AR_GDF",
+  "case_id": "case",
+  "output_probability": true,
+  "device": "cuda",
+  "patch_size": 128,
+  "batch_size": 2,
+  "overlap": 0.5,
+  "threshold": 0.5
+}

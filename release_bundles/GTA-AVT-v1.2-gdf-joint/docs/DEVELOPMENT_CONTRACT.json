@@ -1,0 +1,63 @@
+{
+  "method": "GTA-AVT-v1.2",
+  "revision": "20261027-ratio-r2",
+  "package_version": "1.2.0",
+  "scope": "method implementation and authorized fresh-P seven-phase run; no efficacy claim",
+  "cores": [
+    "image-predicted anatomical attributes",
+    "conditional feature fusion",
+    "Gaussian geometry supervision"
+  ],
+  "architecture": "deterministic support/log-radius predictor; original four bounded branches; shared segmentation/Gaussian heads",
+  "attribute_loss": "case-equal soft occupancy Dice plus airway-derived ratio-weighted BCE and masked measured log-radius MSE",
+  "phase_order": [
+    "attribute",
+    "base_warm",
+    "base",
+    "condition",
+    "gdf_head",
+    "geometry",
+    "refine"
+  ],
+  "successful_update_defaults": [
+    30000,
+    20000,
+    30000,
+    10000,
+    2000,
+    20000,
+    10000
+  ],
+  "total_successful_updates": 122000,
+  "joint_base": "P pretraining then joint P/S with main Dice+BCE, DS .5/.25, attribute auxiliary .1",
+  "handoff": "selected mature-base P/S is indivisible; descendants never reload the earlier predictor",
+  "local_scope": "115491 parameters; predictor/backbone/normalization fixed",
+  "condition": "no GDF; alpha ramp250; local shared1e-4/gates1e-3",
+  "head_prewarm": "after conditional adaptation; same parent arm and alpha1; only Gaussian head learns",
+  "geometry": "GDF .1 to1 over5000 updates; alpha1 and learned conditions retained",
+  "refine": "GDF1 to.2 over5000; local learning rates halved; main Dice+BCE weight unchanged",
+  "sampling": "TRAIN case-equal then six phase-specific anchor sources; bounded candidates and explicit fallbacks",
+  "sampling_counts": "requested/actual/fallback source plus actual valid-voxel foreground fraction; anchor mix is not voxel ratio",
+  "validation": "fixed common VAL patch sampling; native Dice first, connectivity metrics separate; no label-driven inference",
+  "execution": "default stop_after=base; complete explicit; one variant only, no automatic factorial sweep",
+  "configuration_source": "configs/phases.json; all resolved phase recipes included in resume identity",
+  "evidence": "no new efficacy claim; long defaults and higher Gaussian weight are not validated optimum",
+  "bce_class_balance": "airway_ratio",
+  "ratio_revision": {
+    "main_change": "historical actual-pFG/pBG exponential ratio weighting with mean-weight normalization in support/main/DS BCE",
+    "unchanged": [
+      "model architecture",
+      "attributes",
+      "ordinary Dice",
+      "radius MSE",
+      "Gaussian objective",
+      "sampling policies",
+      "phase budgets",
+      "seed"
+    ],
+    "control": "finish original P; fresh random P for revision; no weight import",
+    "diagnostics": "unweighted BCE remains separate; class coefficients are not gradient norm equality",
+    "historical_ratio": "wFG/wBG = exp(1-2*pFG), bounded by e",
+    "not_used": "region_equal research option not in formal recipes; no extra sampler or loss modules"
+  }
+}

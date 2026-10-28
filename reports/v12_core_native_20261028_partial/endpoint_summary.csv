@@ -1,0 +1,14 @@
+endpoint,status,metric,case_count,defined_cases,undefined_case_ids,mean_pct,sd_population_pp,minimum_pct,worst_ceil20_mean_pct,worst_ceil20_count,minimum_case_ids,worst_ceil20_case_ids
+F,available,dice,8,8,[],93.05560275817761,2.9768704608341943,87.77968012043259,88.69312748484485,2,"[""KiTS_K8""]","[""KiTS_K8"", ""Rider_R10""]"
+F,available,precision,8,8,[],92.5636374546149,5.504872072055968,80.21804910559949,85.16474644235396,2,"[""KiTS_K8""]","[""KiTS_K8"", ""KiTS_K13""]"
+F,available,recall,8,8,[],93.84259295784264,3.3451332939647473,86.26591062573658,89.1820148145937,2,"[""Rider_R10""]","[""Rider_R10"", ""Rider_R9""]"
+F,available,cldice,8,8,[],86.32534001281074,7.7844340493869115,71.05543298825926,75.92905781314072,2,"[""KiTS_K8""]","[""KiTS_K8"", ""KiTS_K13""]"
+F,available,fine_centerline_recall,8,8,[],69.14103376187282,18.906652617720333,42.3963133640553,47.004608294930875,2,"[""Dongyang_D2""]","[""Dongyang_D2"", ""KiTS_K8""]"
+C0,missing,,,,,,,,,,,
+AR,missing,,,,,,,,,,,
+C0_GDF,missing,,,,,,,,,,,
+AR_GDF,available,dice,8,8,[],93.02249808424776,3.05822787481485,88.26570031257475,88.47256433397476,2,"[""KiTS_K8""]","[""KiTS_K8"", ""Rider_R10""]"
+AR_GDF,available,precision,8,8,[],92.6085659184538,5.292104295449834,81.03838772284216,85.4836647127346,2,"[""KiTS_K8""]","[""KiTS_K8"", ""KiTS_K13""]"
+AR_GDF,available,recall,8,8,[],93.72983795322993,3.837442791946231,84.62560776652909,88.36699972233262,2,"[""Rider_R10""]","[""Rider_R10"", ""Rider_R9""]"
+AR_GDF,available,cldice,8,8,[],85.89295575460463,7.7580806809931175,70.80368057355298,75.33959593758581,2,"[""KiTS_K8""]","[""KiTS_K8"", ""KiTS_K13""]"
+AR_GDF,available,fine_centerline_recall,8,8,[],66.34792522593857,17.753102867169677,45.16129032258064,46.26485568760611,2,"[""Dongyang_D2""]","[""Dongyang_D2"", ""Rider_R9""]"

@@ -1,0 +1,16 @@
+{
+  "schema": "GTA-AVT-v1.2-gdf-joint-plan-1",
+  "manifest": "cache_bounded/manifest.json",
+  "output_dir": "runs/gdf_joint_seed20261032",
+  "condition_checkpoint": "frozen_ratio_r2/condition/last.pt",
+  "condition_checkpoint_sha256": "REPLACE_WITH_ACTUAL_CONDITION_CHECKPOINT_SHA256",
+  "selected_base_sha256": "REPLACE_WITH_ACTUAL_SELECTED_BASE_CHECKPOINT_SHA256",
+  "legacy_source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7",
+  "evaluation_cases": "cases_VAL8.json",
+  "seed": 20261032,
+  "device": "cuda",
+  "num_workers": 4,
+  "calibration_batches": 8,
+  "budgets": [2000, 20000, 10000],
+  "tensorboard_logdir": "tf-logs/GTA_AVT_v1.2_gdf_joint_20261028"
+}

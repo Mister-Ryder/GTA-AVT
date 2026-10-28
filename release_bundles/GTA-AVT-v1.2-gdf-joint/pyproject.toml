@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gta-avt"
+version = "1.2.3"
+description = "Staged anatomical segmentation with class-aware sampling, conditional fusion and Gaussian geometry supervision"
+requires-python = ">=3.8"
+dependencies = ["numpy>=1.22", "scipy>=1.9", "scikit-image>=0.19", "SimpleITK>=2.2", "torch>=1.11", "tensorboard>=2.9"]
+
+[project.optional-dependencies]
+test = ["pytest>=7,<9"]
+
+[project.scripts]
+gta-avt = "gta_avt.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["gta_avt*"]
+
+[tool.setuptools.package-data]
+"gta_avt.vendor" = ["*.txt", "*.md", "*.json"]

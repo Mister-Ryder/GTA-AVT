@@ -1,0 +1,15 @@
+{
+  "manifest": "cache/manifest.json",
+  "evaluation_cases": "cases.json",
+  "output_dir": "runs/v1.2_seed30_AR_GDF",
+  "seed": 20261030,
+  "validation_seed": 0,
+  "device": "cuda",
+  "num_workers": 4,
+  "variant": "AR_GDF",
+  "phase_config": "configs/phases.json",
+  "stop_after": "base",
+  "evaluation_endpoint": "last",
+  "minimum_base_dice": null,
+  "minimum_condition_dice": null
+}

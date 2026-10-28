@@ -1,0 +1,12 @@
+{
+  "output_dir": "runs/v1.2_evaluation",
+  "centerline": true,
+  "cases": [
+    {
+      "id": "case",
+      "prediction": "predictions/v1.2_AR_GDF/case/prediction.nii.gz",
+      "label": "/path/to/label.nrrd",
+      "image": "/path/to/unseen_CT.nrrd"
+    }
+  ]
+}

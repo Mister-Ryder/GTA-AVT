@@ -1,0 +1,257 @@
+{
+  "schema": "GTA-AVT-v1.2-gdf-joint-source-1",
+  "revision": "20261028-gdf-joint-r3",
+  "text_encoding": "UTF-8 LF",
+  "legacy_source_commit": "beab40c2b63345336c2eda8556d0caf99abad7f7",
+  "status": "Isolated implemented revision; no new efficacy result",
+  "files": {
+    ".gitignore": {
+      "bytes": 129,
+      "sha256": "9742caea5306737622274ff6e4bd76181a98b1da41c09d66c3bef397c4cc4c04"
+    },
+    "configs/adapt.json": {
+      "bytes": 1236,
+      "sha256": "3087f366d889be9a104ba52af42383d3bf14d8d7f0c309fc5dae5cf853b5ec96"
+    },
+    "configs/attribute.json": {
+      "bytes": 1167,
+      "sha256": "ecedc82980dd2989cd0ebb3b7deb80710186a6ddd07d11a72ceb4d67e65133b7"
+    },
+    "configs/base.json": {
+      "bytes": 1219,
+      "sha256": "6b809817852db549ec38b9780dd6b3e06ada13b083e53912ae5a1c5e30c5de96"
+    },
+    "configs/base_warm.json": {
+      "bytes": 1238,
+      "sha256": "e7657b289f663217d1e3e2762bd0d40824e537e1171d25808afef7e7aaa060c2"
+    },
+    "configs/condition.json": {
+      "bytes": 1236,
+      "sha256": "3087f366d889be9a104ba52af42383d3bf14d8d7f0c309fc5dae5cf853b5ec96"
+    },
+    "configs/evaluate.json": {
+      "bytes": 264,
+      "sha256": "9d142fa93235a5e0ab8fdfea4b03247eec2f76f42ebf6ab27b7c02ac1839c435"
+    },
+    "configs/gdf_head.json": {
+      "bytes": 1231,
+      "sha256": "200974082019d80e230514592e27a57a00bc6c49b7f2a1319c1827ed438b5f7e"
+    },
+    "configs/gdf_joint_plan.json": {
+      "bytes": 702,
+      "sha256": "7ec9f9fe05723dd34f58682bb825f5bb90ad6635501895385a5847645bd3ceeb"
+    },
+    "configs/geometry.json": {
+      "bytes": 1231,
+      "sha256": "8a0163a98708a5e46f79e3aedda5b4e08069f5a80f42f4f2fe0a16656da10afb"
+    },
+    "configs/infer.json": {
+      "bytes": 291,
+      "sha256": "d6165ba157179daaf8bc2f9930c669152e6c34609e6658b79864639e84289694"
+    },
+    "configs/local_adapt.json": {
+      "bytes": 1236,
+      "sha256": "3087f366d889be9a104ba52af42383d3bf14d8d7f0c309fc5dae5cf853b5ec96"
+    },
+    "configs/phases.json": {
+      "bytes": 6229,
+      "sha256": "b14a6116f0cdf5a2c48eb41ae140a96e28fe8bc914a38f83d9a2fb71327d01c0"
+    },
+    "configs/pipeline.json": {
+      "bytes": 387,
+      "sha256": "ea34e9abcadd7e0d64c3736f6edaacf343facc73ea04f8f80ed33ae43bf08c56"
+    },
+    "configs/pretrain.json": {
+      "bytes": 1167,
+      "sha256": "ecedc82980dd2989cd0ebb3b7deb80710186a6ddd07d11a72ceb4d67e65133b7"
+    },
+    "configs/refine.json": {
+      "bytes": 1228,
+      "sha256": "ab3e8f3dc6277c5061abe3944e0c30c903ace7f8e64100694ae883e7c711aa30"
+    },
+    "configs/split_avt_20261022.json": {
+      "bytes": 917,
+      "sha256": "3ea8f1ec2b716a6f3a8437c96286d5c41190a559432b59c62d58c77341fb3643"
+    },
+    "configs/warmup.json": {
+      "bytes": 1238,
+      "sha256": "e7657b289f663217d1e3e2762bd0d40824e537e1171d25808afef7e7aaa060c2"
+    },
+    "docs/DEVELOPMENT_CONTRACT.json": {
+      "bytes": 2960,
+      "sha256": "3064ef5546c553a135897eee0780a864dcd4d3e425a8673352d2c25dfe5ec28c"
+    },
+    "docs/METHOD.md": {
+      "bytes": 4293,
+      "sha256": "fb39860a43bab9db5f27e5ea76d833c8562d4c4eff5a4c0820c3b10bc7501b1e"
+    },
+    "docs/METHOD_ZH.md": {
+      "bytes": 8996,
+      "sha256": "1a44130817a77b1ac66ac8352f044d01f6f876064f8b2f500b20efc05c0708fc"
+    },
+    "docs/v12_gdf_joint_20261028/CHANGELOG_20261028.md": {
+      "bytes": 2240,
+      "sha256": "e12e3b75491d670b487d9df8f15083f61b5cc35f785928bbf5c1ef77788cb9af"
+    },
+    "docs/v12_gdf_joint_20261028/EXPERIMENT_MATRIX.md": {
+      "bytes": 5648,
+      "sha256": "3957c39b68c027feba1898ca8bf7b01455da81bea1280f9ce60d6a6106998673"
+    },
+    "docs/v12_gdf_joint_20261028/TRAINING_STAGES_ZH.md": {
+      "bytes": 12996,
+      "sha256": "6a568620f96dd54599d4dc0fa0597a056e7e9d153c2a787c21e6a06f0b7bcec0"
+    },
+    "ENGINEERING_QA.json": {
+      "bytes": 309,
+      "sha256": "16288c8b83eae7f0aa8bd439ca23be22f83569a31c9f5f31c778205a9ce98c38"
+    },
+    "gta_avt/__init__.py": {
+      "bytes": 98,
+      "sha256": "af50dce2121ce43a416c7928a0639f058cd7b92d4db100161c45ca9715e84f3d"
+    },
+    "gta_avt/__main__.py": {
+      "bytes": 3277,
+      "sha256": "05949d047dce9def68d9e741b9a7e106b2df9284f851ade77d58c72f622771c5"
+    },
+    "gta_avt/data.py": {
+      "bytes": 52916,
+      "sha256": "5a81ab1401e40db552d30d05ac971864bb18e8e41856e6f40e55250478397eb0"
+    },
+    "gta_avt/engine.py": {
+      "bytes": 35417,
+      "sha256": "bde553800a6613799713011cc5a25850f9549245c3cd53a9efd38fd993d24af6"
+    },
+    "gta_avt/gdf_joint.py": {
+      "bytes": 22040,
+      "sha256": "dc3530fccbb2dc538d0b99c41c27e215daf7b16f03e3539459c7d8d31bb53beb"
+    },
+    "gta_avt/geometry.py": {
+      "bytes": 36527,
+      "sha256": "05d8297c9081729e6208f54d7c659c290eff132bacc2372308a53798b6f5dc07"
+    },
+    "gta_avt/inference.py": {
+      "bytes": 10584,
+      "sha256": "9c1a7f829ada8fcf63d43ab846c45d1d796358178a8aedb2b6a1d5a8a40269f1"
+    },
+    "gta_avt/intensity.py": {
+      "bytes": 4281,
+      "sha256": "ccb6a79fe9db66244c370608873b55fa2b059ad743d853ba03422057d0f85a7a"
+    },
+    "gta_avt/losses.py": {
+      "bytes": 13022,
+      "sha256": "7d2dab104d76f736c142584d8960ab329829678ee70c5272ecb08f9fc5d5ea3d"
+    },
+    "gta_avt/metrics.py": {
+      "bytes": 13182,
+      "sha256": "d46b34b40fbd84a41eea710949ee24fe89bf8dba45e839bbf59816eeff3feaa1"
+    },
+    "gta_avt/models.py": {
+      "bytes": 18182,
+      "sha256": "fa9c1a8fda0c400e4325fd327cd6623e279225cf5f587f849fba03cbbbf49b93"
+    },
+    "gta_avt/pipeline.py": {
+      "bytes": 10046,
+      "sha256": "7040e49dca86601cf9421946605658d666043ff663462e435e1663b991711974"
+    },
+    "gta_avt/sampling.py": {
+      "bytes": 8175,
+      "sha256": "0e06ea9f8d73a5b807bc48e5354f61bc3a871e1b26ad05b07b7b561f05a073e1"
+    },
+    "gta_avt/vendor/__init__.py": {
+      "bytes": 72,
+      "sha256": "b97aea9d1a99f9d2092ebc83375dcabe2f6c846baef7dda71e366d66a0e1556b"
+    },
+    "gta_avt/vendor/AnatomicalClassifier.py": {
+      "bytes": 6683,
+      "sha256": "ce8d47fea0e8c0a2d9e3b1eb39aefbe471cf7ab3c75edbe6945c47187a7e66e3"
+    },
+    "gta_avt/vendor/AnatomicalFusionModules.py": {
+      "bytes": 14098,
+      "sha256": "7309281bb296eb7d861050f5ead6b563823b8393addf6ff7c18a594225030b01"
+    },
+    "gta_avt/vendor/model_arch_model10.py": {
+      "bytes": 34321,
+      "sha256": "55d51ea850efd2b31aa07acd68ad5e24f64fafe6a714d26dc357919f639f3003"
+    },
+    "gta_avt/vendor/NaviAirway-MIT.txt": {
+      "bytes": 1067,
+      "sha256": "a8d637dcbcd086a0072c4394565c715f88d0327f3b927067c0e596579cfcfd1c"
+    },
+    "gta_avt/vendor/THIRD_PARTY_NOTICES.md": {
+      "bytes": 1006,
+      "sha256": "9a5f043eefcd27a3041c2facd06f4cbfcf208a91838761b70784993ba5cdbe6d"
+    },
+    "pyproject.toml": {
+      "bytes": 649,
+      "sha256": "7dd19e32483374e1e19aeade19aa0a7e3890a0fbd9f55fa0601156c9910d3e89"
+    },
+    "README.md": {
+      "bytes": 2302,
+      "sha256": "235e045b3f6c95852187f4fb8589bf57d3adc1cc11f526941427e56452863875"
+    },
+    "scripts/prepare_gdf_overlay.py": {
+      "bytes": 1003,
+      "sha256": "daac544b9edd4d5703293e7e1374cc6db93bb4092745458fdfc43bc7775d8523"
+    },
+    "scripts/smoke_cuda.py": {
+      "bytes": 3503,
+      "sha256": "e550e4b68784ff312301d7a3d06cf856be483542ead77e8bd2048d9115ecc1a9"
+    },
+    "scripts/smoke_gdf_joint_cuda.py": {
+      "bytes": 3573,
+      "sha256": "6d2fae52c073bfc380dcf719deeeff45bbf54992758cff15b3f88ec2abe92139"
+    },
+    "tests/test_curriculum_sampling.py": {
+      "bytes": 8901,
+      "sha256": "44827febbde157c047aec80b8932e2c5e88404be0fcba39c59aa9567e5869527"
+    },
+    "tests/test_data.py": {
+      "bytes": 5569,
+      "sha256": "1c5d52c64cb100bdfc224ff5cbde42525873dbc73810d138c43878d44505da4e"
+    },
+    "tests/test_engine.py": {
+      "bytes": 14373,
+      "sha256": "2a75ccf2b3ea361a05760f1803915a94c50856a5b28dd0459a8df7977a16e13b"
+    },
+    "tests/test_gdf_joint.py": {
+      "bytes": 7922,
+      "sha256": "8f7f1fa7206423b6e560d0234f73fce9edb5e3364cb08b8714c19aebb2af253b"
+    },
+    "tests/test_gdf_overlay.py": {
+      "bytes": 6755,
+      "sha256": "c4ba36160fa21eea796cd6db0943a3fa7f5657b7122364ac0ad3903696589d61"
+    },
+    "tests/test_geometry.py": {
+      "bytes": 2863,
+      "sha256": "97fb988256132e36ef012088eda33cf053e10b1811c7921b46b8729336ff9e4d"
+    },
+    "tests/test_models.py": {
+      "bytes": 9927,
+      "sha256": "f6b29aed6fe10d337660ba49cafa975eb754065c1930bd57b91420a733e886c4"
+    },
+    "tests/test_pipeline.py": {
+      "bytes": 5068,
+      "sha256": "6050dc90002745f57f0b8d888fbbc05f2aeb13059484d3db79271b2d46882f35"
+    },
+    "tests/test_ratio_balanced_bce.py": {
+      "bytes": 9925,
+      "sha256": "e19b82ef2b4a7e0b6863d44140f3f81c2b8eeb89636332efbe47671fdfb38768"
+    },
+    "tests/test_revision_model_losses.py": {
+      "bytes": 2806,
+      "sha256": "19eb2080550ad2eb59a3e6404fdc08944dc2ee2fe6c79d299bcd428417f4a8aa"
+    },
+    "tests/test_v11_attributes.py": {
+      "bytes": 11442,
+      "sha256": "2557cee54c730138cb973e3bcc24248e01f88b2a2ae76c4c6250657b43372a46"
+    },
+    "tests/test_v11_inference.py": {
+      "bytes": 3375,
+      "sha256": "67adbc4703853fc00422661f88571b94f8c1e79edb0e3bd5ff0970ff41a3292e"
+    },
+    "tests/test_v11_stages.py": {
+      "bytes": 3627,
+      "sha256": "8e3955672593690f58d6a116cfa4df0dcb816aa0ac58aa98b42408c8152bb614"
+    }
+  }
+}

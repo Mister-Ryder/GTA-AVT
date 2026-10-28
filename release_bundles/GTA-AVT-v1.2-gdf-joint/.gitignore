@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+*.egg-info/
+.venv/
+cache/
+runs/
+predictions/
+*.pt
+*.nrrd
+*.nii
+*.nii.gz
+*.npy
+*.npz
+cases.json

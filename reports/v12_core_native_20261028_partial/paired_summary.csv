@@ -1,0 +1,14 @@
+contrast,status,metric,case_count,defined_cases,undefined_case_ids,delta_mean_pp,delta_sd_population_pp,delta_minimum_pp,delta_worst_ceil20_mean_pp,worst_ceil20_count,minimum_case_ids,worst_ceil20_case_ids,positive_cases,negative_cases,zero_cases
+AR-C0,missing,,,,,,,,,,,,,,
+AR_GDF-C0_GDF,missing,,,,,,,,,,,,,,
+C0_GDF-C0,missing,,,,,,,,,,,,,,
+AR_GDF-AR,missing,,,,,,,,,,,,,,
+interaction,missing,,,,,,,,,,,,,,
+C0-F,missing,,,,,,,,,,,,,,
+AR-F,missing,,,,,,,,,,,,,,
+C0_GDF-F,missing,,,,,,,,,,,,,,
+AR_GDF-F,available,dice,8,8,[],-0.03310467392985128,0.39877023874103584,-0.927146493882347,-0.556125197455698,2,"[""Rider_R10""]","[""Rider_R10"", ""KiTS_K13""]",4,4,0
+AR_GDF-F,available,precision,8,8,[],0.04492846383889054,0.30162161902253815,-0.1825020764814167,-0.13906252070562952,2,"[""KiTS_K13""]","[""KiTS_K13"", ""KiTS_K15""]",2,6,0
+AR_GDF-F,available,recall,8,8,[],-0.11275500461270654,0.6436441721179341,-1.6403028592074986,-0.914016633335013,2,"[""Rider_R10""]","[""Rider_R10"", ""KiTS_K13""]",4,4,0
+AR_GDF-F,available,cldice,8,8,[],-0.43238425820611576,0.4237191926091378,-0.9271713364035317,-0.8967761627239779,2,"[""KiTS_K13""]","[""KiTS_K13"", ""Dongyang_D5""]",1,7,0
+AR_GDF-F,available,fine_centerline_recall,8,8,[],-2.7931085359342585,3.6489317546999644,-8.888888888888891,-7.5694444444444455,2,"[""Dongyang_D5""]","[""Dongyang_D5"", ""KiTS_K18""]",2,5,1

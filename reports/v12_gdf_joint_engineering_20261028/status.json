@@ -1,0 +1,16 @@
+{
+  "schema": "GTA-AVT-gdf-joint-engineering-1",
+  "source_revision": "20261028-gdf-joint-r3",
+  "source_manifest_sha256": "b3935b438946a0e16e06f9ff3ceec2244fc1081cfd3b84266c4c4e11c16eb2e1",
+  "production_runtime": "torch1.11.0+cu113",
+  "cpu_tests_passed": 100,
+  "cpu_tests_failed": 0,
+  "actual_condition_checkpoint_strict_migration_passed": true,
+  "imported_ps_tensors": 238,
+  "new_gaussian_head_parameters": 55,
+  "old_predictor_preserved": true,
+  "deferred_supervisor_tests_passed": 7,
+  "cuda_qa_status": "deferred_until_existing_four_endpoints_complete",
+  "new_training_status": "waiting_for_existing_controls",
+  "efficacy_measured": false
+}

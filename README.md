@@ -63,7 +63,7 @@ F处于条件适配和高斯训练之前；它不能单独证明动态条件或G
 
 [完整五端点、逐例及配对表](reports/v12_core_native_20261028/README.md)同时列出clDice、细中心线召回和差病例；[此前部分结果](reports/v12_core_native_20261028_partial/README.md)作为历史快照保留。F到最终端点包含额外42k流程，不能当作单独GDF消融。所有结果属于单种子固定VAL，不据此声称种子稳定性。
 
-[修订版工程核验记录](reports/v12_gdf_joint_engineering_20261028/status.json)：生产Torch1.11运行时CPU测试100项通过，真实条件检查点迁移通过。2026-10-29已完成两卡资源交接、44例高斯目标准备及128³／B2／AMP两次合成更新核验；[共享高斯头2k及TRAIN校准](reports/v12_gdf_joint_engineering_20261028/common_preparation_20261029.json)也已完成，有／无GDF匹配分支从同一共享状态在两卡并行执行全S训练。尚无修订版整例性能结果。
+[修订版工程核验记录](reports/v12_gdf_joint_engineering_20261028/status.json)：生产Torch1.11运行时CPU测试100项通过，真实条件检查点迁移通过。2026-10-29已完成两卡资源交接、44例高斯目标准备及128³／B2／AMP两次合成更新核验；[共享高斯头2k及TRAIN校准](reports/v12_gdf_joint_engineering_20261028/common_preparation_20261029.json)也已完成。有／无GDF匹配分支的[全S几何20k阶段](reports/v12_gdf_joint_engineering_20261028/geometry_completion_20261029.json)均已完成，阶段末固定区块Dice分别为85.549350%／82.788740%，正在并行执行精修10k。区块指标不是原生整例结果；尚无修订版整例性能结论。
 
 ## 复现范围
 

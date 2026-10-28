@@ -11,7 +11,7 @@
   "old_predictor_preserved": true,
   "deferred_supervisor_tests_passed": 15,
   "cuda_qa_status": "PASS",
-  "new_training_status": "paired_fullS_geometry_training_in_progress",
+  "new_training_status": "paired_fullS_refine_training_in_progress",
   "efficacy_measured": false,
   "operator_resource_gate_required": true,
   "required_gpu_count_after_old_controls": 2,
@@ -26,5 +26,7 @@
   "train_calibration_optimizer_updates": 0,
   "train_calibration_batches": 8,
   "lambda_peak": 11.392421803316818,
-  "matched_arms_same_shared_checkpoint": true
+  "matched_arms_same_shared_checkpoint": true,
+  "geometry_successful_updates_per_arm": 20000,
+  "geometry_evaluation_endpoint": "LAST"
 }

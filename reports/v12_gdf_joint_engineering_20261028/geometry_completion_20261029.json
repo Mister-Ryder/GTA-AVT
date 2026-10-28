@@ -1,0 +1,125 @@
+{
+  "schema": "GTA-AVT-gdf-joint-geometry-completion-1",
+  "source_commit": "bc305e5a449a5f1031e5b85100630b6dd543ef7e",
+  "source_manifest_sha256": "b3935b438946a0e16e06f9ff3ceec2244fc1081cfd3b84266c4c4e11c16eb2e1",
+  "observed_utc": "2026-10-28T21:15:28.406602+00:00",
+  "native_efficacy_measured": false,
+  "arms": {
+    "AR": {
+      "plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+      "shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+      "condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+      "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+      "seed": 20261032,
+      "endpoint": "geometry_LAST",
+      "successful_updates": 20000,
+      "attempts": 20010,
+      "elapsed_seconds": 14406.151109950995,
+      "validation_scope": "fixed sampled VAL patches, common across model seeds; not native whole-case evaluation",
+      "validation_summary": {
+        "dice": {
+          "mean": 0.8278873951199592,
+          "std_population": 0.09503966673527994,
+          "minimum": 0.687633363132705,
+          "defined_cases": 8,
+          "worst20_mean": 0.706381260640744
+        },
+        "precision": {
+          "mean": 0.8397157029621725,
+          "std_population": 0.1206245866724537,
+          "minimum": 0.622996862673521,
+          "defined_cases": 8,
+          "worst20_mean": 0.672400699136281
+        },
+        "recall": {
+          "mean": 0.8344814817209238,
+          "std_population": 0.08877727321651095,
+          "minimum": 0.7249314846202894,
+          "defined_cases": 8,
+          "worst20_mean": 0.7416963652114359
+        }
+      },
+      "validation_losses": {
+        "auxiliary_loss": 0.0,
+        "segmentation_bce_foreground": 2.154491638066247,
+        "weighted_gdf_loss": 0.0,
+        "segmentation_bce_background": 0.004879267413343769,
+        "dice_loss": 0.17126322723925114,
+        "gdf_valid_cases": 64,
+        "gdf_fg_voxels": 2659499,
+        "segmentation_bce": 0.017486558434029575,
+        "gdf_mse": 0.0057093767609330826,
+        "loss": 0.18874978658277541,
+        "auxiliary_dice": 0.0,
+        "segmentation_bce_unweighted": 0.009963417520339135,
+        "gdf_bg_voxels": 130203093,
+        "auxiliary_bce": 0.0,
+        "primary_segmentation_loss": 0.18874978658277541,
+        "gdf_bg_mse": 0.0022674229003314395,
+        "auxiliary_bce_unweighted": 0.0,
+        "gdf_fg_mse": 0.01005613555025775,
+        "segmentation_bce_fg_to_bg_weight_ratio": 2.5950692147016525,
+        "segmentation_foreground_fraction": 0.01981489302124828
+      },
+      "current_phase_at_observation": "refine"
+    },
+    "AR_GDF": {
+      "plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+      "shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+      "condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+      "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+      "seed": 20261032,
+      "endpoint": "geometry_LAST",
+      "successful_updates": 20000,
+      "attempts": 20010,
+      "elapsed_seconds": 14554.826730789006,
+      "validation_scope": "fixed sampled VAL patches, common across model seeds; not native whole-case evaluation",
+      "validation_summary": {
+        "dice": {
+          "mean": 0.8554934979859838,
+          "std_population": 0.09017415271660861,
+          "minimum": 0.6929037250616841,
+          "defined_cases": 8,
+          "worst20_mean": 0.7202739181167652
+        },
+        "precision": {
+          "mean": 0.8690225977238375,
+          "std_population": 0.09701533913033171,
+          "minimum": 0.7302249664628935,
+          "defined_cases": 8,
+          "worst20_mean": 0.7442526456135113
+        },
+        "recall": {
+          "mean": 0.8530043542593395,
+          "std_population": 0.09573998778441216,
+          "minimum": 0.6786036266215136,
+          "defined_cases": 8,
+          "worst20_mean": 0.7216035105271341
+        }
+      },
+      "validation_losses": {
+        "gdf_bg_mse": 0.00012969863735179388,
+        "dice_loss": 0.14637474715709686,
+        "gdf_mse": 0.0012345305349299451,
+        "auxiliary_dice": 0.0,
+        "primary_segmentation_loss": 0.16257164144190028,
+        "loss": 0.1766359357861802,
+        "segmentation_bce_foreground": 1.481485524418531,
+        "auxiliary_bce": 0.0,
+        "gdf_bg_voxels": 130203093,
+        "segmentation_bce": 0.016196893200685736,
+        "gdf_fg_voxels": 2659499,
+        "gdf_valid_cases": 64,
+        "weighted_gdf_loss": 0.01406429237977136,
+        "auxiliary_bce_unweighted": 0.0,
+        "auxiliary_loss": 0.0,
+        "segmentation_bce_fg_to_bg_weight_ratio": 2.5950692147016525,
+        "segmentation_bce_unweighted": 0.009359900370327523,
+        "segmentation_foreground_fraction": 0.01981489302124828,
+        "gdf_fg_mse": 0.0027265533153695287,
+        "segmentation_bce_background": 0.0046277923584057135
+      },
+      "current_phase_at_observation": "refine"
+    }
+  }
+}

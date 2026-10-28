@@ -11,14 +11,16 @@
     "refine": 10000
   },
   "input_csv_sha256": {
-    "training_scalars.csv": "d8704386d1c7c6927b18eda60e980855acaf2bcd45c4457ceda369693489709f",
-    "validation_summary.csv": "4720b21990c5806dbe8f66fc136331d9f16c6fcce07c81758cc922fd2f9bea16"
+    "training_scalars.csv": "013ec319d7a178f2563da07e9e33bab71a7a4cb164655b24758c3dea7e71e86e",
+    "validation_summary.csv": "46b13d4dcc6a5a845237640554271ada794f28d662194ed73fece2ea8d240859"
   },
   "figure_sha256": {
     "01_shared_gaussian_head.png": "407d22a653829d9399c74f722e22e7e956232ab6b5fa78fc79e49b769b325141",
-    "01_shared_gaussian_head.svg": "de3c75a17ad9019c00fe3ba150006977d097098aef8751435ad5901024a7578e",
-    "02_geometry_matched_pair.png": "d36550f1034e9cec746c8ea737807bcc14bcae18af5f0c1415ea8a1d6b5ad742",
-    "02_geometry_matched_pair.svg": "5bef4ce0f4b2244fee1879034c2e48c7d16f53a92702e7ed5db67eb853958f17"
+    "01_shared_gaussian_head.svg": "170ba911d87cb1df7ff9e112827d27fcb23cec1b600f1c28c0f37dd010e714e8",
+    "02_geometry_matched_pair.png": "8c0c2b9c4ed64aa66ea450997fa3dd0a4d73210760a59df212fb837be73f0521",
+    "02_geometry_matched_pair.svg": "00b038e49605a35f01d204ae6d10822ba92da0870133320d8adda46511d7e93e",
+    "03_refine_matched_pair.png": "da2c8ff5dc9a35158b31adb3ffc990eeeeefd7f55914c7aa5cf989d275f100cc",
+    "03_refine_matched_pair.svg": "c2a78c9294f7d07e6acc3e04b7e79b56f58fa6e439f9eba4b78740fd919fcf72"
   },
   "matplotlib_version": "3.5.2"
 }

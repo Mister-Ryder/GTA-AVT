@@ -23,22 +23,22 @@
       "reused_completed_snapshot": true
     },
     "AR": {
-      "private_snapshot_sha256": "782ff75c2e611ca0aa9837ac6049d0346a1a58e95ebd25834db80bb870562248",
-      "started_utc": "2026-10-28T21:16:12.780036+00:00",
-      "finished_utc": "2026-10-28T21:16:14.408306+00:00",
+      "private_snapshot_sha256": "dc017550001e522d58c80b3cd4402c09f71a6e3a34aef7bf6803450d1c673909",
+      "started_utc": "2026-10-28T23:19:30.479452+00:00",
+      "finished_utc": "2026-10-28T23:19:33.328176+00:00",
       "history_sha256": {
         "geometry": "dddf6016e23b1ae3ba8af5b32fdfb9e32a66c42176c9626e6c9a9504e5aba838",
-        "refine": "860898b00d2bcbcc802207365fb5d64c16cea7114f3995e3c0fceb06cc0775af"
+        "refine": "b986197e64de14176681bf91a58dbabef7693685767ea150f9b7721963b70a14"
       },
       "reused_completed_snapshot": false
     },
     "AR_GDF": {
-      "private_snapshot_sha256": "e02818ce088cea23d3e7d8ddb5238fadd4c08f373b6c7e9cfb161199c2411375",
-      "started_utc": "2026-10-28T21:16:14.408333+00:00",
-      "finished_utc": "2026-10-28T21:16:16.034025+00:00",
+      "private_snapshot_sha256": "b882855aa28b09562d76a3f0bb5ff133d82251b6ea17868c987a67191cc47cae",
+      "started_utc": "2026-10-28T23:19:33.328202+00:00",
+      "finished_utc": "2026-10-28T23:19:35.491686+00:00",
       "history_sha256": {
         "geometry": "015af2fb26d79062b279bb264d7de8c04bed3b68b09c95bb5d985041289ac817",
-        "refine": "00910db6df3599bd86e71180a1e9698750ab832ab41510dde85839441c5095c8"
+        "refine": "c648c753f01b29ffb8a29bd6dde421755e4409350453171cf13bb1ba287695ff"
       },
       "reused_completed_snapshot": false
     }
@@ -48,10 +48,20 @@
       "shared_head"
     ],
     "AR": [
-      "geometry"
+      "geometry",
+      "refine",
+      "native_VAL"
     ],
     "AR_GDF": [
-      "geometry"
+      "geometry",
+      "refine",
+      "native_VAL"
     ]
-  }
+  },
+  "final_completion_receipt_sha256": "f8c9a747312b343c9b002b8c6f9f8b6d03c1ca0a5dffce832cdb22ed2381389e",
+  "final_native_checkpoint_sha256": {
+    "AR": "199a88fd34b28616198bf2b27d65bc4dd8832e2fc4090e9a29024b9745aecad3",
+    "AR_GDF": "d36996367d198d142e2049c4aa0f756597f6b905c5a84de80cd605a973deaf71"
+  },
+  "final_native_case_count": 8
 }

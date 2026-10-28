@@ -1,6 +1,6 @@
 run_label,phase,successful_updates,attempts,status,skipped_attempts_total,planned_successful_updates,elapsed_seconds,last_recorded_validation_step,summary_present,best_validation_score
 shared_head,shared_head,2000,2001,complete,1,2000,733.1979986840015,2000,1,0.152943170471893
 AR,geometry,20000,20010,complete,10,20000,14406.151109950995,20000,1,0.15589645142131936
-AR,refine,2213,2216,partial,3,10000,,2000,0,
+AR,refine,10000,10007,complete,7,10000,7204.109339436996,10000,1,0.14086684389549453
 AR_GDF,geometry,20000,20010,complete,10,20000,14554.826730789006,20000,1,0.14450650201401616
-AR_GDF,refine,1999,2004,partial,5,10000,,1000,0,
+AR_GDF,refine,10000,10009,complete,9,10000,7297.812080415999,10000,1,0.14501239501978258

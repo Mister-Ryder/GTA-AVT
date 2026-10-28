@@ -11,8 +11,8 @@
   "old_predictor_preserved": true,
   "deferred_supervisor_tests_passed": 15,
   "cuda_qa_status": "PASS",
-  "new_training_status": "paired_fullS_refine_training_in_progress",
-  "efficacy_measured": false,
+  "new_training_status": "complete",
+  "efficacy_measured": true,
   "operator_resource_gate_required": true,
   "required_gpu_count_after_old_controls": 2,
   "method_source_unchanged_by_resource_handoff": true,
@@ -28,5 +28,9 @@
   "lambda_peak": 11.392421803316818,
   "matched_arms_same_shared_checkpoint": true,
   "geometry_successful_updates_per_arm": 20000,
-  "geometry_evaluation_endpoint": "LAST"
+  "geometry_evaluation_endpoint": "LAST",
+  "refine_successful_updates_per_arm": 10000,
+  "native_evaluation_complete": true,
+  "native_evaluation_cases_per_arm": 8,
+  "no_additional_experiments_queued": true
 }

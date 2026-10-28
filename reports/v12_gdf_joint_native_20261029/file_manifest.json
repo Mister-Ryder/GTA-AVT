@@ -1,0 +1,34 @@
+{
+  "schema": "GTA-AVT-gdf-joint-native-file-manifest-1",
+  "text_encoding": "UTF-8 LF",
+  "files": {
+    "endpoint_per_case.csv": {
+      "bytes": 5720,
+      "sha256": "535a49280f73a76117e22cbcc339f4823e2aa648d21b4839b946554e7e1cb1b2"
+    },
+    "endpoint_summary.csv": {
+      "bytes": 2495,
+      "sha256": "c1a3163703568ccc8b1833fa3ee8ce49da58063062cb96b67c72edbe945d0330"
+    },
+    "objective_readout.json": {
+      "bytes": 54750,
+      "sha256": "ebd20fd5289608f006796c9a0287085356730183fb1cbac7970a594618e3106f"
+    },
+    "paired_per_case.csv": {
+      "bytes": 2836,
+      "sha256": "6787bd014c963f4faf4b5e762ef383dd9c21b4daa0742a28eb11bad61c8a6503"
+    },
+    "paired_summary.csv": {
+      "bytes": 2824,
+      "sha256": "bf8240a2c517e1ebc5b03ea393bed313f6caceebbeb6957174fcd330574620d1"
+    },
+    "provenance.json": {
+      "bytes": 5800,
+      "sha256": "233ba2bce0b1a57496b32cb4f0d6e4731f5c3c90d0a5a383cf9a5e425ccb9b38"
+    },
+    "README.md": {
+      "bytes": 3622,
+      "sha256": "2f21afafbdd660b7f4d3b4b7c6031a4e8f300ed04f54751c005bd0efc2cc9ab2"
+    }
+  }
+}

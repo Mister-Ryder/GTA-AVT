@@ -47,7 +47,7 @@
     },
     {
       "run_label": "AR",
-      "snapshot_sha256": "9ff54c97919725fb062ed5cb68a0aaa57fd9d26fb8be7b4c0e36c83668bc6733",
+      "snapshot_sha256": "ad112c57eca38fa83aa7ac7443a2be3d120179688cf4d1cb0aa04905963dac9d",
       "identities": {
         "plan.condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
         "plan.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
@@ -61,7 +61,14 @@
         "pipeline.completed.geometry.lineage.segmentation_init.common_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
         "pipeline.completed.geometry.lineage.segmentation_init.common_state_sha256": "7fd39a4fbe6b0f16c8c4498bfafddef7ddb72f18fbfea921adb53a2acc94d9f6",
         "pipeline.completed.geometry.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
-        "pipeline.completed.geometry.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3"
+        "pipeline.completed.geometry.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.segmentation_init.parent_checkpoint_sha256": "ef00e44553fd82a33f456037869eff834ee1b7d0240f70f966e8d72eefda061a",
+        "pipeline.completed.refine.lineage.segmentation_init.common_checkpoint_sha256": "ef00e44553fd82a33f456037869eff834ee1b7d0240f70f966e8d72eefda061a",
+        "pipeline.completed.refine.lineage.segmentation_init.common_state_sha256": "87fd74b432c7cdd8ae18f70586ce43cc3079e2caa56abdb2489459a918ec5924",
+        "pipeline.completed.refine.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+        "pipeline.completed.refine.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.final_checkpoint_sha256": "199a88fd34b28616198bf2b27d65bc4dd8832e2fc4090e9a29024b9745aecad3"
       },
       "phases": {
         "geometry": {
@@ -85,26 +92,33 @@
           }
         },
         "refine": {
-          "source_history_sha256": "860898b00d2bcbcc802207365fb5d64c16cea7114f3995e3c0fceb06cc0775af",
-          "represented_successful_rows": 2213,
-          "retained_scalar_rows": 27,
+          "source_history_sha256": "b986197e64de14176681bf91a58dbabef7693685767ea150f9b7721963b70a14",
+          "represented_successful_rows": 10000,
+          "retained_scalar_rows": 107,
           "raw_points_available": true,
           "window_size": 200,
-          "window_count": 12,
-          "validation_count": 2,
+          "window_count": 50,
+          "validation_count": 10,
           "malformed_lines": 0,
           "history_gaps": [],
           "nonfinite_losses": [],
-          "identities": {}
+          "identities": {
+            "predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+            "segmentation_init.parent_checkpoint_sha256": "ef00e44553fd82a33f456037869eff834ee1b7d0240f70f966e8d72eefda061a",
+            "segmentation_init.common_checkpoint_sha256": "ef00e44553fd82a33f456037869eff834ee1b7d0240f70f966e8d72eefda061a",
+            "segmentation_init.common_state_sha256": "87fd74b432c7cdd8ae18f70586ce43cc3079e2caa56abdb2489459a918ec5924",
+            "segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+            "segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3"
+          }
         }
       },
-      "pipeline_status_at_snapshot": "running",
-      "pipeline_current_at_snapshot": "refine",
+      "pipeline_status_at_snapshot": "complete",
+      "pipeline_current_at_snapshot": null,
       "pipeline_error_type_at_snapshot": null
     },
     {
       "run_label": "AR_GDF",
-      "snapshot_sha256": "ece60244f828d0062015d1588e565c7f08d3ca4c52d771fce97202e5ec047fbb",
+      "snapshot_sha256": "90eb179a6cc6ec440c9223aeb9a48f647ac4f20e2dd4544e03e1707b4aaae5f4",
       "identities": {
         "plan.condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
         "plan.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
@@ -118,7 +132,14 @@
         "pipeline.completed.geometry.lineage.segmentation_init.common_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
         "pipeline.completed.geometry.lineage.segmentation_init.common_state_sha256": "7fd39a4fbe6b0f16c8c4498bfafddef7ddb72f18fbfea921adb53a2acc94d9f6",
         "pipeline.completed.geometry.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
-        "pipeline.completed.geometry.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3"
+        "pipeline.completed.geometry.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.segmentation_init.parent_checkpoint_sha256": "eeb2d9935859b59a3a8acc03a5bc4217cc2c6099a032b15a7aab99c614976c51",
+        "pipeline.completed.refine.lineage.segmentation_init.common_checkpoint_sha256": "eeb2d9935859b59a3a8acc03a5bc4217cc2c6099a032b15a7aab99c614976c51",
+        "pipeline.completed.refine.lineage.segmentation_init.common_state_sha256": "156d38b09423ca3528d8a72ea8291c23f4ab4c03cdce113e9ac60ea89fc8d83f",
+        "pipeline.completed.refine.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+        "pipeline.completed.refine.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.final_checkpoint_sha256": "d36996367d198d142e2049c4aa0f756597f6b905c5a84de80cd605a973deaf71"
       },
       "phases": {
         "geometry": {
@@ -142,31 +163,38 @@
           }
         },
         "refine": {
-          "source_history_sha256": "00910db6df3599bd86e71180a1e9698750ab832ab41510dde85839441c5095c8",
-          "represented_successful_rows": 1999,
-          "retained_scalar_rows": 26,
+          "source_history_sha256": "c648c753f01b29ffb8a29bd6dde421755e4409350453171cf13bb1ba287695ff",
+          "represented_successful_rows": 10000,
+          "retained_scalar_rows": 110,
           "raw_points_available": true,
           "window_size": 200,
-          "window_count": 10,
-          "validation_count": 1,
+          "window_count": 50,
+          "validation_count": 10,
           "malformed_lines": 0,
           "history_gaps": [],
           "nonfinite_losses": [],
-          "identities": {}
+          "identities": {
+            "predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+            "segmentation_init.parent_checkpoint_sha256": "eeb2d9935859b59a3a8acc03a5bc4217cc2c6099a032b15a7aab99c614976c51",
+            "segmentation_init.common_checkpoint_sha256": "eeb2d9935859b59a3a8acc03a5bc4217cc2c6099a032b15a7aab99c614976c51",
+            "segmentation_init.common_state_sha256": "156d38b09423ca3528d8a72ea8291c23f4ab4c03cdce113e9ac60ea89fc8d83f",
+            "segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+            "segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3"
+          }
         }
       },
-      "pipeline_status_at_snapshot": "running",
-      "pipeline_current_at_snapshot": "refine",
+      "pipeline_status_at_snapshot": "complete",
+      "pipeline_current_at_snapshot": null,
       "pipeline_error_type_at_snapshot": null
     }
   ],
   "table_rows": {
-    "training_scalars": 496,
-    "training_windows": 9260,
-    "validation_summary": 45,
-    "validation_case_metrics": 360,
+    "training_scalars": 660,
+    "training_windows": 12380,
+    "validation_summary": 62,
+    "validation_case_metrics": 496,
     "phase_endpoints": 5,
-    "amp_skips": 34,
+    "amp_skips": 42,
     "checkpoint_markers": 0
   }
 }

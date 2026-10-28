@@ -12,10 +12,14 @@ AR,geometry,10272,consecutive_success_boundary,1,10277,10279,inferred from conse
 AR,geometry,10693,consecutive_success_boundary,1,10699,10701,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[10700]
 AR,geometry,14045,consecutive_success_boundary,1,14052,14054,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[14053]
 AR,geometry,14079,consecutive_success_boundary,1,14087,14089,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[14088]
-AR,refine,2213,phase_total,3,,2216,attempt count minus successful updates; not a log of loss values on skipped batches,
+AR,refine,10000,phase_total,7,,10007,attempt count minus successful updates; not a log of loss values on skipped batches,
 AR,refine,38,consecutive_success_boundary,1,37,39,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[38]
 AR,refine,360,consecutive_success_boundary,1,360,362,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[361]
 AR,refine,1677,consecutive_success_boundary,1,1678,1680,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[1679]
+AR,refine,2974,consecutive_success_boundary,1,2976,2978,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[2977]
+AR,refine,4637,consecutive_success_boundary,1,4640,4642,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[4641]
+AR,refine,7511,consecutive_success_boundary,1,7515,7517,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[7516]
+AR,refine,9200,consecutive_success_boundary,1,9205,9207,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[9206]
 AR_GDF,geometry,20000,phase_total,10,,20010,attempt count minus successful updates; not a log of loss values on skipped batches,
 AR_GDF,geometry,377,consecutive_success_boundary,1,376,378,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[377]
 AR_GDF,geometry,1037,consecutive_success_boundary,1,1037,1039,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[1038]
@@ -27,9 +31,13 @@ AR_GDF,geometry,14179,consecutive_success_boundary,1,14184,14186,inferred from c
 AR_GDF,geometry,14310,consecutive_success_boundary,1,14316,14318,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[14317]
 AR_GDF,geometry,16505,consecutive_success_boundary,1,16512,16514,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[16513]
 AR_GDF,geometry,17306,consecutive_success_boundary,1,17314,17316,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[17315]
-AR_GDF,refine,1999,phase_total,5,,2004,attempt count minus successful updates; not a log of loss values on skipped batches,
+AR_GDF,refine,10000,phase_total,9,,10009,attempt count minus successful updates; not a log of loss values on skipped batches,
 AR_GDF,refine,37,consecutive_success_boundary,1,36,38,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[37]
 AR_GDF,refine,296,consecutive_success_boundary,1,296,298,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[297]
 AR_GDF,refine,467,consecutive_success_boundary,1,468,470,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[469]
 AR_GDF,refine,920,consecutive_success_boundary,1,922,924,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[923]
 AR_GDF,refine,1032,consecutive_success_boundary,1,1035,1037,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[1036]
+AR_GDF,refine,3057,consecutive_success_boundary,1,3061,3063,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[3062]
+AR_GDF,refine,3141,consecutive_success_boundary,1,3146,3148,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[3147]
+AR_GDF,refine,3287,consecutive_success_boundary,1,3293,3295,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[3294]
+AR_GDF,refine,7790,consecutive_success_boundary,1,7797,7799,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[7798]

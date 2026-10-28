@@ -1,0 +1,103 @@
+{
+  "schema": "GTA-AVT-gdf-joint-native-provenance-1",
+  "source_commit": "bc305e5a449a5f1031e5b85100630b6dd543ef7e",
+  "source_manifest_sha256": "b3935b438946a0e16e06f9ff3ceec2244fc1081cfd3b84266c4c4e11c16eb2e1",
+  "source_files_verified_in_supplied_receipt": true,
+  "seed": 20261032,
+  "seed_count": 1,
+  "seed_stability_assessed": false,
+  "plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+  "shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+  "condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+  "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+  "predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+  "planned_total_new_training_compute": 62000,
+  "common_head_successful_updates": 2000,
+  "segmentation_updates_in_head_warmup": 0,
+  "calibration_batches": 8,
+  "calibration_optimizer_updates": 0,
+  "calibration_file_sha256": "3e17915b01d41d8e6f7189aea24aa8536d56a559493890549140812cc1dd63cb",
+  "calibration_canonical_JSON_sha256": "64818dbbeb09060c5e503e9db11db89c1c41ef4e779febf578da20bc4279a554",
+  "lambda_peak": 11.392421803316818,
+  "loss_matching_candidate": 11.392421803316818,
+  "shared_gradient_matching_candidate": 13.64834054040249,
+  "predicted_median_weighted_shared_gradient_ratio": 0.8347111335324914,
+  "arms": {
+    "AR": {
+      "seed": 20261032,
+      "plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+      "shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+      "condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+      "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+      "predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+      "geometry_checkpoint_sha256": "ef00e44553fd82a33f456037869eff834ee1b7d0240f70f966e8d72eefda061a",
+      "final_checkpoint_sha256": "199a88fd34b28616198bf2b27d65bc4dd8832e2fc4090e9a29024b9745aecad3",
+      "job_exit_code": 0,
+      "process_identity_alive": false,
+      "evaluation_endpoint": "last",
+      "native_inference_receipts": 8,
+      "segmentation_successful_updates": 30000,
+      "head_including_lineage_updates": 32000,
+      "phases": {
+        "geometry": {
+          "successful_updates": 20000,
+          "attempts": 20010,
+          "elapsed_seconds": 14406.151109950995,
+          "stage": "full_joint",
+          "evaluation_checkpoint": "last",
+          "parent_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+          "phase_lineage_common_checkpoint_scope": "Direct preceding phase checkpoint; the shared-head anchor is recorded separately at arm level."
+        },
+        "refine": {
+          "successful_updates": 10000,
+          "attempts": 10007,
+          "elapsed_seconds": 7204.109339436996,
+          "stage": "full_joint",
+          "evaluation_checkpoint": "last",
+          "parent_checkpoint_sha256": "ef00e44553fd82a33f456037869eff834ee1b7d0240f70f966e8d72eefda061a",
+          "phase_lineage_common_checkpoint_scope": "Direct preceding phase checkpoint; the shared-head anchor is recorded separately at arm level."
+        }
+      },
+      "native_report_canonical_JSON_sha256": "97737b0dfb270a87ad294399e66869d60ef4ea21b16e320e198d76d9e4129c17"
+    },
+    "AR_GDF": {
+      "seed": 20261032,
+      "plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+      "shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+      "condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+      "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+      "predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+      "geometry_checkpoint_sha256": "eeb2d9935859b59a3a8acc03a5bc4217cc2c6099a032b15a7aab99c614976c51",
+      "final_checkpoint_sha256": "d36996367d198d142e2049c4aa0f756597f6b905c5a84de80cd605a973deaf71",
+      "job_exit_code": 0,
+      "process_identity_alive": false,
+      "evaluation_endpoint": "last",
+      "native_inference_receipts": 8,
+      "segmentation_successful_updates": 30000,
+      "head_including_lineage_updates": 32000,
+      "phases": {
+        "geometry": {
+          "successful_updates": 20000,
+          "attempts": 20010,
+          "elapsed_seconds": 14554.826730789006,
+          "stage": "full_joint",
+          "evaluation_checkpoint": "last",
+          "parent_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+          "phase_lineage_common_checkpoint_scope": "Direct preceding phase checkpoint; the shared-head anchor is recorded separately at arm level."
+        },
+        "refine": {
+          "successful_updates": 10000,
+          "attempts": 10009,
+          "elapsed_seconds": 7297.812080415999,
+          "stage": "full_joint",
+          "evaluation_checkpoint": "last",
+          "parent_checkpoint_sha256": "eeb2d9935859b59a3a8acc03a5bc4217cc2c6099a032b15a7aab99c614976c51",
+          "phase_lineage_common_checkpoint_scope": "Direct preceding phase checkpoint; the shared-head anchor is recorded separately at arm level."
+        }
+      },
+      "native_report_canonical_JSON_sha256": "e3647ef78c17299e263cae9b8deb1a48807c8d8c9c807501b21cb277b356bcd5"
+    }
+  },
+  "completion_receipt_JSON_sha256": "f8c9a747312b343c9b002b8c6f9f8b6d03c1ca0a5dffce832cdb22ed2381389e",
+  "F_native_JSON_sha256": "682cd5acdc376fed399204674cf5d14c65fe89d86c30f026d56c6cee620a50d1"
+}

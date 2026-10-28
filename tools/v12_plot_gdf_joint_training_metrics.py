@@ -18,6 +18,7 @@ import numpy as np
 
 COLORS = {'shared_head': '#8764A5', 'AR': '#176B9B', 'AR_GDF': '#C8782D'}
 PHASE_BUDGET = {'shared_head': 2000, 'geometry': 20000, 'refine': 10000}
+NATIVE_COLORS = {'F': '#8057A3', 'AR': COLORS['AR'], 'AR_GDF': COLORS['AR_GDF']}
 
 
 def read_rows(path):
@@ -145,10 +146,58 @@ def paired_phase(train, val, phase, output):
     return save(fig, output, ('02_' if phase == 'geometry' else '03_') + phase + '_matched_pair')
 
 
+def native_endpoints(native, output):
+    summaries = read_rows(native / 'endpoint_summary.csv')
+    cases = read_rows(native / 'endpoint_per_case.csv')
+    endpoints = ('F', 'AR', 'AR_GDF')
+    if {r['endpoint'] for r in summaries + cases} != set(endpoints):
+        raise ValueError('Native input must contain only F and the two revised final endpoints')
+    case_ids = sorted({r['case_id'] for r in cases if r['endpoint'] == 'F'})
+    if len(case_ids) != 8 or any({r['case_id'] for r in cases if r['endpoint'] == arm} != set(case_ids) for arm in endpoints):
+        raise ValueError('Native endpoint cases must be the same eight VAL cases')
+    lookup = {(r['endpoint'], r['metric']): r for r in summaries}
+    case_lookup = {(r['endpoint'], r['case_id']): r for r in cases}
+    metrics = ('dice', 'precision', 'recall', 'cldice', 'fine_centerline_recall')
+    labels = ('Dice', 'Precision', 'Recall', 'clDice', 'Fine CL recall')
+    fig, axes = plt.subplots(1, 3, figsize=(19, 7.3))
+    fig.subplots_adjust(left=.06, right=.985, bottom=.27, top=.765, wspace=.28)
+    fig.suptitle('GTA-AVT gdf-joint-r3: final native VAL8 endpoints with F reference',
+                 x=.06, y=.975, ha='left', fontsize=17, fontweight='bold')
+    fig.text(.06, .918, 'Final AR / AR_GDF use prescribed LAST; F is the unchanged base reference | Single seed 20261032', fontsize=10.5)
+    offsets = (-.22, 0, .22)
+    for endpoint, offset in zip(endpoints, offsets):
+        means = [num(lookup[(endpoint, metric)], 'mean_pct') for metric in metrics]
+        sd = [num(lookup[(endpoint, metric)], 'sd_population_pp') for metric in metrics]
+        axes[0].bar(np.arange(len(metrics)) + offset, means, width=.21,
+                    yerr=sd, capsize=2, label=endpoint, color=NATIVE_COLORS[endpoint],
+                    error_kw={'elinewidth': .75, 'alpha': .8})
+    axes[0].set_title('A  Case-equal means and population SD', loc='left', fontweight='bold')
+    axes[0].set_xticks(np.arange(len(metrics)), labels, rotation=35, ha='right')
+    axes[0].set_ylabel('Score (%)'); axes[0].set_ylim(0, 105)
+    for ax, key, title, limits in (
+            (axes[1], 'dice_pct', 'B  Per-case native Dice', (80, 100)),
+            (axes[2], 'fine_centerline_recall_pct', 'C  Per-case fine centerline recall', (0, 105))):
+        for endpoint, offset in zip(endpoints, (-.14, 0, .14)):
+            values = [num(case_lookup[(endpoint, case_id)], key) for case_id in case_ids]
+            ax.scatter(np.arange(len(case_ids)) + offset, values, color=NATIVE_COLORS[endpoint],
+                       s=24, label=endpoint, zorder=4)
+        ax.set_xticks(np.arange(len(case_ids)), case_ids, rotation=45, ha='right')
+        ax.set_title(title, loc='left', fontweight='bold'); ax.set_ylim(*limits)
+        ax.set_ylabel('Score (%)')
+    for ax in axes:
+        ax.grid(axis='y', color='#DFE5EA', lw=.65); ax.set_axisbelow(True)
+    handles, legend_labels = axes[0].get_legend_handles_labels()
+    fig.legend(handles, legend_labels, loc='upper left', bbox_to_anchor=(.055, .867), ncol=3, frameon=False)
+    fig.text(.06, .085, 'Whiskers in A are population SD across eight cases, not seed variation or confidence intervals. Points in B/C are recorded native case scores.', fontsize=9, color='#46525C')
+    fig.text(.06, .045, 'Native endpoints use a separate evaluation protocol from fixed-patch VAL. F-to-final changes include extra training and are not budget-matched component ablations.', fontsize=9, color='#46525C')
+    return save(fig, output, '04_final_native_endpoints')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', required=True)
     parser.add_argument('--output', required=True)
+    parser.add_argument('--native', help='Optional completed revised F/AR/AR_GDF native objective directory')
     args = parser.parse_args()
     source = Path(args.input); output = Path(args.output); output.mkdir(parents=True, exist_ok=True)
     train = read_rows(source / 'training_scalars.csv')
@@ -162,13 +211,18 @@ def main():
     produced = shared_head(train, val, output)
     for phase in ('geometry', 'refine'):
         produced += paired_phase(train, val, phase, output)
+    if args.native:
+        produced += native_endpoints(Path(args.native), output)
     sha = lambda path: hashlib.sha256(path.read_bytes()).hexdigest()
     manifest = {'schema': 'GTA-AVT-gdf-joint-training-figures-1',
         'revision': '20261028-gdf-joint-r3', 'smoothing': False, 'interpolation': False,
         'axes': 'phase-local successful updates; shared head is separate; no old 92k workflow axis',
-        'native_whole_case_results_plotted': False, 'planned_phase_budgets': PHASE_BUDGET,
+        'native_whole_case_results_plotted': bool(args.native), 'planned_phase_budgets': PHASE_BUDGET,
         'input_csv_sha256': {name: sha(source / name) for name in ('training_scalars.csv', 'validation_summary.csv')},
         'figure_sha256': {p.name: sha(p) for p in produced}, 'matplotlib_version': matplotlib.__version__}
+    if args.native:
+        manifest['native_csv_sha256'] = {name: sha(Path(args.native) / name)
+            for name in ('endpoint_summary.csv', 'endpoint_per_case.csv')}
     (output / 'plot_manifest.json').write_text(json.dumps(manifest, indent=2) + '\n', encoding='utf-8')
     print(json.dumps({'figures': list(manifest['figure_sha256']), 'train_rows': len(train), 'val_rows': len(val)}))
 

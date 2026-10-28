@@ -4,23 +4,29 @@
   "smoothing": false,
   "interpolation": false,
   "axes": "phase-local successful updates; shared head is separate; no old 92k workflow axis",
-  "native_whole_case_results_plotted": false,
+  "native_whole_case_results_plotted": true,
   "planned_phase_budgets": {
     "shared_head": 2000,
     "geometry": 20000,
     "refine": 10000
   },
   "input_csv_sha256": {
-    "training_scalars.csv": "013ec319d7a178f2563da07e9e33bab71a7a4cb164655b24758c3dea7e71e86e",
-    "validation_summary.csv": "46b13d4dcc6a5a845237640554271ada794f28d662194ed73fece2ea8d240859"
+    "training_scalars.csv": "d7019a9cc4dbd8594d847c2e175ce8a091dd04c682c5c39e3f35179e687f57b0",
+    "validation_summary.csv": "ef1ed02bd0a56e73fbadf6dd951e2dcff7bc4963a5fd1553553e7133656d119b"
   },
   "figure_sha256": {
     "01_shared_gaussian_head.png": "407d22a653829d9399c74f722e22e7e956232ab6b5fa78fc79e49b769b325141",
-    "01_shared_gaussian_head.svg": "170ba911d87cb1df7ff9e112827d27fcb23cec1b600f1c28c0f37dd010e714e8",
+    "01_shared_gaussian_head.svg": "be779f5f0b19d54446a8957addab7f8ca6ce3f0b9c3c8227ad0cdc4f1de041e1",
     "02_geometry_matched_pair.png": "8c0c2b9c4ed64aa66ea450997fa3dd0a4d73210760a59df212fb837be73f0521",
-    "02_geometry_matched_pair.svg": "00b038e49605a35f01d204ae6d10822ba92da0870133320d8adda46511d7e93e",
-    "03_refine_matched_pair.png": "da2c8ff5dc9a35158b31adb3ffc990eeeeefd7f55914c7aa5cf989d275f100cc",
-    "03_refine_matched_pair.svg": "c2a78c9294f7d07e6acc3e04b7e79b56f58fa6e439f9eba4b78740fd919fcf72"
+    "02_geometry_matched_pair.svg": "fb23701c0d023956ed23a22da726594049ddf7a1b7ab15ccb8f92863d4f13b69",
+    "03_refine_matched_pair.png": "93c58d3d361a4646de5dc5a940ee2043cd5a2bcd88ef8bb197f348299a020cdf",
+    "03_refine_matched_pair.svg": "88b381511bf0de5569d0c409127380c639d08101940c0b588b856eb250fed8ec",
+    "04_final_native_endpoints.png": "5128991ba6963d38ea6d95ec4447cfba22b2ca7bc30daf49ccb988c1c3506114",
+    "04_final_native_endpoints.svg": "f8ce0b51fbfff150aaa3bc47e94cd0568f1cd59c1f5b082594daae1d5cc65b38"
   },
-  "matplotlib_version": "3.5.2"
+  "matplotlib_version": "3.5.2",
+  "native_csv_sha256": {
+    "endpoint_summary.csv": "c1a3163703568ccc8b1833fa3ee8ce49da58063062cb96b67c72edbe945d0330",
+    "endpoint_per_case.csv": "535a49280f73a76117e22cbcc339f4823e2aa648d21b4839b946554e7e1cb1b2"
+  }
 }

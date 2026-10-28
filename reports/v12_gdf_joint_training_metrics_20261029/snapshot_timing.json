@@ -6,16 +6,16 @@
       "finished_utc": "2026-10-28T17:10:54.311059+00:00"
     },
     "AR": {
-      "started_utc": "2026-10-28T21:16:12.780036+00:00",
-      "finished_utc": "2026-10-28T21:16:14.408306+00:00"
+      "started_utc": "2026-10-28T23:19:30.479452+00:00",
+      "finished_utc": "2026-10-28T23:19:33.328176+00:00"
     },
     "AR_GDF": {
-      "started_utc": "2026-10-28T21:16:14.408333+00:00",
-      "finished_utc": "2026-10-28T21:16:16.034025+00:00"
+      "started_utc": "2026-10-28T23:19:33.328202+00:00",
+      "finished_utc": "2026-10-28T23:19:35.491686+00:00"
     }
   },
   "reused_completed_runs": [
     "shared_head"
   ],
-  "meaning": "UTC acquisition timestamps, not per-update times. The completed shared-head record is cached from01:10China; both arms were freshly acquired at05:16China. Geometry is complete and refine remains partial."
+  "meaning": "UTC acquisition times, not per-update times. Shared head uses cached01:10China logs; both arms were acquired after completed native evaluation at07:19China."
 }

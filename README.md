@@ -62,7 +62,7 @@ F处于条件适配和高斯训练之前；它不能单独证明动态条件或G
 
 [完整五端点、逐例及配对表](reports/v12_core_native_20261028/README.md)同时列出clDice、细中心线召回和差病例；[此前部分结果](reports/v12_core_native_20261028_partial/README.md)作为历史快照保留。F到最终端点包含额外42k流程，不能当作单独GDF消融。所有结果属于单种子固定VAL，不据此声称种子稳定性。
 
-[修订版工程核验记录](reports/v12_gdf_joint_engineering_20261028/status.json)：生产Torch1.11运行时CPU测试100项通过，真实条件检查点迁移通过。旧四支已经完成，新版仍处于[两卡资源交接等待](docs/v12_gdf_joint_20261028/RESOURCE_HANDOFF.md)，需按用户安排缩至两卡并核验后才启动GPU工程核验及训练；尚无修订版性能结果。
+[修订版工程核验记录](reports/v12_gdf_joint_engineering_20261028/status.json)：生产Torch1.11运行时CPU测试100项通过，真实条件检查点迁移通过。2026-10-29已完成两卡资源交接、44例高斯目标准备及128³／B2／AMP两次合成更新核验，进入共享高斯头2k预热；之后校准并在两卡并行执行有／无GDF匹配分支。[启动客观记录](reports/v12_gdf_joint_engineering_20261028/startup_20261029.json)仅证明工程运行，尚无修订版整例性能结果。
 
 ## 复现范围
 

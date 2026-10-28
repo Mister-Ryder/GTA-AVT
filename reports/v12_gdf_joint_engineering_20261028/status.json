@@ -10,12 +10,15 @@
   "new_gaussian_head_parameters": 55,
   "old_predictor_preserved": true,
   "deferred_supervisor_tests_passed": 15,
-  "cuda_qa_status": "waiting_for_operator_two_gpu_resource_handoff",
-  "new_training_status": "waiting_resource_change",
+  "cuda_qa_status": "PASS",
+  "new_training_status": "shared_head_pretraining_in_progress",
   "efficacy_measured": false,
   "operator_resource_gate_required": true,
   "required_gpu_count_after_old_controls": 2,
   "method_source_unchanged_by_resource_handoff": true,
   "existing_four_native_endpoints_complete": true,
-  "operator_resource_gate_released": false
+  "operator_resource_gate_released": true,
+  "actual_gpu_count": 2,
+  "bounded_overlay_cases_completed": 44,
+  "cuda_qa_synthetic_successful_updates": 2
 }

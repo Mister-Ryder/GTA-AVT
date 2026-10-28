@@ -1,0 +1,80 @@
+{
+  "schema": "GTA-AVT-gdf-joint-startup-1",
+  "source_commit": "bc305e5a449a5f1031e5b85100630b6dd543ef7e",
+  "source_manifest_sha256": "b3935b438946a0e16e06f9ff3ceec2244fc1081cfd3b84266c4c4e11c16eb2e1",
+  "observed_utc": "2026-10-28T16:37:26.800548+00:00",
+  "verified_gpu_count": 2,
+  "bounded_overlay": {
+    "schema": "gdf-joint-overlay-completion-v1",
+    "complete": true,
+    "manifest_sha256": "b33608c24c01424b5cae459e66a42daecbe6bd8dbd50ddad00ae389834509587",
+    "source_manifest_sha256": "7a53b81e1ec31b688ee1a7661c237ab501bbdbcd2aea047c62c34e3538062e49",
+    "cases": 44,
+    "train_cases": 36,
+    "val_cases": 8,
+    "test_files_opened": false,
+    "allocated_target_bytes": 13640624412
+  },
+  "cuda_engineering_qa": {
+    "status": "PASS",
+    "scope": "synthetic engineering QA only; no AVT experiment",
+    "patch_size": 128,
+    "batch_size": 2,
+    "successful_updates": 2,
+    "attempts": 2,
+    "amp": true,
+    "peak_allocated_bytes": 13685237248,
+    "peak_reserved_bytes": 17125343232,
+    "elapsed_seconds": 1.351523913006531,
+    "gaussian_head_parameters": 55,
+    "predictor_unchanged": true,
+    "measurements": [
+      {
+        "loss": 1.750049352645874,
+        "output_head_gradient_norm": 0.22353123128414154,
+        "first_encoder_gradient_norm": 0.015000760555267334
+      },
+      {
+        "loss": 1.6720203161239624,
+        "output_head_gradient_norm": 0.4085621237754822,
+        "first_encoder_gradient_norm": 0.00774021539837122
+      }
+    ]
+  },
+  "strict_condition_migration": {
+    "schema": "GTA-AVT-gdf-joint-migration-1",
+    "checkpoint_sha256": "1eece5694cbf4cf2573ae8520b098e250c9aa7e4ef39ed5c10cdd6f872a77043",
+    "source_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+    "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+    "predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+    "new_model_state_sha256": "8f17bf8e7841a7f74c26a3fc509db3018c514324f9d29d93528bc416b54c9676",
+    "parent_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+    "legacy_source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7",
+    "reset_keys": [
+      "gdf_head.0.bias",
+      "gdf_head.0.weight"
+    ],
+    "imported_ps_tensors": 238,
+    "new_head_parameters": 55,
+    "optimizer_imported": false,
+    "gaussian_supervision_in_parent": false,
+    "seed": 20261032
+  },
+  "shared_head_observation": {
+    "phase": "gdf_head",
+    "successful_updates": 100,
+    "planned_updates": 2000,
+    "attempts": 101,
+    "elapsed_seconds": 34.848667204991216,
+    "last_validation": null,
+    "updated_unix": 1793205439.7576566
+  },
+  "scope": "Engineering validation and observed shared-head progress only; synthetic QA optimizer updates are excluded from the formal AVT experiment budget. No revised native efficacy result is available.",
+  "matched_arms": [
+    "AR",
+    "AR_GDF"
+  ],
+  "planned_common_head_successful_updates": 2000,
+  "planned_segmentation_successful_updates_per_arm": 30000,
+  "planned_total_new_training_compute": 62000
+}

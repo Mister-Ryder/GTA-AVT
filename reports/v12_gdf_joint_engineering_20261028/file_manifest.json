@@ -1,0 +1,18 @@
+{
+  "schema": "GTA-AVT-gdf-joint-engineering-file-manifest-1",
+  "text_encoding": "UTF-8 LF",
+  "files": {
+    "common_preparation_20261029.json": {
+      "bytes": 6322,
+      "sha256": "aa5a918e2be0cd722718679f5929ed26e2706612b043fc6d237786cd5f62f4ea"
+    },
+    "startup_20261029.json": {
+      "bytes": 3176,
+      "sha256": "4dc762ede4a4fc4651a297b7a122e337c2b0a07cb60383daf05262dcaae03fc9"
+    },
+    "status.json": {
+      "bytes": 1223,
+      "sha256": "ce67edcd94333bc12a01e61fae70b4eb2498c8ad687527144781dbe04969bc9a"
+    }
+  }
+}

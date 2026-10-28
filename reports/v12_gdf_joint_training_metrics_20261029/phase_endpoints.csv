@@ -1,0 +1,4 @@
+run_label,phase,successful_updates,attempts,status,skipped_attempts_total,planned_successful_updates,elapsed_seconds,last_recorded_validation_step,summary_present,best_validation_score
+shared_head,shared_head,2000,2001,complete,1,2000,733.1979986840015,2000,1,0.152943170471893
+AR,geometry,1787,1792,partial,5,20000,,1000,0,
+AR_GDF,geometry,1775,1778,partial,3,20000,,1000,0,

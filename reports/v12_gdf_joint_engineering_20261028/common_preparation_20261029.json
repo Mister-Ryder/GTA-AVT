@@ -1,0 +1,178 @@
+{
+  "schema": "GTA-AVT-gdf-joint-common-preparation-1",
+  "observed_utc": "2026-10-28T17:09:53.676690+00:00",
+  "shared_head": {
+    "phase": "gdf_head",
+    "successful_updates": 2000,
+    "attempts": 2001,
+    "elapsed_seconds": 733.1979986840015,
+    "segmentation_updates": 0,
+    "fixed_patch_val_summary": {
+      "dice": {
+        "mean": 0.847056829528107,
+        "std_population": 0.0911660242889753,
+        "minimum": 0.6723339703345632,
+        "defined_cases": 8,
+        "worst20_mean": 0.7155214083511499
+      },
+      "precision": {
+        "mean": 0.8376515441238854,
+        "std_population": 0.10660059075796514,
+        "minimum": 0.6748766560937128,
+        "defined_cases": 8,
+        "worst20_mean": 0.7091816682369325
+      },
+      "recall": {
+        "mean": 0.8474766634490998,
+        "std_population": 0.09334572893439311,
+        "minimum": 0.7126506121546875,
+        "defined_cases": 8,
+        "worst20_mean": 0.7380884438933519
+      }
+    },
+    "gdf_fg_mse": 0.010250968567561358,
+    "gdf_bg_mse": 0.005794294927909505,
+    "interpretation_scope": "Head fitting and initialization only; segmentation and predictor frozen. Patch metrics are not native whole-case metrics."
+  },
+  "prepared": {
+    "schema": "GTA-AVT-gdf-joint-prepared-1",
+    "plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+    "shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+    "common_head_successful_updates": 2000,
+    "segmentation_updates_in_head_warmup": 0,
+    "condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+    "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+    "lambda_peak": 11.392421803316818,
+    "calibration_sha256": "3e17915b01d41d8e6f7189aea24aa8536d56a559493890549140812cc1dd63cb",
+    "completed_unix": 1793206166.8334055
+  },
+  "train_calibration": {
+    "schema": "GTA-AVT-gdf-joint-calibration-1",
+    "checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+    "precision": "FP32; logical B2 gradient is the average of two B1 gradients with fixed BN statistics",
+    "microbatch_size": 1,
+    "logical_batch_size": 2,
+    "optimizer_updates": 0,
+    "batches": [
+      {
+        "batch_index": 0,
+        "case_ids": [
+          "Rider_R8",
+          "Dongyang_D17"
+        ],
+        "seg_loss": 0.05035513639450073,
+        "gdf_loss": 0.010486533865332603,
+        "seg_s_grad_norm": 0.1917606145143509,
+        "gdf_s_grad_norm": 0.03298952803015709
+      },
+      {
+        "batch_index": 1,
+        "case_ids": [
+          "Dongyang_D10",
+          "KiTS_K19"
+        ],
+        "seg_loss": 0.11796361953020096,
+        "gdf_loss": 0.006970812100917101,
+        "seg_s_grad_norm": 1.22955322265625,
+        "gdf_s_grad_norm": 0.03767069801688194
+      },
+      {
+        "batch_index": 2,
+        "case_ids": [
+          "Rider_R1",
+          "KiTS_K11"
+        ],
+        "seg_loss": 0.06651760265231133,
+        "gdf_loss": 0.005871954374015331,
+        "seg_s_grad_norm": 0.6135550737380981,
+        "gdf_s_grad_norm": 0.023304888978600502
+      },
+      {
+        "batch_index": 3,
+        "case_ids": [
+          "Dongyang_D15",
+          "Dongyang_D1"
+        ],
+        "seg_loss": 0.05240270867943764,
+        "gdf_loss": 0.004573929007165134,
+        "seg_s_grad_norm": 0.19210973381996155,
+        "gdf_s_grad_norm": 0.026777023449540138
+      },
+      {
+        "batch_index": 4,
+        "case_ids": [
+          "Rider_R17",
+          "KiTS_K12"
+        ],
+        "seg_loss": 0.15551888197660446,
+        "gdf_loss": 0.006059007486328483,
+        "seg_s_grad_norm": 0.5116144418716431,
+        "gdf_s_grad_norm": 0.0359090194106102
+      },
+      {
+        "batch_index": 5,
+        "case_ids": [
+          "KiTS_K17",
+          "Rider_R7"
+        ],
+        "seg_loss": 0.18756824731826782,
+        "gdf_loss": 0.006560551468282938,
+        "seg_s_grad_norm": 0.5986551642417908,
+        "gdf_s_grad_norm": 0.03147277981042862
+      },
+      {
+        "batch_index": 6,
+        "case_ids": [
+          "KiTS_K12",
+          "Rider_R8"
+        ],
+        "seg_loss": 0.08165072277188301,
+        "gdf_loss": 0.007862336933612823,
+        "seg_s_grad_norm": 0.351764976978302,
+        "gdf_s_grad_norm": 0.027486030012369156
+      },
+      {
+        "batch_index": 7,
+        "case_ids": [
+          "Dongyang_D6",
+          "KiTS_K14"
+        ],
+        "seg_loss": 0.07460303604602814,
+        "gdf_loss": 0.011874438729137182,
+        "seg_s_grad_norm": 0.3776372969150543,
+        "gdf_s_grad_norm": 0.028939582407474518
+      }
+    ],
+    "lambda_peak": 11.392421803316818,
+    "loss_matching_candidate": 11.392421803316818,
+    "shared_gradient_matching_candidate": 13.64834054040249,
+    "predicted_median_weighted_shared_gradient_ratio": 0.8347111335324914,
+    "rule": "median loss ratio, clipped to [0.5,2] times median shared-S gradient-norm ratio",
+    "scope": "eight fixed TRAIN batches only; zero optimizer updates; no VAL or TEST selection"
+  },
+  "arms": {
+    "AR": {
+      "arm": "AR",
+      "plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+      "shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+      "condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+      "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+      "seed": 20261032,
+      "planned_segmentation_updates": 30000,
+      "planned_lineage_updates": 32000,
+      "current": "geometry"
+    },
+    "AR_GDF": {
+      "arm": "AR_GDF",
+      "plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+      "shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+      "condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+      "selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+      "seed": 20261032,
+      "planned_segmentation_updates": 30000,
+      "planned_lineage_updates": 32000,
+      "current": "geometry"
+    }
+  },
+  "native_efficacy_measured": false
+}

@@ -1,0 +1,18 @@
+{
+  "schema": "GTA-AVT-snapshot-timing-1",
+  "times": {
+    "shared_head": {
+      "started_utc": "2026-10-28T17:10:54.105281+00:00",
+      "finished_utc": "2026-10-28T17:10:54.311059+00:00"
+    },
+    "AR": {
+      "started_utc": "2026-10-28T17:10:54.311087+00:00",
+      "finished_utc": "2026-10-28T17:10:54.496524+00:00"
+    },
+    "AR_GDF": {
+      "started_utc": "2026-10-28T17:10:54.496556+00:00",
+      "finished_utc": "2026-10-28T17:10:54.683710+00:00"
+    }
+  },
+  "meaning": "UTC acquisition times for independent read-only running-log snapshots; not per-training-step times."
+}

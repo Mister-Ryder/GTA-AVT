@@ -1,0 +1,13 @@
+run_label,phase,successful_update,event_scope,skipped_attempts,previous_attempt,current_attempt,inference,skipped_attempt_indices
+shared_head,shared_head,2000,phase_total,1,,2001,attempt count minus successful updates; not a log of loss values on skipped batches,
+shared_head,shared_head,13,consecutive_success_boundary,1,12,14,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[13]
+AR,geometry,1787,phase_total,5,,1792,attempt count minus successful updates; not a log of loss values on skipped batches,
+AR,geometry,377,consecutive_success_boundary,1,376,378,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[377]
+AR,geometry,619,consecutive_success_boundary,1,619,621,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[620]
+AR,geometry,1127,consecutive_success_boundary,1,1128,1130,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[1129]
+AR,geometry,1146,consecutive_success_boundary,1,1148,1150,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[1149]
+AR,geometry,1417,consecutive_success_boundary,1,1420,1422,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[1421]
+AR_GDF,geometry,1775,phase_total,3,,1778,attempt count minus successful updates; not a log of loss values on skipped batches,
+AR_GDF,geometry,377,consecutive_success_boundary,1,376,378,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[377]
+AR_GDF,geometry,1037,consecutive_success_boundary,1,1037,1039,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[1038]
+AR_GDF,geometry,1300,consecutive_success_boundary,1,1301,1303,inferred from consecutive successful-row attempt counters; not explicit failed-batch log,[1302]

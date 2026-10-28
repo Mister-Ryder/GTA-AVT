@@ -1,0 +1,24 @@
+{
+  "schema": "GTA-AVT-gdf-joint-training-figures-1",
+  "revision": "20261028-gdf-joint-r3",
+  "smoothing": false,
+  "interpolation": false,
+  "axes": "phase-local successful updates; shared head is separate; no old 92k workflow axis",
+  "native_whole_case_results_plotted": false,
+  "planned_phase_budgets": {
+    "shared_head": 2000,
+    "geometry": 20000,
+    "refine": 10000
+  },
+  "input_csv_sha256": {
+    "training_scalars.csv": "d8704386d1c7c6927b18eda60e980855acaf2bcd45c4457ceda369693489709f",
+    "validation_summary.csv": "4720b21990c5806dbe8f66fc136331d9f16c6fcce07c81758cc922fd2f9bea16"
+  },
+  "figure_sha256": {
+    "01_shared_gaussian_head.png": "407d22a653829d9399c74f722e22e7e956232ab6b5fa78fc79e49b769b325141",
+    "01_shared_gaussian_head.svg": "de3c75a17ad9019c00fe3ba150006977d097098aef8751435ad5901024a7578e",
+    "02_geometry_matched_pair.png": "d36550f1034e9cec746c8ea737807bcc14bcae18af5f0c1415ea8a1d6b5ad742",
+    "02_geometry_matched_pair.svg": "5bef4ce0f4b2244fee1879034c2e48c7d16f53a92702e7ed5db67eb853958f17"
+  },
+  "matplotlib_version": "3.5.2"
+}

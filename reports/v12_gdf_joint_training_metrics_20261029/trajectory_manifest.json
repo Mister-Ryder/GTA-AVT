@@ -1,0 +1,120 @@
+{
+  "schema": "GTA-AVT-objective-training-trajectory-1",
+  "raw_stride": 100,
+  "scopes": {
+    "training": "recorded TRAIN successful-update scalars; no interpolation",
+    "windows": "nonoverlapping recorded 200-update window mean/p10/p90 where available; not raw points",
+    "validation": "fixed sampled VAL64; separate from native whole-case metrics",
+    "time": "phase elapsed_seconds only unless a raw row actually records time; no invented per-update timestamps",
+    "amp": "attempt-minus-success counts; failed-batch losses and exact failed input identities are not recorded",
+    "units": "scores/losses retain original units; Dice/precision/recall fractions, not percent",
+    "privacy": "source paths, raw plan strings, credentials, images, labels and model weights excluded"
+  },
+  "runs": [
+    {
+      "run_label": "shared_head",
+      "snapshot_sha256": "8fc35807c543c10af063f1667fca6a122f6627fc7e2afc11ae4b88e85d419ba5",
+      "identities": {
+        "plan.condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+        "plan.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+        "plan.legacy_source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7"
+      },
+      "phases": {
+        "shared_head": {
+          "source_history_sha256": "632747345d67781c689c813061726a51c174e534eda46f30f062d4a313f04068",
+          "represented_successful_rows": 2000,
+          "retained_scalar_rows": 22,
+          "raw_points_available": true,
+          "window_size": 200,
+          "window_count": 10,
+          "validation_count": 2,
+          "malformed_lines": 0,
+          "history_gaps": [],
+          "nonfinite_losses": [],
+          "identities": {
+            "predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+            "segmentation_init.parent_checkpoint_sha256": "1eece5694cbf4cf2573ae8520b098e250c9aa7e4ef39ed5c10cdd6f872a77043",
+            "segmentation_init.common_checkpoint_sha256": "1eece5694cbf4cf2573ae8520b098e250c9aa7e4ef39ed5c10cdd6f872a77043",
+            "segmentation_init.common_state_sha256": "8f17bf8e7841a7f74c26a3fc509db3018c514324f9d29d93528bc416b54c9676",
+            "segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+            "segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3"
+          }
+        }
+      },
+      "pipeline_status_at_snapshot": null,
+      "pipeline_current_at_snapshot": null,
+      "pipeline_error_type_at_snapshot": null
+    },
+    {
+      "run_label": "AR",
+      "snapshot_sha256": "a79353b6d7ab1fc1cda6a09feec8f082318472959409fa93e63043404ab7a712",
+      "identities": {
+        "plan.condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+        "plan.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+        "plan.legacy_source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7",
+        "pipeline.plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+        "pipeline.shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+        "pipeline.condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+        "pipeline.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630"
+      },
+      "phases": {
+        "geometry": {
+          "source_history_sha256": "fb29da1f9e21c399ac642cc5de82002af9a2caf238c5cba9d7059ca1c092f4b5",
+          "represented_successful_rows": 1787,
+          "retained_scalar_rows": 24,
+          "raw_points_available": true,
+          "window_size": 200,
+          "window_count": 9,
+          "validation_count": 1,
+          "malformed_lines": 0,
+          "history_gaps": [],
+          "nonfinite_losses": [],
+          "identities": {}
+        }
+      },
+      "pipeline_status_at_snapshot": "running",
+      "pipeline_current_at_snapshot": "geometry",
+      "pipeline_error_type_at_snapshot": null
+    },
+    {
+      "run_label": "AR_GDF",
+      "snapshot_sha256": "7f8d843bf6e4953bd346fe72768c9bb7152fead44e2cd4ec3deca361342c049a",
+      "identities": {
+        "plan.condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+        "plan.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+        "plan.legacy_source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7",
+        "pipeline.plan_sha256": "ab6eba3d7d3fab473a506dd47fc3b9978f32a8312824907b60022a6cd6bd8434",
+        "pipeline.shared_checkpoint_sha256": "2fb4f3eddc0d786a44cabd5cad80e17670b4cfe43c3d10ed1d88182947ec2b87",
+        "pipeline.condition_checkpoint_sha256": "9abdec01ac53b08b21d9cf9894e174dd8b88c4ed630a3887688e2e9de4aa0e66",
+        "pipeline.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630"
+      },
+      "phases": {
+        "geometry": {
+          "source_history_sha256": "8fab556be119d31900415a9cd90e000e9a7146b0d67525c6364b66cce29cc6b6",
+          "represented_successful_rows": 1775,
+          "retained_scalar_rows": 21,
+          "raw_points_available": true,
+          "window_size": 200,
+          "window_count": 9,
+          "validation_count": 1,
+          "malformed_lines": 0,
+          "history_gaps": [],
+          "nonfinite_losses": [],
+          "identities": {}
+        }
+      },
+      "pipeline_status_at_snapshot": "running",
+      "pipeline_current_at_snapshot": "geometry",
+      "pipeline_error_type_at_snapshot": null
+    }
+  ],
+  "table_rows": {
+    "training_scalars": 67,
+    "training_windows": 1100,
+    "validation_summary": 4,
+    "validation_case_metrics": 32,
+    "phase_endpoints": 3,
+    "amp_skips": 12,
+    "checkpoint_markers": 0
+  }
+}

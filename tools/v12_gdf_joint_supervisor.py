@@ -79,20 +79,75 @@ def environment(source, gpu):
                 ITK_GLOBAL_DEFAULT_NUMBER_OF_THREADS='4', PYTHONUNBUFFERED='1')
 
 
+def _acquire_waiting_lock_unserialized(control, resume=False):
+    """Resume only a dead, child-free waiting controller; archive its lock/state."""
+    control = Path(control)
+    lock, state_path = control / 'supervisor.lock', control / 'state.json'
+    previous = None
+    if lock.exists():
+        if not resume:
+            raise FileExistsError('A controller lock already exists; explicit waiting resume required')
+        previous = read(state_path)
+        if previous.get('status') not in ('waiting_old_controls', 'waiting_resource_change') or previous.get('stages') != []:
+            raise ValueError('Only a waiting controller without any revision child may resume this way')
+        if alive(previous['supervisor']):
+            raise RuntimeError('Previous controller identity is still alive; refuse duplicate')
+        if lock.read_text().strip() != str(previous['supervisor']['pid']):
+            raise ValueError('Lock PID does not match the previous waiting state')
+        stamp = str(time.time_ns())
+        write(control / ('waiting_state_before_resource_change_' + stamp + '.json'), previous)
+        os.replace(str(lock), str(control / ('supervisor.lock.before_resource_change_' + stamp)))
+    elif resume or state_path.exists():
+        raise RuntimeError('Missing audited waiting lock/state; no implicit fresh restart')
+    with lock.open('x') as f:
+        f.write(str(os.getpid()))
+    return previous
+
+
+def acquire_waiting_lock(control, resume=False):
+    if not resume:
+        return _acquire_waiting_lock_unserialized(control, False)
+    claim = Path(control) / 'waiting_resume.claim'
+    with claim.open('x') as f:
+        f.write(str(os.getpid()))
+    try:
+        return _acquire_waiting_lock_unserialized(control, True)
+    finally:
+        claim.unlink()
+
+
+def resource_permission(config, inventory):
+    """An operator release and exact requested GPU count are both necessary."""
+    gate_path = config.get('resource_gate_file')
+    if gate_path is None:
+        return False, 'waiting for explicit two-GPU resource gate configuration'
+    if not Path(gate_path).is_file():
+        return False, 'waiting for explicit resource gate'
+    gate = read(gate_path)
+    if gate.get('schema') != 'GTA-AVT-resource-gate-1' or gate.get('requested_gpu_count') != 2:
+        raise ValueError('This paired handoff requires the explicit two-GPU resource contract')
+    if gate.get('allow_revision_start') is not True:
+        return False, 'old controls complete; waiting for operator verification after two-GPU restart'
+    if sorted(inventory) != ['0', '1']:
+        return False, 'waiting for exactly two visible GPUs'
+    return True, 'two-GPU resource configuration explicitly released'
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--config', required=True)
     ap.add_argument('--poll-seconds', type=float, default=30)
+    ap.add_argument('--resume-waiting', action='store_true')
     args = ap.parse_args()
     c = read(args.config)
     control = Path(c['control_dir'])
     control.mkdir(parents=True, exist_ok=True)
-    lock = control / 'supervisor.lock'
-    with lock.open('x') as f:
-        f.write(str(os.getpid()))
+    previous = acquire_waiting_lock(control, args.resume_waiting)
     state = dict(schema='GTA-AVT-gdf-joint-handoff-1', status='waiting_old_controls',
                  supervisor=dict(pid=os.getpid(), start_ticks=Path('/proc/self/stat').read_text().split()[21]),
                  started_unix=time.time(), stages=[], old_runs_modified=False)
+    if previous is not None:
+        state['previous_waiting_supervisor'] = previous['supervisor']
     path = control / 'state.json'
     children = []
     def launch(name, argv, gpu):
@@ -114,17 +169,33 @@ def main():
     try:
         while True:
             ready, reason = barrier(c)
-            state.update(wait_reason=reason, observed_unix=time.time())
-            write(path, state)
+            state.update(status='waiting_old_controls', old_controls_complete=ready,
+                         wait_reason=reason, observed_unix=time.time())
             if ready:
-                break
+                inventory = subprocess.check_output(['nvidia-smi', '--query-gpu=index', '--format=csv,noheader'], text=True)
+                allowed, resource_reason = resource_permission(c, [x.strip() for x in inventory.strip().splitlines()])
+                state['resource_gate'] = read(c['resource_gate_file']) if c.get('resource_gate_file') and Path(c['resource_gate_file']).exists() else None
+                if not allowed:
+                    state.update(status='waiting_resource_change', wait_reason=resource_reason)
+                    write(control / 'resource_change_ready.json', dict(
+                        old_controls_complete=True, requested_gpu_count=2,
+                        revision_children_started=False, observed_unix=time.time()))
+                else:
+                    state['resource_release_reason'] = resource_reason
+                    write(path, state)
+                    break
+            write(path, state)
             time.sleep(args.poll_seconds)
         state.update(status='preparing_revision', barrier_passed_unix=time.time())
+        write(path, state)
         if c['authorized_arms'] != ['AR', 'AR_GDF']:
             raise ValueError('Only the authorized matched pair may run')
         if sha(c['parent_checkpoint']) != c['parent_sha256']:
             raise ValueError('Clean condition checkpoint identity changed')
         inventory = subprocess.check_output(['nvidia-smi', '--query-gpu=index', '--format=csv,noheader'], text=True)
+        allowed, reason = resource_permission(c, [x.strip() for x in inventory.strip().splitlines()])
+        if not allowed:
+            raise RuntimeError('Resource release changed before launch: ' + reason)
         if not {'0', '1'}.issubset(set(inventory.strip().splitlines())):
             raise RuntimeError('Two actual GPUs required for the paired revision')
         occupied = subprocess.check_output(['nvidia-smi', '--query-compute-apps=pid', '--format=csv,noheader'], text=True)

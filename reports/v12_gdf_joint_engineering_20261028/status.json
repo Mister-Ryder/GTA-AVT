@@ -9,8 +9,11 @@
   "imported_ps_tensors": 238,
   "new_gaussian_head_parameters": 55,
   "old_predictor_preserved": true,
-  "deferred_supervisor_tests_passed": 7,
+  "deferred_supervisor_tests_passed": 15,
   "cuda_qa_status": "deferred_until_existing_four_endpoints_complete",
   "new_training_status": "waiting_for_existing_controls",
-  "efficacy_measured": false
+  "efficacy_measured": false,
+  "operator_resource_gate_required": true,
+  "required_gpu_count_after_old_controls": 2,
+  "method_source_unchanged_by_resource_handoff": true
 }

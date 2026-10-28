@@ -162,4 +162,4 @@ python -m gta_avt.gdf_joint run --config configs/gdf_joint_plan.json --arm AR
 python -m gta_avt.gdf_joint run --config configs/gdf_joint_plan.json --arm AR_GDF
 ```
 
-`prepare`负责严格迁移、新头共享预热和TRAIN校准；两个 `run` 从相同准备结果启动，不能同时重复执行 `prepare`。实际部署由完成边界控制器衔接，只有旧四支训练及整例评价均完成后才放行新GPU训练。源码、目标、配置和检查点身份分别记录，避免新旧混读。
+`prepare`负责严格迁移、新头共享预热和TRAIN校准；两个 `run` 从相同准备结果启动，不能同时重复执行 `prepare`。实际部署由完成边界控制器衔接。旧四支已完成训练及整例评价，当前资源门仍关闭；按用户安排停机缩为两卡并重启，核验资源、源版本和父权重后才放行新版GPU核验及训练。源码、目标、配置和检查点身份分别记录，避免新旧混读。

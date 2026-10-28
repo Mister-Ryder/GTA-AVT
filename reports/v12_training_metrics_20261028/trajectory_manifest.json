@@ -187,7 +187,7 @@
     },
     {
       "run_label": "C0",
-      "snapshot_sha256": "41ab8d07a2e0593db61daa87d97e685ca7e6b34d01dd4e4760f9259e103cea4e",
+      "snapshot_sha256": "5b263b71bec86146b5ceb44d1cc9c41b7d20ee093d6010732a5206f7a36f91ac",
       "identities": {
         "plan.source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7",
         "plan.runner_sha256": "7f23c4b81f1b1d327a9d4cb31020cd6478906a8627bc68504265cb1ea10b177b",
@@ -216,6 +216,12 @@
         "pipeline.completed.geometry.lineage.segmentation_init.common_state_sha256": "6907fe3c14a458b0732f3958aeecdb30cdb1385f855c9ff9803ae0046f39d24b",
         "pipeline.completed.geometry.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
         "pipeline.completed.geometry.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.segmentation_init.parent_checkpoint_sha256": "f383e0065aeb1e36d2942b354fdb95b4f3c21427d8c88e655d8194b219a71b69",
+        "pipeline.completed.refine.lineage.segmentation_init.common_checkpoint_sha256": "f383e0065aeb1e36d2942b354fdb95b4f3c21427d8c88e655d8194b219a71b69",
+        "pipeline.completed.refine.lineage.segmentation_init.common_state_sha256": "62c243d0a92325d5d511e1238138cef36e509c93be3d114877576b333a0f73a9",
+        "pipeline.completed.refine.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+        "pipeline.completed.refine.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
         "pipeline.shared_prefix.base_checkpoint_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
         "pipeline.shared_prefix.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
         "pipeline.shared_prefix.observed_prefix_pipeline_sha256": "c4f1be07646c9704920f505c6c016ebca5fde19e40c9f74cd8a3a777b9df115b"
@@ -282,26 +288,33 @@
           }
         },
         "refine": {
-          "source_history_sha256": "03eb40c16e4df3b338f4ecaf87500d1f14336758438aa86126015c9f04f102d3",
-          "represented_successful_rows": 4159,
-          "retained_scalar_rows": 47,
+          "source_history_sha256": "3767886031b6f240a1ce2e12c1ff2d942a4f0576ae24c8c4d179ce45d4d7774b",
+          "represented_successful_rows": 10000,
+          "retained_scalar_rows": 106,
           "raw_points_available": true,
           "window_size": 200,
-          "window_count": 21,
-          "validation_count": 4,
+          "window_count": 50,
+          "validation_count": 10,
           "malformed_lines": 0,
           "history_gaps": [],
           "nonfinite_losses": [],
-          "identities": {}
+          "identities": {
+            "predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+            "segmentation_init.parent_checkpoint_sha256": "f383e0065aeb1e36d2942b354fdb95b4f3c21427d8c88e655d8194b219a71b69",
+            "segmentation_init.common_checkpoint_sha256": "f383e0065aeb1e36d2942b354fdb95b4f3c21427d8c88e655d8194b219a71b69",
+            "segmentation_init.common_state_sha256": "62c243d0a92325d5d511e1238138cef36e509c93be3d114877576b333a0f73a9",
+            "segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+            "segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3"
+          }
         }
       },
       "pipeline_status_at_snapshot": "running",
-      "pipeline_current_at_snapshot": "refine",
+      "pipeline_current_at_snapshot": "native_VAL_C0",
       "pipeline_error_type_at_snapshot": null
     },
     {
       "run_label": "AR",
-      "snapshot_sha256": "e434ca678ded101f86cbae263715726572293f3d50252475666d73b6139439b4",
+      "snapshot_sha256": "c33477d418cfb048b9c06d2af680230fde12300335921465fdc0f5b58ae6f7dd",
       "identities": {
         "plan.source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7",
         "plan.runner_sha256": "7f23c4b81f1b1d327a9d4cb31020cd6478906a8627bc68504265cb1ea10b177b",
@@ -330,6 +343,12 @@
         "pipeline.completed.geometry.lineage.segmentation_init.common_state_sha256": "33d806f2daeab1c6cc0ddc4eefb42fec2d7633875a8feaf1f757d27b0d8d151c",
         "pipeline.completed.geometry.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
         "pipeline.completed.geometry.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.segmentation_init.parent_checkpoint_sha256": "d7e7d618e884dadd84dd98ff41fd10430791d934867790c68080b3740f5d07f0",
+        "pipeline.completed.refine.lineage.segmentation_init.common_checkpoint_sha256": "d7e7d618e884dadd84dd98ff41fd10430791d934867790c68080b3740f5d07f0",
+        "pipeline.completed.refine.lineage.segmentation_init.common_state_sha256": "db422372e5d617c7d250f8d7e65a2629dd40d1a83fcc95fd84b707ddbd3e8ad6",
+        "pipeline.completed.refine.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+        "pipeline.completed.refine.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
         "pipeline.shared_prefix.base_checkpoint_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
         "pipeline.shared_prefix.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
         "pipeline.shared_prefix.observed_prefix_pipeline_sha256": "c4f1be07646c9704920f505c6c016ebca5fde19e40c9f74cd8a3a777b9df115b"
@@ -396,26 +415,33 @@
           }
         },
         "refine": {
-          "source_history_sha256": "fe2f5f8ccaf79f2f7a8334955e4288f12723916befd5514326104ca146f92cd6",
-          "represented_successful_rows": 3999,
-          "retained_scalar_rows": 43,
+          "source_history_sha256": "7064e1dad92b1cdf40d8ed20d51ae82a9997ea6d11d3d0d8bb8dcdb39faff721",
+          "represented_successful_rows": 10000,
+          "retained_scalar_rows": 105,
           "raw_points_available": true,
           "window_size": 200,
-          "window_count": 20,
-          "validation_count": 3,
+          "window_count": 50,
+          "validation_count": 10,
           "malformed_lines": 0,
           "history_gaps": [],
           "nonfinite_losses": [],
-          "identities": {}
+          "identities": {
+            "predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+            "segmentation_init.parent_checkpoint_sha256": "d7e7d618e884dadd84dd98ff41fd10430791d934867790c68080b3740f5d07f0",
+            "segmentation_init.common_checkpoint_sha256": "d7e7d618e884dadd84dd98ff41fd10430791d934867790c68080b3740f5d07f0",
+            "segmentation_init.common_state_sha256": "db422372e5d617c7d250f8d7e65a2629dd40d1a83fcc95fd84b707ddbd3e8ad6",
+            "segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+            "segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3"
+          }
         }
       },
       "pipeline_status_at_snapshot": "running",
-      "pipeline_current_at_snapshot": "refine",
+      "pipeline_current_at_snapshot": "native_VAL_AR",
       "pipeline_error_type_at_snapshot": null
     },
     {
       "run_label": "C0_GDF",
-      "snapshot_sha256": "4a093b525d128ad60f4abfccbb07aea0be0f27c2981e09565fe5ba6d588da8c7",
+      "snapshot_sha256": "be309e8e7ee5a14ce98250160ad817aba6b934e968e9397a46a1f3b865bd3d90",
       "identities": {
         "plan.source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7",
         "plan.runner_sha256": "7f23c4b81f1b1d327a9d4cb31020cd6478906a8627bc68504265cb1ea10b177b",
@@ -444,6 +470,12 @@
         "pipeline.completed.geometry.lineage.segmentation_init.common_state_sha256": "e7638f1335530a9cccdc60a90ca1f03f32dfc271db99b8628c8dbaf82b5bc816",
         "pipeline.completed.geometry.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
         "pipeline.completed.geometry.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+        "pipeline.completed.refine.lineage.segmentation_init.parent_checkpoint_sha256": "3a094cef6d3da11a6abc41c26af6c95c1a7abec0bdafabcbb90f9d297e3a1a87",
+        "pipeline.completed.refine.lineage.segmentation_init.common_checkpoint_sha256": "3a094cef6d3da11a6abc41c26af6c95c1a7abec0bdafabcbb90f9d297e3a1a87",
+        "pipeline.completed.refine.lineage.segmentation_init.common_state_sha256": "1abcf97e8c47e3a468b1ba953299dc849889d35b56005f1830a9efb69a36a552",
+        "pipeline.completed.refine.lineage.segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+        "pipeline.completed.refine.lineage.segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
         "pipeline.shared_prefix.base_checkpoint_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
         "pipeline.shared_prefix.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
         "pipeline.shared_prefix.observed_prefix_pipeline_sha256": "c4f1be07646c9704920f505c6c016ebca5fde19e40c9f74cd8a3a777b9df115b"
@@ -510,21 +542,28 @@
           }
         },
         "refine": {
-          "source_history_sha256": "a9d2aa7a5b4c262f33df808ebb8d2506c9fb644098923ece393d7898a418cebc",
-          "represented_successful_rows": 4082,
-          "retained_scalar_rows": 44,
+          "source_history_sha256": "cefa1e55aed395205138775ff4647af87f1234467f37c64a2f5a355835a9c687",
+          "represented_successful_rows": 10000,
+          "retained_scalar_rows": 106,
           "raw_points_available": true,
           "window_size": 200,
-          "window_count": 21,
-          "validation_count": 4,
+          "window_count": 50,
+          "validation_count": 10,
           "malformed_lines": 0,
           "history_gaps": [],
           "nonfinite_losses": [],
-          "identities": {}
+          "identities": {
+            "predictor_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+            "segmentation_init.parent_checkpoint_sha256": "3a094cef6d3da11a6abc41c26af6c95c1a7abec0bdafabcbb90f9d297e3a1a87",
+            "segmentation_init.common_checkpoint_sha256": "3a094cef6d3da11a6abc41c26af6c95c1a7abec0bdafabcbb90f9d297e3a1a87",
+            "segmentation_init.common_state_sha256": "1abcf97e8c47e3a468b1ba953299dc849889d35b56005f1830a9efb69a36a552",
+            "segmentation_init.selected_base_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+            "segmentation_init.predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3"
+          }
         }
       },
       "pipeline_status_at_snapshot": "running",
-      "pipeline_current_at_snapshot": "refine",
+      "pipeline_current_at_snapshot": "native_VAL_C0_GDF",
       "pipeline_error_type_at_snapshot": null
     },
     {
@@ -556,12 +595,12 @@
     }
   ],
   "table_rows": {
-    "training_scalars": 2740,
-    "training_windows": 45200,
-    "validation_summary": 259,
-    "validation_case_metrics": 2472,
+    "training_scalars": 2923,
+    "training_windows": 48720,
+    "validation_summary": 278,
+    "validation_case_metrics": 2624,
     "phase_endpoints": 20,
-    "amp_skips": 139,
+    "amp_skips": 145,
     "checkpoint_markers": 2
   }
 }

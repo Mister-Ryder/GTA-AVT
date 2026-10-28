@@ -23,7 +23,7 @@ OFFSETS = {}; total = 0
 for phase in PHASES:
     OFFSETS[phase] = total; total += BUDGET[phase]
 COLORS = dict(zip(PHASES, ('#28799B', '#C98532', '#7771A6', '#B8839E', '#27836B', '#507A9B')))
-RUN_COLORS = {'C0': '#7B8792', 'AR': '#176B9B', 'C0_GDF': '#CF792D', 'AR_GDF': '#238369'}
+RUN_COLORS = {'C0': '#7B8792', 'AR': '#176B9B', 'C0_GDF': '#CF792D', 'AR_GDF': '#238369', 'F': '#8057A3'}
 
 
 def rows(path):
@@ -240,14 +240,14 @@ def native_comparison(native, output):
         lookup={r['metric']:num(r, 'mean_pct') for r in summary if r['endpoint']==endpoint and r.get('status')=='available'}
         y=[lookup.get(key, math.nan) for key in keys]
         aa[0].bar(x-.4+width/2+index*width,y,width,label=endpoint,color=RUN_COLORS.get(endpoint,'#89939E'))
-    aa[0].set_xticks(x, ('Dice','Precision','Recall','clDice','Fine CL recall'));aa[0].set_ylim(0,105);aa[0].set_ylabel('Native case-equal mean (%)');aa[0].legend(frameon=False)
+    aa[0].set_xticks(x, ('Dice','Precision','Recall','clDice','Fine CL recall'));aa[0].set_ylim(0,105);aa[0].set_ylabel('Native case-equal mean (%)');aa[0].legend(frameon=False,ncol=5,loc='lower left',bbox_to_anchor=(0,1.025),borderaxespad=0)
     ids=sorted({r['case_id'] for r in case});x=np.arange(len(ids));width=.8/len(available)
     for index,endpoint in enumerate(available):
         lookup={r['case_id']:num(r,'dice_pct') for r in case if r['endpoint']==endpoint}
         aa[1].bar(x-.4+width/2+index*width,[lookup.get(k,math.nan) for k in ids],width,label=endpoint,color=RUN_COLORS.get(endpoint,'#89939E'))
-    aa[1].set_xticks(x,ids,rotation=30,ha='right');aa[1].set_ylim(0,105);aa[1].set_ylabel('Native Dice (%)');aa[1].legend(frameon=False)
+    aa[1].set_xticks(x,ids,rotation=30,ha='right');aa[1].set_ylim(0,105);aa[1].set_ylabel('Native Dice (%)');aa[1].legend(frameon=False,ncol=5,loc='lower left',bbox_to_anchor=(0,1.025),borderaxespad=0)
     for ax in aa:ax.grid(axis='y',color='#E0E5EA',lw=.65);ax.set_axisbelow(True)
-    fig.text(.065,.09,'F precedes condition and Gaussian training. F-to-final includes42k extra workflow updates, including2k head-only; it is not an isolated GDF contrast.',fontsize=9.5)
+    fig.text(.065,.09,'F precedes condition and Gaussian training. F-to-final includes 42k extra workflow updates, including 2k head-only; it is not an isolated GDF contrast.',fontsize=9.5)
     fig.text(.065,.05,'Fine centerline recall uses GT native Lee skeleton sites with physical EDT radius<=2mm; it is not physical branch-length recall.',fontsize=9.5)
     save(fig,output,'04_native_available_endpoints')
 

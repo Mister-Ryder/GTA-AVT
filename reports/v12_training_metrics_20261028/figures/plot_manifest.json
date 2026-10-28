@@ -6,25 +6,24 @@
   "training_render": "exported raw scalar samples",
   "validation_render": "all exported original validation observations",
   "input_csv_sha256": {
-    "training_scalars.csv": "c6b7f6de107869404a94741faedfd4a9fc82f4fa8b7eb5138210c00a07d8a396",
-    "validation_summary.csv": "b9f320213fb24886ab4a26b1ad1cc3c4cb843ebcab5256fb364f260c9e05eeb7"
+    "training_scalars.csv": "c1780d944fccbe49649004e454041b918500ab83488aefc4ae6853d0311c6fcb",
+    "validation_summary.csv": "db8a7f8676b27b6710749b1cae690534867b7d8c3b9620cc7a03f8092c3fea12"
   },
   "native_csv_sha256": {
-    "endpoint_summary.csv": "197d7a8edc8dee2c58f530740f0e7af8b3cb8e7c360212ba4f89d8300e05b198",
-    "endpoint_per_case.csv": "f3dfe7705436aa2d52630b90591561e6333af76c23b7e7465d473d499eedcdd3"
+    "endpoint_summary.csv": "1aa5c8285d1fe5319a33d5329bf321b999ce48943265ad4643d329e88ff93cee",
+    "endpoint_per_case.csv": "05f7f48aee76e8d83770d45a1249d7e7a8b9eb1bd5ace902e0d10683730081d6"
   },
   "figure_sha256": {
     "01_main_training_patch_validation.png": "691f7ccf84bcc4ccde855bef9c57cf06fced03f7f822950e889a82ae55cbad6d",
-    "01_main_training_patch_validation.svg": "87fcad00042423f4fdcff58ce04b33ec69a29dae3341e1337416db6c7c64a1f0",
+    "01_main_training_patch_validation.svg": "0cbd09afe2f4c31e3a6f8d05f6f2f9edae8dd243aeb51284db2cc060676d4549",
     "02_attribute_pretraining.png": "05f8281eb1d21976311cf452b6c86912b6b33bc0e693b17c381aaa6450c6ad47",
-    "02_attribute_pretraining.svg": "f74ad50250ba553f26bf65336aa14cb8e479dac74887cb7c2d23644be2bb8c22",
-    "03_local_controls_patch_validation.png": "5282b9d4c410d2ef2dbb559a6a8a8caa83d466ca0485b0c1cb7f550b5924ddcd",
-    "03_local_controls_patch_validation.svg": "cef692d712e6ebed71de31caefde2f94cbf445c9489522e4bd075cf15652776c",
-    "04_native_available_endpoints.png": "e6d046477066adbc10f74d5a7a4ab9746c363d3e1760aba002d7351a748c320c",
-    "04_native_available_endpoints.svg": "53d51379477aae33184f1e7aa860e8038d51c781c62b560cf1433c60d0eceabf"
+    "02_attribute_pretraining.svg": "5b1bce26ed8428f9fa40acdcb6750f681381c329b10a53635876d4d34d5e440f",
+    "03_local_controls_patch_validation.png": "45d6c11494107ee0d8ee65c4fc2f03b3e5592436e67fd166fc5c4d80e2e3efce",
+    "03_local_controls_patch_validation.svg": "4897ff15ddcda75628e408f52b8e21d65e354c5576e18f2c0680f28668b76680",
+    "04_native_available_endpoints.png": "1f25db51cf76ac804580bed0b4b16a74542aa355b0f9fbca462fc67f208edad5",
+    "04_native_available_endpoints.svg": "5633bd9b1adb3299b322dd0912054b64b790ae2df88dc631e069f0e303bcf754"
   },
   "matplotlib_version": "3.5.2",
-  "train_rows": 2740,
-  "validation_rows": 259,
-  "text_encoding": "UTF-8 LF; canonical CSV bytes; numeric values unchanged"
+  "train_rows": 2923,
+  "validation_rows": 278
 }

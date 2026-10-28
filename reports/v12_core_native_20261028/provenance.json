@@ -1,0 +1,49 @@
+{
+  "F_native_JSON_sha256": "682cd5acdc376fed399204674cf5d14c65fe89d86c30f026d56c6cee620a50d1",
+  "AR_GDF_native_JSON_sha256": "da4961deec0f1f8d9e342cd5bb7784114395ebefa8984dc35cd881de56ef6f15",
+  "AR_GDF_cached_observation_JSON_sha256": "bff5b69f63faff5f084540773a778d5bb14b59f77c63b14e020f302d91933689",
+  "three_tail_completion_JSON_sha256": "77572adbcd0358f17a07e46c57d8777993d5b1c62b5336a0d462039dec95f594",
+  "source_commit": "beab40c2b63345336c2eda8556d0caf99abad7f7",
+  "source_manifest_sha256": "99df7b55be6354c787cfe566cbd597afe08d63e56d60670f3ca2f3ff79169ce7",
+  "seed": 20261032,
+  "base_checkpoint_sha256": "0ab4f06977be0241f37f640c9730dd29d6c1ed5239d9e8050541cae4cc76b630",
+  "predictor_state_sha256": "00452c51b77d6e97cd4ebf5187219c997307d0123049d681efcaf84faf8b07e3",
+  "F_selected_base_step": 27000,
+  "F_segmentation_weight_lineage_updates": 47000,
+  "completed_prefix_compute_updates": 80000,
+  "branches": {
+    "C0": {
+      "cached_observation_JSON_sha256": "7f2c8c09f4c21a2eebb4520dc723593fbc66f8ddf3231baf33212d0cdd4e924a",
+      "native_report_canonical_JSON_sha256": "977f737172761f98872ef214f8ac05e502a8acae7f5765a535eca1d194cddeb1",
+      "final_pipeline_plan_sha256": "b0cf13edafbda128db752202d1a49fda5d29f72c11c6fb5540e6189c79fafc53",
+      "original_prefix_plan_sha256": "d632d19fc6d437aff7ab0741c2a785391421b193f4e6ae882d637d7123860d5d",
+      "observed_imported_prefix_pipeline_sha256": "c4f1be07646c9704920f505c6c016ebca5fde19e40c9f74cd8a3a777b9df115b",
+      "tail_successful_updates": 42000,
+      "job_exit_code": 0
+    },
+    "AR": {
+      "cached_observation_JSON_sha256": "5f557fa9a74d2a9f82078475392f9d17e68fa66daf0c74e72dc2677b9434ffff",
+      "native_report_canonical_JSON_sha256": "9c468808e6d821a2d06712d2020c6738fb8f90e3c2c42ad32ab1e44a296cfe82",
+      "final_pipeline_plan_sha256": "117b29479718e94c8c70a3b70a903b7f945560be2c18c65b5897cfca49d117ec",
+      "original_prefix_plan_sha256": "d632d19fc6d437aff7ab0741c2a785391421b193f4e6ae882d637d7123860d5d",
+      "observed_imported_prefix_pipeline_sha256": "c4f1be07646c9704920f505c6c016ebca5fde19e40c9f74cd8a3a777b9df115b",
+      "tail_successful_updates": 42000,
+      "job_exit_code": 0
+    },
+    "C0_GDF": {
+      "cached_observation_JSON_sha256": "f77a72205c17fce8a0c45378401097dd0fb42c31b8b5a6cd479b799c1e1f6f17",
+      "native_report_canonical_JSON_sha256": "8dfa9a330296bc29c1c8107b10325c3e9a6d9dec3a0fbacc75c7aed261c7709b",
+      "final_pipeline_plan_sha256": "73c6bfa5e4cbb8e6c612c998e26c1eefbf4bd8b189fd5d9b11bcf938389f331c",
+      "original_prefix_plan_sha256": "d632d19fc6d437aff7ab0741c2a785391421b193f4e6ae882d637d7123860d5d",
+      "observed_imported_prefix_pipeline_sha256": "c4f1be07646c9704920f505c6c016ebca5fde19e40c9f74cd8a3a777b9df115b",
+      "tail_successful_updates": 42000,
+      "job_exit_code": 0
+    },
+    "AR_GDF": {
+      "final_pipeline_plan_sha256": "b43b85356316f36078034372c2f9a9bbdd4723b65f9e0e4519275c3c9f46189e",
+      "total_successful_updates": 122000,
+      "tail_successful_updates": 42000
+    }
+  },
+  "prefix_plan_hash_scope": "Original/imported plan hashes are observations of distinct files and are not asserted byte-identical. Shared model state is validated by checkpoint and predictor-state hashes."
+}
